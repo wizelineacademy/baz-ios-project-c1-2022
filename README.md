@@ -16,25 +16,25 @@ Este archivo README contiene instrucciones de como completar tu proyecto final.
 
 ## Introducción
 
-Este curos de iOS esta enfocado en mejorar tus habilidades tecnicas.
+Este curos de iOS esta enfocado en mejorar tus habilidades técnicas.
 
 Al finalizar el curso, habrás ganado la experiencia en las tencologias cubiertas en este curso, 
 como aplicarlas, y las tecnicas para agilizar y eficientar tus tareas. 
 
-Además, conoceras el funcionamiento interno de las tecnologias y las mejores practicas.
+Además, conocerás el funcionamiento interno de las tecnologías y las mejores prácticas.
 
 
 ## El Proyecto  
 
 El propósito de este proyecto es que demuestres tus habilidades aprendidas en el curso y tu experiencia en desarrollo iOS.
 
-Construiras y entregaras una aplicacion completamente funcional.
+Construirás y entregarás una aplicación completamente funcional.
 
 No queremos limitarte pidiéndote que completes ejercicios. Queremos que construyas desde cero. 
 
-Esperamos que te encuentres este proyecto interesante y retador.
+Esperamos que encuentres este proyecto interesante y retador.
 
-El objetivo  es constriur una aplicacion que consuma `TheMovieDB` API.
+El objetivo  es constriur una aplicación que consuma `TheMovieDB` API.
 
 > \*_NOTA:_ Incluye `f6cd5c1a9e6c6b965fdcab0fa6ddd38a` como `api_key` en tus peticiones (la credencial para consumir la API) \*
 
@@ -43,7 +43,7 @@ Recuerda que este es **Tu** proyecto y puedes ser tan creativo como tu desees.
 
 ## Requerimientos
 
-Estos son los requerimientos principales para la evaluacion de tu entrega final:
+Estos son los requerimientos principales para la evaluación de tu entrega final:
 
 - Variables, Constantes, y tipos de datos
 - Funciones y bloques (closures)
@@ -64,7 +64,7 @@ Estos son los requerimientos principales para la evaluacion de tu entrega final:
 
 En este repositorio incluimos un proyecto de Xcode.
 
-En el existen componentes basicos que puedes usar para estructurar tu aplicació.
+En el existen componentes básicos que puedes usar para estructurar tu aplicación.
 Siéntete libre de agrerar, modificar o remover según consideres necesario.
 
 Para empezar, sigue los siguientes pasos:
@@ -101,7 +101,7 @@ Mostrar películas con diferentes filtros:
     - Upcoming
 
 2. Search (Búsqueda por película o actor)
-Mostrar resultados por palabra clave y por consulta (`keyword` and `query`)
+Mostrar resultados por palabra clave y por consulta
 
 3. Movie Details
 Muestra la informacion de una película específica como:
@@ -117,12 +117,12 @@ Hemos determinado fechas para que planees tus entregables. Te recomendamos traba
 No dejes todo para el final.
 
 Cabe mencionar que puedes recibir retroalimentacion de parte de un mentor para tu primer y segundo entregable, 
-dandote la oportunidad de corregir y mejorar tu codigo base. 
+dandote la oportunidad de corregir y mejorar tu código base. 
 
 Para la entrega final tambien puedes solicitar retroalimentación, pero no hay fecha nueva de revisión.
 Si tienes problemas y necesitas ayuda no dudes en solicitar un mentor en el canal de telegram.
 
-> \*_Importante:_ lo enlistado en los entregables es solo una guía para ayudarte a distribuir la carga de trabajo; puedes extender funcionalidad como lo veas necesario \*
+> \*_Importante:_ esta lista en los entregables es solo una guía para ayudarte a distribuir la carga de trabajo; puedes extender funcionalidad como lo veas necesario \*
 
 ### Primer entregable
 
@@ -140,7 +140,7 @@ Usando lo construido en tu entregable anterior:
 * Declara vistas con archivos xibs y Storyboard
 * Implementa un UICollectionView en al menos una pantalla
 * Introduce navegación en entre tus pantallas
-* Carga las imagenes asíncronamente
+* Carga las imágenes asíncronamente
 
 ### Entregable Final 
 
@@ -160,7 +160,7 @@ Para presentar cada uno de tus entregables, sigue los siguientes pasos:
 * Copia la url de tu Pull Request e ingresala en este [formulario](https://forms.gle/oZtRk3QknRFLpgQu9)
 * Resuelve cualquier comentario que te dejen para mejorar tu código
 * Haz `merge` para incorporar tus cambios a tu rama principal y continua con tu siguiente entregable
-> \*_Importante:_ de encontrarte con conflictos no dudes en pedirle ayuda a tu mentor\*
+> \*_Importante:_ Si tienes problemas con conflictos en tus ramas no dudes en pedirle ayuda a tu mentor\*
 
 # TheMovieDb API
 The Movie Database (TMDB) es una base de datos comunitaria muy popular que incluye películas y series de television. Accede a la [documentación](https://developers.themoviedb.org/3/) para conocer su funcionamiento.
