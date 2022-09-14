@@ -20,7 +20,7 @@ El programa necesita cumplir especificaciones y funcionar correctamente. Esto si
 
 El código necesia ser legible tant opara ti como a un tercero. Esto incluye:
 * Uso constante de indentación (usando tabs, o n spacios, pero mantener consistencia)
-* Adopta la convenciones de la guía de [estilo de swift](https://google.github.io/swift/)
+* Adopta las convenciones de la guía de [estilo de swift](https://google.github.io/swift/)
 * Utiliza nombres descriptivos. Variables de una palabra o abreviaciones terminan siendo ambiguas y es dificil inferir su propósito. Ejemplos:
     - `let n: 3` -> `let numberOfRowsInSection: 3`
     - `let name: "José"` -> `let userFirstName`
