@@ -6,19 +6,14 @@
 
 import Foundation
 
-class MovieAPI {
+public final class MovieAPI: APIURLHandler {
 
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
 
     func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-              let results = json.object(forKey: "results") as? [NSDictionary]
-        else {
-            return []
-        }
-
+        
+        let results = self.getURLContent(url: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)")
+        
         var movies: [Movie] = []
 
         for result in results {
