@@ -6,7 +6,7 @@
 
 import Foundation
 
-class MovieAPI {
+final class MovieAPI {
 
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
 
