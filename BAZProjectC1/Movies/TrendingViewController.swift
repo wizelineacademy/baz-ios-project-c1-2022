@@ -6,9 +6,9 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
+final class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    private var movies: [Movie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
