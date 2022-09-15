@@ -9,11 +9,12 @@ import UIKit
 class TrendingViewController: UITableViewController {
 
     var movies: [Movie] = []
+    let movieApi = MovieAPI()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let movieApi = MovieAPI()
+        ///let movieApi = MovieAPI()
         
         movies = movieApi.getMovies()
         tableView.reloadData()
@@ -31,6 +32,16 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        movieApi.getMoviesUpdate(completion: { lstResult in
+            
+            print("Info resultados: \(lstResult)")
+            
+        })
+        
     }
 
 }

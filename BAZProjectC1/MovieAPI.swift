@@ -31,5 +31,39 @@ class MovieAPI {
 
         return movies
     }
+    
+    func getMoviesUpdate(completion: @escaping ([Movie]) -> ()) {
+            guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)") else {
+                return
+            }
+            
+            let session = URLSession.shared
+                    session.dataTask(with: url) { (data, response, error) in
+                      
+                    
+                        
+                        if let data = data {
+                            print(data)
+                            do {
+                                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                               
+                                var lstMovies = [Movie]()
+                                if let dataInfo = json as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
+                                    
+                                    for item in dataAll {
+                                        lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
+                                    }
+                                }
+                                completion(lstMovies)
+                            } catch {
+                                print(error)
+                                completion([])
+                            }
+                            
+                        }
+                    }.resume()
+            
+        }
+    
 
 }

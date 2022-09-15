@@ -11,3 +11,8 @@ struct Movie {
     let title: String
     let poster_path: String
 }
+
+////Update
+struct MovieUpdate: Codable {
+    
+}
