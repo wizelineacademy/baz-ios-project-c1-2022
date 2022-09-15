@@ -45,6 +45,39 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		545AACE728D3A58200DFD9DF /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C30893E028A425E1004B1860 /* MovieAPI.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		545AACE828D3A58D00DFD9DF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		545AACE928D3A59400DFD9DF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C30893E128A425E1004B1860 /* Movie.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		545AACEA28D3A5AD00DFD9DF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C30893B328A2F42B004B1860 /* Main.storyboard */,
+				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		C30893A128A2F42B004B1860 = {
 			isa = PBXGroup;
 			children = (
@@ -66,13 +99,12 @@
 		C30893AC28A2F42B004B1860 /* BAZProjectC1 */ = {
 			isa = PBXGroup;
 			children = (
+				545AACEA28D3A5AD00DFD9DF /* View */,
+				545AACE928D3A59400DFD9DF /* Model */,
+				545AACE828D3A58D00DFD9DF /* Controller */,
+				545AACE728D3A58200DFD9DF /* Services */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
-				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
-				C30893E128A425E1004B1860 /* Movie.swift */,
-				C30893E028A425E1004B1860 /* MovieAPI.swift */,
-				C30893B328A2F42B004B1860 /* Main.storyboard */,
-				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 				C30893B628A2F42D004B1860 /* Assets.xcassets */,
 				C30893BB28A2F42D004B1860 /* Info.plist */,
 			);
