@@ -10,6 +10,8 @@ class MovieAPI {
 
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
 
+    /// This function gets all the existing movies in the repository
+    /// - Returns: list of available movies
     func getMovies() -> [Movie] {
         guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
@@ -28,8 +30,6 @@ class MovieAPI {
                 movies.append(Movie(id: id, title: title, poster_path: poster_path))
             }
         }
-
         return movies
     }
-
 }
