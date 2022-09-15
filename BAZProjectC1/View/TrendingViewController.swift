@@ -8,15 +8,22 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    var movies: [MovieModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
         
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
+            [weak self] dataResponse in
+            if let data = dataResponse as? MovieApiResponseModel {
+                DispatchQueue.main.async {
+                    self?.movies = data.results
+                    self?.tableView.reloadData()
+                }
+            }
+        })
+        
+        
     }
 
 }
@@ -31,6 +38,7 @@ extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+     
     }
 
 }
@@ -45,5 +53,6 @@ extension TrendingViewController {
         config.image = UIImage(named: "poster")
         cell.contentConfiguration = config
     }
+    
 
 }
