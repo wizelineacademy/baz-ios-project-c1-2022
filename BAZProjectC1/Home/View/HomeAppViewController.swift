@@ -26,8 +26,6 @@ class HomeAppViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Trending"
-        
         self.movieApi.getMovies { movies in
             self.movies = movies
             DispatchQueue.main.async {
