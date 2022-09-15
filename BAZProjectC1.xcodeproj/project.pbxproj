@@ -78,7 +78,9 @@
 			children = (
 				DFE5ADE028D399FC0074FD34 /* Extensions */,
 				DFE5ADD128D27E6B0074FD34 /* Networking */,
-				DFE5ADDF28D399DD0074FD34 /* View */,
+				DFE5ADB328D278550074FD34 /* Home */,
+				C30893B328A2F42B004B1860 /* Main.storyboard */,
+				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
 				DFE5ADDD28D399B80074FD34 /* Model */,
@@ -138,16 +140,6 @@
 				C30893E028A425E1004B1860 /* MovieAPI.swift */,
 			);
 			path = ViewModel;
-			sourceTree = "<group>";
-		};
-		DFE5ADDF28D399DD0074FD34 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				DFE5ADB328D278550074FD34 /* Home */,
-				C30893B328A2F42B004B1860 /* Main.storyboard */,
-				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		DFE5ADE028D399FC0074FD34 /* Extensions */ = {
