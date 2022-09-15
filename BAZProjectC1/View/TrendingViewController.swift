@@ -16,10 +16,8 @@ class TrendingViewController: UITableViewController {
         ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
             [weak self] dataResponse in
             if let data = dataResponse as? MovieApiResponseModel {
-                DispatchQueue.main.async {
-                    self?.movies = data.results
-                    self?.tableView.reloadData()
-                }
+                self?.movies = data.results
+                self?.tableView.reloadData()
             }
         })
         
