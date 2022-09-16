@@ -8,13 +8,15 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    private var movies: Movies = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let movieApi = MovieAPI()
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        movieApi.getMovies { [weak self] movies in
+            self?.movies = movies
+            self?.tableView.reloadData()
+        }
     }
 }
 

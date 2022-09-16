@@ -11,17 +11,15 @@ class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
 
     /// This function gets all the existing movies in the repository
-    /// - Returns: list of available movies
-    func getMovies() -> [Movie] {
+    /// - Parameter completionhandler: return the object when the action finished
+    func getMovies(_ completionhandler: @escaping ((Movies) -> Void)) {
         guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
               let results = json.object(forKey: "results") as? [NSDictionary]
-        else {
-            return []
-        }
+        else { return }
 
-        var movies: [Movie] = []
+        var movies: Movies = []
 
         for result in results {
             if let id = result.object(forKey: "id") as? Int,
@@ -30,6 +28,6 @@ class MovieAPI {
                 movies.append(Movie(id: id, title: title, poster_path: poster_path))
             }
         }
-        return movies
+        completionhandler(movies)
     }
 }
