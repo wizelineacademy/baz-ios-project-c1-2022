@@ -12,6 +12,10 @@ class TrendingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.register(MovieBasicInfoCell.nib(), forCellReuseIdentifier: MovieBasicInfoCell.identificador)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
             [weak self] dataResponse in
@@ -20,8 +24,6 @@ class TrendingViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         })
-        
-        
     }
 
 }
@@ -33,10 +35,10 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
-     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieBasicInfoCell.identificador, for: indexPath) as? MovieBasicInfoCell else { return UITableViewCell() }
+        cell.configure()
+        return cell
     }
 
 }
@@ -45,12 +47,12 @@ extension TrendingViewController {
 
 extension TrendingViewController {
 
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
-        cell.contentConfiguration = config
-    }
+//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        var config = UIListContentConfiguration.cell()
+//        config.text = movies[indexPath.row].title
+//        config.image = UIImage(named: "poster")
+//        cell.contentConfiguration = config
+//    }
     
 
 }
