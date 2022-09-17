@@ -1,35 +1,34 @@
-//
 //  MovieAPI.swift
 //  BAZProjectC1
-//
-//
 
 import Foundation
 
 class MovieAPI {
-
-    private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-
-    func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-              let results = json.object(forKey: "results") as? [NSDictionary]
-        else {
-            return []
-        }
-
-        var movies: [Movie] = []
-
-        for result in results {
-            if let id = result.object(forKey: "id") as? Int,
-               let title = result.object(forKey: "title") as? String,
-               let poster_path = result.object(forKey: "poster_path") as? String {
-                movies.append(Movie(id: id, title: title, poster_path: poster_path))
-            }
-        }
-
-        return movies
+    //MARK: - B L O C K
+    public typealias blkGetMovies = (Movie?, Error?) -> Void
+    
+    //MARK: - E N U M
+    private enum apiKeys: String {
+        case apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     }
+    
+    //MARK: - A P I · K E Y
+    private let strHost: String = "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKeys.apiKey.rawValue)"
+    private let strImageHost: String = "https://image.tmdb.org/t/p/w500"
 
+    
+    //MARK: - F U N C T I O N S
+    func getMovies(completion: @escaping blkGetMovies) {
+        guard let url = URL(string: strHost)  else { return }
+        URLSession.shared.dataTask(with: url) { ( data, respoonse, error) in
+            guard let datos = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let data = try decoder.decode(Movie.self, from: datos)
+                completion(data, nil)
+            } catch {
+                completion(nil,error)
+            }
+        }.resume()
+    }
 }
