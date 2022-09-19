@@ -10,10 +10,10 @@ import UIKit
 
 final class HomeAppViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak private var collectionView: UICollectionView!
     
-    var movies: [Movie] = []
-    let movieApi = MovieAPI()
+   private var movies: [Movie] = []
+   private let movieApi = MovieAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()

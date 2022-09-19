@@ -7,9 +7,9 @@
 import Foundation
 
 struct Movie: Codable {
-    let id: Int
-    let title: String
-    let posterPath: String
+    public let id: Int
+    public let title: String
+    public let posterPath: String
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -19,5 +19,5 @@ struct Movie: Codable {
 }
 
 struct ResultsApi: Codable {
-    let results: [Movie]
+    public let results: [Movie]
 }
