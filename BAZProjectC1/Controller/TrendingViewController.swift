@@ -38,7 +38,7 @@ extension TrendingViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "c")!
+        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
 
 }
