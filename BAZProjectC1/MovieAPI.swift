@@ -19,7 +19,7 @@ final class MovieAPI {
         
         URLSession.shared.dataTask(with: url) { data, response, error in
             if error != nil {
-                print (error?.localizedDescription ?? "Error")
+                debugPrint (error?.localizedDescription ?? "Error")
                 return
             }
             
@@ -27,11 +27,10 @@ final class MovieAPI {
                 guard let data = data else {
                     return
                 }
-                
                 let result = try JSONDecoder().decode(Results.self, from: data)
                 completion(result.results)
             } catch {
-                print("Se produjo el siguiente error: \(error.localizedDescription)")
+                debugPrint("Se produjo el siguiente error: \(error.localizedDescription)")
             }
         }.resume()
     }
