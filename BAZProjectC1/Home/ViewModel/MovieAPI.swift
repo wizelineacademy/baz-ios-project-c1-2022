@@ -6,10 +6,10 @@
 
 import UIKit
 
-class MovieAPI {
+final class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     
-    func getMovies(completion: @escaping ([Movie])->()){
+  public func getMovies(completion: @escaping ([Movie])->()){
         guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)")
         else { return  }
         
@@ -25,6 +25,7 @@ class MovieAPI {
                 completion(result.results)
                 
             }catch let error {
+                 completion([])
                 print(error)
             }
         }.resume()
