@@ -39,26 +39,28 @@ class MovieAPI {
         
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    
-                    var lstMovies = [Movie]()
-                    if let dataInfo = json as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
-                        
-                        for item in dataAll {
-                            lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
-                        }
-                    }
-                    completion(lstMovies)
-                } catch {
-                    completion([])
-                }
-                
+            guard let data = data else {
+                return
+            }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: [])
+                completion(self.serializationJson(jsonDic: json))
+            } catch {
+                completion([])
             }
         }.resume()
         
     }
     
-
+    //MARK: Serializacion
+    func serializationJson(jsonDic: Any) -> [Movie] {
+        var lstMovies = [Movie]()
+        if let dataInfo = jsonDic as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
+            for item in dataAll {
+                lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
+            }
+        }
+        return lstMovies
+    }
 }
