@@ -8,20 +8,12 @@
 
 import UIKit
 
-class HomeAppViewController: UIViewController {
+final class HomeAppViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    init() {
-        super.init(nibName: "HomeAppViewController", bundle: Bundle(for: HomeAppViewController.self))
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
     
     var movies: [Movie] = []
     let movieApi = MovieAPI()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +26,8 @@ class HomeAppViewController: UIViewController {
         }
         self.configureCollectionView()
     }
- 
-    func configureCollectionView(){
+    
+    private func configureCollectionView(){
         let nib = UINib(nibName: "MovieCell", bundle: nil)
         self.collectionView.register(nib, forCellWithReuseIdentifier: "movieCell")
         
@@ -47,25 +39,24 @@ class HomeAppViewController: UIViewController {
         layout.minimumLineSpacing = 10
         self.collectionView.collectionViewLayout = layout
     }
-    
 }
 
 
 // MARK:  - Extension CollectionViewDataSource.
 extension HomeAppViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            return movies.count
+        return movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let infoMovie : Movie!
-        infoMovie = self.movies[indexPath.row]
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as! MovieCell
-        cell.nameMovie.text = infoMovie.title
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell
+        else {
+            return UICollectionViewCell()
+        }
+        cell.nameMovie.text = self.movies[indexPath.row].title
         
         let baseImageURL = "https://image.tmdb.org/t/p/w500/"
-        cell.imgMovie.loadUrlImage(urlString: (baseImageURL + infoMovie.poster_path))
+        cell.imgMovie.loadUrlImage(urlString: (baseImageURL + self.movies[indexPath.row].posterPath))
         return cell
     }
 }
