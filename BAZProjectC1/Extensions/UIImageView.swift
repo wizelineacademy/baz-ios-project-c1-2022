@@ -10,20 +10,17 @@ import UIKit
 extension UIImageView {
     func loadUrlImage(urlString: String) {
         guard let url = URL(string: urlString) else { return }
-    
+        
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-          DispatchQueue.main.async {
-           if error != nil {
-                print(error!)
-                let imgDefault = UIImage()
-                self.image = imgDefault
-                return
-            }
-                if let image = UIImage(data: data!) {
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self.image = UIImage(named: "default")
+                    return
+                }
+                if let data = data, let image = UIImage(data: data) {
                     self.image = image
                 }else{
-                     let imgDefault = UIImage()
-                    self.image = imgDefault
+                    self.image = UIImage(named: "default")
                 }
             }
         }).resume()

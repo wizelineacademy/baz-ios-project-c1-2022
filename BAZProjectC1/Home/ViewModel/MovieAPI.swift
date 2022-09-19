@@ -24,8 +24,8 @@ class MovieAPI {
                 let result = try JSONDecoder().decode(ResultsApi.self, from: data)
                 completion(result.results)
                 
-            }catch {
-                print(error.localizedDescription)
+            }catch let error {
+                print(error)
             }
         }.resume()
     }

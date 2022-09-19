@@ -6,7 +6,7 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
+final class TrendingViewController: UITableViewController {
     
     var movies: [Movie] = []
     let movieApi = MovieAPI()
