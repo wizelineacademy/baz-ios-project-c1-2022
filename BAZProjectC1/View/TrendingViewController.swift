@@ -8,7 +8,7 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [MovieModel] = []
+    fileprivate var movies: [MovieModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +37,7 @@ extension TrendingViewController {
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieBasicInfoCell.identificador, for: indexPath) as? MovieBasicInfoCell else { return UITableViewCell() }
-        cell.configure()
+        cell.configure(dataCell: movies[indexPath.row])
         return cell
     }
 

@@ -9,6 +9,10 @@ import UIKit
 
 class MovieBasicInfoCell: UITableViewCell {
 
+    
+    @IBOutlet weak var movieTitle: UILabel!
+    @IBOutlet weak var moviePoster: UIImageView!
+    
     static let  identificador = String(describing: MovieBasicInfoCell.self)
     static func nib() -> UINib
         {
@@ -21,10 +25,9 @@ class MovieBasicInfoCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func configure() {
-        contentView.backgroundColor = UIColor.blue
-        
-        //etiqueta.text = "UIColor.red"
+    func configure(dataCell: MovieModel) {
+        movieTitle.text =  dataCell.title
+        moviePoster.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataCell.poster_path)")
     }
     
 }
