@@ -5,7 +5,7 @@ import UIKit
 
 final class TrendingViewController: UITableViewController {
     
-    private var objMovie: Movie?
+    private var objMovie: MovieAPIResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +33,13 @@ final class TrendingViewController: UITableViewController {
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        objMovie?.results?.count ?? 0
+        objMovie?.movies?.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
-        if let movie = objMovie {
-            cell.setInfo(WithMovie: movie, atIndex: indexPath.row)
+        if let movie = objMovie?.movies?[indexPath.row] {
+            cell.setInfo(with: movie)
         }
         return cell
     }

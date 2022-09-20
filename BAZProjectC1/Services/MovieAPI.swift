@@ -5,7 +5,7 @@ import Foundation
 
 final class MovieAPI {
     //MARK: - B L O C K
-    public typealias blkGetMovies = (Movie?, Error?) -> Void
+    public typealias blkGetMovies = (MovieAPIResponse?, Error?) -> Void
     
     //MARK: - E N U M
     private enum apiKeys: String {
@@ -22,7 +22,7 @@ final class MovieAPI {
             guard let datos = data else { return }
             do {
                 let decoder = JSONDecoder()
-                let data = try decoder.decode(Movie.self, from: datos)
+                let data = try decoder.decode(MovieAPIResponse.self, from: datos)
                 completion(data, nil)
             } catch {
                 completion(nil,error)

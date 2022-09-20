@@ -4,7 +4,7 @@
 
 import UIKit
 
-class MovieTableViewCell: UITableViewCell {
+final class MovieTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet weak var vwContainer: UIView!{
         didSet{ self.vwContainer.layer.borderColor = .init(red: 117/255, green: 31/255, blue: 34/255, alpha: 1) }
@@ -37,16 +37,16 @@ class MovieTableViewCell: UITableViewCell {
         
     }
     
-    public func setInfo(WithMovie movie: Movie, atIndex index:Int) {
-        if let urlPoster = movie.results?[index].poster_path, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+    public func setInfo(with movie: Movie) {
+        if let urlPoster = movie.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)
         }
-        let mediaT: String = (movie.results?[index].media_type == "movie") ? "Ahora en Cines" : "En Streaming"
-        let dVote: Double = movie.results?[index].vote_average ?? 0.0
-        self.lblTitle.text = movie.results?[index].title
-        self.lblOverview.text = movie.results?[index].overview
+        let mediaT: String = (movie.mediaType == "movie") ? "Ahora en Cines" : "En Streaming"
+        let dVote: Double = movie.voteAverage ?? 0.0
+        self.lblTitle.text = movie.title
+        self.lblOverview.text = movie.overview
         self.lblVote.text = String(format: "%.1f", dVote )
-        self.lblDate.text = "Estreno: \(movie.results?[index].release_date ?? "")"
+        self.lblDate.text = "Estreno: \(movie.release_date ?? "")"
         self.lblFormat.text = "\(mediaT) "
     }
     
