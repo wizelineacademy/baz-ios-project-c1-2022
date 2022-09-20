@@ -3,23 +3,23 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
-
-    var movies: [Movie] = []
+final class TrendingViewController: UITableViewController {
+    
     var objMovie: Movie?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.getMovies()
+        tableView.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
     
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMovies { [weak self] WS_resp, error in
+        movieApi.getMovies { [weak self] moviesResponse, error in
             guard let self = self else{ return }
-            if WS_resp != nil {
-                self.objMovie = WS_resp
+            if moviesResponse != nil {
+                self.objMovie = moviesResponse
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
@@ -38,21 +38,25 @@ extension TrendingViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
+        if let movie = objMovie {
+            print("\n\n movie ---> \(movie.results?[indexPath.row].title)\n\n")
+            cell.setInfo(WithMovie: movie, atIndex: indexPath.row)
+        }
+        print(cell.description)
+        return cell
     }
 
 }
 
 // MARK: - TableView's Delegate
-
+/*
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-//        config.text = movies[indexPath.row].title
         config.text = objMovie?.results?[indexPath.row].title
-//        config.image = UIImage(named: "poster")
         cell.contentConfiguration = config
     }
 
-}
+}  */

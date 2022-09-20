@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		545AACEC28D3AB7700DFD9DF /* Results.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545AACEB28D3AB7700DFD9DF /* Results.swift */; };
+		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
+		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
+		54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467E28D92291006AF344 /* BAZPExtension.swift */; };
 		C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AD28A2F42B004B1860 /* AppDelegate.swift */; };
 		C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AF28A2F42B004B1860 /* SceneDelegate.swift */; };
 		C30893B528A2F42B004B1860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30893B328A2F42B004B1860 /* Main.storyboard */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		545AACEB28D3AB7700DFD9DF /* Results.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Results.swift; sourceTree = "<group>"; };
+		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
+		54F2467E28D92291006AF344 /* BAZPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZPExtension.swift; sourceTree = "<group>"; };
 		C30893AA28A2F42B004B1860 /* BAZProjectC1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAZProjectC1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30893AD28A2F42B004B1860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C30893AF28A2F42B004B1860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,10 +81,28 @@
 		545AACEA28D3A5AD00DFD9DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				54F2467828D917D4006AF344 /* Cell */,
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
 				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		54F2467828D917D4006AF344 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				54F2467928D917EF006AF344 /* MovieTableViewCell.swift */,
+				54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		54F2467D28D92279006AF344 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				54F2467E28D92291006AF344 /* BAZPExtension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		C30893A128A2F42B004B1860 = {
@@ -102,6 +126,7 @@
 		C30893AC28A2F42B004B1860 /* BAZProjectC1 */ = {
 			isa = PBXGroup;
 			children = (
+				54F2467D28D92279006AF344 /* Extension */,
 				545AACEA28D3A5AD00DFD9DF /* View */,
 				545AACE928D3A59400DFD9DF /* Model */,
 				545AACE828D3A58D00DFD9DF /* Controller */,
@@ -174,6 +199,7 @@
 			files = (
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
+				54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
@@ -187,8 +213,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */,
 				545AACEC28D3AB7700DFD9DF /* Results.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
+				54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,

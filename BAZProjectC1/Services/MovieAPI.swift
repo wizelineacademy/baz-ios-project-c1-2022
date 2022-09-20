@@ -3,7 +3,7 @@
 
 import Foundation
 
-class MovieAPI {
+final class MovieAPI {
     //MARK: - B L O C K
     public typealias blkGetMovies = (Movie?, Error?) -> Void
     
