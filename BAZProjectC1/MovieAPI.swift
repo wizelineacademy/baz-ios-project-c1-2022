@@ -6,30 +6,32 @@
 
 import Foundation
 
-class MovieAPI {
-
+final class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-
-    func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
-              let data = try? Data(contentsOf: url),
-              let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
-              let results = json.object(forKey: "results") as? [NSDictionary]
-        else {
-            return []
+    private let urlBase = "https://api.themoviedb.org/3"
+    
+    func getMovies(completion: @escaping ([Movie])->()){
+        let endPoint = "/trending/movie/day?api_key=\(apiKey)"
+        
+        guard let url = URL(string: urlBase + endPoint) else {
+            return
         }
-
-        var movies: [Movie] = []
-
-        for result in results {
-            if let id = result.object(forKey: "id") as? Int,
-               let title = result.object(forKey: "title") as? String,
-               let poster_path = result.object(forKey: "poster_path") as? String {
-                movies.append(Movie(id: id, title: title, poster_path: poster_path))
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error != nil {
+                debugPrint (error?.localizedDescription ?? "Error")
+                return
             }
-        }
-
-        return movies
+            
+            do{
+                guard let data = data else {
+                    return
+                }
+                let result = try JSONDecoder().decode(Results.self, from: data)
+                completion(result.results)
+            } catch {
+                debugPrint("The following error occurred: \(error.localizedDescription)")
+            }
+        }.resume()
     }
-
 }

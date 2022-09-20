@@ -6,25 +6,29 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
+final class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
-
+    private var movies: [Movie] = []
+    private let movieAPI = MovieAPI()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        getMovies()
     }
-
+    
+    func getMovies(){
+        self.movieAPI.getMovies { [weak self] movies in
+            self?.movies = movies
+           DispatchQueue.main.async {
+               self?.tableView.reloadData()
+           }
+       }
+    }
 }
+
 
 // MARK: - TableView's DataSource
 
 extension TrendingViewController {
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
@@ -32,13 +36,11 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
-
 }
 
 // MARK: - TableView's Delegate
 
 extension TrendingViewController {
-
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
