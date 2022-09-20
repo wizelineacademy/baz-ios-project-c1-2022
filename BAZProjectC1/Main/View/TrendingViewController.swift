@@ -10,9 +10,13 @@ final class TrendingViewController: UITableViewController {
 
     private var movies: [Movie] = []
     private let movieAPI = MovieAPI()
+    var viewModel = TrendingMovieViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getMovies()
+        //getMovies()
+        retrieveData()
+        
     }
     
     func getMovies(){
@@ -23,6 +27,19 @@ final class TrendingViewController: UITableViewController {
            }
        }
     }
+    
+    func retrieveData(){
+        viewModel.getMoviesMV()
+    }
+    
+    private func bind(){
+        viewModel.refreshData = { [weak self] () in
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+            
+        }
+    }
 }
 
 
@@ -30,7 +47,8 @@ final class TrendingViewController: UITableViewController {
 
 extension TrendingViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        viewModel.movieDataArray.count
+//        movies.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -43,8 +61,12 @@ extension TrendingViewController {
 extension TrendingViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
+        let object = viewModel.movieDataArray[indexPath.row]
+        
+        config.text = object.title
         config.image = UIImage(named: "poster")
+//        config.text = movies[indexPath.row].title
+//        config.image = UIImage(named: "poster")
         cell.contentConfiguration = config
     }
 
