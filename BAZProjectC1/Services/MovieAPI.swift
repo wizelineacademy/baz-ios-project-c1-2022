@@ -14,9 +14,7 @@ final class MovieAPI {
     
     //MARK: - A P I · K E Y
     private let strHost: String = "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKeys.apiKey.rawValue)"
-    private let strImageHost: String = "https://image.tmdb.org/t/p/w500"
 
-    
     //MARK: - F U N C T I O N S
     func getMovies(completion: @escaping blkGetMovies) {
         guard let url = URL(string: strHost)  else { return }

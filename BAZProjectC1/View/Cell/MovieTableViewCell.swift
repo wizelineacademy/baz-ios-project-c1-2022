@@ -7,10 +7,10 @@ import UIKit
 class MovieTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet weak var vwContainer: UIView!{
-        didSet{ self.vwContainer.layer.borderColor = .init(red: 0, green: 0, blue: 0, alpha: 1) }
+        didSet{ self.vwContainer.layer.borderColor = .init(red: 117/255, green: 31/255, blue: 34/255, alpha: 1) }
     }
     @IBOutlet weak var imgPoster: UIImageView!{
-        didSet{ self.imgPoster.layer.cornerRadius = 5 }
+        didSet{ self.imgPoster.layer.cornerRadius = 15 }
     }
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblOverview: UILabel!

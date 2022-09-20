@@ -18,7 +18,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wzline" translatesAutoresizingMaskIntoConstraints="NO" id="c6i-b0-DQE">
                                 <rect key="frame" x="87" y="328" width="240" height="240"/>
-                                <color key="backgroundColor" red="0.12549019610000001" green="0.20392156859999999" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="240" id="f5g-xV-ggp"/>
                                     <constraint firstAttribute="height" constant="240" id="pta-d2-1XC"/>
@@ -26,7 +26,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.12549019607843137" green="0.20392156862745098" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.047058823529411764" green="0.094117647058823528" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="c6i-b0-DQE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="18L-9H-3r7"/>
                             <constraint firstItem="c6i-b0-DQE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="iBE-5I-qRw"/>
