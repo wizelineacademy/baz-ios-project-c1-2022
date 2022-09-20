@@ -30,7 +30,7 @@ final class MovieAPI {
                 let result = try JSONDecoder().decode(Results.self, from: data)
                 completion(result.results)
             } catch {
-                debugPrint("Se produjo el siguiente error: \(error.localizedDescription)")
+                debugPrint("The following error occurred: \(error.localizedDescription)")
             }
         }.resume()
     }

@@ -16,10 +16,10 @@ final class TrendingViewController: UITableViewController {
     }
     
     func getMovies(){
-        self.movieAPI.getMovies { movies in
-            self.movies = movies
+        self.movieAPI.getMovies { [weak self] movies in
+            self?.movies = movies
            DispatchQueue.main.async {
-               self.tableView.reloadData()
+               self?.tableView.reloadData()
            }
        }
     }
