@@ -18,6 +18,7 @@ struct Movie : Codable {
     let voteAverage : Double?
     let voteCount : Int?
     
+    /// CodingKey nos ayudara a manejar variables a nuestro gusto, sin romper el codable
     enum CodingKeys: String, CodingKey {
         case adult = "adult"
         case backdropPath = "backdrop_path"
