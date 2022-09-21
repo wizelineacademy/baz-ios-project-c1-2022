@@ -5,12 +5,14 @@
 //
 
 import Foundation
+import UIKit
 
 /// This is a model of movie
-struct Movie: Codable {
+struct Movie {
     let id: Int
     let title: String
-    let poster_path: String
+    let posterPath: String
+    let posterImage: UIImage
 }
 
 typealias Movies = [Movie]
