@@ -17,12 +17,15 @@ final class MovieDetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         self.setUpLeftMenu()
         self.setInfo()
-        
     }
     
     private func setUpLeftMenu() {
-        let menuBarButton = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
+        let menuBarButton = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action:  #selector(popView))
         navigationItem.leftBarButtonItem = menuBarButton
+    }
+    
+    @objc private func popView(){
+        navigationController?.popViewController(animated: true)
     }
     
     private func setInfo(){

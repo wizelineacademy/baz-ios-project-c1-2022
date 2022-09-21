@@ -83,9 +83,9 @@
                             <constraint firstItem="Ei4-dr-VLA" firstAttribute="leading" secondItem="HkB-yv-Zg6" secondAttribute="trailing" constant="8" symbolic="YES" id="EtK-ty-xgy"/>
                             <constraint firstAttribute="bottom" secondItem="1FN-T4-ALp" secondAttribute="bottom" constant="4" id="KFL-YF-Je4"/>
                             <constraint firstAttribute="trailing" secondItem="ifw-W1-MKY" secondAttribute="trailing" constant="8" id="P0h-dq-oCW"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="234" id="QyZ-Pg-a8v"/>
                             <constraint firstItem="1FN-T4-ALp" firstAttribute="leading" secondItem="SsA-Gv-P2l" secondAttribute="leading" constant="8" id="WIJ-0R-HaH"/>
                             <constraint firstAttribute="bottom" secondItem="fYH-90-UnQ" secondAttribute="bottom" constant="8" id="Z5B-33-OdD"/>
-                            <constraint firstAttribute="height" constant="234" id="bWt-gt-M6L"/>
                             <constraint firstAttribute="trailing" secondItem="fYH-90-UnQ" secondAttribute="trailing" constant="8" id="eZB-TV-TA3"/>
                             <constraint firstItem="tms-re-WAb" firstAttribute="leading" secondItem="SsA-Gv-P2l" secondAttribute="leading" constant="8" id="g0V-lT-zXN"/>
                             <constraint firstAttribute="trailing" secondItem="Ei4-dr-VLA" secondAttribute="trailing" constant="8" id="h1w-Cm-TWo"/>
@@ -110,7 +110,7 @@
                 <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="SsA-Gv-P2l" secondAttribute="trailing" constant="8" id="0uu-2F-ggB"/>
-                    <constraint firstAttribute="bottom" secondItem="SsA-Gv-P2l" secondAttribute="bottom" constant="8" id="7Nu-8C-ywo"/>
+                    <constraint firstAttribute="bottom" secondItem="SsA-Gv-P2l" secondAttribute="bottom" constant="8" id="8Td-3z-nm5"/>
                     <constraint firstItem="SsA-Gv-P2l" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QTO-CF-7dd"/>
                     <constraint firstItem="SsA-Gv-P2l" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="YgJ-Se-RHs"/>
                 </constraints>
