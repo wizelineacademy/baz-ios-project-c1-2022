@@ -6,8 +6,24 @@
 
 import Foundation
 
-struct Movie {
+
+// MARK: - Movie
+struct Movie: Codable {
+    let results: [MovieData]
+
+    enum CodingKeys: String, CodingKey {
+        case results
+    }
+}
+
+// MARK: - Result
+struct MovieData: Codable {
     let id: Int
     let title: String
-    let poster_path: String
+    let posterPath: String
+
+    enum CodingKeys: String, CodingKey {
+        case id, title
+        case posterPath = "poster_path"
+    }
 }
