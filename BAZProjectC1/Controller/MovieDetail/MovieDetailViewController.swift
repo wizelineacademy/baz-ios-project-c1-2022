@@ -4,11 +4,33 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
-
+final class MovieDetailViewController: UIViewController {
+    //MARK: - O U T L E T S
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var imgMovie: UIImageView!
+    
+    var index: Int?
+    var objMovie: MovieAPIResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = .white
+        self.setUpLeftMenu()
+        self.setInfo()
+        
     }
-
-
+    
+    private func setUpLeftMenu() {
+        let menuBarButton = UIBarButtonItem(image: UIImage(named:"back"), style: .plain, target: self, action: nil)
+        navigationItem.leftBarButtonItem = menuBarButton
+    }
+    
+    private func setInfo(){
+        self.lblTitle.text = objMovie?.movies?[index ?? 0].title
+        if let urlPoster = objMovie?.movies?[index ?? 0].backdropPath,
+           let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+            let _ = imgMovie.loadImage(url: url)
+        }
+    }
+    
 }

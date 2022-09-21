@@ -9,6 +9,7 @@ final class TrendingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Peliculas"
         self.getMovies()
         tableView.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
@@ -45,7 +46,9 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(" Se selecciona la celda \(indexPath) ")
-        self.navigationController?.pushViewController(MovieDetailViewController(), animated: true)
+        let movieDetail = MovieDetailViewController()
+        movieDetail.index = indexPath.row
+        movieDetail.objMovie = objMovie
+        self.navigationController?.pushViewController(movieDetail, animated: true)
     }
 }
