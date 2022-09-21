@@ -16,6 +16,7 @@ public struct MovieApiResponseModel: Codable {
 public struct MovieModel: Codable {
     let adult: Bool
     let backdrop_path: String
+    let poster_path: String
     let id: Int
     let title: String
     let original_language: String
