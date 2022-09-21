@@ -17,9 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
-        let navController = UINavigationController(rootViewController: TrendingViewController())
-        window?.rootViewController = navController
-        window?.overrideUserInterfaceStyle = .light
+//        let navController = UINavigationController(rootViewController: TrendingViewController())
+        let home = CustomTabBarController()
+        window?.rootViewController = home
+//        window?.overrideUserInterfaceStyle = .light
         window?.makeKeyAndVisible()
     }
 

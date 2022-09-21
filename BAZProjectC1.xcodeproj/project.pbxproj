@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54350FA228DB520A00B30422 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FA028DB520A00B30422 /* MovieDetailViewController.swift */; };
 		54350FA328DB520A00B30422 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FA128DB520A00B30422 /* MovieDetailViewController.xib */; };
+		54350FA528DB949E00B30422 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FA428DB949E00B30422 /* CustomTabBarController.swift */; };
 		545AACEC28D3AB7700DFD9DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545AACEB28D3AB7700DFD9DF /* Movie.swift */; };
 		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
 		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		54350FA028DB520A00B30422 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		54350FA128DB520A00B30422 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
+		54350FA428DB949E00B30422 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		545AACEB28D3AB7700DFD9DF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 			children = (
 				54350F9F28DB516700B30422 /* MovieDetail */,
 				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
+				54350FA428DB949E00B30422 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
+				54350FA528DB949E00B30422 /* CustomTabBarController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				54350FA228DB520A00B30422 /* MovieDetailViewController.swift in Sources */,
 				C30893E328A425E1004B1860 /* MovieAPIResponse.swift in Sources */,

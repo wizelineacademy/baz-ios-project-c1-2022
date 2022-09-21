@@ -5,6 +5,7 @@ import UIKit
 
 final class TrendingViewController: UITableViewController {
     
+    @IBOutlet weak var bottomBar: UITabBarItem!
     private var objMovie: MovieAPIResponse?
 
     override func viewDidLoad() {
