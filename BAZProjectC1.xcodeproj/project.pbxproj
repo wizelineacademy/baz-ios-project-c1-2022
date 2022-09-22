@@ -119,6 +119,23 @@
 			path = NowPlayingCell;
 			sourceTree = "<group>";
 		};
+		54350FBD28DBF60B00B30422 /* Trending */ = {
+			isa = PBXGroup;
+			children = (
+				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
+			);
+			path = Trending;
+			sourceTree = "<group>";
+		};
+		54350FBE28DBF62A00B30422 /* MovieModel */ = {
+			isa = PBXGroup;
+			children = (
+				C30893E128A425E1004B1860 /* MovieAPIResponse.swift */,
+				545AACEB28D3AB7700DFD9DF /* Movie.swift */,
+			);
+			path = MovieModel;
+			sourceTree = "<group>";
+		};
 		545AACE728D3A58200DFD9DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,9 +147,9 @@
 		545AACE828D3A58D00DFD9DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				54350FBD28DBF60B00B30422 /* Trending */,
 				54350FA628DBBDC300B30422 /* NowPlaying */,
 				54350F9F28DB516700B30422 /* MovieDetail */,
-				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
 				54350FA428DB949E00B30422 /* CustomTabBarController.swift */,
 			);
 			path = Controller;
@@ -141,9 +158,8 @@
 		545AACE928D3A59400DFD9DF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				54350FBE28DBF62A00B30422 /* MovieModel */,
 				54350FAC28DBC55600B30422 /* NowPlayingModel */,
-				C30893E128A425E1004B1860 /* MovieAPIResponse.swift */,
-				545AACEB28D3AB7700DFD9DF /* Movie.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
