@@ -37,7 +37,8 @@ final class NowPlayingTableViewCell: UITableViewCell {
     }
     
     public func setInfo(with nowPlay: NowPlay) {
-        if let urlPoster = nowPlay.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+        if let urlPoster = nowPlay.posterPath,
+            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)") {
             downloadTask = imgPoster.loadImage(url: url)
         }
         let dVote: Double = nowPlay.voteAverage ?? 0.0

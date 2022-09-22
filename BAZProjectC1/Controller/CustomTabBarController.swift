@@ -27,7 +27,7 @@ class CustomTabBarController: UITabBarController {
             createNavController(for:NowPlayingViewController(),
                                    title:NSLocalizedString("Now Playing", comment: ""),
                                    image:UIImage(systemName: "play.square") ?? UIImage()),
-            createNavController(for:TrendingViewController(),
+            createNavController(for:PopularViewController(),
                                    title:NSLocalizedString("Popular", comment: ""),
                                    image:UIImage(systemName: "sparkle.magnifyingglass") ?? UIImage()),
             createNavController(for:TrendingViewController(),

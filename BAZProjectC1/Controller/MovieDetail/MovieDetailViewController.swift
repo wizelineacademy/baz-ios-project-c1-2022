@@ -27,15 +27,6 @@ final class MovieDetailViewController: UIViewController {
     @objc private func popView(){
         navigationController?.popViewController(animated: true)
     }
-    
-//    private func setInfo(With obj:AnyObject) {
-//        switch obj {
-//        case obj: MovieAPIResponse != nil :
-//            setInfoTrending()
-//        case obj: NowPlayingAPIResponse != nil:
-//            setInfoNowPlaying()
-//        }
-//    }
 
     private func setInfoTrending(){
         self.lblTitle.text = objMovie?.movies?[index ?? 0].title

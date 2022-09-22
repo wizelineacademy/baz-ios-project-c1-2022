@@ -4,7 +4,7 @@
 
 import UIKit
 
-class NowPlayingViewController: UIViewController {
+final class NowPlayingViewController: UIViewController {
     
     @IBOutlet weak var tblNowPlay: UITableView!{
         didSet{
@@ -19,7 +19,7 @@ class NowPlayingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Now Playing"
-        getNowPlaying()
+        self.getNowPlaying()
     }
     
     //MARK: - S E R V I C E S

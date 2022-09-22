@@ -52,7 +52,8 @@ extension UIView {
 }
 
 //MARK: - UI · I M A G E · V I E W
-extension UIImageView{
+extension UIImageView {
+    
     func loadImage(url: URL) -> URLSessionDownloadTask {
         let session = URLSession.shared
         let downloadTask = session.downloadTask(with: url){[weak self] url, response, error in
@@ -67,3 +68,4 @@ extension UIImageView{
         return downloadTask
     }
 }
+
