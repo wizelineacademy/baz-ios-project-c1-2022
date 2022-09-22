@@ -5,7 +5,6 @@ import UIKit
 
 final class TrendingViewController: UITableViewController {
     
-    @IBOutlet weak var bottomBar: UITabBarItem!
     private var objMovie: MovieAPIResponse?
 
     override func viewDidLoad() {
@@ -18,7 +17,7 @@ final class TrendingViewController: UITableViewController {
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMovies { [weak self] moviesResponse, error in
+        movieApi.getMoviesTrending { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
                 self.objMovie = moviesResponse
@@ -41,7 +40,7 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell") as? MovieTableViewCell ?? MovieTableViewCell()
         if let movie = objMovie?.movies?[indexPath.row] {
-            cell.setInfo(with: movie)
+            cell.setInfoTrading(with: movie)
         }
         return cell
     }

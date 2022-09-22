@@ -11,12 +11,12 @@ final class MovieDetailViewController: UIViewController {
     
     var index: Int?
     var objMovie: MovieAPIResponse?
+    var objNowPlay: NowPlayingAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
         self.setUpLeftMenu()
-        self.setInfo()
     }
     
     private func setUpLeftMenu() {
@@ -28,9 +28,26 @@ final class MovieDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func setInfo(){
+//    private func setInfo(With obj:AnyObject) {
+//        switch obj {
+//        case obj: MovieAPIResponse != nil :
+//            setInfoTrending()
+//        case obj: NowPlayingAPIResponse != nil:
+//            setInfoNowPlaying()
+//        }
+//    }
+
+    private func setInfoTrending(){
         self.lblTitle.text = objMovie?.movies?[index ?? 0].title
         if let urlPoster = objMovie?.movies?[index ?? 0].backdropPath,
+           let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+            let _ = imgMovie.loadImage(url: url)
+        }
+    }
+    
+    private func setInfoNowPlaying() {
+        self.lblTitle.text = objNowPlay?.nowPlaying?[index ?? 0].title
+        if let urlPoster = objNowPlay?.nowPlaying?[index ?? 0].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgMovie.loadImage(url: url)
         }

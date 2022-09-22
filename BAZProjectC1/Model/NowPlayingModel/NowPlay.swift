@@ -1,37 +1,38 @@
+//  NowPlay.swift
+//  BAZProjectC1
+//  Created by 291732 on 21/09/22.
 
 import Foundation
 
-struct Movie : Codable {
+struct NowPlay: Codable {
     let adult : Bool?
     let backdropPath : String?
+    let genreIds : [Int]?
     let id : Int?
-    let title : String?
     let originalLanguage : String?
     let originalTitle : String?
     let overview : String?
-    let posterPath : String?
-    let mediaType : String?
-    let genreIds : [Int]?
     let popularity : Double?
+    let posterPath : String?
     let releaseDate : String?
+    let title : String?
     let video : Bool?
     let voteAverage : Double?
     let voteCount : Int?
     
-    /// CodingKey nos ayudara a manejar variables a nuestro gusto, sin romper el codable
     enum CodingKeys: String, CodingKey {
+
         case adult = "adult"
         case backdropPath = "backdrop_path"
+        case genreIds = "genre_ids"
         case id = "id"
-        case title = "title"
         case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case overview = "overview"
-        case posterPath = "poster_path"
-        case mediaType = "media_type"
-        case genreIds = "genre_ids"
         case popularity = "popularity"
+        case posterPath = "poster_path"
         case releaseDate = "release_date"
+        case title = "title"
         case video = "video"
         case voteAverage = "vote_average"
         case voteCount = "vote_count"

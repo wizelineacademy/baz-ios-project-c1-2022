@@ -17,7 +17,6 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblVote: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblFormat: UILabel!
-    @IBOutlet weak var btnSeeMore: UIButton!
     
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
@@ -34,10 +33,9 @@ final class MovieTableViewCell: UITableViewCell {
         super.prepareForReuse()
         downloadTask?.cancel()
         downloadTask = nil
-        
     }
     
-    public func setInfo(with movie: Movie) {
+    public func setInfoTrading(with movie: Movie) {
         if let urlPoster = movie.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)
         }
@@ -46,8 +44,7 @@ final class MovieTableViewCell: UITableViewCell {
         self.lblTitle.text = movie.title
         self.lblOverview.text = movie.overview
         self.lblVote.text = String(format: "%.1f", dVote )
-        self.lblDate.text = "Estreno: \(movie.release_date ?? "")"
+        self.lblDate.text = "Estreno: \(movie.releaseDate ?? "")"
         self.lblFormat.text = "\(mediaT) "
     }
-    
 }
