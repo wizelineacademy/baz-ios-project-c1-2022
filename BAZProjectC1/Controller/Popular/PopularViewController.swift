@@ -14,6 +14,7 @@ final class PopularViewController: UIViewController {
         }
     }
     
+    //MARK: - V A R I A B L E S
     private var objPupular: PopularAPIResponse?
 
     override func viewDidLoad() {

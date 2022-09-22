@@ -5,7 +5,7 @@
 import UIKit
 
 class PopularTableViewCell: UITableViewCell {
-    
+    //MARK: - O U T L E T S
     @IBOutlet weak var imgPoster: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblOverview: UILabel!

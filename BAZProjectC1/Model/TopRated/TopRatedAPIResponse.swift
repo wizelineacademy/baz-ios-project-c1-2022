@@ -6,13 +6,13 @@ import Foundation
 
 struct TopRatedAPIResponse: Codable {
     let page : Int?
-    let results : [TopRated]?
+    let topRateds : [TopRated]?
     let totalPages : Int?
     let totalResults : Int?
 
     enum CodingKeys: String, CodingKey {
         case page = "page"
-        case results = "results"
+        case topRateds = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }

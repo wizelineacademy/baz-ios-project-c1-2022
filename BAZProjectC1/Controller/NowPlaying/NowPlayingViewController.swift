@@ -5,7 +5,7 @@
 import UIKit
 
 final class NowPlayingViewController: UIViewController {
-    
+    //MARK: - O U T L E T S
     @IBOutlet weak var tblNowPlay: UITableView!{
         didSet{
             self.tblNowPlay.delegate = self
@@ -14,6 +14,7 @@ final class NowPlayingViewController: UIViewController {
         }
     }
     
+    //MARK: - V A R I A B L E S
     private var objNowPlay: NowPlayingAPIResponse?
     
     override func viewDidLoad() {
@@ -37,7 +38,7 @@ final class NowPlayingViewController: UIViewController {
     }
 }
 
-
+//MARK: - EXT-> UI · T A B L E · V I E W · D E L E G A T E
 extension NowPlayingViewController: UITableViewDelegate & UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

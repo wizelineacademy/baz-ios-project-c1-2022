@@ -25,6 +25,10 @@
 		54350FCD28DC047000B30422 /* Popular.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FCC28DC047000B30422 /* Popular.swift */; };
 		54350FD028DC1DE700B30422 /* TopRatedAPIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FCF28DC1DE700B30422 /* TopRatedAPIResponse.swift */; };
 		54350FD228DC1E4900B30422 /* TopRated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FD128DC1E4900B30422 /* TopRated.swift */; };
+		54350FD628DC1F7200B30422 /* TopRatedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FD428DC1F7200B30422 /* TopRatedViewController.swift */; };
+		54350FD728DC1F7200B30422 /* TopRatedViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FD528DC1F7200B30422 /* TopRatedViewController.xib */; };
+		54350FDB28DC21E000B30422 /* TopRatedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FD928DC21E000B30422 /* TopRatedTableViewCell.swift */; };
+		54350FDC28DC21E000B30422 /* TopRatedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FDA28DC21E000B30422 /* TopRatedTableViewCell.xib */; };
 		545AACEC28D3AB7700DFD9DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545AACEB28D3AB7700DFD9DF /* Movie.swift */; };
 		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
 		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
@@ -60,6 +64,10 @@
 		54350FCC28DC047000B30422 /* Popular.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Popular.swift; sourceTree = "<group>"; };
 		54350FCF28DC1DE700B30422 /* TopRatedAPIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedAPIResponse.swift; sourceTree = "<group>"; };
 		54350FD128DC1E4900B30422 /* TopRated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRated.swift; sourceTree = "<group>"; };
+		54350FD428DC1F7200B30422 /* TopRatedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopRatedViewController.swift; sourceTree = "<group>"; };
+		54350FD528DC1F7200B30422 /* TopRatedViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopRatedViewController.xib; sourceTree = "<group>"; };
+		54350FD928DC21E000B30422 /* TopRatedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopRatedTableViewCell.swift; path = BAZProjectC1/View/Cell/TopRatedTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		54350FDA28DC21E000B30422 /* TopRatedTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TopRatedTableViewCell.xib; path = BAZProjectC1/View/Cell/TopRatedTableViewCell.xib; sourceTree = SOURCE_ROOT; };
 		545AACEB28D3AB7700DFD9DF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
@@ -188,6 +196,24 @@
 			path = TopRated;
 			sourceTree = "<group>";
 		};
+		54350FD328DC1F5800B30422 /* TopRated */ = {
+			isa = PBXGroup;
+			children = (
+				54350FD428DC1F7200B30422 /* TopRatedViewController.swift */,
+				54350FD528DC1F7200B30422 /* TopRatedViewController.xib */,
+			);
+			path = TopRated;
+			sourceTree = "<group>";
+		};
+		54350FD828DC21C700B30422 /* TopRatedCell */ = {
+			isa = PBXGroup;
+			children = (
+				54350FD928DC21E000B30422 /* TopRatedTableViewCell.swift */,
+				54350FDA28DC21E000B30422 /* TopRatedTableViewCell.xib */,
+			);
+			path = TopRatedCell;
+			sourceTree = "<group>";
+		};
 		545AACE728D3A58200DFD9DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +225,7 @@
 		545AACE828D3A58D00DFD9DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				54350FD328DC1F5800B30422 /* TopRated */,
 				54350FBF28DBF66F00B30422 /* Popular */,
 				54350FBD28DBF60B00B30422 /* Trending */,
 				54350FA628DBBDC300B30422 /* NowPlaying */,
@@ -232,6 +259,7 @@
 		54F2467828D917D4006AF344 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				54350FD828DC21C700B30422 /* TopRatedCell */,
 				54350FC428DBF82800B30422 /* PopularCell */,
 				54350FBC28DBF54900B30422 /* NowPlayingCell */,
 				54350FBB28DBF53B00B30422 /* MovieCell */,
@@ -340,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54350FA328DB520A00B30422 /* MovieDetailViewController.xib in Resources */,
+				54350FD728DC1F7200B30422 /* TopRatedViewController.xib in Resources */,
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				54350FC328DBF69700B30422 /* PopularViewController.xib in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
@@ -349,6 +378,7 @@
 				54350FB628DBDD8300B30422 /* NowPlayingTableViewCell.xib in Resources */,
 				54350FC828DBF84E00B30422 /* PopularTableViewCell.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
+				54350FDC28DC21E000B30422 /* TopRatedTableViewCell.xib in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -375,6 +405,8 @@
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				54350FA528DB949E00B30422 /* CustomTabBarController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
+				54350FD628DC1F7200B30422 /* TopRatedViewController.swift in Sources */,
+				54350FDB28DC21E000B30422 /* TopRatedTableViewCell.swift in Sources */,
 				54350FB228DBC6E500B30422 /* Dates.swift in Sources */,
 				54350FA228DB520A00B30422 /* MovieDetailViewController.swift in Sources */,
 				C30893E328A425E1004B1860 /* MovieAPIResponse.swift in Sources */,

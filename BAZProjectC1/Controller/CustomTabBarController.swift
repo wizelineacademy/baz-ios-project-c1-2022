@@ -30,7 +30,7 @@ class CustomTabBarController: UITabBarController {
             createNavController(for:PopularViewController(),
                                    title:NSLocalizedString("Popular", comment: ""),
                                    image:UIImage(systemName: "sparkle.magnifyingglass") ?? UIImage()),
-            createNavController(for:TrendingViewController(),
+            createNavController(for:TopRatedViewController(),
                                    title:NSLocalizedString("Top Rated", comment: ""),
                                    image:UIImage(systemName: "chart.xyaxis.line") ?? UIImage()),
             createNavController(for:TrendingViewController(),

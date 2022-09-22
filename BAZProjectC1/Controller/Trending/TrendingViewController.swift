@@ -4,7 +4,7 @@
 import UIKit
 
 final class TrendingViewController: UITableViewController {
-    
+    //MARK: - V A R I A B L E S
     private var objMovie: MovieAPIResponse?
 
     override func viewDidLoad() {
