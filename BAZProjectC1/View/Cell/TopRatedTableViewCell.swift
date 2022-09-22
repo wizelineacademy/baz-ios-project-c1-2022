@@ -4,7 +4,7 @@
 
 import UIKit
 
-class TopRatedTableViewCell: UITableViewCell {
+final class TopRatedTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet weak var vwContainer: UIView!
     @IBOutlet weak var imgPoster: UIImageView!

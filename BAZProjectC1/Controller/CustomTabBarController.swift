@@ -33,7 +33,7 @@ class CustomTabBarController: UITabBarController {
             createNavController(for:TopRatedViewController(),
                                    title:NSLocalizedString("Top Rated", comment: ""),
                                    image:UIImage(systemName: "chart.xyaxis.line") ?? UIImage()),
-            createNavController(for:TrendingViewController(),
+            createNavController(for:UpcomingViewController(),
                                    title:NSLocalizedString("Upcoming", comment: ""),
                                    image:UIImage(systemName: "deskclock") ?? UIImage())
         ]

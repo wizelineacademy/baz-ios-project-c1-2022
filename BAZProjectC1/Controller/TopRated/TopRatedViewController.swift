@@ -4,7 +4,7 @@
 
 import UIKit
 
-class TopRatedViewController: UIViewController {
+final class TopRatedViewController: UIViewController {
     //MARK: - O U T L E T S
     @IBOutlet weak var tblTopRated: UITableView!{
         didSet {
@@ -14,7 +14,6 @@ class TopRatedViewController: UIViewController {
                                       forCellReuseIdentifier: TopRatedTableViewCell.identifier)
         }
     }
-    
     
     //MARK: - V A R I A B L E S
     private var objTopRated: TopRatedAPIResponse?
@@ -26,6 +25,7 @@ class TopRatedViewController: UIViewController {
         self.getTopRated()
     }
     
+    //MARK: - S E R V I C E S
     private func getTopRated(){
         let movie_WS = MovieAPI()
         movie_WS.getTopRated { [weak self] topRatedResponse, error in
@@ -53,6 +53,4 @@ extension TopRatedViewController: UITableViewDelegate & UITableViewDataSource {
         }
         return cell
     }
-    
-    
 }

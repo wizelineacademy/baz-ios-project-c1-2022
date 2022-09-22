@@ -43,5 +43,4 @@ final class MovieDetailViewController: UIViewController {
             let _ = imgMovie.loadImage(url: url)
         }
     }
-    
 }
