@@ -24,6 +24,12 @@ extension CarouselMovies: UICollectionViewDataSource{
         return cell
         
     }
-    
-    
 }
+extension CarouselMovies: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: (collectionView.frame.width - 32) * 0.66, height: collectionView.frame.height - 32)
+    }
+}
+
+

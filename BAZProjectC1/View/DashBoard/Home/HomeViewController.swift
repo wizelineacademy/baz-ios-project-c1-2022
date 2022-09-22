@@ -22,14 +22,23 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.addSubview(carouselMovies)
         NSLayoutConstraint.activate([carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-                                     carouselMovies.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor,constant: 32),
+                                     carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
                                      carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width)])
     }
     func configutionView(){
         setupUI()
-        view.backgroundColor = UIColor.systemBlue
+        view.backgroundColor = UIColor.appColorBlack
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        getDataInfo()
+    }
+    func getDataInfo() {
+        ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
+                    [weak self] dataResponse in
+                    if let data = dataResponse as? MovieApiResponseModel {
+                        self?.carouselMovies.setDataInfo(infoCarousel: data.results)
+                    }
+                })
     }
 }

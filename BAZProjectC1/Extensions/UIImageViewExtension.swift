@@ -19,5 +19,14 @@ extension UIImageView{
             }
         }
     }
+    public func rounderCorners(rounderValue: CGFloat = RounderBorderStyleForView.rounded.rawValue, backgroundColor: UIColor = UIColor.clear){
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = self.frame
+        rectShape.position = self.center
+        rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topRight , .topLeft,.bottomLeft,.bottomRight], cornerRadii: CGSize(width: rounderValue, height: rounderValue)).cgPath
+        self.layer.backgroundColor = backgroundColor.cgColor
+        self.layer.mask = rectShape
+
+    }
 }
 

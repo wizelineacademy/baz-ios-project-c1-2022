@@ -19,6 +19,9 @@
 		0291E36728DB9C990039E49E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291E36628DB9C990039E49E /* HomeViewController.swift */; };
 		02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B2DFBE28D6625B003FF09D /* UIImageViewExtension.swift */; };
 		02F94AB228DCB1F300B4116C /* movieCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */; };
+		02F94AB428DCBE0200B4116C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB328DCBE0200B4116C /* UIViewExtension.swift */; };
+		02F94AB828DCC49100B4116C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB728DCC49100B4116C /* UIColorExtension.swift */; };
+		02F94ABA28DCD48300B4116C /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB928DCD48300B4116C /* UIImageExtension.swift */; };
 		C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AD28A2F42B004B1860 /* AppDelegate.swift */; };
 		C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C30893AF28A2F42B004B1860 /* SceneDelegate.swift */; };
 		C30893B528A2F42B004B1860 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C30893B328A2F42B004B1860 /* Main.storyboard */; };
@@ -41,6 +44,9 @@
 		0291E36628DB9C990039E49E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		02B2DFBE28D6625B003FF09D /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieCarouselCell.swift; sourceTree = "<group>"; };
+		02F94AB328DCBE0200B4116C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		02F94AB728DCC49100B4116C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		02F94AB928DCD48300B4116C /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		C30893AA28A2F42B004B1860 /* BAZProjectC1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BAZProjectC1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C30893AD28A2F42B004B1860 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C30893AF28A2F42B004B1860 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,10 +148,10 @@
 		0291E36528DB9BA10039E49E /* CarouselMovies */ = {
 			isa = PBXGroup;
 			children = (
+				02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */,
 				0247CC8528DBDF4100E58461 /* CarouselMovies.swift */,
 				0247CC8728DBDF5C00E58461 /* CarouselMoviesDelegate.swift */,
 				0247CC8928DBE1CF00E58461 /* CarouselMoviesExtension.swift */,
-				02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */,
 			);
 			path = CarouselMovies;
 			sourceTree = "<group>";
@@ -154,6 +160,9 @@
 			isa = PBXGroup;
 			children = (
 				02B2DFBE28D6625B003FF09D /* UIImageViewExtension.swift */,
+				02F94AB328DCBE0200B4116C /* UIViewExtension.swift */,
+				02F94AB728DCC49100B4116C /* UIColorExtension.swift */,
+				02F94AB928DCD48300B4116C /* UIImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -267,6 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F94AB828DCC49100B4116C /* UIColorExtension.swift in Sources */,
+				02F94AB428DCBE0200B4116C /* UIViewExtension.swift in Sources */,
+				02F94ABA28DCD48300B4116C /* UIImageExtension.swift in Sources */,
 				0247CC8228DBD00B00E58461 /* SearchViewController.swift in Sources */,
 				0247CC8828DBDF5C00E58461 /* CarouselMoviesDelegate.swift in Sources */,
 				022827D028D3966E00294695 /* Models.swift in Sources */,

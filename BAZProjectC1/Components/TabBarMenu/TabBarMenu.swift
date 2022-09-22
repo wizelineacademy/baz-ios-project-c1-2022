@@ -14,24 +14,32 @@ class TabBarMenu: UITabBarController {
             initOpcionsMenu()
         }
     }
-    private var optionColor: UIColor = UIColor.systemGray {
+    private var optionColor: UIColor = UIColor.appColorGraySecondary {
         didSet{
             initOpcionsMenu()
         }
     }
-    private var selectionColor: UIColor = UIColor.systemBlue {
+    private var selectionColor: UIColor = UIColor.appColorYellowPrimary {
         didSet{
             initOpcionsMenu()
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         configurateElement()
         initOpcionsMenu()
     }
     func configurateElement(){
-        tabBar.backgroundColor = UIColor.white
+        tabBar.backgroundColor = UIColor.appColorGrayPrimary
+        if #available(iOS 13, *) {
+            let appearance = UITabBarAppearance()
+            appearance.stackedLayoutAppearance.normal.titleTextAttributes = [NSAttributedString.Key.foregroundColor: optionColor]
+            appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: selectionColor]
+            tabBar.standardAppearance = appearance
+        }
+        let backgroundSize = CGSize(width: tabBar.frame.width / CGFloat(tabBar.items!.count),
+                                                height: tabBar.frame.height)
+        tabBar.selectionIndicatorImage = UIImage.imageFromColor(with: UIColor.clear, size: backgroundSize)
     }
     func initOpcionsMenu(){
         var viewsControllesList:[UIViewController] = []
@@ -43,10 +51,8 @@ class TabBarMenu: UITabBarController {
 
             let controller = (UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "\(viewController)ViewController"))
             controller.tabBarItem = UITabBarItem(title : "\(viewController)",
-                                                 image : UIImage(named: "\(viewController)")?.withTintColor(optionColor),
+                                                 image : UIImage(named: "\(viewController)")?.withTintColor(optionColor).withRenderingMode(UIImage.RenderingMode.alwaysOriginal),
                                                  selectedImage: UIImage(named: "\(viewController)")?.withTintColor(selectionColor).withRenderingMode(UIImage.RenderingMode.alwaysOriginal))
-            controller.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: optionColor], for: .normal)
-            controller.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: selectionColor], for: .selected)
             viewsControllesList.append(controller)
         })
         viewControllers = viewsControllesList

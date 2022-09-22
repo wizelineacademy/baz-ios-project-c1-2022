@@ -12,7 +12,6 @@ class CarouselMovies: UIView {
     private(set) lazy var infoCarousel: [MovieModel] = {
         return []
     }()
-    
     public weak var delegate:CarouselMoviesDelegate?
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -21,11 +20,10 @@ class CarouselMovies: UIView {
         layout.minimumInteritemSpacing = 16
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let carousel = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
+        carousel.backgroundColor = UIColor.clear
         carousel.translatesAutoresizingMaskIntoConstraints = false
         carousel.delegate = self
         carousel.dataSource = self
-        //menuArea.backgroundColor = .blue
-        carousel.tag = 2
         carousel.showsHorizontalScrollIndicator = false
         carousel.showsVerticalScrollIndicator = false
         carousel.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
