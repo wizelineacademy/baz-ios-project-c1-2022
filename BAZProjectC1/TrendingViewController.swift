@@ -6,19 +6,22 @@
 
 import UIKit
 
-class TrendingViewController: UITableViewController {
-
-    var movies: [Movie] = []
-
+final class TrendingViewController: UITableViewController {
+    
+    private var movies: [Movie] = []
+    private let movieApi = MovieAPI()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let movieApi = MovieAPI()
         
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        
+        self.movieApi.getMovies { movies in
+            self.movies = movies
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
     }
-
 }
 
 // MARK: - TableView's DataSource
