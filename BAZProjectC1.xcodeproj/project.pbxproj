@@ -101,6 +101,24 @@
 			path = NowPlayingModel;
 			sourceTree = "<group>";
 		};
+		54350FBB28DBF53B00B30422 /* MovieCell */ = {
+			isa = PBXGroup;
+			children = (
+				54F2467928D917EF006AF344 /* MovieTableViewCell.swift */,
+				54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */,
+			);
+			path = MovieCell;
+			sourceTree = "<group>";
+		};
+		54350FBC28DBF54900B30422 /* NowPlayingCell */ = {
+			isa = PBXGroup;
+			children = (
+				54350FB328DBDD8300B30422 /* NowPlayingTableViewCell.swift */,
+				54350FB428DBDD8300B30422 /* NowPlayingTableViewCell.xib */,
+			);
+			path = NowPlayingCell;
+			sourceTree = "<group>";
+		};
 		545AACE728D3A58200DFD9DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -143,10 +161,8 @@
 		54F2467828D917D4006AF344 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				54F2467928D917EF006AF344 /* MovieTableViewCell.swift */,
-				54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */,
-				54350FB328DBDD8300B30422 /* NowPlayingTableViewCell.swift */,
-				54350FB428DBDD8300B30422 /* NowPlayingTableViewCell.xib */,
+				54350FBC28DBF54900B30422 /* NowPlayingCell */,
+				54350FBB28DBF53B00B30422 /* MovieCell */,
 			);
 			path = Cell;
 			sourceTree = "<group>";

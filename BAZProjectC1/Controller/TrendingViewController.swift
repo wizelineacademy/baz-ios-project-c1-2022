@@ -9,7 +9,7 @@ final class TrendingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Peliculas"
+        title = "Tendencia"
         self.getMovies()
         tableView.register(MovieTableViewCell.nib, forCellReuseIdentifier: MovieTableViewCell.identifier)
     }
@@ -30,7 +30,6 @@ final class TrendingViewController: UITableViewController {
 }
 
 // MARK: - TableView's DataSource
-
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
