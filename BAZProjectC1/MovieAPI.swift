@@ -12,8 +12,8 @@ internal final class MovieAPI: APIURLHandler {
     }
     
     func getMovies() -> [Movie] {
-        guard let data = self.getDataFromURL() else { return [] }
-        let result = try! JSONDecoder().decode(MovieResults.self, from: data)
+        guard let data = self.getDataFromURL(),
+              let result = try? JSONDecoder().decode(MovieResults.self, from: data) else { return [] }
         return result.results
     }
 

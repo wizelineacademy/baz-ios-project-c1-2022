@@ -14,9 +14,9 @@ protocol APIURLHandlerProtocol {
 }
 
 internal class APIURLHandler: APIURLHandlerProtocol {
-    var url: String = ""
+    var url: String
     
-    init(url: String){
+    init(url: String) {
         self.url = url
     }
     
