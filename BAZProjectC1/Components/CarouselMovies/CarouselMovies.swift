@@ -9,6 +9,10 @@ import UIKit
 
 class CarouselMovies: UIView {
 
+    private(set) lazy var infoCarousel: [MovieModel] = {
+        return []
+    }()
+    
     public weak var delegate:CarouselMoviesDelegate?
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -25,7 +29,7 @@ class CarouselMovies: UIView {
         carousel.showsHorizontalScrollIndicator = false
         carousel.showsVerticalScrollIndicator = false
         carousel.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        //carousel.register(MenuOptionCell.self, forCellWithReuseIdentifier: MenuOptionCell.reuseIdentifier)
+        carousel.register(movieCarouselCell.self, forCellWithReuseIdentifier: movieCarouselCell.reuseIdentifier)
         return carousel
     }()
     required init?(coder: NSCoder) {
@@ -42,8 +46,6 @@ class CarouselMovies: UIView {
         self.addSubview(carousel)
         self.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
         self.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-//        carousel.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-//        carousel.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
         carousel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         carousel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
         carousel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
@@ -51,5 +53,8 @@ class CarouselMovies: UIView {
         let contentOffset = carousel.contentOffset
         carousel.setContentOffset(contentOffset, animated: false)
     }
-
+    public  func setDataInfo(infoCarousel: [MovieModel]){
+        self.infoCarousel = infoCarousel
+        carousel.reloadData()
+    }
 }

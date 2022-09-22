@@ -14,11 +14,15 @@ extension CarouselMovies: UICollectionViewDelegate{
 }
 extension CarouselMovies: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 0
+        return infoCarousel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: movieCarouselCell.reuseIdentifier), for: indexPath) as? movieCarouselCell else {  return UICollectionViewCell() }
+        let movie = infoCarousel[indexPath.row]
+        cell.configuration(dataInfo: movie)
+        return cell
+        
     }
     
     
