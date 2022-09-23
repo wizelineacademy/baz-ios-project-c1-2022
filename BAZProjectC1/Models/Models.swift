@@ -8,25 +8,32 @@
 import Foundation
 
 public struct MovieApiResponseModel: Codable {
-    let page: Int
-    let results: [MovieModel]
-    let total_pages: Int
-    let total_results: Int
+    var page: Int?
+    var results: [MovieModel]?
+    var total_pages: Int?
+    var total_results: Int?
+    var dates: datesMovieModel?
 }
+
+public struct datesMovieModel: Codable {
+    var maximum:String?
+    var minimum:String?
+}
+
 public struct MovieModel: Codable {
-    let adult: Bool
-    let backdrop_path: String
-    let poster_path: String
-    let id: Int
-    let title: String
-    let original_language: String
-    let original_title: String
-    let overview: String
-    let media_type: String
-    let genre_ids: [Int]
-    let popularity: Double
-    let release_date: String
-    let video: Bool
-    let vote_average: Double
-    let vote_count: Int
+    var adult: Bool?
+    var backdrop_path: String?
+    var poster_path: String?
+    var id: Int?
+    var title: String?
+    var original_language: String?
+    var original_title: String?
+    var overview: String?
+    var media_type: String?
+    var genre_ids: [Int]?
+    var popularity: Double?
+    var release_date: String?
+    var video: Bool?
+    var vote_average: Double?
+    var vote_count: Int?
 }
