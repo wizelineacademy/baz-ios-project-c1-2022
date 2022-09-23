@@ -120,7 +120,20 @@ extension MovieMenuViewController: UICollectionViewDelegate, UICollectionViewDat
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let selectedMovie = self.movies[indexPath.row]
-        
-        print("---------> \(selectedMovie)")
+        self.title = ""
+        self.view.addSkeletonAnimation()
+        movieApi.getMovieDetail(idMovie: selectedMovie.id, language: .es) { response in
+            DispatchQueue.main.async {
+                self.view.removeSkeletonAnimation()
+                self.title = "\(self.selectedCategoryPicker.typeName) Movies"
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewcontroller = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
+                viewcontroller?.strTitle = response.title
+                viewcontroller?.strDetails = "\(response.original_title ?? "") | \(response.genres?.first?.name ?? "") | \(response.release_date ?? "")\(response.adult ?? false ? " | 18+": " | 18-")"
+                viewcontroller?.strOverview = response.overview == nil || response.overview == "" ? "Sin reseña" : response.overview
+                viewcontroller?.strImgMoviePath = response.poster_path
+                self.navigationController?.pushViewController(viewcontroller ?? UIViewController(), animated: true)
+            }
+        }
     }
 }

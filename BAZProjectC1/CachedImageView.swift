@@ -47,7 +47,9 @@ class CachedImageView : UIImageView {
             }
         }.resume()
     }
-    
+}
+
+extension UIView {
     func addSkeletonAnimation(transparency: CGFloat = 0.5, velocity: CFTimeInterval = 1, startPoint: CGPoint = CGPoint(x: 0.0, y: 1.0), endPoint: CGPoint = CGPoint(x: 1.0, y: 1.0)) {
         layer.masksToBounds = true
         let shimmerView = UIView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
