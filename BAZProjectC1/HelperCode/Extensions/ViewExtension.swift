@@ -3,7 +3,7 @@
 //  IESpecomponentsCore
 //
 //  Created by 1029186 on 04/08/22.
-//  Copyright © 2022 Industrias Escalante®. All rights reserved.
+//  Copyright © 2022 1029186®. All rights reserved.
 //
 
 import Foundation

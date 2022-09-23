@@ -21,22 +21,31 @@ class HomeMovieViewController: UIViewController {
         getMovies()
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goDetailMovie" {
+            let detailMovieScreen: DetailMovieViewController = segue.destination as! DetailMovieViewController
+            detailMovieScreen.infoMovie(sender as! Movie)
+        }
+    }
+
     private func getMovies() {
-        MovieAPI.shared.getMovies(genre: self.genres[self.selectedGenre].lowercased().replacingOccurrences(of: " ", with: "_")) { [weak self] movies in
+        MovieNetworkManager.shared.fetchMovies(genre: genres[selectedGenre].lowercased().replacingOccurrences(of: " ", with: "_")) { [weak self] objectResponse, error in
+            guard let objectResponse = objectResponse,
+            let movies = objectResponse.results else { return }
             self?.movies = movies
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 self?.movieTableView.reloadData()
             }
         }
     }
 
     private func setupCollectionAndTableView() {
+        filterSectionCollection.register(UINib(nibName: "FilterSectionCollectionViewCell", bundle: Bundle(for: HomeMovieViewController.self)), forCellWithReuseIdentifier: "FilterSectionCell")
+        movieTableView.register(UINib(nibName: "CategoryMovieTableViewCell", bundle: Bundle(for: HomeMovieViewController.self)), forCellReuseIdentifier: "CategoryMovieCell")
         movieTableView.delegate = self
         movieTableView.dataSource = self
         filterSectionCollection.delegate = self
         filterSectionCollection.dataSource = self
-        filterSectionCollection.register(UINib(nibName: "FilterSectionCollectionViewCell", bundle: Bundle(for: HomeMovieViewController.self)),
-                                         forCellWithReuseIdentifier: "FilterSectionCell")
     }
 }
 
@@ -48,18 +57,22 @@ extension HomeMovieViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell")!
+        let movieCell = tableView.dequeueReusableCell(withIdentifier: "CategoryMovieCell", for: indexPath) as! CategoryMovieTableViewCell
+        MovieNetworkManager.shared.downloadImage(imagePath: movies[indexPath.row].poster_path ?? "", width: 200) { [weak self] image in
+            DispatchQueue.main.async {
+                movieCell.titleMovieLabel.text = self?.movies[indexPath.row].title
+                movieCell.posterMovie.image = image ?? UIImage(named: "poster")
+            }
+        }
+        return movieCell
     }
 }
 
 // MARK: - TableView's Delegate
 extension HomeMovieViewController: UITableViewDelegate {
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        var config = UIListContentConfiguration.cell()
-        config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
-        cell.contentConfiguration = config
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goDetailMovie", sender: movies[indexPath.row])
     }
 }
 

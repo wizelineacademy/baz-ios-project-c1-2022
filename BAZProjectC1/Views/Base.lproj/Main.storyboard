@@ -39,36 +39,25 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2WR-Ff-T6n">
                                 <rect key="frame" x="0.0" y="181" width="414" height="681"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieTableViewCell" textLabel="XiO-Ex-0Wx" imageView="Py7-bB-cVP" style="IBUITableViewCellStyleDefault" id="Qyn-dc-q2t">
-                                        <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Qyn-dc-q2t" id="dtZ-po-bBz">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XiO-Ex-0Wx">
-                                                    <rect key="frame" x="60.5" y="0.0" width="333.5" height="80"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="photo" catalog="system" id="Py7-bB-cVP">
-                                                    <rect key="frame" x="15" y="28" width="30.5" height="24"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                                </imageView>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MC8-Ai-UqX">
+                                <rect key="frame" x="344.5" y="100" width="45.5" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="L50-Zz-rDB"/>
+                                </constraints>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system"/>
+                                <connections>
+                                    <segue destination="3aI-EQ-VUH" kind="show" id="bJl-bT-Yqx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hmU-QC-mHd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="HAs-2V-peR" firstAttribute="top" secondItem="ZAA-Md-vkK" secondAttribute="bottom" constant="8" id="An8-0L-IxL"/>
+                            <constraint firstItem="MC8-Ai-UqX" firstAttribute="top" secondItem="hmU-QC-mHd" secondAttribute="top" constant="12" id="JnY-dS-jXf"/>
                             <constraint firstItem="hmU-QC-mHd" firstAttribute="bottom" secondItem="2WR-Ff-T6n" secondAttribute="bottom" id="JtW-LY-SU8"/>
                             <constraint firstItem="2WR-Ff-T6n" firstAttribute="top" secondItem="HAs-2V-peR" secondAttribute="bottom" constant="16" id="KHC-39-H7z"/>
                             <constraint firstItem="2WR-Ff-T6n" firstAttribute="leading" secondItem="hmU-QC-mHd" secondAttribute="leading" id="PxL-VO-ktr"/>
@@ -78,17 +67,66 @@
                             <constraint firstItem="ZAA-Md-vkK" firstAttribute="leading" secondItem="hmU-QC-mHd" secondAttribute="leading" constant="24" id="Yq5-aJ-w0g"/>
                             <constraint firstItem="hmU-QC-mHd" firstAttribute="trailing" secondItem="HAs-2V-peR" secondAttribute="trailing" id="ejd-6m-Fyq"/>
                             <constraint firstItem="hmU-QC-mHd" firstAttribute="trailing" secondItem="2WR-Ff-T6n" secondAttribute="trailing" id="qle-Wo-0KL"/>
+                            <constraint firstItem="hmU-QC-mHd" firstAttribute="trailing" secondItem="MC8-Ai-UqX" secondAttribute="trailing" constant="24" id="vvP-Xc-2Pt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Capstone Movies" id="D8c-xa-keG"/>
                     <connections>
                         <outlet property="filterSectionCollection" destination="HAs-2V-peR" id="SST-Ur-Eu4"/>
                         <outlet property="movieTableView" destination="2WR-Ff-T6n" id="TUS-Jz-gVM"/>
+                        <segue destination="GoZ-fx-OLx" kind="show" identifier="goDetailMovie" id="7Nc-4S-aLQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VJE-bm-MDZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3384.057971014493" y="-106.47321428571428"/>
+            <point key="canvasLocation" x="3319" y="-106"/>
+        </scene>
+        <!--<Name of the movie>-->
+        <scene sceneID="6SI-IC-VTD">
+            <objects>
+                <viewController id="GoZ-fx-OLx" customClass="DetailMovieViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="re9-gd-dgr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="BnR-GN-TGP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="&lt;Name of the movie&gt;" id="DHV-H4-tht"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="96j-SW-MZp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3319" y="605"/>
+        </scene>
+        <!--Search Movies-->
+        <scene sceneID="NkF-Ge-UW2">
+            <objects>
+                <viewController title="Search Movies" id="3aI-EQ-VUH" customClass="SearchMovieViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XBo-a6-tzy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="What do you search.?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bqe-eJ-Ona">
+                                <rect key="frame" x="24" y="112" width="366" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="CJE-vr-mm8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Bqe-eJ-Ona" firstAttribute="top" secondItem="CJE-vr-mm8" secondAttribute="top" constant="24" id="Up5-9m-5OX"/>
+                            <constraint firstItem="Bqe-eJ-Ona" firstAttribute="leading" secondItem="CJE-vr-mm8" secondAttribute="leading" constant="24" id="an8-oK-vcM"/>
+                            <constraint firstItem="CJE-vr-mm8" firstAttribute="trailing" secondItem="Bqe-eJ-Ona" secondAttribute="trailing" constant="24" id="fCE-7Q-jUF"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search Movies" id="pMk-Y5-vbI"/>
+                    <connections>
+                        <outlet property="searchTextField" destination="Bqe-eJ-Ona" id="YgC-6a-ri9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IPV-bt-0sw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4132" y="-106"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EwI-i5-gN4">
@@ -110,7 +148,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="photo" catalog="system" width="128" height="93"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
