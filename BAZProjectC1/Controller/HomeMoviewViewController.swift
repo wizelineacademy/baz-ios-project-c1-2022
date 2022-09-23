@@ -24,7 +24,7 @@ class HomeMovieViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goDetailMovie" {
             let detailMovieScreen: DetailMovieViewController = segue.destination as! DetailMovieViewController
-            detailMovieScreen.infoMovie(sender as! Movie)
+            detailMovieScreen.movie = sender as! Movie
         }
     }
 
