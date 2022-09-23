@@ -12,8 +12,7 @@ class TrendingMovieViewModel {
     //Mecanismo para enlace del modelo con la vista
     var refreshData = { () -> () in }
     
-    //Fuente de datos
-    var movieDataArray: [Movie] = [] {
+    var movieDataArray: [Result] = [] {
         didSet  {
             refreshData()
         }
@@ -22,7 +21,7 @@ class TrendingMovieViewModel {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let urlBase = "https://api.themoviedb.org/3"
     
-    func getMoviesMV () {
+    func getMovies () {
         let endPoint = "/trending/movie/day?api_key=\(apiKey)"
         
         guard let url = URL(string: urlBase + endPoint) else {
@@ -39,10 +38,10 @@ class TrendingMovieViewModel {
             
             //Serializar datos
             do{
-                let result = try JSONDecoder().decode(Results.self, from: json)
+                let result = try JSONDecoder().decode(Movie.self, from: json)
                 self.movieDataArray = result.results
             } catch let error {
-                print("Error: \(error.localizedDescription)")
+                debugPrint("Error: \(error.localizedDescription)")
             }
         }.resume()
     }
