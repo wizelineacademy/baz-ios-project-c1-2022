@@ -7,13 +7,15 @@
 
 import Foundation
 import UIKit
+
 extension CarouselMovies: UICollectionViewDelegate{
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.movieSelected(position: indexPath.row)
     }
-    
 }
 extension CarouselMovies: UICollectionViewDataSource{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return infoCarousel.count
     }
@@ -27,8 +29,8 @@ extension CarouselMovies: UICollectionViewDataSource{
     }
 }
 extension CarouselMovies: UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         return CGSize(width: (collectionView.frame.width - 32) * 0.66, height: collectionView.frame.height - 32)
     }
 }

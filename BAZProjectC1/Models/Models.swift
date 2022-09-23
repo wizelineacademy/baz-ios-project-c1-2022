@@ -14,10 +14,12 @@ public struct MovieApiResponseModel: Codable {
     var total_results: Int?
     var dates: datesMovieModel?
 }
+
 public struct datesMovieModel: Codable {
     var maximum:String?
     var minimum:String?
 }
+
 public struct MovieModel: Codable {
     var adult: Bool?
     var backdrop_path: String?

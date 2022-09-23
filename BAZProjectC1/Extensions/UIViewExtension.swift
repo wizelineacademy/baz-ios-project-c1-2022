@@ -14,7 +14,7 @@ public enum RounderBorderStyleForView: CGFloat {
     case circular = 50.0
 }
 
-extension UIView{
+extension UIView {
     func setDashedBorder(color: UIColor, Style: RounderBorderStyleForView) {
         self.backgroundColor = .clear
         let bottomLineCGRect = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height:  self.frame.size.height)

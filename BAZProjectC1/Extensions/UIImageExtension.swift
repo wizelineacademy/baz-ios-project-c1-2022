@@ -14,7 +14,7 @@ extension UIImage{
         color.setFill()
         UIRectFill(rect)
         guard let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
-        else{  return UIImage()}
+        else{  return UIImage() }
         UIGraphicsEndImageContext()
         return image
     }

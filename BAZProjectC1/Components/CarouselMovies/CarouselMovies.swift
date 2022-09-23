@@ -8,10 +8,10 @@
 import UIKit
 
 class CarouselMovies: UIView {
-
     private(set) lazy var infoCarousel: [MovieModel] = {
         return []
     }()
+    
     private var currentItem:Int = -1
     public weak var delegate:CarouselMoviesDelegate?
     public weak var positionDelegate:CarouselMoviesPositionDelegate?
@@ -53,20 +53,17 @@ class CarouselMovies: UIView {
         let contentOffset = carousel.contentOffset
         carousel.setContentOffset(contentOffset, animated: false)
     }
-    public  func setDataInfo(infoCarousel: [MovieModel]){
+    public  func setDataInfo(infoCarousel: [MovieModel]) {
         self.infoCarousel = []
         carousel.reloadData()
         self.infoCarousel = infoCarousel
         if infoCarousel.count != 0 {
-            UIView.animate(withDuration: 1.0, animations: { [weak self] in
-                self?.carousel.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
-            })
+            self.carousel.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
         carousel.reloadData()
     }
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        var pos = (CGFloat(infoCarousel.count ) * (scrollView.contentOffset.x)) / (scrollView.contentSize.width - 32)
+        var pos = (CGFloat(infoCarousel.count ) * scrollView.contentOffset.x) / (scrollView.contentSize.width - 32)
         pos.round()
         if pos <= CGFloat(infoCarousel.count ) {
             let newPos = Int(pos)

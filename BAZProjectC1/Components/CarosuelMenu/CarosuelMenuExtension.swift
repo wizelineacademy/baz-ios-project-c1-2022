@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-
 extension CarosuelMenu:UICollectionViewDelegate{
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         optionSelected = indexPath.row
         delegate?.selectedOption(index: indexPath)
@@ -36,6 +36,7 @@ extension CarosuelMenu: UICollectionViewDataSource{
     }
 }
 extension CarosuelMenu:UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let newWidth = CGFloat((menuOptions[indexPath.row].lengthOfBytes(using: .utf8) + 1) * 8) + 16
         return CGSize(width: newWidth, height: collectionView.frame.height)

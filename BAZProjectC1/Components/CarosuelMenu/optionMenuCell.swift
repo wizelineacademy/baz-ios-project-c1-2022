@@ -22,12 +22,17 @@ class optionMenuCell: UICollectionViewCell {
         title.adjustsFontSizeToFitWidth = true
         return title
     }()
-    override init(frame: CGRect){
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         setupLayer()
     }
-    required init?(coder: NSCoder) {    fatalError("init(coder:) has not been implemented") }
-    func setupLayer(){
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func setupLayer() {
         title.text = titleText
         title.textColor = itemBackgroundColor
         if itemBackgroundColor == .white {

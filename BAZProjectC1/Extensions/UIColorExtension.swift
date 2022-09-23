@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-extension UIColor{
-    static func getColorFromHexString (with hex:String) -> UIColor{
+extension UIColor {
+    static func getColorFromHexString (with hex:String) -> UIColor {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
@@ -26,13 +26,11 @@ extension UIColor{
             alpha: CGFloat(1.0)
         )
     }
-    static var appColorBlack: UIColor{ return getColorFromHexString(with: "#000000")}
-    
-    static var appColorGrayPrimary: UIColor{ return getColorFromHexString(with: "#242529")}
-    static var appColorGraySecondary: UIColor{ return getColorFromHexString(with: "#9EA2AB")}
-    
-    static var appColorYellowPrimary: UIColor{ return getColorFromHexString(with: "#F3D46C")}
-    static var appColorYellowSecondary: UIColor{ return getColorFromHexString(with: "")}
-    static var appColorYellowTertiary: UIColor{ return getColorFromHexString(with: "")}
-    static var appColorWhitePrimary: UIColor{ return getColorFromHexString(with: "#FFFFFF")}
+    static var appColorBlack: UIColor { return getColorFromHexString(with: "#000000") }
+    static var appColorGrayPrimary: UIColor { return getColorFromHexString(with: "#242529") }
+    static var appColorGraySecondary: UIColor { return getColorFromHexString(with: "#9EA2AB") }
+    static var appColorYellowPrimary: UIColor { return getColorFromHexString(with: "#F3D46C") }
+    static var appColorYellowSecondary: UIColor { return getColorFromHexString(with: "") }
+    static var appColorYellowTertiary: UIColor { return getColorFromHexString(with: "") }
+    static var appColorWhitePrimary: UIColor { return getColorFromHexString(with: "#FFFFFF") }
 }

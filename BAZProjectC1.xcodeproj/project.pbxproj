@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0223084A28DD85EA009AB81A /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084928DD85EA009AB81A /* UILabelExtension.swift */; };
 		0223084D28DD8E8F009AB81A /* CarosuelMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084C28DD8E8F009AB81A /* CarosuelMenu.swift */; };
 		0223084F28DD8EB8009AB81A /* CarosuelMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084E28DD8EB8009AB81A /* CarosuelMenuDelegate.swift */; };
 		0223085128DD8F81009AB81A /* CarosuelMenuExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223085028DD8F81009AB81A /* CarosuelMenuExtension.swift */; };
@@ -38,7 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0223084928DD85EA009AB81A /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		0223084C28DD8E8F009AB81A /* CarosuelMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenu.swift; sourceTree = "<group>"; };
 		0223084E28DD8EB8009AB81A /* CarosuelMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenuDelegate.swift; sourceTree = "<group>"; };
 		0223085028DD8F81009AB81A /* CarosuelMenuExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenuExtension.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				02F94AB328DCBE0200B4116C /* UIViewExtension.swift */,
 				02F94AB728DCC49100B4116C /* UIColorExtension.swift */,
 				02F94AB928DCD48300B4116C /* UIImageExtension.swift */,
-				0223084928DD85EA009AB81A /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -330,7 +327,6 @@
 				02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */,
 				0223084D28DD8E8F009AB81A /* CarosuelMenu.swift in Sources */,
 				0247CC8028DBAA9300E58461 /* TabBarMenu.swift in Sources */,
-				0223084A28DD85EA009AB81A /* UILabelExtension.swift in Sources */,
 				022827CD28D38FA400294695 /* ApiServiceRequest.swift in Sources */,
 				0223085328DD91CC009AB81A /* optionMenuCell.swift in Sources */,
 			);

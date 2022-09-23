@@ -17,11 +17,13 @@ class CarosuelMenu: UIView {
     private(set) lazy var menuOptions: [String] = {
         return []
     }()
+    
     public var optionSelected: Int = 0{
         didSet{
             menu.reloadData()
         }
     }
+    
     public lazy var menu: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -39,9 +41,11 @@ class CarosuelMenu: UIView {
         menu.register(optionMenuCell.self,forCellWithReuseIdentifier: optionMenuCell.reuseIdentifier)
         return menu
     }()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     public convenience init(frame:CGRect,
                             optionsTitles:[String] = [],
                             itemBackgroundColor: UIColor? = .clear,
@@ -49,7 +53,6 @@ class CarosuelMenu: UIView {
                             itemSelectedBackgroundColor: UIColor? = .clear,
                             itemSelectedBorderBackgroundColor: UIColor? = .clear,
                             itemBorder: Double? = 10.0){
-        
         self.init(frame: frame)
         self.itemBackgroundColor = itemBackgroundColor
         self.itemBorderBackgroundColor = itemBorderBackgroundColor
@@ -76,7 +79,8 @@ class CarosuelMenu: UIView {
         let contentOffset = menu.contentOffset
         menu.setContentOffset(contentOffset, animated: false)
     }
-    public func setDataInfo(infoMenu: [String]){
+    
+    public func setDataInfo(infoMenu: [String]) {
         menuOptions = infoMenu
         optionSelected = 0
         menu.reloadData()

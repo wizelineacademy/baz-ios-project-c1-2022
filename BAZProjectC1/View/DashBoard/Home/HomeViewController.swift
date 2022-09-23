@@ -10,12 +10,11 @@ import UIKit
 class HomeViewController: UIViewController {
 
     let filterDataArray = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
-    var moviesList: [MovieModel] = []{
+    var moviesList: [MovieModel] = [] {
         didSet{
             carouselMovies.setDataInfo(infoCarousel: moviesList)
         }
     }
-    
     
     public lazy var filterMenu: CarosuelMenu = {
         let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
@@ -44,15 +43,13 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.addSubview(filterMenu)
         view.addSubview(carouselMovies)
-
         filterMenu.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         filterMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32).isActive = true
-        
         carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         carouselMovies.topAnchor.constraint(equalTo: filterMenu.layoutMarginsGuide.bottomAnchor,constant: 24).isActive = true
         carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
     }
-    func configutionView(){
+    func configutionView() {
         setupUI()
         view.backgroundColor = UIColor.appColorBlack
     }
@@ -63,11 +60,10 @@ class HomeViewController: UIViewController {
         getDataInfo(urlString: UrlOptionSelected)
     }
     func getDataInfo(urlString: String) {
-        ApiServiceRequest.getService(urlService: urlString, structureType: MovieApiResponseModel.self, handler: {
-                    [weak self] dataResponse in
-                    if let data = dataResponse as? MovieApiResponseModel {
-                        self?.moviesList = data.results ?? []
-                    }
-                })
+        ApiServiceRequest.getService(urlService: urlString, structureType: MovieApiResponseModel.self, handler: { [weak self] dataResponse in
+            if let data = dataResponse as? MovieApiResponseModel {
+                self?.moviesList = data.results ?? []
+            }
+        })
     }
 }
