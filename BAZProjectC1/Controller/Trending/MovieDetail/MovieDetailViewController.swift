@@ -14,7 +14,6 @@ final class MovieDetailViewController: UIViewController {
 
     var index: Int?
     var objMovie: MovieAPIResponse?
-    var objNowPlay: NowPlayingAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()

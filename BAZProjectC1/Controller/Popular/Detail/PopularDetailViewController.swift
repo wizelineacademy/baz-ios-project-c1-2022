@@ -8,22 +8,29 @@
 import UIKit
 
 class PopularDetailViewController: UIViewController {
-
+    
+    @IBOutlet weak var lblPlTitle: UILabel!
+    @IBOutlet weak var imgPlMovie: UIImageView!
+    @IBOutlet weak var lblPlOverview: UILabel!
+    @IBOutlet weak var lblPlVote: UILabel!
+    @IBOutlet weak var lbllPYear: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    private func setUpLeftMenu() {
+        let menuBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                            style: .plain, target: self, action:  #selector(popView))
+        navigationItem.leftBarButtonItem = menuBarButton
     }
-    */
+    
+    @objc private func popView(){
+        navigationController?.popViewController(animated: true)
+    }
+    
 
+    
 }
