@@ -16,8 +16,8 @@ class CarouselMovies: UIView {
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
-        layout.minimumLineSpacing = 16
-        layout.minimumInteritemSpacing = 16
+        layout.minimumLineSpacing = 48
+        layout.minimumInteritemSpacing = 48
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let carousel = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
         carousel.backgroundColor = UIColor.clear

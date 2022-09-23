@@ -16,6 +16,7 @@ class HomeViewController: UIViewController {
         }
     }
     
+    
     public lazy var filterMenu: CarosuelMenu = {
         let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         let filterMenu = CarosuelMenu(frame: filterMenuCGRect,
@@ -35,6 +36,14 @@ class HomeViewController: UIViewController {
         carouselMovies.delegate = self
         return carouselMovies
     }()
+    
+    public lazy var basicInfoMovie: BasicInfoMovie = {
+        let basicInfoMovieCGRect = CGRect(x: 0, y: 0, width: view.frame.width - 32, height: 100)
+        let basicInfoMovie = BasicInfoMovie(frame: basicInfoMovieCGRect,viewBackgroundColor: UIColor.appColorYellowPrimary.withAlphaComponent(0.3))
+        basicInfoMovie.translatesAutoresizingMaskIntoConstraints = false
+        return basicInfoMovie
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configutionView()
@@ -42,11 +51,22 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.addSubview(filterMenu)
         view.addSubview(carouselMovies)
-        carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor).isActive = true
-        carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
+        view.addSubview(basicInfoMovie)
+
         filterMenu.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
         filterMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32).isActive = true
+        
+        carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        carouselMovies.topAnchor.constraint(equalTo: filterMenu.layoutMarginsGuide.bottomAnchor,constant: 24).isActive = true
+        carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
+        
+        basicInfoMovie.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        basicInfoMovie.topAnchor.constraint(equalTo: carouselMovies.layoutMarginsGuide.bottomAnchor,constant: 24).isActive = true
+        basicInfoMovie.leftAnchor.constraint(equalTo: carouselMovies.layoutMarginsGuide.leftAnchor,constant: 16).isActive = true
+        basicInfoMovie.rightAnchor.constraint(equalTo: carouselMovies.layoutMarginsGuide.rightAnchor,constant: -16).isActive = true
+
+        basicInfoMovie.heightAnchor.constraint(equalTo: basicInfoMovie.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
+       
     }
     func configutionView(){
         setupUI()
@@ -54,7 +74,6 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        moviesList = []
         guard let firstOption = filterDataArray.first,
               let UrlOptionSelected = EndpointsList(rawValue: firstOption)?.description else { return }
         getDataInfo(urlString: UrlOptionSelected)

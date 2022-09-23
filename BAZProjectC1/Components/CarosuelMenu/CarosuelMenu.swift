@@ -60,11 +60,9 @@ class CarosuelMenu: UIView {
     }
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.commonInit()
-    }
-    public func commonInit() {
         setupUI()
     }
+    
     private func setupUI() {
         self.addSubview(menu)
         self.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
