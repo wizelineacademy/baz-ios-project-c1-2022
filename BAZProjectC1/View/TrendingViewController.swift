@@ -25,6 +25,9 @@ class TrendingViewController: UITableViewController {
             }
         })
     }
+    func <#name#>(<#parameters#>) -> <#return type#> {
+        <#function body#>
+    }
 
 }
 
@@ -47,12 +50,5 @@ extension TrendingViewController {
 
 extension TrendingViewController {
 
-//    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        var config = UIListContentConfiguration.cell()
-//        config.text = movies[indexPath.row].title
-//        config.image = UIImage(named: "poster")
-//        cell.contentConfiguration = config
-//    }
-    
 
 }

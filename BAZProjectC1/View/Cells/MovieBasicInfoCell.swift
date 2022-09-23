@@ -27,7 +27,7 @@ class MovieBasicInfoCell: UITableViewCell {
     
     func configure(dataCell: MovieModel) {
         movieTitle.text =  dataCell.title
-        moviePoster.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataCell.posterPath)")
+        moviePoster.loadImagel(from: "\(EndpointsList.imageResource.description)\(dataCell.posterPath)")
     }
     
 }

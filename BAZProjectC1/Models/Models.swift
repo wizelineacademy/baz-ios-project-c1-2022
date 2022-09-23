@@ -7,13 +7,14 @@
 
 import Foundation
 
-public struct MovieApiResponseModel: Codable {
+public struct MovieApiResponseModel: Decodable {
     let page: Int
     let results: [MovieModel]
     let totalPages: Int
     let totalResults: Int
 }
-public struct MovieModel: Codable {
+
+public struct MovieModel: Decodable {
     let adult: Bool
     let backdropPath: String
     let posterPath: String
