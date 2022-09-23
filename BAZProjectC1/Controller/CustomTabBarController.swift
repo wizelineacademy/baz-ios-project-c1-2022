@@ -41,7 +41,6 @@ class CustomTabBarController: UITabBarController {
         ]
     }
     
-    
     fileprivate func createNavController(for rootVC: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootVC )
         navController.tabBarItem.title = title

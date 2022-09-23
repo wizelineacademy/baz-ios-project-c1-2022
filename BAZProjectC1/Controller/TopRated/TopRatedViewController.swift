@@ -18,7 +18,6 @@ final class TopRatedViewController: UIViewController {
     //MARK: - V A R I A B L E S
     private var objTopRated: TopRatedAPIResponse?
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Top Rated"

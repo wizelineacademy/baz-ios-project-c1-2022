@@ -24,7 +24,8 @@ final class MovieDetailViewController: UIViewController {
     }
     
     private func setUpLeftMenu() {
-        let menuBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action:  #selector(popView))
+        let menuBarButton = UIBarButtonItem(image: UIImage(systemName: "chevron.left"),
+                                            style: .plain, target: self, action:  #selector(popView))
         navigationItem.leftBarButtonItem = menuBarButton
     }
     
@@ -43,6 +44,5 @@ final class MovieDetailViewController: UIViewController {
             let _ = imgMovie.loadImage(url: url)
             
         }
-    
     }
 }
