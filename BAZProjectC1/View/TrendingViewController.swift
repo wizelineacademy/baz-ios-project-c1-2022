@@ -12,7 +12,7 @@ class TrendingViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.register(MovieBasicInfoCell.nib(), forCellReuseIdentifier: MovieBasicInfoCell.identificador)
+        tableView.register(MovieBasicInfoCell.nib(), forCellReuseIdentifier: MovieBasicInfoCell.identifier)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -35,8 +35,8 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieBasicInfoCell.identificador, for: indexPath) as? MovieBasicInfoCell else { return UITableViewCell() }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieBasicInfoCell.identifier, for: indexPath) as? MovieBasicInfoCell else { return UITableViewCell() }
         cell.configure(dataCell: movies[indexPath.row])
         return cell
     }

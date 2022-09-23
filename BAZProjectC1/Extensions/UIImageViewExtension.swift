@@ -7,17 +7,18 @@
 
 import Foundation
 import UIKit
-extension UIImageView{
+
+extension UIImageView {
     public func loadImageFromUrl(urlString: String){
-        if let url = URL(string: urlString) {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url){
-                    if let image = UIImage(data: data){
-                        DispatchQueue.main.async {  self?.image = image     }
-                    }
+        guard let url = URL(string: urlString) else { return }
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {  self?.image = image     }
                 }
             }
         }
+
     }
 }
 

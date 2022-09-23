@@ -7,8 +7,8 @@
 
 import Foundation
 
-public class ApiServiceRequest{
-    public static func getService<T: Codable>(urlService: String,structureType: T.Type, handler: @escaping(_ responseData: Any?) -> Void ){
+public class ApiServiceRequest {
+    public static func getService<T: Codable>(urlService: String,structureType: T.Type, handler: @escaping(_ responseData: Any?) -> Void ) {
         guard let url = URL(string: urlService) else{
             handler(nil)
             return
@@ -19,8 +19,8 @@ public class ApiServiceRequest{
                     do {
                         let objectResponse = try JSONDecoder().decode(structureType, from: data)
                         handler(objectResponse)
-                    } catch{ handler(nil) }
-                }else {  handler(nil)}
+                    } catch { handler(nil) }
+                } else {  handler(nil) }
             }
         }).resume()
     }
