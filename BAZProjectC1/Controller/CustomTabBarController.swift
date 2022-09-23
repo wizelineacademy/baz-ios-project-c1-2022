@@ -6,12 +6,14 @@ import UIKit
 
 class CustomTabBarController: UITabBarController {
     
+    let wzlnRed: UIColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
-        UITabBar.appearance().barTintColor = .white
+        view.backgroundColor = wzlnRed
+        UITabBar.appearance().barTintColor = wzlnRed
+        tabBar.backgroundColor = wzlnRed
         tabBar.tintColor = .white
-        tabBar.backgroundColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,18 +46,10 @@ class CustomTabBarController: UITabBarController {
         let navController = UINavigationController(rootViewController: rootVC )
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        navController.navigationBar.prefersLargeTitles=true
+        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationBar.titleTextAttributes = [.foregroundColor: wzlnRed]
+//        navController.navigationBar.backgroundColor = wzlnRed
         rootVC.navigationItem.title = title
         return navController
     }
-    
 }
-
-extension CustomTabBarController: UITabBarControllerDelegate {
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Selected \(viewController.title!)")
-    }
-    
-}
-
