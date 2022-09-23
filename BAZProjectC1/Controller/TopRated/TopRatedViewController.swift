@@ -52,4 +52,13 @@ extension TopRatedViewController: UITableViewDelegate & UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let topRatedDetail = TopRatedDetailViewController()
+        topRatedDetail.index = indexPath.row
+        topRatedDetail.objTopRated = objTopRated
+        self.navigationController?.pushViewController(topRatedDetail, animated: true)
+    }
+    
+    
 }
