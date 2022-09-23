@@ -10,6 +10,7 @@ final internal class TrendingViewController: UITableViewController, TrendingView
 
     private var movies: [Movie] = []
     private let movieApi = MovieAPI(url: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
+    var imageArray: [UIImage] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,9 @@ final internal class TrendingViewController: UITableViewController, TrendingView
     
     func retreiveImageFromSource(posterPath: String) -> UIImage {
         let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
-        return UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
+        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
+        imageArray.append(uiImage)
+        return uiImage
     }
 
 }
@@ -45,18 +48,11 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("SELECIONADA \(indexPath.row)")
-        
         let movieDetailVC = MovieDetailViewController(nibName: "MovieDetailViewController", bundle: .main)
+        movieDetailVC.movie = movies[indexPath.row]
+        movieDetailVC.img = imageArray[indexPath.row]
         movieDetailVC.modalPresentationStyle = .fullScreen
         self.present(movieDetailVC, animated: true, completion: nil)
-//        self.navigationController?.present(movieDetailVC, animated: true, completion: nil)
-        
-//        let destinationNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
-//        destinationNavigationController.modalPresentationStyle = .fullScreen
-//        self.present(destinationNavigationController, animated: true, completion: nil)
-        
-        
     }
 
 }

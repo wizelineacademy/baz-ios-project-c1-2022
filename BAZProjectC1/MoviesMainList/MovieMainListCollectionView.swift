@@ -23,6 +23,7 @@ class MovieMainListCollectionView: UICollectionView, UICollectionViewDataSource,
         self.dataSource = self
         self.delegate = self
         self.register(MovieMainListCollectionViewCell.self, forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
+//        self.register(MovieMainListCollectionViewCell.self, forCellWithReuseIdentifier: "MovieMainListCollectionViewCell")
     }
 
     func collectionView(_ collectionView: UICollectionView,

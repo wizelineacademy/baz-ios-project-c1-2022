@@ -11,6 +11,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MovieDetailViewController" customModule="BAZProjectC1" customModuleProvider="target">
             <connections>
+                <outlet property="imgView" destination="vrh-th-X7z" id="fOK-c6-RJ2"/>
+                <outlet property="lblDescription" destination="ib7-B6-IpH" id="vD8-pQ-Ko5"/>
                 <outlet property="navBar" destination="WEY-kQ-LF7" id="Bgr-0g-fNh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,8 +28,8 @@
                         <constraint firstAttribute="height" constant="200" id="caV-Ed-r1I"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-B6-IpH">
-                    <rect key="frame" x="35" y="375" width="344" height="300"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="50" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-B6-IpH">
+                    <rect key="frame" x="35" y="375" width="344" height="477"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -47,10 +49,10 @@
             <constraints>
                 <constraint firstItem="WEY-kQ-LF7" firstAttribute="centerX" secondItem="vrh-th-X7z" secondAttribute="centerX" id="3DS-pY-Iog"/>
                 <constraint firstItem="WEY-kQ-LF7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="4ex-cB-D8R"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ib7-B6-IpH" secondAttribute="bottom" constant="187" id="EXR-Az-y7B"/>
                 <constraint firstItem="vrh-th-X7z" firstAttribute="trailing" secondItem="ib7-B6-IpH" secondAttribute="trailing" id="F10-hZ-Qba"/>
                 <constraint firstItem="ib7-B6-IpH" firstAttribute="top" secondItem="vrh-th-X7z" secondAttribute="bottom" constant="45" id="NqJ-hT-SbH"/>
                 <constraint firstItem="vrh-th-X7z" firstAttribute="top" secondItem="WEY-kQ-LF7" secondAttribute="bottom" constant="32" id="Ohb-5J-PE0"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="ib7-B6-IpH" secondAttribute="bottom" constant="10" id="Ook-C7-azE"/>
                 <constraint firstItem="vrh-th-X7z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="35" id="c15-NV-h7H"/>
                 <constraint firstItem="WEY-kQ-LF7" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="g99-1Q-VbA"/>
                 <constraint firstItem="WEY-kQ-LF7" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="tA0-da-E9s"/>

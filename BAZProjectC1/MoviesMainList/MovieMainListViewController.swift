@@ -30,22 +30,3 @@ class MovieMainListViewController: UIViewController {
     */
 
 }
-
-//extension MovieMainListViewController: UICollectionViewDataSource {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        myData.count
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieMainListCollectionViewCell.identifier, for: indexPath) as! MovieMainListCollectionViewCell
-//        // return card
-//        return cell
-//    }
-//}
-//
-//extension MovieMainListViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//        // add the code here to perform action on the cell
-//        let cell = collectionView.cellForItem(at: indexPath) as? MovieMainListCollectionViewCell
-//    }
-//}
