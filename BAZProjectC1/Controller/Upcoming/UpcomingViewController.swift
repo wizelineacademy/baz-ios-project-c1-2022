@@ -47,9 +47,16 @@ extension UpcomingViewController: UITableViewDelegate & UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier, for: indexPath)
         as? UpcomingTableViewCell ?? UpcomingTableViewCell()
-        if let upcoming = objUpcoming?.upcoming?[indexPath.row] {
+        if let upcoming = objUpcoming?.upcoming?[indexPath.row] {
             cell.setUpcoming(with: upcoming)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let upcomingDetail = UpcomingDetailViewController()
+        upcomingDetail.index = indexPath.row
+        upcomingDetail.objUpcoming = objUpcoming
+        self.navigationController?.pushViewController(upcomingDetail, animated: true)
     }
 }
