@@ -20,10 +20,15 @@ struct Movie: Codable {
 struct MovieData: Codable {
     let id: Int
     let title: String
-    let posterPath: String
+    let posterPath, overview: String
+    let releaseDate: String
+    let voteCount:  Int
 
     enum CodingKeys: String, CodingKey {
         case id, title
         case posterPath = "poster_path"
+        case overview
+        case releaseDate = "release_date"
+        case voteCount = "vote_count"
     }
 }
