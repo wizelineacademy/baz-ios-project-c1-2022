@@ -15,12 +15,6 @@ class TrendingViewController: UITableViewController {
 
         let movieApi = MovieAPI()
         
-        movieApi.getMovies { response in
-            self.movies = response
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
     }
 
 }
