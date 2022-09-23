@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0223084A28DD85EA009AB81A /* UILabelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084928DD85EA009AB81A /* UILabelExtension.swift */; };
 		022827CD28D38FA400294695 /* ApiServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022827CC28D38FA400294695 /* ApiServiceRequest.swift */; };
 		022827D028D3966E00294695 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022827CF28D3966E00294695 /* Models.swift */; };
 		022827D528D3A05C00294695 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022827D428D3A05C00294695 /* Strings.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0223084928DD85EA009AB81A /* UILabelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelExtension.swift; sourceTree = "<group>"; };
 		022827CC28D38FA400294695 /* ApiServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceRequest.swift; sourceTree = "<group>"; };
 		022827CF28D3966E00294695 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		022827D428D3A05C00294695 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 				02F94AB328DCBE0200B4116C /* UIViewExtension.swift */,
 				02F94AB728DCC49100B4116C /* UIColorExtension.swift */,
 				02F94AB928DCD48300B4116C /* UIImageExtension.swift */,
+				0223084928DD85EA009AB81A /* UILabelExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				02F94AB228DCB1F300B4116C /* movieCarouselCell.swift in Sources */,
 				02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */,
 				0247CC8028DBAA9300E58461 /* TabBarMenu.swift in Sources */,
+				0223084A28DD85EA009AB81A /* UILabelExtension.swift in Sources */,
 				022827CD28D38FA400294695 /* ApiServiceRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,6 +449,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -473,6 +478,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

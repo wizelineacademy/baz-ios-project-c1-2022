@@ -13,7 +13,10 @@ extension UIImageView{
             DispatchQueue.global().async { [weak self] in
                 if let data = try? Data(contentsOf: url){
                     if let image = UIImage(data: data){
-                        DispatchQueue.main.async {  self?.image = image     }
+                        DispatchQueue.main.async {
+                            self?.image = image
+                            self?.contentMode = .scaleAspectFill
+                        }
                     }
                 }
             }

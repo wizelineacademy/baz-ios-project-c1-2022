@@ -34,4 +34,5 @@ extension UIColor{
     static var appColorYellowPrimary: UIColor{ return getColorFromHexString(with: "#F3D46C")}
     static var appColorYellowSecondary: UIColor{ return getColorFromHexString(with: "")}
     static var appColorYellowTertiary: UIColor{ return getColorFromHexString(with: "")}
+    static var appColorWhitePrimary: UIColor{ return getColorFromHexString(with: "#FFFFFF")}
 }
