@@ -57,7 +57,7 @@ class MovieMenuViewController: UIViewController, SelectedFilterProtocol{
         
         self.title = "\(selectedCategoryPicker.typeName) Movies"
 
-        collectionMovieMenu.register(UINib(nibName: "MovieItemTableViewCell", bundle: Bundle(for: MovieItemTableViewCell.self)), forCellWithReuseIdentifier: "MovieItemTableViewCell")
+        collectionMovieMenu.register(UINib(nibName: "MovieItemCollectionViewCell", bundle: Bundle(for: MovieItemCollectionViewCell.self)), forCellWithReuseIdentifier: "MovieItemCollectionViewCell")
         
         movieApi.getMovies(categoryMovieType: .trending, language: .es) { response in
             self.movies = response
@@ -110,7 +110,7 @@ extension MovieMenuViewController: UICollectionViewDelegate, UICollectionViewDat
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieItemTableViewCell", for: indexPath) as? MovieItemTableViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieItemCollectionViewCell", for: indexPath) as? MovieItemCollectionViewCell else {
             return UICollectionViewCell()
         }
         cell.requiredSetupUI(movie: self.movies[indexPath.row])

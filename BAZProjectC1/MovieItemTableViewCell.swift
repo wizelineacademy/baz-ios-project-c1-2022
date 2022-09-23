@@ -1,5 +1,5 @@
 //
-//  MovieItemTableViewCell.swift
+//  MovieItemCollectionViewCell.swift
 //  BAZProjectC1
 //
 //  Created by 961184 on 21/09/22.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieItemTableViewCell: UICollectionViewCell {
+class MovieItemCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardImageView: CachedImageView!
