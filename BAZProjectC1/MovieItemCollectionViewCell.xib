@@ -21,7 +21,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="169" height="214"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3W-RB-6ZJ" customClass="GSVCView" customModule="GSSAVisualComponents">
+                    <view contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3W-RB-6ZJ">
                         <rect key="frame" x="4" y="4" width="161" height="206"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZfA-Lx-Emy" customClass="CachedImageView" customModule="BAZProjectC1" customModuleProvider="target">
@@ -62,9 +62,6 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="style">
-                                <integer key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>

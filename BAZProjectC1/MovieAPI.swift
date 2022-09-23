@@ -26,6 +26,25 @@ class MovieAPI {
             }
         }.resume()
     }
+    
+    func getMovieDetail(idMovie id: Int, language lang: ApiLanguageResponse, handler: @escaping (MovieDetail) -> ()) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?api_key=\(apiKey)&language=\(lang.abbreviation)&page=1") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            if error != nil{
+                print("error: \(error?.localizedDescription ?? "error")")
+                return
+            }
+            do {
+                guard let data = data else { return }
+                let result = try JSONDecoder().decode(MovieDetail.self, from: data)
+                handler(result)
+            }catch {
+                print("catch: \(error.localizedDescription)")
+            }
+        }.resume()
+    }
+
 
 }
 
@@ -103,4 +122,48 @@ public enum ApiLanguageResponse:String {
 
 struct MovieDay: Codable {
     let results: [Movie]
+}
+
+// MARK: - MovieDetail
+struct MovieDetail: Codable {
+    let adult: Bool?
+    let backdrop_path: String?
+    let budget: Int?
+    let genres: [Genre]?
+    let homepage: String?
+    let id: Int?
+    let original_language, original_title, overview: String?
+    let popularity: Double?
+    let poster_path: String?
+    let production_companies: [ProductionCompany]?
+    let production_countries: [ProductionCountry]?
+    let release_date: String?
+    let revenue, runtime: Int?
+    let spoken_languages: [SpokenLanguage]?
+    let status, tagline, title: String?
+    let video: Bool?
+    let vote_average: Double?
+    let vote_count: Int?
+}
+
+// MARK: - Genre
+struct Genre: Codable {
+    let id: Int?
+    let name: String?
+}
+
+// MARK: - ProductionCompany
+struct ProductionCompany: Codable {
+    let id: Int?
+    let logo_path, name, origin_country: String?
+}
+
+// MARK: - ProductionCountry
+struct ProductionCountry: Codable {
+    let name: String?
+}
+
+// MARK: - SpokenLanguage
+struct SpokenLanguage: Codable {
+    let name: String?
 }
