@@ -43,6 +43,21 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("SELECIONADA \(indexPath.row)")
+        
+        let movieDetailVC = MovieDetailViewController(nibName: "MovieDetailViewController", bundle: .main)
+        movieDetailVC.modalPresentationStyle = .fullScreen
+        self.present(movieDetailVC, animated: true, completion: nil)
+//        self.navigationController?.present(movieDetailVC, animated: true, completion: nil)
+        
+//        let destinationNavigationController = self.storyboard!.instantiateViewController(withIdentifier: "MovieDetailViewController") as! MovieDetailViewController
+//        destinationNavigationController.modalPresentationStyle = .fullScreen
+//        self.present(destinationNavigationController, animated: true, completion: nil)
+        
+        
+    }
 
 }
 
