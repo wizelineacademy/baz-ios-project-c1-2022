@@ -9,11 +9,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    let FilterData = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
+    let filterDataArray = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
+    var moviesList: [MovieModel] = []{
+        didSet{
+            carouselMovies.setDataInfo(infoCarousel: moviesList)
+        }
+    }
+    
     public lazy var filterMenu: CarosuelMenu = {
         let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
         let filterMenu = CarosuelMenu(frame: filterMenuCGRect,
-                                      optionsTitles: FilterData,
+                                      optionsTitles: filterDataArray,
                                       itemBackgroundColor: UIColor.appColorYellowPrimary,
                                       itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
                                       itemSelectedBackgroundColor: UIColor.appColorWhitePrimary,
@@ -48,13 +54,16 @@ class HomeViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        getDataInfo()
+        moviesList = []
+        guard let firstOption = filterDataArray.first,
+              let UrlOptionSelected = EndpointsList(rawValue: firstOption)?.description else { return }
+        getDataInfo(urlString: UrlOptionSelected)
     }
-    func getDataInfo() {
-        ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
+    func getDataInfo(urlString: String) {
+        ApiServiceRequest.getService(urlService: urlString, structureType: MovieApiResponseModel.self, handler: {
                     [weak self] dataResponse in
                     if let data = dataResponse as? MovieApiResponseModel {
-                        self?.carouselMovies.setDataInfo(infoCarousel: data.results)
+                        self?.moviesList = data.results ?? []
                     }
                 })
     }

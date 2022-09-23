@@ -52,9 +52,8 @@ class movieCarouselCell: UICollectionViewCell {
         movieTitle.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -32).isActive = true
     }
     func configuration(dataInfo: MovieModel){
-        
-        posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.poster_path)")
-        
+        posterImage.image = UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: posterImage.frame.size)
+        posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.poster_path ?? "")")
         movieTitle.text = dataInfo.title
         
     }

@@ -19,7 +19,9 @@ public class ApiServiceRequest{
                     do {
                         let objectResponse = try JSONDecoder().decode(structureType, from: data)
                         handler(objectResponse)
-                    } catch{ handler(nil) }
+                    } catch{
+                        handler(nil)
+                    }
                 }else {  handler(nil)}
             }
         }).resume()

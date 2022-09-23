@@ -52,7 +52,14 @@ class CarouselMovies: UIView {
         carousel.setContentOffset(contentOffset, animated: false)
     }
     public  func setDataInfo(infoCarousel: [MovieModel]){
+        self.infoCarousel = []
+        carousel.reloadData()
         self.infoCarousel = infoCarousel
+        if infoCarousel.count != 0 {
+            UIView.animate(withDuration: 1.0, animations: { [weak self] in
+                self?.carousel.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+            })
+        }
         carousel.reloadData()
     }
 }
