@@ -16,19 +16,19 @@ class TrendingViewController: UITableViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        ApiServiceRequest.getService(urlService: EndpointsList.movieAPI.description, structureType: MovieApiResponseModel.self, handler: {
-            [weak self] dataResponse in
+        getDataInfo(urlString: EndpointsList.movieAPI.description)
+    }
+    func getDataInfo(urlString: String) {
+        ApiServiceRequest.getService(urlService: urlString, structureType: MovieApiResponseModel.self, handler: { [weak self] dataResponse in
             if let data = dataResponse as? MovieApiResponseModel {
-                self?.movies = data.results
-                self?.tableView.reloadData()
+                self?.reloadDataToTable(with: data)
             }
         })
     }
-    func <#name#>(<#parameters#>) -> <#return type#> {
-        <#function body#>
+    func reloadDataToTable(with data: MovieApiResponseModel)  {
+        self.movies = data.results
+        self.tableView.reloadData()
     }
-
 }
 
 // MARK: - TableView's DataSource
@@ -38,6 +38,7 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieBasicInfoCell.identifier, for: indexPath) as? MovieBasicInfoCell else { return UITableViewCell() }
         cell.configure(dataCell: movies[indexPath.row])
@@ -45,10 +46,6 @@ extension TrendingViewController {
     }
 
 }
-
 // MARK: - TableView's Delegate
-
 extension TrendingViewController {
-
-
 }
