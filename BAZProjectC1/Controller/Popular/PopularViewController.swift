@@ -53,4 +53,11 @@ extension PopularViewController: UITableViewDelegate & UITableViewDataSource {
         }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let popularDetail = PopularDetailViewController()
+        popularDetail.index = indexPath.row
+        popularDetail.objPopular = objPupular
+        self.navigationController?.pushViewController(popularDetail, animated: true)
+    }
 }

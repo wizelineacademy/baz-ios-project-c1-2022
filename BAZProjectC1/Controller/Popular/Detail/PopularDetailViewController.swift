@@ -15,10 +15,14 @@ class PopularDetailViewController: UIViewController {
     @IBOutlet weak var lblPlVote: UILabel!
     @IBOutlet weak var lbllPYear: UILabel!
     
+    var index: Int?
+    var objPopular: PopularAPIResponse?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Do any additional setup after loading the view.
+        navigationController?.navigationBar.tintColor = .white
+        self.setUpLeftMenu()
+        self.setPopular()
     }
     
     private func setUpLeftMenu() {
@@ -31,6 +35,16 @@ class PopularDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-
-    
+    private func setPopular(){
+        let dVote: Double = objPopular?.popular?[index ?? 0].voteAverage ?? 0.0
+        self.lblPlTitle.text = objPopular?.popular?[index ?? 0].title
+        self.lblPlOverview.text = objPopular?.popular?[index ?? 0].overview
+        self.lblPlVote.text = String(format: "%.1f", dVote )
+        self.lbllPYear.text = objPopular?.popular?[index ?? 0].releaseDate
+        if let urlPoster = objPopular?.popular?[index ?? 0].backdropPath,
+           let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+            let _ = imgPlMovie.loadImage(url: url)
+            
+        }
+    }
 }

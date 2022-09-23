@@ -19,7 +19,7 @@ class NowPlayingDetailViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.navigationBar.tintColor = .white
         self.setUpLeftMenu()
-        self.setInfoTrending()
+        self.setNowPlaying()
     }
     
     private func setUpLeftMenu() {
@@ -32,7 +32,7 @@ class NowPlayingDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    private func setInfoTrending(){
+    private func setNowPlaying(){
         let dVote: Double = objNowPlaying?.nowPlaying?[index ?? 0].voteAverage ?? 0.0
         self.lblPTitle.text = objNowPlaying?.nowPlaying?[index ?? 0].title
         self.lblPOverview.text = objNowPlaying?.nowPlaying?[index ?? 0].overview
