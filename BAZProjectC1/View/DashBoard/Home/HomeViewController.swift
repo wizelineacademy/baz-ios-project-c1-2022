@@ -9,6 +9,17 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    var data = ["Hola","Marcelo","como","Estas","este","mensaje_Largo"]
+    
+    public lazy var filterMenu: CarosuelMenu = {
+        let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
+        let filterMenu = CarosuelMenu(frame: filterMenuCGRect)
+        filterMenu.setDataInfo(infoMenu: data)
+        filterMenu.translatesAutoresizingMaskIntoConstraints = false
+        filterMenu.delegate = self
+        return filterMenu
+    }()
+    
     public lazy var carouselMovies: CarouselMovies = {
         let carouselMovies = CarouselMovies(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: (view.frame.height * 0.55)))
         carouselMovies.translatesAutoresizingMaskIntoConstraints = false
@@ -20,10 +31,13 @@ class HomeViewController: UIViewController {
         configutionView()
     }
     private func setupUI() {
+        view.addSubview(filterMenu)
         view.addSubview(carouselMovies)
-        NSLayoutConstraint.activate([carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
-                                     carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
-                                     carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width)])
+        carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor).isActive = true
+        carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
+        filterMenu.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
+        filterMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32).isActive = true
     }
     func configutionView(){
         setupUI()

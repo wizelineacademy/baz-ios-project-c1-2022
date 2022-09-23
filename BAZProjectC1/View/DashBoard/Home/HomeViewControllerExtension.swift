@@ -12,3 +12,8 @@ extension HomeViewController: CarouselMoviesDelegate{
         print(position)
     }
 }
+extension HomeViewController: CarosuelMenuDelegate{
+    func selectedOption(index: IndexPath) {
+        print(index)
+    }
+}
