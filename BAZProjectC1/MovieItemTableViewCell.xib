@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Poppins-Bold.ttf">
+            <string>Poppins-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieItemTableViewCell" translatesAutoresizingMaskIntoConstraints="NO" id="WeQ-WZ-IH0" userLabel="MovieItemTableViewCell" customClass="MovieItemTableViewCell" customModule="BAZProjectC1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="169" height="214"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="169" height="214"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S3W-RB-6ZJ" customClass="GSVCView" customModule="GSSAVisualComponents">
+                        <rect key="frame" x="4" y="4" width="161" height="206"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZfA-Lx-Emy" customClass="CachedImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="8" y="8" width="144" height="144"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="14.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Calificación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bws-5o-rRF">
+                                <rect key="frame" x="8" y="179.5" width="145" height="14"/>
+                                <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="12"/>
+                                <color key="textColor" red="0.91764705879999997" green="0.20000000000000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-wn-c23">
+                                <rect key="frame" x="8" y="160" width="145" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <color key="textColor" red="0.1333333333" green="0.18039215689999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ZfA-Lx-Emy" secondAttribute="trailing" constant="9" id="EUJ-d7-XPk"/>
+                            <constraint firstItem="ZfA-Lx-Emy" firstAttribute="top" secondItem="S3W-RB-6ZJ" secondAttribute="top" constant="8" id="U1O-UE-nJ5"/>
+                            <constraint firstItem="bws-5o-rRF" firstAttribute="leading" secondItem="S3W-RB-6ZJ" secondAttribute="leading" constant="8" id="XPW-nW-VG9"/>
+                            <constraint firstItem="zqR-wn-c23" firstAttribute="top" secondItem="ZfA-Lx-Emy" secondAttribute="bottom" constant="8" symbolic="YES" id="bbr-fN-JzA"/>
+                            <constraint firstAttribute="bottom" secondItem="ZfA-Lx-Emy" secondAttribute="bottom" constant="54" id="jlm-M4-eWc"/>
+                            <constraint firstAttribute="trailing" secondItem="bws-5o-rRF" secondAttribute="trailing" constant="8" id="qyh-3z-XwS"/>
+                            <constraint firstItem="ZfA-Lx-Emy" firstAttribute="leading" secondItem="S3W-RB-6ZJ" secondAttribute="leading" constant="8" id="wWH-Kb-Q8L"/>
+                            <constraint firstAttribute="trailing" secondItem="zqR-wn-c23" secondAttribute="trailing" constant="8" id="xla-hk-I58"/>
+                            <constraint firstItem="zqR-wn-c23" firstAttribute="leading" secondItem="S3W-RB-6ZJ" secondAttribute="leading" constant="8" id="yhq-AR-f0v"/>
+                            <constraint firstItem="bws-5o-rRF" firstAttribute="top" secondItem="zqR-wn-c23" secondAttribute="bottom" id="zRT-pv-u8x"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="style">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="1WD-rJ-ZEG"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="S3W-RB-6ZJ" secondAttribute="trailing" constant="4" id="J28-yA-I6p"/>
+                <constraint firstAttribute="bottom" secondItem="S3W-RB-6ZJ" secondAttribute="bottom" constant="4" id="LIx-DQ-0fV"/>
+                <constraint firstItem="S3W-RB-6ZJ" firstAttribute="leading" secondItem="WeQ-WZ-IH0" secondAttribute="leading" constant="4" id="chO-HH-zLG"/>
+                <constraint firstItem="S3W-RB-6ZJ" firstAttribute="top" secondItem="WeQ-WZ-IH0" secondAttribute="top" constant="4" id="ivT-VI-KL6"/>
+            </constraints>
+            <size key="customSize" width="164" height="214"/>
+            <connections>
+                <outlet property="cardImageView" destination="ZfA-Lx-Emy" id="52x-qi-pPj"/>
+                <outlet property="cardView" destination="S3W-RB-6ZJ" id="kvs-Fq-aS8"/>
+                <outlet property="subTitleLbl" destination="bws-5o-rRF" id="x6g-CX-IDb"/>
+                <outlet property="titleLbl" destination="zqR-wn-c23" id="8RA-GY-fPL"/>
+            </connections>
+            <point key="canvasLocation" x="-0.7246376811594204" y="91.741071428571431"/>
+        </collectionViewCell>
+    </objects>
+</document>
