@@ -23,10 +23,14 @@ extension CarosuelMenu: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: optionMenuCell.reuseIdentifier), for: indexPath) as? optionMenuCell else {  return UICollectionViewCell() }
         if optionSelected ==  indexPath.row {
-            cell.setUpView(itemBackgroundColor: UIColor.appColorYellowPrimary,itemBorderBackgroundColor: UIColor.appColorYellowPrimary,titleText: "\(menuOptions[indexPath.row])")
+            cell.setUpView(itemBackgroundColor: itemBackgroundColor,
+                           itemBorderBackgroundColor: itemBorderBackgroundColor,
+                           titleText: "\(menuOptions[indexPath.row])")
         }
         else{
-            cell.setUpView(itemBackgroundColor: UIColor.white,itemBorderBackgroundColor: UIColor.appColorGrayPrimary,titleText: "\(menuOptions[indexPath.row])")
+            cell.setUpView(itemBackgroundColor: itemSelectedBackgroundColor,
+                           itemBorderBackgroundColor: itemSelectedBorderBackgroundColor,
+                           titleText: "\(menuOptions[indexPath.row])")
         }
         return cell
     }

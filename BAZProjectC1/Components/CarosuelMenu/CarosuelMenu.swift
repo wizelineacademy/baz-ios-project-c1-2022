@@ -9,14 +9,15 @@ import UIKit
 
 class CarosuelMenu: UIView {
     public weak var delegate: CarosuelMenuDelegate?
-    
     private(set) var itemBackgroundColor: UIColor? = .clear
     private(set) var itemBorderBackgroundColor: UIColor? = .clear
+    private(set) var itemSelectedBackgroundColor: UIColor? = .clear
+    private(set) var itemSelectedBorderBackgroundColor: UIColor? = .clear
     private(set) var itemBorder: Double?
     private(set) lazy var menuOptions: [String] = {
         return []
     }()
-    public var optionSelected : Int = 0{
+    public var optionSelected: Int = 0{
         didSet{
             menu.reloadData()
         }
@@ -45,15 +46,19 @@ class CarosuelMenu: UIView {
                             optionsTitles:[String] = [],
                             itemBackgroundColor: UIColor? = .clear,
                             itemBorderBackgroundColor: UIColor? = .clear,
+                            itemSelectedBackgroundColor: UIColor? = .clear,
+                            itemSelectedBorderBackgroundColor: UIColor? = .clear,
                             itemBorder: Double? = 10.0){
         
         self.init(frame: frame)
         self.itemBackgroundColor = itemBackgroundColor
         self.itemBorderBackgroundColor = itemBorderBackgroundColor
+        self.itemSelectedBackgroundColor = itemSelectedBackgroundColor
+        self.itemSelectedBorderBackgroundColor = itemSelectedBorderBackgroundColor
         self.itemBorder = itemBorder
         self.setDataInfo(infoMenu: optionsTitles)
     }
-     override init(frame: CGRect) {
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
     }

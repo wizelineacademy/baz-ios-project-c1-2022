@@ -9,12 +9,15 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    var data = ["Hola","Marcelo","como","Estas","este","mensaje_Largo"]
-    
+    let FilterData = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
     public lazy var filterMenu: CarosuelMenu = {
         let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
-        let filterMenu = CarosuelMenu(frame: filterMenuCGRect)
-        filterMenu.setDataInfo(infoMenu: data)
+        let filterMenu = CarosuelMenu(frame: filterMenuCGRect,
+                                      optionsTitles: FilterData,
+                                      itemBackgroundColor: UIColor.appColorYellowPrimary,
+                                      itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
+                                      itemSelectedBackgroundColor: UIColor.appColorWhitePrimary,
+                                      itemSelectedBorderBackgroundColor: UIColor.appColorGrayPrimary)
         filterMenu.translatesAutoresizingMaskIntoConstraints = false
         filterMenu.delegate = self
         return filterMenu
