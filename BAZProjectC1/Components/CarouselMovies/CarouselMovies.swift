@@ -12,7 +12,9 @@ class CarouselMovies: UIView {
     private(set) lazy var infoCarousel: [MovieModel] = {
         return []
     }()
+    private var currentItem:Int = -1
     public weak var delegate:CarouselMoviesDelegate?
+    public weak var positionDelegate:CarouselMoviesPositionDelegate?
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -61,5 +63,19 @@ class CarouselMovies: UIView {
             })
         }
         carousel.reloadData()
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        var pos = (CGFloat(infoCarousel.count ) * (scrollView.contentOffset.x)) / (scrollView.contentSize.width - 32)
+        pos.round()
+        if pos <= CGFloat(infoCarousel.count ) {
+            let newPos = Int(pos)
+            if currentItem != newPos {
+                currentItem = newPos
+                positionDelegate?.getCurrentItem(index: IndexPath(row: newPos, section: 0))
+            }
+        } else {
+            positionDelegate?.getCurrentItem(index: IndexPath(row: 0, section: 0))
+        }
     }
 }

@@ -9,3 +9,6 @@ import Foundation
 public protocol CarouselMoviesDelegate: AnyObject {
     func movieSelected(position:Int)
 }
+public protocol CarouselMoviesPositionDelegate: AnyObject {
+    func getCurrentItem(index:IndexPath)
+}

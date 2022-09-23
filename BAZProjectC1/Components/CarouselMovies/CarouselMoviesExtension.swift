@@ -11,6 +11,7 @@ extension CarouselMovies: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.movieSelected(position: indexPath.row)
     }
+    
 }
 extension CarouselMovies: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
