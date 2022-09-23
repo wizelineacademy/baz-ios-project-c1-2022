@@ -10,23 +10,23 @@ import Foundation
 public struct MovieApiResponseModel: Codable {
     let page: Int
     let results: [MovieModel]
-    let total_pages: Int
-    let total_results: Int
+    let totalPages: Int
+    let totalResults: Int
 }
 public struct MovieModel: Codable {
     let adult: Bool
-    let backdrop_path: String
-    let poster_path: String
+    let backdropPath: String
+    let posterPath: String
     let id: Int
     let title: String
-    let original_language: String
-    let original_title: String
+    let originalLanguage: String
+    let originalTitle: String
     let overview: String
-    let media_type: String
-    let genre_ids: [Int]
+    let mediaType: String
+    let genreIds: [Int]
     let popularity: Double
-    let release_date: String
+    let releaseDate: String
     let video: Bool
-    let vote_average: Double
-    let vote_count: Int
+    let voteAverage: Double
+    let voteCount: Int
 }

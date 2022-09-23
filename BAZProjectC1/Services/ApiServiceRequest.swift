@@ -17,7 +17,9 @@ public class ApiServiceRequest {
             DispatchQueue.main.async {
                 if let data = dataResponse {
                     do {
-                        let objectResponse = try JSONDecoder().decode(structureType, from: data)
+                        let decoder = JSONDecoder()
+                        decoder.keyDecodingStrategy = .convertFromSnakeCase
+                        let objectResponse = try decoder.decode(structureType, from: data)
                         handler(objectResponse)
                     } catch { handler(nil) }
                 } else {  handler(nil) }
