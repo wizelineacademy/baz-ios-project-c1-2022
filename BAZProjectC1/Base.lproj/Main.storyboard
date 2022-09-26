@@ -18,62 +18,41 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
+                        <segue destination="0B6-aK-3xk" kind="relationship" relationship="viewControllers" id="Wal-GM-cNv"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="-106"/>
         </scene>
-        <!--Trending Movies-->
-        <scene sceneID="Jof-f8-uDg">
+        <!--Item-->
+        <scene sceneID="IbD-t7-K2J">
             <objects>
-                <tableViewController storyboardIdentifier="TrendingViewController" title="Trending Movies" id="DF1-ZG-ayL" customClass="TrendingViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
+                <collectionViewController storyboardIdentifier="TrendingViewController" id="0B6-aK-3xk" customClass="TrendingViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="hkv-oM-8ky">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrendingTableViewCell" textLabel="UoY-Dn-rj2" imageView="qew-MF-wwE" style="IBUITableViewCellStyleDefault" id="IKa-U5-KgX">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="IKa-U5-KgX" id="5aF-hi-Q9S">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="UoY-Dn-rj2">
-                                            <rect key="frame" x="60" y="0.0" width="334" height="80"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="photo" catalog="system" id="qew-MF-wwE">
-                                            <rect key="frame" x="15.5" y="29" width="29.5" height="22"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7Zx-Qi-i5I">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <cells/>
                         <connections>
-                            <outlet property="dataSource" destination="DF1-ZG-ayL" id="J2U-Qh-E3n"/>
-                            <outlet property="delegate" destination="DF1-ZG-ayL" id="5nR-er-hrx"/>
+                            <outlet property="dataSource" destination="0B6-aK-3xk" id="sk8-mg-czy"/>
+                            <outlet property="delegate" destination="0B6-aK-3xk" id="cYq-2D-ZGl"/>
                         </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Trending" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="g6Q-u2-bk6"/>
-                    <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </collectionView>
+                    <tabBarItem key="tabBarItem" title="Item" id="fTy-s2-sK4"/>
+                </collectionViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Qxy-fH-vd9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1006" y="-106"/>
+            <point key="canvasLocation" x="981" y="-106"/>
         </scene>
     </scenes>
     <resources>
-        <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

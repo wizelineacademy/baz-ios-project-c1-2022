@@ -9,10 +9,10 @@ import UIKit
 
 class MovieMainListCollectionViewCell: UICollectionViewCell {
 
-    static var identifier = "cell"
+    static var identifier = "MovieMainListCollectionViewCell"
     
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,6 +21,7 @@ class MovieMainListCollectionViewCell: UICollectionViewCell {
     }
     
     func setLabel(text: String) {
+        
         lblName.text = text
     }
     

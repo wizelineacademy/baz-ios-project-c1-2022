@@ -10,7 +10,7 @@ import UIKit
 class MovieMainListViewController: UIViewController {
 
     var myData = ["1","2","3"]
-    @IBOutlet weak var collectionView: MovieMainListCollectionView!
+    @IBOutlet weak var collectionView: UICollectionViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()

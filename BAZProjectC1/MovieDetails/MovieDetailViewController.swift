@@ -7,28 +7,27 @@
 
 import UIKit
 
-class MovieDetailViewController: UIViewController {
+final internal class MovieDetailViewController: UIViewController {
 
     @IBOutlet weak var navBar: UINavigationBar!
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var lblDescription: UILabel!
     var movie: Movie?
-    var movieDetail: MovieDetail?
     var img: UIImage?
-    
+    private var movieDetail: MovieDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        navBar.topItem?.leftBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(addTapped))
+        navBar.topItem?.leftBarButtonItem =  UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(backButtonFunction))
         setData()
     }
 
-    @objc func addTapped() {
+    @objc func backButtonFunction() {
         self.dismiss(animated: true, completion: nil)
     }
     
-    func setData() {
+    private func setData() {
         if let img = img {
             imgView.image = img
         }
@@ -38,7 +37,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
-    func fetchMovieDetail(movieID: Int) {
+    private func fetchMovieDetail(movieID: Int) {
         let movieApi = MovieAPI(url: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es")
         DispatchQueue.global().sync {
             self.movieDetail = movieApi.getMovieDetail()
