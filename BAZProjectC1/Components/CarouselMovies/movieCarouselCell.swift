@@ -14,7 +14,7 @@ class movieCarouselCell: UICollectionViewCell {
         backView.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
         let gradient = CAGradientLayer()
         gradient.frame = backView.bounds
-        gradient.colors = [UIColor.appColorWhitePrimary.withAlphaComponent(0.001).cgColor,
+        gradient.colors = [UIColor.appColorGrayPrimary.withAlphaComponent(0.001).cgColor,
                            UIColor.appColorBlack.withAlphaComponent(0.9).cgColor]
         gradient.startPoint = CGPoint(x: 0.5, y: 0)
         gradient.endPoint = CGPoint(x: 0.5, y: 0.9)

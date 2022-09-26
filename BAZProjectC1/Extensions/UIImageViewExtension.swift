@@ -9,17 +9,16 @@ import Foundation
 import UIKit
 extension UIImageView {
     public func loadImageFromUrl(urlString: String) {
-        self.image = UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: self.frame.size)
-        if let url = URL(string: urlString) {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url){
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.image = image
-                            self?.contentMode = .redraw
-                        }
-                    }
-                }
+        guard let url = URL(string: urlString) else { return }
+        DispatchQueue.global().async { [weak self] in
+            DispatchQueue.main.async {
+                guard let data = try? Data(contentsOf: url),
+                      let image = UIImage(data: data) else {
+                          self?.image = UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: self?.frame.size)
+                          return
+                      }
+                self?.image = image
+                self?.contentMode = .redraw
             }
         }
     }
