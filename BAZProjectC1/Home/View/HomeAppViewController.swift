@@ -18,20 +18,39 @@ final class HomeAppViewController: UIViewController {
     
     weak var delegate: HomeViewControllerDelegate?
     
-   private var movies: [Movie] = []
-   private let movieApi = MovieAPI()
-   private var leftBarButton: UIBarButtonItem!
- 
+    private var movies: [Movie] = []
+    private let movieApi = MovieAPI()
+    private var leftBarButton: UIBarButtonItem!
+    
+    private var searching = false
+    private var searchedMovies: [Movie] = []
+    
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.configureCollectionView()
-       
+        self.configureSearchController()
+        
         self.leftBarButton = UIBarButtonItem(image: UIImage(named: "menu"), style: .plain, target: self, action: #selector(self.showMenu(_:)))
         self.leftBarButton.tintColor = .black
         self.navigationItem.leftBarButtonItem  = leftBarButton
-
+        
         self.getMovies(filterSelected: .trending)
+    }
+    
+    private func configureSearchController() {
+        self.searchController.loadViewIfNeeded()
+        self.searchController.searchResultsUpdater = self
+        self.searchController.searchBar.delegate = self
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.searchBar.enablesReturnKeyAutomatically = false
+        self.searchController.searchBar.returnKeyType = .done
+        self.navigationItem.hidesSearchBarWhenScrolling = false
+        self.navigationItem.searchController = self.searchController
+        self.definesPresentationContext = true
+        self.searchController.searchBar.placeholder = "Buscar película"
     }
     
     public func getMovies(filterSelected: FiltersMovies) {
@@ -66,7 +85,7 @@ final class HomeAppViewController: UIViewController {
 // MARK:  - Extension CollectionViewDataSource.
 extension HomeAppViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return searching ? self.searchedMovies.count : self.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -74,9 +93,11 @@ extension HomeAppViewController : UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        cell.nameMovie.text = self.movies[indexPath.row].title
+        let movie = self.searching ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
+        
+        cell.nameMovie.text = movie.title
         let baseImageURL = "https://image.tmdb.org/t/p/w500/"
-        cell.imgMovie.loadUrlImage(urlString: (baseImageURL + self.movies[indexPath.row].posterPath))
+        cell.imgMovie.loadUrlImage(urlString: (baseImageURL + movie.posterPath))
         return cell
     }
 }
@@ -84,8 +105,38 @@ extension HomeAppViewController : UICollectionViewDataSource {
 extension HomeAppViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailViewController()
-        vc.movie = self.movies[indexPath.item]
+        let movie = self.searching ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
+        
+        vc.movie = movie
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+}
+
+extension HomeAppViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        if !searchText.isEmpty {
+            self.searching = true
+            self.searchedMovies.removeAll()
+            for movie in self.movies {
+                if movie.title.lowercased().contains(searchText.lowercased()) {
+                    self.searchedMovies.append(movie)
+                }
+            }
+        } else {
+            self.searching = false
+            self.searchedMovies.removeAll()
+            self.searchedMovies = self.movies
+        }
+        self.collectionView.reloadData()
+    }
+}
+
+extension HomeAppViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.searching = false
+        self.searchedMovies.removeAll()
+        self.collectionView.reloadData()
+    }
 }
