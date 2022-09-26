@@ -10,8 +10,8 @@ import Foundation
 public struct MovieApiResponseModel: Codable {
     var page: Int?
     var results: [MovieModel]?
-    var total_pages: Int?
-    var total_results: Int?
+    var totalPages: Int?
+    var totalResults: Int?
     var dates: datesMovieModel?
 }
 
@@ -22,18 +22,18 @@ public struct datesMovieModel: Codable {
 
 public struct MovieModel: Codable {
     var adult: Bool?
-    var backdrop_path: String?
-    var poster_path: String?
+    var backdropPath: String?
+    var posterPath: String?
     var id: Int?
     var title: String?
-    var original_language: String?
-    var original_title: String?
+    var originalLanguage: String?
+    var originalTitle: String?
     var overview: String?
-    var media_type: String?
-    var genre_ids: [Int]?
+    var mediaType: String?
+    var genreIds: [Int]?
     var popularity: Double?
-    var release_date: String?
+    var releaseDate: String?
     var video: Bool?
-    var vote_average: Double?
-    var vote_count: Int?
+    var voteAverage: Double?
+    var voteCount: Int?
 }

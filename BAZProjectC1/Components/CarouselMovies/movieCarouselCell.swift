@@ -14,8 +14,8 @@ class movieCarouselCell: UICollectionViewCell {
         backView.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
         let gradient = CAGradientLayer()
         gradient.frame = backView.bounds
-        gradient.colors = [UIColor.appColorGrayPrimary.withAlphaComponent(0.1).cgColor,
-                           UIColor.appColorBlack.withAlphaComponent(0.875).cgColor]
+        gradient.colors = [UIColor.appColorWhitePrimary.withAlphaComponent(0.001).cgColor,
+                           UIColor.appColorBlack.withAlphaComponent(0.9).cgColor]
         gradient.startPoint = CGPoint(x: 0.5, y: 0)
         gradient.endPoint = CGPoint(x: 0.5, y: 0.9)
         backView.layer.insertSublayer(gradient, at: 0)
@@ -92,9 +92,8 @@ class movieCarouselCell: UICollectionViewCell {
     }
     
     func configuration(dataInfo: MovieModel) {
-        posterImage.image = UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: posterImage.frame.size)
-        posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.poster_path ?? "")")
+        posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.posterPath ?? "")")
         movieTitle.text = dataInfo.title
-        movieRanking.text = "\(Int(dataInfo.vote_average ?? 0))"
+        movieRanking.text = "\(Int(dataInfo.voteAverage ?? 0))"
     }
 }

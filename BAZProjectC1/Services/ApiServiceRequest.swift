@@ -7,22 +7,25 @@
 
 import Foundation
 
-public class ApiServiceRequest{
-    public static func getService<T: Codable>(urlService: String,structureType: T.Type, handler: @escaping(_ responseData: Any?) -> Void ) {
+public class ApiServiceRequest {
+    public static func getService<T: Decodable>(urlService: String, structureType: T.Type, handler: @escaping(_ responseData: Any?) -> Void ) {
         guard let url = URL(string: urlService) else {
             handler(nil)
             return
         }
         URLSession.shared.dataTask(with: url, completionHandler: { dataResponse,serviceResponse,errorResponse in
             DispatchQueue.main.async {
-                if let data = dataResponse {
-                    do {
-                        let objectResponse = try JSONDecoder().decode(structureType, from: data)
-                        handler(objectResponse)
-                    } catch {
-                        handler(nil)
-                    }
-                }else {  handler(nil) }
+                
+                guard let data = dataResponse else {
+                    handler(nil)
+                    return
+                }
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                do {
+                    let objectResponse = try decoder.decode(structureType, from: data)
+                    handler(objectResponse)
+                } catch { handler(nil) }
             }
         }).resume()
     }
