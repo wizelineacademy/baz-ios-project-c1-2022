@@ -17,6 +17,7 @@
 		C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */ = {isa = PBXBuildFile; fileRef = C383356D28CA917400FCE0D5 /* code-review-rubric.md */; };
 		DF38290428DCCDBF00DEF358 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF38290228DCCDBF00DEF358 /* DetailViewController.swift */; };
 		DF38290528DCCDBF00DEF358 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF38290328DCCDBF00DEF358 /* DetailViewController.xib */; };
+		DF38291328E258BD00DEF358 /* GenericApiCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF38291228E258BC00DEF358 /* GenericApiCall.swift */; };
 		DF3EA61628DA2A690055359A /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EA61428DA2A690055359A /* FilterViewController.swift */; };
 		DF3EA61728DA2A690055359A /* FilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF3EA61528DA2A690055359A /* FilterViewController.xib */; };
 		DF3EA61C28DA34CB0055359A /* FiltersMovies.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3EA61B28DA34CB0055359A /* FiltersMovies.swift */; };
@@ -41,6 +42,7 @@
 		C383356D28CA917400FCE0D5 /* code-review-rubric.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "code-review-rubric.md"; sourceTree = "<group>"; };
 		DF38290228DCCDBF00DEF358 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		DF38290328DCCDBF00DEF358 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		DF38291228E258BC00DEF358 /* GenericApiCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericApiCall.swift; sourceTree = "<group>"; };
 		DF3EA61428DA2A690055359A /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		DF3EA61528DA2A690055359A /* FilterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterViewController.xib; sourceTree = "<group>"; };
 		DF3EA61B28DA34CB0055359A /* FiltersMovies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FiltersMovies.swift; sourceTree = "<group>"; };
@@ -181,6 +183,7 @@
 		DFE5ADD128D27E6B0074FD34 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				DF38291228E258BC00DEF358 /* GenericApiCall.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -304,6 +307,7 @@
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
 				DF3EA61C28DA34CB0055359A /* FiltersMovies.swift in Sources */,
+				DF38291328E258BD00DEF358 /* GenericApiCall.swift in Sources */,
 				DFE5ADC828D279F70074FD34 /* HomeAppViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

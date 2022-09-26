@@ -12,21 +12,14 @@ final class MovieAPI {
     public func getMovies(url: String, completion: @escaping ([Movie])->()){
         guard let url = URL(string: "\(url)\(apiKey)")
         else { return  }
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "error")
-                return
-            }
-            do {
-                guard let data = data else { return }
-                
-                let result = try JSONDecoder().decode(ResultsApi.self, from: data)
+        GenericApiCall.request(url: url, expecting: ResultsApi.self) { result in
+            switch result {
+            case .success(let result):
                 completion(result.results)
-                
-            }catch let error {
-                 completion([])
+            case .failure(let error):
+                completion([])
                 print(error)
             }
-        }.resume()
+        }
     }
 }

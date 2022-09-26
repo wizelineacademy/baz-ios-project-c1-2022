@@ -20,9 +20,9 @@ final class HomeAppViewController: UIViewController {
     
     private var movies: [Movie] = []
     private let movieApi = MovieAPI()
-    private var leftBarButton: UIBarButtonItem!
+    private var leftBarButton = UIBarButtonItem()
     
-    private var searching = false
+    private var activeSearch = false
     private var searchedMovies: [Movie] = []
     
     private let searchController = UISearchController(searchResultsController: nil)
@@ -76,7 +76,7 @@ final class HomeAppViewController: UIViewController {
         self.collectionView.collectionViewLayout = layout
     }
     
-    @objc func showMenu(_ sender: UIBarButtonItem) {
+    @objc private func showMenu(_ sender: UIBarButtonItem) {
         self.delegate?.didTapMenuButton()
     }
 }
@@ -85,7 +85,7 @@ final class HomeAppViewController: UIViewController {
 // MARK:  - Extension CollectionViewDataSource.
 extension HomeAppViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return searching ? self.searchedMovies.count : self.movies.count
+        return activeSearch ? self.searchedMovies.count : self.movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -93,21 +93,20 @@ extension HomeAppViewController : UICollectionViewDataSource {
         else {
             return UICollectionViewCell()
         }
-        let movie = self.searching ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
+        let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
         
         cell.nameMovie.text = movie.title
-        let baseImageURL = "https://image.tmdb.org/t/p/w500/"
-        cell.imgMovie.loadUrlImage(urlString: (baseImageURL + movie.posterPath))
+        
+        cell.imgMovie.loadUrlImage(urlString: (GenericApiCall.baseImageURL + movie.posterPath))
         return cell
     }
 }
 
 extension HomeAppViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let vc = DetailViewController()
-        let movie = self.searching ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
+        let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
         
-        vc.movie = movie
+        let vc = DetailViewController(movie: movie)
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
@@ -117,7 +116,7 @@ extension HomeAppViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let searchText = searchController.searchBar.text else { return }
         if !searchText.isEmpty {
-            self.searching = true
+            self.activeSearch = true
             self.searchedMovies.removeAll()
             for movie in self.movies {
                 if movie.title.lowercased().contains(searchText.lowercased()) {
@@ -125,7 +124,7 @@ extension HomeAppViewController: UISearchResultsUpdating {
                 }
             }
         } else {
-            self.searching = false
+            self.activeSearch = false
             self.searchedMovies.removeAll()
             self.searchedMovies = self.movies
         }
@@ -135,7 +134,7 @@ extension HomeAppViewController: UISearchResultsUpdating {
 
 extension HomeAppViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        self.searching = false
+        self.activeSearch = false
         self.searchedMovies.removeAll()
         self.collectionView.reloadData()
     }
