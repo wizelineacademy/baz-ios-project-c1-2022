@@ -11,19 +11,22 @@ import UIKit
 final class PopularViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    let reuseIdentifier = "moviecard"
+    private let reuseIdentifier = "moviecard"
     private var movies = Movie(results: [MovieData]())
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollection()
         getMovies()
     }
     
+    /** Function that configures the collection view */
     private func configCollection() {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieCardCell", bundle: nil), forCellWithReuseIdentifier: "moviecard")
     }
     
+    /** Function that makes a request to the network manager to show the movies in the collection view */
     private func getMovies() {
         NetworkManager().fetchMovieData { [weak self] (page, error) in
             guard let self = self else { return }
@@ -39,6 +42,7 @@ final class PopularViewController: UIViewController {
     }
 }
 
+// MARK: - CollectionView's DataSource
 extension PopularViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -58,16 +62,23 @@ extension PopularViewController: UICollectionViewDataSource {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: (self.collectionView.frame.width/2)-8 , height: (self.collectionView.frame.height/3.5))
+        return CGSize(width: (self.collectionView.frame.width / 2) - 8 , height: (self.collectionView.frame.height / 3.5))
     }
     
 }
 
+// MARK: - MovieCardProtocol
 extension PopularViewController: MovieCardProtocol {
     
+    /**
+     Function to go to the movie details screen when clicking on the movie image
+     - Parameters:
+        - movieId: movie id
+     */
     func clickEvent(movieId: Int) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
-        vcMovieDetails.id = movieId
+        vcMovieDetails.movieId = movieId
+        vcMovieDetails.movies = movies.results
         self.present(vcMovieDetails, animated: true, completion: nil)
     }
 }

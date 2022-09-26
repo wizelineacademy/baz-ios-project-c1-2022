@@ -8,7 +8,14 @@
 import UIKit
 
 extension UIImageView {
-    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFill){
+    
+    /**
+     Function that downloads and displays the image
+     - Parameters:
+        - url: url where the image is obtained
+        - contentMode:type of content mode
+     */
+    func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFill) {
         contentMode = mode
         URLSession.shared.dataTask(with:url) { data,response,error in
             guard
@@ -23,6 +30,13 @@ extension UIImageView {
             }
         }.resume ()
     }
+    
+    /**
+     Function that downloads and displays the image
+     - Parameters:
+        - link: url of type string where the image is obtained
+        - contentMode:type of content mode
+     */
     func downloaded (from link: String, contentMode mode: ContentMode = .scaleAspectFill) {
         guard let url = URL(string: link) else { return }
         downloaded (from: url, contentMode: mode)

@@ -15,6 +15,12 @@ enum NetworkError: Error {
 
 struct NetworkManager {
     
+    /**
+     Function that creates a request via url
+     - Parameters:
+        - url: Element equivalent to url
+     - Returns: URLRequest?. Request with specific configuration
+     */    
     private func createRequest(for url: String) -> URLRequest? {
         guard let url = URL(string: url) else { return nil }
         var request = URLRequest(url: url)
@@ -23,6 +29,12 @@ struct NetworkManager {
         return request
     }
     
+    /**
+     Generic function that executes a request
+     - Parameters:
+        - request: Request of type URLRequest
+        - completion: Closure that receives two parameters: generic typet and the error
+     */
     private func executeRequest<T: Codable>(request: URLRequest, completion: ((T?, Error?) -> Void)?) {
         let session = URLSession(configuration: .default)
         let dataTask = session.dataTask(with: request) { (data, response, error) in
@@ -44,6 +56,11 @@ struct NetworkManager {
     
     typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
     
+    /**
+     Function tthat obtains the data of the movies
+     - Parameters:
+        - completion: Closure define in typealias
+     */
     public func fetchMovieData(completion: MovieCompletionClosure?) {
         guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/popular?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
             completion?(nil, NetworkError.invalidUrl)

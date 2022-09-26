@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - Protocol Movie Card
 public protocol MovieCardProtocol: AnyObject {
     func clickEvent(movieId: Int)
 }
@@ -20,20 +21,22 @@ final class MovieCardCellController: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     public weak var movieCardDelegate: MovieCardProtocol?
     public var idMovieCard: Int?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()
     }
     
-    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
-    {
-        if  (tapGestureRecognizer.view as? UIImageView) != nil {
+    /** Function that configures the protocol and delegate of movie card with tap gesture*/
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        if tapGestureRecognizer.view as? UIImageView != nil {
             if let delegate = self.movieCardDelegate, let movieId = self.idMovieCard {
                 delegate.clickEvent(movieId: movieId)
             }
         }
     }
     
+    /** Function that configures the view */
     private func configView() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
         movieImage.isUserInteractionEnabled = true
