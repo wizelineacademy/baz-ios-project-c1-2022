@@ -11,7 +11,10 @@ import UIKit
 extension HomeViewController: CarouselMoviesDelegate{
     
     func movieSelected(position: Int) {
-        print(position)
+        print(moviesList[position].title)
+        guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieFullDetailViewController") as? MovieFullDetailViewController else { return }
+        movieFullDetail.modalPresentationStyle = .overCurrentContext
+        self.present(movieFullDetail, animated: true, completion: nil)
     }
 }
 extension HomeViewController: CarosuelMenuDelegate{
@@ -21,8 +24,4 @@ extension HomeViewController: CarosuelMenuDelegate{
         getDataInfo(urlString: UrlOptionSelected)
     }
 }
-extension HomeViewController: CarouselMoviesPositionDelegate {
-    func getCurrentItem(index: IndexPath) {
-        print(index.row)
-    }
-}
+

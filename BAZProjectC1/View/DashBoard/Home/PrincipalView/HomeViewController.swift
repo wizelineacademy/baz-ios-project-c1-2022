@@ -33,7 +33,6 @@ class HomeViewController: UIViewController {
         let carouselMovies = CarouselMovies(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: (view.frame.height * 0.55)))
         carouselMovies.translatesAutoresizingMaskIntoConstraints = false
         carouselMovies.delegate = self
-        carouselMovies.positionDelegate = self
         return carouselMovies
     }()
     override func viewDidLoad() {
@@ -52,6 +51,7 @@ class HomeViewController: UIViewController {
     func configutionView() {
         setupUI()
         view.backgroundColor = UIColor.appColorBlack
+        //view.backgroundColor = UIColor.appColorWhitePrimary
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

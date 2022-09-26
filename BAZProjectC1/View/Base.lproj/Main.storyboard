@@ -38,6 +38,21 @@
             </objects>
             <point key="canvasLocation" x="-701" y="578"/>
         </scene>
+        <!--Movie Full Detail View Controller-->
+        <scene sceneID="KB7-HO-BmP">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3GL-4R-2cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MovieFullDetailViewController" id="PAD-gC-sJr" customClass="MovieFullDetailViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ikA-rt-lNJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="goF-yh-0ow"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="-1490" y="706"/>
+        </scene>
         <!--Search View Controller-->
         <scene sceneID="ujs-HT-w8w">
             <objects>
