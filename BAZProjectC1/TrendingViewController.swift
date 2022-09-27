@@ -16,9 +16,12 @@ final internal class TrendingViewController: UICollectionViewController, Trendin
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(MovieMainListCollectionViewCell.self, forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
-//        collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieMainListCollectionViewCell")
+//        collectionView.register(MovieMainListCollectionViewCell.self, forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
+        collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
         fetchMovies()
+//        let width = (view.frame.width-20)/3
+//        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+//        layout.itemSize = CGSize(width: width, height: width)
     }
     
     func fetchMovies() {
@@ -85,13 +88,20 @@ extension TrendingViewController {
         return movies.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
-        return 1
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        return CGSize(width: 100, height: 100)
+//    func collectionView(_ collectionView: UICollectionView, numberOfSections section: Int) -> Int {
+//        return 2
+//    }
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+//    {
+//            // In this function is the code you must implement to your code project if you want to change size of Collection view
+//            let width  = (view.frame.width-20)/3
+//            return CGSize(width: 0, height: 0)
+//    }
+//    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        print("sizeForItemAt")
+        return CGSize(width: 250, height: 200)
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -99,9 +109,19 @@ extension TrendingViewController {
         
 //        collectionView.
         
-//        cell.setLabel(text: "\(indexPath.row)")
+        cell.setLabel(text: "\(movies[indexPath.row].title)")
+        let image = retreiveImageFromSource(posterPath: movies[indexPath.row].posterPath)
+        cell.setImage(img: image)
 //        cell.lblName.text = "\(indexPath.row)"
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let movieDetailVC = MovieDetailViewController(nibName: "MovieDetailViewController", bundle: .main)
+        movieDetailVC.movie = movies[indexPath.row]
+        movieDetailVC.img = imageArray[indexPath.row]
+        movieDetailVC.modalPresentationStyle = .fullScreen
+        self.present(movieDetailVC, animated: true, completion: nil)
     }
 }
 

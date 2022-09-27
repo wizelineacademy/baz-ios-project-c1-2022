@@ -17,16 +17,16 @@ class MovieMainListCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        lblName.text = "1"
     }
     
     func setLabel(text: String) {
-        
         lblName.text = text
+        lblName.adjustsFontSizeToFitWidth = true
+        lblName.minimumScaleFactor = 0.5
     }
     
-    func setImage(img: String) {
-        
+    func setImage(img: UIImage) {
+        imageView.image = img.resized(to: CGSize(width: 100.0, height: 200.0))
     }
 
 }
