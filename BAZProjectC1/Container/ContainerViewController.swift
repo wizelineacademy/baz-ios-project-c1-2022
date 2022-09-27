@@ -22,7 +22,8 @@ final class ContainerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+ 
+    /// Enum utilizado para controlar los diferentes estados del menú lateral.
     private enum MenuState {
         case opened
         case closed
@@ -37,6 +38,7 @@ final class ContainerViewController: UIViewController {
         self.addChilds()
     }
     
+    /// Utilizado para agregar al contenedor los diferentes view controlles que se van a utilizar
     private func addChilds() {
         let menuNav = UINavigationController(rootViewController: menuVC)
         self.menuVC.delegate = self
@@ -55,6 +57,7 @@ final class ContainerViewController: UIViewController {
         self.navVC = homeNav
     }
     
+    /// Método utilizado para alternar entre los diferentes estados del menú lateral dependiendo del estado actual.
     private func toggleMenu(completion: (() -> Void)?) {
         switch menuState {
         case .closed:

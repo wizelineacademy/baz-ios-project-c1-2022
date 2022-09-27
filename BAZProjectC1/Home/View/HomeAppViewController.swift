@@ -21,10 +21,8 @@ final class HomeAppViewController: UIViewController {
     private var movies: [Movie] = []
     private let movieApi = MovieAPI()
     private var leftBarButton = UIBarButtonItem()
-    
     private var activeSearch = false
     private var searchedMovies: [Movie] = []
-    
     private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
@@ -40,6 +38,7 @@ final class HomeAppViewController: UIViewController {
         self.getMovies(filterSelected: .trending)
     }
     
+    /// Utilizado para configurar las propiedades necesarias para el funcionamiento del search Controller
     private func configureSearchController() {
         self.searchController.loadViewIfNeeded()
         self.searchController.searchResultsUpdater = self
@@ -53,6 +52,7 @@ final class HomeAppViewController: UIViewController {
         self.searchController.searchBar.placeholder = "Buscar película"
     }
     
+    /// Utilizado para invocar el método que realiza el consumo de la api de películas dependiendo del filtro seleccionado y llenar el array a utilizar en el viewController.
     public func getMovies(filterSelected: FiltersMovies) {
         self.title = filterSelected.title
         self.movieApi.getMovies(url: filterSelected.url) { [weak self] movies in

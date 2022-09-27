@@ -30,8 +30,7 @@ final class DetailViewController: UIViewController {
         self.navigationItem.leftBarButtonItem?.tintColor = .black
         self.titleMovie.text = movie.title
         self.descriptionMovie.text = movie.overview
-        
-//        guard let imgMovie = movie?.posterPath else { return }
+
         self.imageMovie.loadUrlImage(urlString: GenericApiCall.baseImageURL + movie.posterPath)
     }
 }
