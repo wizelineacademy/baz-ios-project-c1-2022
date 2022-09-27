@@ -10,25 +10,26 @@ import UIKit
 
 struct MovieModel {
     var movieObject = [
-        TableViewMovieCellModel(
+        TableViewMovieCellModel (
             sectionFilter: "Trending"
             ,posters: [
                         [
-                            posterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
-                            ,posterCollectionCell(posterImage: "square.and.arrow.down.fill", title: "Batman")
-                            ,posterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
-                            ,posterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
+                            PosterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
+                            ,PosterCollectionCell(posterImage: "square.and.arrow.down.fill", title: "Batman")
+                            ,PosterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
+                            ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
-        )/*,
+        )
+        ,
         TableViewMovieCellModel(
             sectionFilter: "Now Playing"
             ,posters: [
                         [
-                            posterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
-                            ,posterCollectionCell(posterImage: "img2.jpg", title: "Batman")
-                            ,posterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
-                            ,posterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
+                            PosterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
+                            ,PosterCollectionCell(posterImage: "img2.jpg", title: "Batman")
+                            ,PosterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
+                            ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
         ),
@@ -36,10 +37,10 @@ struct MovieModel {
             sectionFilter: "Popular"
             ,posters: [
                         [
-                            posterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
-                            ,posterCollectionCell(posterImage: "img2.jpg", title: "Batman")
-                            ,posterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
-                            ,posterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
+                            PosterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
+                            ,PosterCollectionCell(posterImage: "img2.jpg", title: "Batman")
+                            ,PosterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
+                            ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
         ),
@@ -47,10 +48,10 @@ struct MovieModel {
             sectionFilter: "Top Rated "
             ,posters: [
                         [
-                            posterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
-                            ,posterCollectionCell(posterImage: "img2.jpg", title: "Batman")
-                            ,posterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
-                            ,posterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
+                            PosterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
+                            ,PosterCollectionCell(posterImage: "img2.jpg", title: "Batman")
+                            ,PosterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
+                            ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
         ),
@@ -58,13 +59,13 @@ struct MovieModel {
             sectionFilter: "Upcoming"
             ,posters: [
                         [
-                            posterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
-                            ,posterCollectionCell(posterImage: "img2.jpg", title: "Batman")
-                            ,posterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
-                            ,posterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
+                            PosterCollectionCell(posterImage: "img1.jpg", title: "Spiderman")
+                            ,PosterCollectionCell(posterImage: "img2.jpg", title: "Batman")
+                            ,PosterCollectionCell(posterImage: "img3.jpg", title: "Ant Man")
+                            ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
-        )*/
+        )
     
     ]
 }

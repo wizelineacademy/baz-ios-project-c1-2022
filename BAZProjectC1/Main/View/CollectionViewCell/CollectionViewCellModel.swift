@@ -8,15 +8,14 @@
 import Foundation
 import UIKit
 
-// Modelo para mostrar los distintos filtros de las peliculas
+//Mark:- Model for distinct sections
 
-struct posterCollectionCell {
+struct PosterCollectionCell {
     var posterImage: String
     var title: String
 }
 
-
 struct TableViewMovieCellModel {
     var sectionFilter: String
-    var posters: [[posterCollectionCell]]
+    var posters: [[PosterCollectionCell]]
 }

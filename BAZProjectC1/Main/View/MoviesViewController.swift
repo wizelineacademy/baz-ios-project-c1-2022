@@ -10,7 +10,7 @@ import Foundation
 
 class MoviesViewController: UIViewController {
     var postersMovieArray = MovieModel()
-    var tappedCell: posterCollectionCell!
+    var tappedCell: PosterCollectionCell!
     @IBOutlet weak var TableView: UITableView!
 
     override func viewDidLoad() {
@@ -39,7 +39,7 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         let rowArray = postersMovieArray.movieObject[indexPath.section].posters[indexPath.row]
         cell.updateCellWith(row: rowArray)
         
-        //cell's delegate
+        //MARK: - Cell delegation
         cell.cellDelegate = self
         cell.selectionStyle = .none
         
@@ -77,8 +77,7 @@ extension MoviesViewController: CollectionViewCellDelegate {
         if let posterRow = didTappedInTableViewCell.rowWithPosters {
             debugPrint(posterRow[index])
             self.tappedCell = posterRow[index]
-             //Enviar a otra pantalla
-            
+            // TODO: - Send to other screen
         }
     }
 }

@@ -16,7 +16,7 @@ class TableViewCell: UITableViewCell {
    
     weak var cellDelegate: CollectionViewCellDelegate?
     
-    var rowWithPosters: [posterCollectionCell]?
+    var rowWithPosters: [PosterCollectionCell]?
 
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
@@ -47,7 +47,7 @@ class TableViewCell: UITableViewCell {
 
 extension TableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func updateCellWith(row: [posterCollectionCell]) {
+    func updateCellWith(row: [PosterCollectionCell]) {
         self.rowWithPosters = row
         self.categoryCollectionView.reloadData()
     }

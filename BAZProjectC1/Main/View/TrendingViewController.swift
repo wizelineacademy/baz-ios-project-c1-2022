@@ -9,13 +9,11 @@ import UIKit
 final class TrendingViewController: UITableViewController {
 
     @IBOutlet weak var principalTabBar: UITabBarItem!
-    private var movies: [Movie] = []
     private let movieAPI = MovieAPI()
     var viewModel = TrendingMovieViewModel()
     
     var postersMovieArray = MovieModel()
-    var tappedCell: posterCollectionCell!
-    
+    var tappedCell: PosterCollectionCell!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,14 +47,10 @@ extension TrendingViewController {
 
 extension TrendingViewController {
     
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
-       
         let object = viewModel.movieDataArray[indexPath.row]
-
         config.text = object.title
-        
         let urlImage = "https://image.tmdb.org/t/p/w500\(object.posterPath)"
         if let url = URL(string: urlImage) {
             config.image = UIImage (url: url)
