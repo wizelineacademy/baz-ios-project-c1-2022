@@ -6,12 +6,12 @@
 
 import Foundation
 
-struct Results: Codable {
+struct Results: Decodable {
     let results: [Movie]
 }
 
 // MARK: - Movie
-struct Movie: Codable {
+struct Movie: Decodable {
     let page: Int
     let results: [Result]
     let totalPages, totalResults: Int
@@ -24,7 +24,7 @@ struct Movie: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct Result: Decodable {
     let adult: Bool
     let backdropPath: String
     let id: Int
