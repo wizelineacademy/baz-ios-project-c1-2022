@@ -18,11 +18,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="192" height="347"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="PM0-L2-CxE">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="PM0-L2-CxE">
                         <rect key="frame" x="10" y="10" width="172" height="327"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPL-Bt-pA4">
-                                <rect key="frame" x="61" y="0.0" width="50" height="282"/>
+                                <rect key="frame" x="61" y="0.0" width="50" height="287"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="ZCZ-Yp-yaq">
                                 <rect key="frame" x="66.5" y="292" width="39.5" height="35"/>

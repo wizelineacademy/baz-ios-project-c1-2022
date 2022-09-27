@@ -72,7 +72,7 @@ final class HomeAppViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
         layout.itemSize = CGSize(width:(width - 20)  / 2, height: 350)
         layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 10
+        layout.minimumLineSpacing = 0
         self.collectionView.collectionViewLayout = layout
     }
     
