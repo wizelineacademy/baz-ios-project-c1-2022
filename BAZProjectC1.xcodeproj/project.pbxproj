@@ -10,9 +10,6 @@
 		0047310928E34B5F009CE48F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0047310828E34B5F009CE48F /* UIImageExtension.swift */; };
 		008BFB8428DCC3DC00F8688C /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BFB8228DCC3DC00F8688C /* MovieDetailViewController.swift */; };
 		008BFB8528DCC3DC00F8688C /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008BFB8328DCC3DC00F8688C /* MovieDetailViewController.xib */; };
-		008BFB9028DCC53600F8688C /* MovieMainListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BFB8E28DCC53600F8688C /* MovieMainListViewController.swift */; };
-		008BFB9128DCC53600F8688C /* MovieMainListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008BFB8F28DCC53600F8688C /* MovieMainListViewController.xib */; };
-		008BFB9528DCC9EA00F8688C /* MovieMainListCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BFB9428DCC9EA00F8688C /* MovieMainListCollectionView.swift */; };
 		008BFB9828DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BFB9628DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift */; };
 		008BFB9928DCCB0A00F8688C /* MovieMainListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008BFB9728DCCB0A00F8688C /* MovieMainListCollectionViewCell.xib */; };
 		00989A9A28DE2A7700AD468B /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00989A9928DE2A7700AD468B /* MovieDetail.swift */; };
@@ -33,9 +30,6 @@
 		0047310828E34B5F009CE48F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		008BFB8228DCC3DC00F8688C /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		008BFB8328DCC3DC00F8688C /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
-		008BFB8E28DCC53600F8688C /* MovieMainListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainListViewController.swift; sourceTree = "<group>"; };
-		008BFB8F28DCC53600F8688C /* MovieMainListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieMainListViewController.xib; sourceTree = "<group>"; };
-		008BFB9428DCC9EA00F8688C /* MovieMainListCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainListCollectionView.swift; sourceTree = "<group>"; };
 		008BFB9628DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieMainListCollectionViewCell.swift; sourceTree = "<group>"; };
 		008BFB9728DCCB0A00F8688C /* MovieMainListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieMainListCollectionViewCell.xib; sourceTree = "<group>"; };
 		00989A9928DE2A7700AD468B /* MovieDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetail.swift; sourceTree = "<group>"; };
@@ -76,9 +70,6 @@
 		008BFB7F28DCC39600F8688C /* MoviesMainList */ = {
 			isa = PBXGroup;
 			children = (
-				008BFB8E28DCC53600F8688C /* MovieMainListViewController.swift */,
-				008BFB8F28DCC53600F8688C /* MovieMainListViewController.xib */,
-				008BFB9428DCC9EA00F8688C /* MovieMainListCollectionView.swift */,
 				008BFB9628DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift */,
 				008BFB9728DCCB0A00F8688C /* MovieMainListCollectionViewCell.xib */,
 			);
@@ -192,7 +183,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				008BFB8528DCC3DC00F8688C /* MovieDetailViewController.xib in Resources */,
-				008BFB9128DCC53600F8688C /* MovieMainListViewController.xib in Resources */,
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				008BFB9928DCCB0A00F8688C /* MovieMainListCollectionViewCell.xib in Resources */,
@@ -212,9 +202,7 @@
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
-				008BFB9528DCC9EA00F8688C /* MovieMainListCollectionView.swift in Sources */,
 				00FAA8AB28D398160080780D /* APIURLHandler.swift in Sources */,
-				008BFB9028DCC53600F8688C /* MovieMainListViewController.swift in Sources */,
 				008BFB9828DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift in Sources */,
 				008BFB8428DCC3DC00F8688C /* MovieDetailViewController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
