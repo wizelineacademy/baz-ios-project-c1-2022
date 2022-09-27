@@ -37,12 +37,13 @@ class TopRatedDetailViewController: UIViewController {
     }
     
     private func setTopRated(){
-        let dVote: Double = objTopRated?.topRateds?[index ?? 0].voteAverage ?? 0.0
-        self.lblTTitle.text = objTopRated?.topRateds?[index ?? 0].title
-        self.lblTOverview.text = objTopRated?.topRateds?[index ?? 0].overview
+        guard let index = index else { return }
+        let dVote: Double = objTopRated?.topRateds?[index].voteAverage ?? 0.0
+        self.lblTTitle.text = objTopRated?.topRateds?[index].title
+        self.lblTOverview.text = objTopRated?.topRateds?[index].overview
         self.lblTVote.text = String(format: "%.1f", dVote )
-        self.lblTYear.text = objTopRated?.topRateds?[index ?? 0].releaseDate
-        if let urlPoster = objTopRated?.topRateds?[index ?? 0].backdropPath,
+        self.lblTYear.text = objTopRated?.topRateds?[index].releaseDate
+        if let urlPoster = objTopRated?.topRateds?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgTMovie.loadImage(url: url)
             

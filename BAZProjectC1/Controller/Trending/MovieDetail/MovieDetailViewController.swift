@@ -33,12 +33,13 @@ final class MovieDetailViewController: UIViewController {
     }
 
     private func setInfoTrending(){
-        let dVote: Double = objMovie?.movies?[index ?? 0].voteAverage ?? 0.0
-        self.lblTitle.text = objMovie?.movies?[index ?? 0].title
-        self.lblOverview.text = objMovie?.movies?[index ?? 0].overview
+        guard let index = index else { return }
+        let dVote: Double = objMovie?.movies?[index].voteAverage ?? 0.0
+        self.lblTitle.text = objMovie?.movies?[index].title
+        self.lblOverview.text = objMovie?.movies?[index].overview
         self.lblVote.text = String(format: "%.1f", dVote )
-        self.lblYear.text = objMovie?.movies?[index ?? 0].releaseDate
-        if let urlPoster = objMovie?.movies?[index ?? 0].backdropPath,
+        self.lblYear.text = objMovie?.movies?[index].releaseDate
+        if let urlPoster = objMovie?.movies?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgMovie.loadImage(url: url)
             

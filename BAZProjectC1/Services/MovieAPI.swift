@@ -10,12 +10,8 @@ final class MovieAPI {
     public typealias blkGetPopular = (PopularAPIResponse?, Error?) -> Void
     public typealias blkGetTopRated = (TopRatedAPIResponse?, Error?) -> Void
     public typealias blkGetUpcoming = (UpcomingAPIResponse?, Error?) -> Void
-    //MARK: - E N U M
-   /*
-    private enum apiKeys: String {
-        case apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
-    } */
     
+    //MARK: - E N U M
     private enum paths: String {
         case trending = "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
         case nowPlaying = "https://api.themoviedb.org/3/movie/now_playing?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a"

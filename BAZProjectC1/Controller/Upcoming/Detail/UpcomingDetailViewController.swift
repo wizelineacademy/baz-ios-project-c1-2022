@@ -33,12 +33,13 @@ class UpcomingDetailViewController: UIViewController {
     }
     
     private func setTopRated(){
-        let dVote: Double = objUpcoming?.upcoming?[index ?? 0].voteAverage ?? 0.0
-        self.lblUTitle.text = objUpcoming?.upcoming?[index ?? 0].title
-        self.lblUOverview.text = objUpcoming?.upcoming?[index ?? 0].overview
+        guard let index = index else { return }
+        let dVote: Double = objUpcoming?.upcoming?[index].voteAverage ?? 0.0
+        self.lblUTitle.text = objUpcoming?.upcoming?[index].title
+        self.lblUOverview.text = objUpcoming?.upcoming?[index].overview
         self.lblUVote.text = String(format: "%.1f", dVote )
-        self.lblUYear.text = objUpcoming?.upcoming?[index ?? 0].releaseDate
-        if let urlPoster = objUpcoming?.upcoming?[index ?? 0].backdropPath,
+        self.lblUYear.text = objUpcoming?.upcoming?[index].releaseDate
+        if let urlPoster = objUpcoming?.upcoming?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgUMovie.loadImage(url: url)
         }

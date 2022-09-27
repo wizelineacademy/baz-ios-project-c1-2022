@@ -78,28 +78,17 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="vBt-Tt-4Ay"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Bv-vN-X9F">
-                            <rect key="frame" x="44" y="846" width="326" height="46"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="46" id="VLi-k8-bgh"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstItem="g02-ZH-t5o" firstAttribute="top" secondItem="qot-ox-67f" secondAttribute="top" id="16k-N0-EhQ"/>
                         <constraint firstItem="exq-Oi-4F1" firstAttribute="leading" secondItem="qot-ox-67f" secondAttribute="leading" constant="8" id="1cv-Yp-hIE"/>
-                        <constraint firstAttribute="trailing" secondItem="3Bv-vN-X9F" secondAttribute="trailing" constant="44" id="5O5-I2-HBf"/>
                         <constraint firstItem="ZvT-QT-LwY" firstAttribute="bottom" secondItem="g02-ZH-t5o" secondAttribute="bottom" id="AQP-K5-gFT"/>
                         <constraint firstItem="g02-ZH-t5o" firstAttribute="leading" secondItem="qot-ox-67f" secondAttribute="leading" id="DSs-qe-Q1L"/>
                         <constraint firstAttribute="trailing" secondItem="JuW-hN-DOL" secondAttribute="trailing" constant="8" id="IWr-Lx-sMu"/>
-                        <constraint firstItem="3Bv-vN-X9F" firstAttribute="leading" secondItem="qot-ox-67f" secondAttribute="leading" constant="44" id="KVY-de-H1n"/>
                         <constraint firstAttribute="trailing" secondItem="exq-Oi-4F1" secondAttribute="trailing" constant="8" id="Kgf-x4-MGm"/>
                         <constraint firstItem="JuW-hN-DOL" firstAttribute="top" secondItem="g02-ZH-t5o" secondAttribute="bottom" constant="54" id="MXk-WP-jhS"/>
                         <constraint firstAttribute="trailing" secondItem="g02-ZH-t5o" secondAttribute="trailing" id="aey-sB-oPX"/>
-                        <constraint firstAttribute="bottom" secondItem="3Bv-vN-X9F" secondAttribute="bottom" constant="4" id="cEU-Qh-1hY"/>
                         <constraint firstItem="ZvT-QT-LwY" firstAttribute="leading" secondItem="qot-ox-67f" secondAttribute="leading" constant="8" id="hKg-Bx-SNn"/>
                         <constraint firstItem="exq-Oi-4F1" firstAttribute="top" secondItem="g02-ZH-t5o" secondAttribute="bottom" constant="8" symbolic="YES" id="iRf-cA-1tI"/>
                         <constraint firstAttribute="trailing" secondItem="ZvT-QT-LwY" secondAttribute="trailing" constant="18" id="uca-Ir-wXc"/>

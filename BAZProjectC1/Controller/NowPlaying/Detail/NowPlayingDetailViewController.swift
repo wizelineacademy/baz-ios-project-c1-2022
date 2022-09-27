@@ -4,7 +4,7 @@
 
 import UIKit
 
-class NowPlayingDetailViewController: UIViewController {
+final class NowPlayingDetailViewController: UIViewController {
     
     @IBOutlet weak var lblPTitle: UILabel!
     @IBOutlet weak var imgPMovie: UIImageView!
@@ -32,18 +32,19 @@ class NowPlayingDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    
+    /// Imprime en el controlador la informacion que recibe dado un objeto de tipo NowPlaying y un indice dado
     private func setNowPlaying(){
-        let dVote: Double = objNowPlaying?.nowPlaying?[index ?? 0].voteAverage ?? 0.0
-        self.lblPTitle.text = objNowPlaying?.nowPlaying?[index ?? 0].title
-        self.lblPOverview.text = objNowPlaying?.nowPlaying?[index ?? 0].overview
+        guard let index = index else { return }
+        let dVote: Double = objNowPlaying?.nowPlaying?[index].voteAverage ?? 0.0
+        self.lblPTitle.text = objNowPlaying?.nowPlaying?[index].title
+        self.lblPOverview.text = objNowPlaying?.nowPlaying?[index ].overview
         self.lblPVote.text = String(format: "%.1f", dVote )
-        self.lblPYear.text = objNowPlaying?.nowPlaying?[index ?? 0].releaseDate
-        if let urlPoster = objNowPlaying?.nowPlaying?[index ?? 0].backdropPath,
+        self.lblPYear.text = objNowPlaying?.nowPlaying?[index ].releaseDate
+        if let urlPoster = objNowPlaying?.nowPlaying?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgPMovie.loadImage(url: url)
             
         }
     }
-    
-    
 }

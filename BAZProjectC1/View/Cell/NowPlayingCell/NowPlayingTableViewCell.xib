@@ -27,17 +27,22 @@
                                     <constraint firstAttribute="height" constant="128" id="V4b-Ko-S42"/>
                                     <constraint firstAttribute="width" constant="99" id="kh9-LJ-R5j"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gTD-fk-rXe">
                                 <rect key="frame" x="115" y="18" width="181" height="52"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Titulo)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeX-d2-Lvg">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Titulo)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeX-d2-Lvg">
                                         <rect key="frame" x="0.0" y="0.0" width="181" height="26.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Titulo Original)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ks-Wk-D6a">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Titulo Original)" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="180" translatesAutoresizingMaskIntoConstraints="NO" id="5Ks-Wk-D6a">
                                         <rect key="frame" x="0.0" y="26.5" width="181" height="25.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +83,7 @@
                         <color key="backgroundColor" red="0.12549019610000001" green="0.20392156859999999" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="vw1-Eg-6VY" secondAttribute="trailing" constant="8" id="70w-eq-qBc"/>
-                            <constraint firstAttribute="height" constant="184" id="BdP-CU-Epa"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="184" id="BdP-CU-Epa"/>
                             <constraint firstItem="Xh0-CQ-F7x" firstAttribute="leading" secondItem="WRb-es-Yeb" secondAttribute="trailing" constant="8" id="Dae-5d-WB4"/>
                             <constraint firstItem="WRb-es-Yeb" firstAttribute="leading" secondItem="J8w-z1-Huj" secondAttribute="leading" constant="8" id="HZI-aQ-P2J"/>
                             <constraint firstItem="gTD-fk-rXe" firstAttribute="top" secondItem="J8w-z1-Huj" secondAttribute="top" constant="18" id="OFj-pE-5ft"/>

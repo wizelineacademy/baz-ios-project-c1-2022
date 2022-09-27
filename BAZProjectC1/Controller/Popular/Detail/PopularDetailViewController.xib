@@ -78,20 +78,10 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="XCq-di-ap3"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ML6-Gp-WNz">
-                            <rect key="frame" x="44" y="846" width="326" height="46"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="46" id="wOD-up-tev"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="ML6-Gp-WNz" firstAttribute="leading" secondItem="LfA-yt-dtS" secondAttribute="leading" constant="44" id="0sG-qj-bC8"/>
                         <constraint firstItem="bX6-lA-oB4" firstAttribute="leading" secondItem="LfA-yt-dtS" secondAttribute="leading" constant="8" id="Cvl-yd-Jzt"/>
-                        <constraint firstAttribute="bottom" secondItem="ML6-Gp-WNz" secondAttribute="bottom" constant="4" id="G1N-wk-ah6"/>
                         <constraint firstItem="2fu-BG-vfs" firstAttribute="leading" secondItem="LfA-yt-dtS" secondAttribute="leading" constant="8" id="Haf-Mg-kKU"/>
                         <constraint firstItem="dee-FU-CtI" firstAttribute="top" secondItem="OS7-kU-4Uh" secondAttribute="bottom" constant="8" symbolic="YES" id="Icd-bZ-OsG"/>
                         <constraint firstAttribute="trailing" secondItem="dee-FU-CtI" secondAttribute="trailing" constant="8" id="JDr-Rf-M63"/>
@@ -103,7 +93,6 @@
                         <constraint firstItem="OS7-kU-4Uh" firstAttribute="top" secondItem="LfA-yt-dtS" secondAttribute="top" id="Vgd-o7-MGN"/>
                         <constraint firstItem="OS7-kU-4Uh" firstAttribute="leading" secondItem="LfA-yt-dtS" secondAttribute="leading" id="bdP-I2-5RA"/>
                         <constraint firstAttribute="trailing" secondItem="OS7-kU-4Uh" secondAttribute="trailing" id="ibU-7h-EMh"/>
-                        <constraint firstAttribute="trailing" secondItem="ML6-Gp-WNz" secondAttribute="trailing" constant="44" id="zo5-xJ-6y2"/>
                     </constraints>
                 </view>
             </subviews>

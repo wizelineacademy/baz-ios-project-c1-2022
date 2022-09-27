@@ -11,9 +11,13 @@ final class PopularTableViewCell: UITableViewCell {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblVote: UILabel!
 
+    
+    //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
 
+    
+    //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
     }

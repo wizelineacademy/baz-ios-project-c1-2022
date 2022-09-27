@@ -54,6 +54,7 @@ extension UpcomingViewController: UITableViewDelegate & UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let upcomingDetail = UpcomingDetailViewController()
         upcomingDetail.index = indexPath.row
         upcomingDetail.objUpcoming = objUpcoming

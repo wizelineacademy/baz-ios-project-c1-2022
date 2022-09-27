@@ -76,14 +76,6 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="t4G-ib-hcG"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mq-jf-xdv">
-                            <rect key="frame" x="44" y="846" width="326" height="46"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="46" id="zEn-eW-6V8"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -94,12 +86,9 @@
                         <constraint firstItem="0or-YC-ajP" firstAttribute="leading" secondItem="j02-9g-kTf" secondAttribute="leading" id="Cfc-cf-vOG"/>
                         <constraint firstAttribute="trailing" secondItem="bFU-5y-1VT" secondAttribute="trailing" constant="8" id="HFg-xd-Nsh"/>
                         <constraint firstItem="2wP-ij-TcC" firstAttribute="leading" secondItem="j02-9g-kTf" secondAttribute="leading" constant="8" id="IeQ-xU-Grl"/>
-                        <constraint firstAttribute="bottom" secondItem="1mq-jf-xdv" secondAttribute="bottom" constant="4" id="Jjc-uq-uFf"/>
-                        <constraint firstItem="1mq-jf-xdv" firstAttribute="leading" secondItem="j02-9g-kTf" secondAttribute="leading" constant="44" id="KUc-eu-1h1"/>
                         <constraint firstItem="2wP-ij-TcC" firstAttribute="bottom" secondItem="0or-YC-ajP" secondAttribute="bottom" id="LCE-Mp-yhl"/>
                         <constraint firstAttribute="trailing" secondItem="2wP-ij-TcC" secondAttribute="trailing" constant="18" id="Sye-GK-TVL"/>
                         <constraint firstItem="bFU-5y-1VT" firstAttribute="top" secondItem="0or-YC-ajP" secondAttribute="bottom" constant="8" symbolic="YES" id="Vk3-Vz-YBY"/>
-                        <constraint firstAttribute="trailing" secondItem="1mq-jf-xdv" secondAttribute="trailing" constant="44" id="fsE-2J-EGL"/>
                         <constraint firstItem="bFU-5y-1VT" firstAttribute="leading" secondItem="j02-9g-kTf" secondAttribute="leading" constant="8" id="mkU-cG-09m"/>
                         <constraint firstItem="0or-YC-ajP" firstAttribute="top" secondItem="j02-9g-kTf" secondAttribute="top" id="yk6-I7-FdV"/>
                     </constraints>

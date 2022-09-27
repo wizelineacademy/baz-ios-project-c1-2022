@@ -36,12 +36,13 @@ class PopularDetailViewController: UIViewController {
     }
     
     private func setPopular(){
-        let dVote: Double = objPopular?.popular?[index ?? 0].voteAverage ?? 0.0
-        self.lblPlTitle.text = objPopular?.popular?[index ?? 0].title
-        self.lblPlOverview.text = objPopular?.popular?[index ?? 0].overview
+        guard let index = index else { return }
+        let dVote: Double = objPopular?.popular?[index].voteAverage ?? 0.0
+        self.lblPlTitle.text = objPopular?.popular?[index].title
+        self.lblPlOverview.text = objPopular?.popular?[index].overview
         self.lblPlVote.text = String(format: "%.1f", dVote )
-        self.lbllPYear.text = objPopular?.popular?[index ?? 0].releaseDate
-        if let urlPoster = objPopular?.popular?[index ?? 0].backdropPath,
+        self.lbllPYear.text = objPopular?.popular?[index].releaseDate
+        if let urlPoster = objPopular?.popular?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgPlMovie.loadImage(url: url)
             

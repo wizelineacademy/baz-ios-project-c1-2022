@@ -4,15 +4,17 @@
 
 import UIKit
 
-class CustomTabBarController: UITabBarController {
+final class CustomTabBarController: UITabBarController {
+    /// Creamos una variable de tipo color, para usarlo en la apariencia del tapBar
+    let wizelineRed: UIColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
     
-    let wzlnRed: UIColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
     
+    //MARK: - F U N C T I O N S
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = wzlnRed
-        UITabBar.appearance().barTintColor = wzlnRed
-        tabBar.backgroundColor = wzlnRed
+        view.backgroundColor = wizelineRed
+        UITabBar.appearance().barTintColor = wizelineRed
+        tabBar.backgroundColor = wizelineRed
         tabBar.tintColor = .white
     }
     
@@ -21,8 +23,9 @@ class CustomTabBarController: UITabBarController {
         self.setUpViewControllers()
     }
     
+    /// Esta funcion nos permite asignar las vistas que va a mostrar el tapBar, con la funcion createNavController
     func setUpViewControllers(){
-        viewControllers=[
+        viewControllers = [
             createNavController(for:TrendingViewController(),
                                    title:NSLocalizedString("Trending", comment: ""),
                                    image:UIImage(systemName: "sparkles.tv") ?? UIImage()),
@@ -40,14 +43,19 @@ class CustomTabBarController: UITabBarController {
                                    image:UIImage(systemName: "deskclock") ?? UIImage())
         ]
     }
-    
+
+    /// Esta funcion nos devuelve un UIViewController el cual va a poder ser navegable en el TapBat
+    /// - Parameters:
+    ///   - rootVC: Esta vista es la que va a contener al tapBar
+    ///   - title: Titulo que va a tener el elemento en el tapBar
+    ///   - image: Una imagen para pintar en el tapBar
+    /// - Returns: Un viewController listo para ser consultado en el TapBar
     fileprivate func createNavController(for rootVC: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootVC )
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
         navController.navigationBar.prefersLargeTitles = true
-        navController.navigationBar.titleTextAttributes = [.foregroundColor: wzlnRed]
-//        navController.navigationBar.backgroundColor = wzlnRed
+        navController.navigationBar.titleTextAttributes = [.foregroundColor: wizelineRed]
         rootVC.navigationItem.title = title
         return navController
     }

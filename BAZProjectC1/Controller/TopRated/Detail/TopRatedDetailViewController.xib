@@ -78,19 +78,10 @@
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="26" id="lzo-1f-W50"/>
                             </constraints>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NyX-i8-Y8A">
-                            <rect key="frame" x="44" y="846" width="326" height="46"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="46" id="KHI-lG-vQh"/>
-                            </constraints>
-                            <state key="normal" title="Button"/>
-                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="74w-Tq-FCf" secondAttribute="trailing" id="2nK-pJ-kmr"/>
-                        <constraint firstItem="NyX-i8-Y8A" firstAttribute="leading" secondItem="dz6-vt-GbX" secondAttribute="leading" constant="44" id="AlE-16-hc2"/>
                         <constraint firstAttribute="trailing" secondItem="dtl-m4-xIv" secondAttribute="trailing" constant="8" id="Fni-47-0ym"/>
                         <constraint firstItem="dtl-m4-xIv" firstAttribute="leading" secondItem="dz6-vt-GbX" secondAttribute="leading" constant="8" id="FzG-Ee-LQB"/>
                         <constraint firstItem="qBo-sd-48z" firstAttribute="bottom" secondItem="74w-Tq-FCf" secondAttribute="bottom" id="TtI-Ee-CBU"/>
@@ -98,12 +89,10 @@
                         <constraint firstItem="eWz-9M-zAf" firstAttribute="top" secondItem="74w-Tq-FCf" secondAttribute="bottom" constant="8" symbolic="YES" id="YF5-cb-8f6"/>
                         <constraint firstItem="dtl-m4-xIv" firstAttribute="top" secondItem="74w-Tq-FCf" secondAttribute="bottom" constant="54" id="YsF-AJ-mRS"/>
                         <constraint firstAttribute="trailing" secondItem="eWz-9M-zAf" secondAttribute="trailing" constant="8" id="bQ7-g1-rJ0"/>
-                        <constraint firstAttribute="bottom" secondItem="NyX-i8-Y8A" secondAttribute="bottom" constant="4" id="bpo-JJ-2GD"/>
                         <constraint firstItem="74w-Tq-FCf" firstAttribute="top" secondItem="dz6-vt-GbX" secondAttribute="top" id="cho-No-wbe"/>
                         <constraint firstItem="qBo-sd-48z" firstAttribute="leading" secondItem="dz6-vt-GbX" secondAttribute="leading" constant="8" id="gg8-cn-Vp0"/>
                         <constraint firstAttribute="trailing" secondItem="qBo-sd-48z" secondAttribute="trailing" constant="18" id="ij2-Oq-aUC"/>
                         <constraint firstItem="eWz-9M-zAf" firstAttribute="leading" secondItem="dz6-vt-GbX" secondAttribute="leading" constant="8" id="qeH-PI-jbZ"/>
-                        <constraint firstAttribute="trailing" secondItem="NyX-i8-Y8A" secondAttribute="trailing" constant="44" id="v6C-7f-vHP"/>
                     </constraints>
                 </view>
             </subviews>
