@@ -55,10 +55,10 @@ final class HomeAppViewController: UIViewController {
     
     public func getMovies(filterSelected: FiltersMovies) {
         self.title = filterSelected.title
-        self.movieApi.getMovies(url: filterSelected.url) { movies in
-            self.movies = movies
+        self.movieApi.getMovies(url: filterSelected.url) { [weak self] movies in
+            self?.movies = movies
             DispatchQueue.main.async {
-                self.collectionView.reloadData()
+                self?.collectionView.reloadData()
             }
         }
     }

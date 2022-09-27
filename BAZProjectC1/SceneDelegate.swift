@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene{
             
             let window = UIWindow(windowScene: windowScene)
-            let rootViewController = ContainerViewController()
+            let rootViewController = ContainerViewController(menuVC: FilterViewController(), homeVC: HomeAppViewController())
             window.rootViewController = rootViewController
             window.makeKeyAndVisible()
             self.window = window

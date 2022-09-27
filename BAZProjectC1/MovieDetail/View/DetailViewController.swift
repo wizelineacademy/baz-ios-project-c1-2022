@@ -13,7 +13,7 @@ final class DetailViewController: UIViewController {
     @IBOutlet weak var descriptionMovie: UILabel!
     @IBOutlet weak var imageMovie: UIImageView!
     
-    private var movie: Movie? = nil
+    private var movie: Movie?
     
     init(movie: Movie) {
         super.init(nibName: nil, bundle: nil)
