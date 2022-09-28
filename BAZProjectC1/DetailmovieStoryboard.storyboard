@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="6VO-BQ-Gy8">
+            <objects>
+                <viewController storyboardIdentifier="DetailMoviesViewController" id="Bhw-nG-0wH" customClass="DetailMoviesViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2CO-U5-2Qa">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BuZ-0y-uHp">
+                                <rect key="frame" x="56" y="121.5" width="317" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtr-X9-WoS">
+                                <rect key="frame" x="56" y="215" width="145" height="246"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="145" id="84B-ru-8eZ"/>
+                                    <constraint firstAttribute="height" constant="246" id="be1-Um-IhA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cDU-Kk-ezR">
+                                <rect key="frame" x="209" y="238" width="164" height="186"/>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="wxC-yT-oyv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="cDU-Kk-ezR" firstAttribute="trailing" secondItem="BuZ-0y-uHp" secondAttribute="trailing" id="2dQ-ct-b21"/>
+                            <constraint firstItem="cDU-Kk-ezR" firstAttribute="top" secondItem="BuZ-0y-uHp" secondAttribute="bottom" constant="96" id="Azu-n4-rCe"/>
+                            <constraint firstItem="cDU-Kk-ezR" firstAttribute="leading" secondItem="xtr-X9-WoS" secondAttribute="trailing" constant="8" id="DTG-yh-lCg"/>
+                            <constraint firstItem="xtr-X9-WoS" firstAttribute="leading" secondItem="BuZ-0y-uHp" secondAttribute="leading" id="Kr1-Rz-H6P"/>
+                            <constraint firstItem="wxC-yT-oyv" firstAttribute="trailing" secondItem="cDU-Kk-ezR" secondAttribute="trailing" constant="41" id="Raw-Pv-AqQ"/>
+                            <constraint firstItem="xtr-X9-WoS" firstAttribute="leading" secondItem="wxC-yT-oyv" secondAttribute="leading" constant="56" id="S64-OZ-Lgs"/>
+                            <constraint firstItem="wxC-yT-oyv" firstAttribute="bottom" secondItem="xtr-X9-WoS" secondAttribute="bottom" constant="401" id="bFZ-4p-vAC"/>
+                            <constraint firstItem="wxC-yT-oyv" firstAttribute="bottom" secondItem="cDU-Kk-ezR" secondAttribute="bottom" constant="438" id="jg9-vW-pag"/>
+                            <constraint firstItem="xtr-X9-WoS" firstAttribute="top" secondItem="BuZ-0y-uHp" secondAttribute="bottom" constant="73" id="u1i-Ff-0j5"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="XQ8-6J-eBC"/>
+                    <connections>
+                        <outlet property="imgPoster" destination="cDU-Kk-ezR" id="ORA-fe-5lr"/>
+                        <outlet property="lblDescription" destination="xtr-X9-WoS" id="tYB-I8-uyI"/>
+                        <outlet property="lblTitle" destination="BuZ-0y-uHp" id="dOU-v9-arz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OzJ-E5-xrj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676.8115942028987" y="-106.47321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
