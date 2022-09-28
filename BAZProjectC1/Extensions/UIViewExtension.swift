@@ -26,4 +26,13 @@ extension UIView {
         dashBorder.frame = bottomLineCGRect
         dashBorder.path = UIBezierPath(roundedRect: bottomLineCGRect, cornerRadius: Style.rawValue).cgPath
     }
+    
+    func getBlurView() -> UIView {
+        self.backgroundColor = UIColor.white.withAlphaComponent(0.0)
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        return blurEffectView
+    }
 }

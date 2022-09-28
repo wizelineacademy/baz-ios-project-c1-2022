@@ -24,6 +24,9 @@
 		0291E36728DB9C990039E49E /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0291E36628DB9C990039E49E /* HomeViewController.swift */; };
 		02AD458F28E25FB600AF9F79 /* MovieFullDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02AD458E28E25FB600AF9F79 /* MovieFullDetailViewController.swift */; };
 		02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02B2DFBE28D6625B003FF09D /* UIImageViewExtension.swift */; };
+		02C4E3C428E4C01300FFC301 /* movieImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4E3C328E4C01300FFC301 /* movieImageView.swift */; };
+		02C4E3C828E4DB4900FFC301 /* backButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4E3C728E4DB4900FFC301 /* backButton.swift */; };
+		02C4E3CA28E4EF4100FFC301 /* UIApplicationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02C4E3C928E4EF4100FFC301 /* UIApplicationExtension.swift */; };
 		02F94AB228DCB1F300B4116C /* movieCarouselCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */; };
 		02F94AB428DCBE0200B4116C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB328DCBE0200B4116C /* UIViewExtension.swift */; };
 		02F94AB828DCC49100B4116C /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F94AB728DCC49100B4116C /* UIColorExtension.swift */; };
@@ -55,6 +58,9 @@
 		0291E36628DB9C990039E49E /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		02AD458E28E25FB600AF9F79 /* MovieFullDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFullDetailViewController.swift; sourceTree = "<group>"; };
 		02B2DFBE28D6625B003FF09D /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
+		02C4E3C328E4C01300FFC301 /* movieImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieImageView.swift; sourceTree = "<group>"; };
+		02C4E3C728E4DB4900FFC301 /* backButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = backButton.swift; sourceTree = "<group>"; };
+		02C4E3C928E4EF4100FFC301 /* UIApplicationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExtension.swift; sourceTree = "<group>"; };
 		02F94AB128DCB1F300B4116C /* movieCarouselCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = movieCarouselCell.swift; sourceTree = "<group>"; };
 		02F94AB328DCBE0200B4116C /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		02F94AB728DCC49100B4116C /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
@@ -96,6 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				0223085528DDB156009AB81A /* BasicInfoMovie.swift */,
+				02C4E3C328E4C01300FFC301 /* movieImageView.swift */,
+				02C4E3C728E4DB4900FFC301 /* backButton.swift */,
 			);
 			path = BasicInfoMovie;
 			sourceTree = "<group>";
@@ -213,6 +221,7 @@
 				02F94AB328DCBE0200B4116C /* UIViewExtension.swift */,
 				02F94AB728DCC49100B4116C /* UIColorExtension.swift */,
 				02F94AB928DCD48300B4116C /* UIImageExtension.swift */,
+				02C4E3C928E4EF4100FFC301 /* UIApplicationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -339,6 +348,7 @@
 				0291E36728DB9C990039E49E /* HomeViewController.swift in Sources */,
 				0247CC8A28DBE1CF00E58461 /* CarouselMoviesExtension.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
+				02C4E3C428E4C01300FFC301 /* movieImageView.swift in Sources */,
 				0223084F28DD8EB8009AB81A /* CarosuelMenuDelegate.swift in Sources */,
 				022827D528D3A05C00294695 /* Strings.swift in Sources */,
 				0247CC8E28DBE2D700E58461 /* HomeViewControllerExtension.swift in Sources */,
@@ -347,8 +357,10 @@
 				02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */,
 				0223084D28DD8E8F009AB81A /* CarosuelMenu.swift in Sources */,
 				0247CC8028DBAA9300E58461 /* TabBarMenu.swift in Sources */,
+				02C4E3CA28E4EF4100FFC301 /* UIApplicationExtension.swift in Sources */,
 				022827CD28D38FA400294695 /* ApiServiceRequest.swift in Sources */,
 				0223085328DD91CC009AB81A /* optionMenuCell.swift in Sources */,
+				02C4E3C828E4DB4900FFC301 /* backButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

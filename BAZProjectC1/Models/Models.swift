@@ -31,23 +31,47 @@ public struct MovieModel: Decodable {
     var overview: String?
     var mediaType: String?
     var genreIds: [Int]?
+    var genreIdsString: String?
     var popularity: Double?
     var releaseDate: String?
     var video: Bool?
     var voteAverage: Double?
     var voteCount: Int?
     
-    public func getGenres() -> String? {
-        var genresString: String?
-        guard let genreIds = genreIds else { return genresString }
-        findGenre()
+    public func getGenresString() -> String? {
+        var genresString: String = ""
+        let genresList = MoviesGenresList()
+        guard let moviesGenreIds = genreIds else { return genresString }
+        moviesGenreIds.forEach({ genre in
+            if let value = genresList.findGenre(withId: genre) {
+                genresString = "\(String(describing: genresString)) | \(value)"
+            }
+        })
         return genresString
     }
     
-    public func findGenre(){
-        
-        var Generes = ApiServiceRequest.decodeJsonDataTo(object: MoviesGenresList.self, with: EndpointsList.genreList.description.data(using: .utf8) ?? Data())
-        print(Generes)
+    public func getLanguageString() -> String {
+        var languagesString: String = ""
+        let languagesList = MoviesLanguageList()
+        guard let isoValue = originalLanguage,
+              let value = languagesList.findlanguage(withIsoValue: isoValue)else {
+                  return languagesString
+              }
+        languagesString = value
+        return String(describing: languagesString)
+    }
+}
+
+public struct MoviesLanguageList: Decodable {
+    var languages: [MoviesLanguage]?
+    
+    init(){
+        guard let urlData = EndpointsList.languagesList.description.data(using: .utf8),
+              let languageInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesLanguageList.self, with: urlData) as? MoviesLanguageList else { return }
+        self = languageInfoList
+    }
+    public func findlanguage(withIsoValue value: String ) -> String? {
+        languages?.first(where: { $0.iso6391 == value })?.name
     }
 }
 
@@ -59,6 +83,15 @@ public struct MoviesLanguage: Decodable {
 
 public struct MoviesGenresList: Decodable {
     var genres: [MoviesGenre]?
+    init(){
+        guard let urlData = EndpointsList.genreList.description.data(using: .utf8),
+              let genreInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesGenresList.self, with: urlData) as? MoviesGenresList else { return }
+        self = genreInfoList
+    }
+    
+    public func findGenre(withId id: Int) -> String? {
+        genres?.first(where: { $0.id == id })?.name
+    }
 }
 
 public struct MoviesGenre: Decodable {

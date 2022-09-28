@@ -93,24 +93,31 @@ class movieCarouselCell: UICollectionViewCell {
         contentView.addSubview(movieRanking)
         contentView.addSubview(movieGenreIds)
         movieGenreIds.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        movieGenreIds.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
         movieGenreIds.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        
         movieRankingImage.bottomAnchor.constraint(equalTo: movieGenreIds.bottomAnchor, constant: -1 * (8 + movieRankingImage.frame.height)).isActive = true
         movieRankingImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         movieRankingImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
         movieRankingImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
         movieRankingImage.heightAnchor.constraint(equalTo: movieRankingImage.widthAnchor, multiplier: contentView.frame.size.height / contentView.frame.size.width).isActive = true
+        
         movieRanking.bottomAnchor.constraint(equalTo: movieGenreIds.bottomAnchor, constant: -1 * (8 + movieRankingImage.frame.height)).isActive = true
         movieRanking.leftAnchor.constraint(equalTo: movieRankingImage.rightAnchor, constant: 8).isActive = true
+        
         movieTitle.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
         movieTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
         movieTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         movieTitle.bottomAnchor.constraint(equalTo: movieRankingImage.topAnchor, constant: -8).isActive = true
+        
+        movieGenreIds.setContentHuggingPriority(UILayoutPriority.defaultHigh, for:.vertical)
     }
     
     func configuration(dataInfo: MovieModel) {
         posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.posterPath ?? "")")
         movieTitle.text = dataInfo.title
-        movieRanking.text = "\(Int(dataInfo.voteAverage ?? 0))"
+        movieRanking.text = "\(Int(dataInfo.voteAverage ?? 0)) (\(dataInfo.getLanguageString()))"
+        movieGenreIds.text = "" //dataInfo.getGenresString()
         
         
     }
