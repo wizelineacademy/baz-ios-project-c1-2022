@@ -9,25 +9,19 @@ import UIKit
 final class MovieAPI {
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     
-  public func getMovies(completion: @escaping ([Movie])->()){
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)")
+    /// Método utilizado para consumir la lista de películas correspondientes acordes al filtro seleccionado.
+    ///  - returns: Si el consumo es exitoso, un array con las películas obtenidas; en caso contrario un array vacío
+    public func getMovies(url: String, completion: @escaping ([Movie])->()){
+        guard let url = URL(string: "\(url)\(apiKey)")
         else { return  }
-        
-        URLSession.shared.dataTask(with: url) { data, response, error in
-            if error != nil {
-                print(error?.localizedDescription ?? "error")
-                return
-            }
-            do {
-                guard let data = data else { return }
-                
-                let result = try JSONDecoder().decode(ResultsApi.self, from: data)
+        GenericApiCall.request(url: url, expecting: ResultsApi.self) { result in
+            switch result {
+            case .success(let result):
                 completion(result.results)
-                
-            }catch let error {
-                 completion([])
+            case .failure(let error):
+                completion([])
                 print(error)
             }
-        }.resume()
+        }
     }
 }
