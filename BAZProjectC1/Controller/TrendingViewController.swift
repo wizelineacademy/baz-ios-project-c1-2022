@@ -8,15 +8,27 @@ import UIKit
 
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    var movies: [DetailMovie] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         let movieApi = MovieAPI()
-        
-        movies = movieApi.getMovies()
-        tableView.reloadData()
+        movieApi.getMovies{[weak self] (result, error) in
+            if let err = error {
+                let alert = UIAlertController(title: "Mensaje", message: err.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                    
+                alert.addAction(UIAlertAction(title: "Error", style: UIAlertAction.Style.default, handler: nil))
+                self?.present(alert, animated: true, completion: nil)
+                
+                }else{
+                    self?.movies = result.results
+                }
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+        self.title = "Peliculas"
     }
 
 }
@@ -42,7 +54,12 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
-        config.image = UIImage(named: "poster")
+        let url = URL(string: "https://image.tmdb.org/t/p/w500\(movies[indexPath.row].poster_path)")
+        if let data = try? Data(contentsOf: url!) {
+            config.image = UIImage(data: data)
+        } else {
+            config.image = UIImage(named: "poster")
+        }
         cell.contentConfiguration = config
     }
 
