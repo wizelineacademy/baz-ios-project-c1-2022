@@ -15,7 +15,8 @@ enum EndpointsList:String  {
     case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
-
+    case genreList = "genreList"
+    case languagesList = "languagesList"
     
     var description: String {
         switch self {
@@ -43,6 +44,14 @@ enum EndpointsList:String  {
             } else { return "" }
         case .upcoming:
             if let endpoint = Bundle.main.object(forInfoDictionaryKey:"upcoming") as? String{
+                return endpoint
+            } else { return "" }
+        case .genreList:
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"genreList") as? String{
+                return endpoint
+            } else { return "" }
+        case .languagesList:
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"languagesList") as? String{
                 return endpoint
             } else { return "" }
         }

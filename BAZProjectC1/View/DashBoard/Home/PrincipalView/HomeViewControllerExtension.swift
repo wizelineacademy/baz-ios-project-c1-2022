@@ -11,7 +11,7 @@ import UIKit
 extension HomeViewController: CarouselMoviesDelegate{
     
     func movieSelected(position: Int) {
-        print(moviesList[position].title)
+        moviesList[position].getGenres()
         guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieFullDetailViewController") as? MovieFullDetailViewController else { return }
         movieFullDetail.modalPresentationStyle = .overCurrentContext
         self.present(movieFullDetail, animated: true, completion: nil)

@@ -48,6 +48,19 @@ class movieCarouselCell: UICollectionViewCell {
         return movieRanking
     }()
     
+    public lazy var movieGenreIds: UILabel = {
+        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        let movieRanking = UILabel(frame: frame)
+        movieRanking.translatesAutoresizingMaskIntoConstraints = false
+        movieRanking.text = "movieGenreIds"
+        movieRanking.numberOfLines = 0
+        movieRanking.adjustsFontSizeToFitWidth = true
+        movieRanking.sizeToFit()
+        movieRanking.textColor = UIColor.appColorWhitePrimary
+        movieRanking.textAlignment = .left
+        return movieRanking
+    }()
+    
     private lazy var posterImage: UIImageView = {
         let posterImage = UIImageView(frame: contentView.bounds)
         posterImage.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
@@ -78,12 +91,15 @@ class movieCarouselCell: UICollectionViewCell {
         contentView.addSubview(movieTitle)
         contentView.addSubview(movieRankingImage)
         contentView.addSubview(movieRanking)
-        movieRankingImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        contentView.addSubview(movieGenreIds)
+        movieGenreIds.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
+        movieGenreIds.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        movieRankingImage.bottomAnchor.constraint(equalTo: movieGenreIds.bottomAnchor, constant: -1 * (8 + movieRankingImage.frame.height)).isActive = true
         movieRankingImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
         movieRankingImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
         movieRankingImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
         movieRankingImage.heightAnchor.constraint(equalTo: movieRankingImage.widthAnchor, multiplier: contentView.frame.size.height / contentView.frame.size.width).isActive = true
-        movieRanking.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
+        movieRanking.bottomAnchor.constraint(equalTo: movieGenreIds.bottomAnchor, constant: -1 * (8 + movieRankingImage.frame.height)).isActive = true
         movieRanking.leftAnchor.constraint(equalTo: movieRankingImage.rightAnchor, constant: 8).isActive = true
         movieTitle.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
         movieTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
@@ -95,5 +111,7 @@ class movieCarouselCell: UICollectionViewCell {
         posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.posterPath ?? "")")
         movieTitle.text = dataInfo.title
         movieRanking.text = "\(Int(dataInfo.voteAverage ?? 0))"
+        
+        
     }
 }
