@@ -15,9 +15,21 @@ class DetailViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureViewController()
+        loadImage()
+        
+    }
+    
+    private func configureViewController() {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        if let str = objMov?.poster_path {
-            imgDetail.loadFrom(strUrl: "\(strPathImage)\(str)")
+    }
+    
+    private func loadImage() {
+        if let urlImage = objMov?.imageDetail {
+            imgDetail.loadFrom(strUrl: "\(urlImage)")
+        } else {
+            imgDetail.image = UIImage.init(named: "placeHolder")
         }
     }
+    
 }

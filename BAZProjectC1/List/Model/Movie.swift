@@ -10,5 +10,14 @@ struct Movie {
     let id: Int
     let title: String
     let descriptionMovie: String
-    let poster_path: String
+    let posterPath: String
+    var imageDetail: String {
+        "\(tmdbImageStringURLPrefix)\(self.posterPath)"
+    }
+}
+
+struct MenuRow {
+    let title: String
+    let detail: String
+    let image: String
 }

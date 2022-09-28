@@ -8,19 +8,16 @@
 import Foundation
 import UIKit
 
-
 extension UIImageView {
     func loadFrom(strUrl: String) {
         guard let url = URL(string: strUrl) else {
+            self.image = UIImage.init(named: "placeHolder")
             return
         }
         
         DispatchQueue.main.async { [weak self] in
-            if let dataImg = try? Data(contentsOf: url) {
-                if let img = UIImage(data: dataImg) {
-                        self?.image = img
-                }
-            }
+            guard let dataImg = try? Data(contentsOf: url), let img = UIImage(data: dataImg) else { return }
+            self?.image = img
         }
     }
 }

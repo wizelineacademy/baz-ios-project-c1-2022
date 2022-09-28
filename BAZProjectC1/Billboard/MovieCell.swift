@@ -15,8 +15,8 @@ class MovieCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configureCellWithUrl(movieInfo: Movie) {
-        lblTitle.text = movieInfo.title
-        imgDetail.loadFrom(strUrl: "\(strPathImage)\(movieInfo.poster_path)")
+    func configureCell(with movie: Movie) {
+        lblTitle.text = movie.title
+        imgDetail.loadFrom(strUrl: movie.imageDetail)
     }
 }
