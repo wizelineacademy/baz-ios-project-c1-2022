@@ -3,63 +3,129 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar Menu-->
         <scene sceneID="6us-hv-43n">
             <objects>
-                <tabBarController id="AmD-HI-UXs" sceneMemberID="viewController">
+                <tabBarController id="AmD-HI-UXs" customClass="TabBarMenu" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GU8-yx-jeK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
-                    <connections>
-                        <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
-                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="62" y="-106"/>
         </scene>
-        <!--Trending Movies-->
-        <scene sceneID="Jof-f8-uDg">
+        <!--Home-->
+        <scene sceneID="eRb-td-yys">
             <objects>
-                <tableViewController storyboardIdentifier="TrendingViewController" title="Trending Movies" id="DF1-ZG-ayL" customClass="TrendingViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="106" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="7Ys-l1-YLU">
+                <viewController storyboardIdentifier="HomeViewController" id="aq9-NQ-ZQA" customClass="HomeViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2fU-Hm-sz0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="zFL-e4-Ggg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieBasicInfoCell" rowHeight="100" id="V1G-UB-d8t">
-                                <rect key="frame" x="0.0" y="44.5" width="414" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V1G-UB-d8t" id="XzH-hA-QFm">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="DF1-ZG-ayL" id="J2U-Qh-E3n"/>
-                            <outlet property="delegate" destination="DF1-ZG-ayL" id="5nR-er-hrx"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Trending" image="chart.line.uptrend.xyaxis.circle.fill" catalog="system" id="g6Q-u2-bk6"/>
-                    <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Home" image="house.fill" catalog="system" id="bhT-Vz-nvK"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m7v-oc-TEi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1005.7971014492755" y="-106.47321428571428"/>
+            <point key="canvasLocation" x="-701" y="578"/>
+        </scene>
+        <!--Movie Full Detail View Controller-->
+        <scene sceneID="KB7-HO-BmP">
+            <objects>
+                <viewController storyboardIdentifier="MovieFullDetailViewController" id="PAD-gC-sJr" customClass="MovieFullDetailViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ikA-rt-lNJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-cY-Xev" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="40" width="414" height="442"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="xHD-cY-Xev" secondAttribute="height" multiplier="207:221" id="3KE-jW-7dX"/>
+                                    <constraint firstAttribute="width" constant="414" id="9kg-z6-VKm"/>
+                                    <constraint firstAttribute="height" constant="442" id="Fe6-ZK-TGS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hah-VB-cU7" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="472" width="414" height="32"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="4Iy-kl-aS3"/>
+                                    <constraint firstAttribute="height" constant="32" id="5wT-mI-g2L"/>
+                                    <constraint firstAttribute="width" secondItem="hah-VB-cU7" secondAttribute="height" multiplier="207:16" id="TFx-Rz-vmF"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-dA-OXL" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="16" y="40" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="2ev-g1-wOX"/>
+                                    <constraint firstAttribute="height" constant="32" id="RK7-wY-qrv"/>
+                                    <constraint firstAttribute="width" secondItem="oIp-dA-OXL" secondAttribute="height" multiplier="1:1" id="epx-Zc-zhg"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="butAtion:" destination="PAD-gC-sJr" eventType="touchUpInside" id="qmS-IA-0sD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="goF-yh-0ow"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" id="HOY-3K-lJk"/>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="Tk0-0z-x4v"/>
+                            <constraint firstItem="oIp-dA-OXL" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="Yfz-W5-BNp"/>
+                            <constraint firstItem="oIp-dA-OXL" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" constant="16" id="ZIR-El-XE5"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="top" secondItem="oIp-dA-OXL" secondAttribute="top" constant="432" id="asr-eN-DZL"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" id="eFE-B7-dmf"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="trailing" secondItem="goF-yh-0ow" secondAttribute="trailing" id="fz0-f1-ZGq"/>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="trailing" secondItem="goF-yh-0ow" secondAttribute="trailing" id="vii-oj-sfc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="genreList" destination="hah-VB-cU7" id="43j-G4-eMx"/>
+                        <outlet property="movieImage" destination="xHD-cY-Xev" id="nqX-Qf-jzu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3GL-4R-2cK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-701.44927536231887" y="1307.8125"/>
+        </scene>
+        <!--Search View Controller-->
+        <scene sceneID="ujs-HT-w8w">
+            <objects>
+                <viewController storyboardIdentifier="SearchViewController" id="wjS-mg-8Mx" customClass="SearchViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cxZ-4L-qP9">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7nC-HI-68Z"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S7V-v7-qNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="61" y="578"/>
         </scene>
     </scenes>
     <resources>
-        <image name="chart.line.uptrend.xyaxis.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="house.fill" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
