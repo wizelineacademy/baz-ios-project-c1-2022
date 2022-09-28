@@ -48,7 +48,7 @@ extension TrendingViewController {
         var id = movies[indexPath.row].id
         var title = movies[indexPath.row].title
         var poster_path = movies[indexPath.row].poster_path
-        let sb = UIStoryboard(name: "DetailmovieStoryboard", bundle: nil)
+        let sb = UIStoryboard(name: "DetailMovie", bundle: nil)
         if let pathVC = sb.instantiateViewController(withIdentifier: "DetailMoviesViewController") as? DetailMoviesViewController{
             pathVC.strTitle = title
            
