@@ -53,3 +53,38 @@ extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDa
     }
     
 }
+extension BillboardViewController : UICollectionViewDelegateFlowLayout {
+    /*
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+      let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
+      let availableWidth = view.frame.width - paddingSpace
+      let widthPerItem = availableWidth / itemsPerRow
+      
+      return CGSize(width: widthPerItem, height: widthPerItem)
+    }
+     
+    func collectionView(
+      _ collectionView: UICollectionView,
+      layout collectionViewLayout: UICollectionViewLayout,
+      insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
+      return sectionInsets
+    }
+    
+    func collectionView(
+      _ collectionView: UICollectionView,
+      layout collectionViewLayout: UICollectionViewLayout,
+      minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
+      return sectionInsets.left
+    }
+*/
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let padding: CGFloat = 50
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize / 2, height: collectionViewSize / 3)
+         
+    }
+}

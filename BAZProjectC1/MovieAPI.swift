@@ -32,31 +32,47 @@ class MovieAPI {
     }
     
     func getMoviesUpdate(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
+        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
+            completion(lstInfo)
+        })
+    }
+    func getMoviesUpdateNew(completion: @escaping (ResultParser) -> ()) {
+        self.requestUpdate(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { [weak self] lstInfo in
+
+            guard let _ = self else { return }
+            //print("Info lst: \(lstInfo)")
             completion(lstInfo)
         })
     }
      
     func getNowPlaying(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
+            
             completion(lstInfo)
         })
     }
 
     func getMostPopular(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
+            
             completion(lstInfo)
         })
     }
     
     func getTopRated(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
+
             completion(lstInfo)
         })
     }
     
     func getUpComing(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
             completion(lstInfo)
         })
     }
@@ -89,27 +105,31 @@ class MovieAPI {
     }
     
     func getQuerySearch(strQuery: String, completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { lstInfo in
+        self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
             completion(lstInfo)
         })
         
     }
     
     func getReviews(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { lstInfo in
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
             completion(lstInfo)
         })
     }
 
     func getSimilar(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { lstInfo in
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
             completion(lstInfo)
         })
         
     }
     
     func getRecomendations(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: { lstInfo in
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
+            guard let _ = self else { return }
             completion(lstInfo)
         })
     }
@@ -125,6 +145,8 @@ class MovieAPI {
         return lstMovies
     }
     
+   
+    
     //MARK: Request
     func request(strUrlPath: String, completion: @escaping ([Movie]) -> ()) {
         guard let url = URL(string: strUrlPath) else {
@@ -135,8 +157,9 @@ class MovieAPI {
         session.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 do {
+                    
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print("Json: \(json)")
+                    //print("Json: \(json)")
                     completion(self.serializationJson(jsonDic: json))
                 } catch {
                     completion([])
@@ -144,7 +167,29 @@ class MovieAPI {
                 
             }
         }.resume()
+    }
+    
+    // MARK: New Serializacion
+    func serializationNewJSON(objData: Data) -> ResultParser {
+        let objJD = JSONDecoder()
+        objJD.keyDecodingStrategy = .convertFromSnakeCase
+        let objDatos = try? objJD.decode(ResultParser.self, from: objData)
+        return objDatos ?? ResultParser()
+    }
+    
+    //MARK: Request
+    func requestUpdate(strUrlPath: String, completion: @escaping (ResultParser) -> ()) {
+        guard let url = URL(string: strUrlPath) else {
+            return
+        }
         
+        let session = URLSession.shared
+        session.dataTask(with: url) { (data, response, error) in
+            if let data = data {
+                let obj = self.serializationNewJSON(objData: data)
+                completion(obj)
+            }
+        }.resume()
     }
 }
 
