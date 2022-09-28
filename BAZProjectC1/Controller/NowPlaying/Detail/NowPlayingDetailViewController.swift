@@ -11,6 +11,13 @@ final class NowPlayingDetailViewController: UIViewController {
     @IBOutlet weak var lblPOverview: UILabel!
     @IBOutlet weak var lblPVote: UILabel!
     @IBOutlet weak var lblPYear: UILabel!
+    @IBOutlet private weak var cvRecomended: UICollectionView!{
+        didSet{
+            self.cvRecomended.delegate = self
+            self.cvRecomended.dataSource = self
+            self.cvRecomended.register(UINib(nibName: "ElementCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "CellRecomended")
+        }
+    }
     
     var index: Int?
     var objNowPlaying: NowPlayingAPIResponse?
@@ -47,4 +54,18 @@ final class NowPlayingDetailViewController: UIViewController {
             
         }
     }
+}
+
+extension NowPlayingDetailViewController: UICollectionViewDelegate & UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CellRecomended", for: indexPath) as? ElementCollectionViewCell
+        ?? ElementCollectionViewCell()
+        return cCell
+    }
+    
+    
 }

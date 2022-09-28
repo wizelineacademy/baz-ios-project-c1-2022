@@ -11,6 +11,12 @@ extension UITableViewCell {
     class var identifier: String { return String(describing: self)}
 }
 
+//MARK: - UI · T A B L E · V I E W · C E L L
+extension UICollectionViewCell {
+    ///Identifier nos ayudará a poder saber la identidad de nuestra celda, y usarla en cualquiera que herede de UITableViewCell
+    class var identifier: String { return String(describing: self)}
+}
+
 //MARK: - UI · V I E W
 extension UIView {
     /// Esta variable nos ayudara a configurar el radio de una vista, desde codigo o desde el Custom Class de Xcode
