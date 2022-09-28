@@ -45,5 +45,4 @@ struct MovieUpdate : Decodable {
     var adult: Bool?
     var backdropPath: String?
     var genreIds: [Int]?
-    
 }
