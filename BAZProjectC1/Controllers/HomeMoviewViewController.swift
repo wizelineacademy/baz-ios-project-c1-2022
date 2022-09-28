@@ -21,6 +21,11 @@ class HomeMovieViewController: UIViewController {
         getMovies()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goDetailMovie" {
             let detailMovieScreen: DetailMovieViewController = segue.destination as! DetailMovieViewController
@@ -66,6 +71,10 @@ extension HomeMovieViewController: UITableViewDataSource {
         }
         return movieCell
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        114.00
+    }
 }
 
 // MARK: - TableView's Delegate
@@ -106,10 +115,10 @@ extension HomeMovieViewController: UICollectionViewDelegate {
 extension HomeMovieViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemSpacing = 10
-        let itemWidth = genres[indexPath.row].count * 10
+        let itemSpacing = 12
+        let itemWidth = genres[indexPath.row].count * 11
         let cellWidth = itemWidth + itemSpacing
-        return CGSize(width: cellWidth, height: 36)
+        return CGSize(width: cellWidth, height: 34)
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

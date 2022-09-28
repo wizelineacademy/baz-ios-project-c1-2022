@@ -14,18 +14,22 @@ class FilterSectionCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+
+    override func draw(_ rect: CGRect) {
+        super.draw(rect)
         contentFilter.roundCornersView(radious: 15.00)
     }
 
     func disableState() {
-        contentFilter.setBorder(color: .black)
-        titleFilter.textColor = .black
-        contentFilter.backgroundColor = .white
+        contentFilter.setBorder(color: UIColor(named: "aux100Color") ?? .clear)
+        titleFilter.textColor = UIColor(named: "aux100Color")
+        contentFilter.backgroundColor = UIColor(named: "AccentColor")
     }
 
     func enableState() {
-        contentFilter.backgroundColor = .darkGray
-        contentFilter.setBorder(color: .darkGray)
-        titleFilter.textColor = .white
+        contentFilter.backgroundColor = UIColor(named: "aux100Color")
+        contentFilter.setBorder(color: UIColor(named: "aux100Color") ?? .clear)
+        titleFilter.textColor = UIColor(named: "AccentColor")
     }
 }

@@ -34,6 +34,21 @@ final class MovieNetworkManager {
         executeRequest(request: url, completionHanlder: completionHandler)
     }
 
+    /// This function performs the search for movies by keyword or by movie
+    /// - Parameters:
+    ///   - isKeyword: indicates if the search is done by keyboard or movie
+    ///   - search: the movie o keyboard what the service fetch
+    ///   - completionHanlder: action when the service response and return a model of the response
+    func fetchMovieByPhrase(isKeyword: Bool, search: String, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
+        let formatUrlSearch = search.replacingOccurrences(of: " ", with: "%20")
+        guard let url = URL(string: "\(baseUrl)search/\(isKeyword ? "multi" : "movie")?api_key=\(apiKey)&query=\(formatUrlSearch)") else {
+            print("Ocurrio un error al generar el URL")
+            completionHanlder(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHanlder)
+    }
+
     /// This method download image from a url
     /// - Parameters:
     ///   - imagePath: path of the image
@@ -74,7 +89,6 @@ final class MovieNetworkManager {
         }
         dataTask.resume()
     }
-
 
     /// This method do the query to the service and return a general response ready to be treated
     /// - Parameters:
