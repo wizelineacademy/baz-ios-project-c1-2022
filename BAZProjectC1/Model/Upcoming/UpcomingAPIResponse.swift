@@ -1,22 +1,21 @@
-//
-//  PopularAPIResponse.swift
+//  UpcomingAPIResponse.swift
 //  BAZProjectC1
-//
-//  Created by 291732 on 21/09/22.
-//
+//  Created by 291732 on 22/09/22.
 
 import Foundation
 
-struct PopularAPIResponse: Codable {
+struct UpcomingAPIResponse: Codable {
+    let dates : Dates?
     let page : Int?
-    let popular : [Popular]?
+    let upcoming : [Upcoming]?
     let totalPages : Int?
     let totalResults : Int?
-    
+
     /// CodingKey nos ayudara a manejar variables a nuestro gusto, sin romper el codable
     enum CodingKeys: String, CodingKey {
+        case dates = "dates"
         case page = "page"
-        case popular = "results"
+        case upcoming = "results"
         case totalPages = "total_pages"
         case totalResults = "total_results"
     }

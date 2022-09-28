@@ -4,7 +4,7 @@
 
 import UIKit
 
-class TopRatedViewController: UIViewController {
+final class TopRatedViewController: UIViewController {
     //MARK: - O U T L E T S
     @IBOutlet weak var tblTopRated: UITableView!{
         didSet {
@@ -15,10 +15,8 @@ class TopRatedViewController: UIViewController {
         }
     }
     
-    
     //MARK: - V A R I A B L E S
     private var objTopRated: TopRatedAPIResponse?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +24,7 @@ class TopRatedViewController: UIViewController {
         self.getTopRated()
     }
     
+    //MARK: - S E R V I C E S
     private func getTopRated(){
         let movie_WS = MovieAPI()
         movie_WS.getTopRated { [weak self] topRatedResponse, error in
@@ -52,6 +51,13 @@ extension TopRatedViewController: UITableViewDelegate & UITableViewDataSource {
             cell.setTopRated(with: topRated)
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let topRatedDetail = TopRatedDetailViewController()
+        topRatedDetail.index = indexPath.row
+        topRatedDetail.objTopRated = objTopRated
+        self.navigationController?.pushViewController(topRatedDetail, animated: true)
     }
     
     

@@ -24,7 +24,7 @@ final class PopularViewController: UIViewController {
         
     }
     
-    //MARK: - SERVICIOS
+    //MARK: - S E R V I C E S
     private func getPopular(){
         let movie_WS = MovieAPI()
         movie_WS.getPopular { [weak self] popularResponse, error in
@@ -44,7 +44,6 @@ extension PopularViewController: UITableViewDelegate & UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objPupular?.popular?.count ?? 0
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -53,5 +52,12 @@ extension PopularViewController: UITableViewDelegate & UITableViewDataSource {
             cell.setPopularView(with: popular )
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let popularDetail = PopularDetailViewController()
+        popularDetail.index = indexPath.row
+        popularDetail.objPopular = objPupular
+        self.navigationController?.pushViewController(popularDetail, animated: true)
     }
 }

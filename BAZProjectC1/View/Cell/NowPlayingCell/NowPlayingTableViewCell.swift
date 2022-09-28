@@ -17,11 +17,15 @@ final class NowPlayingTableViewCell: UITableViewCell {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblVote: UILabel!
     
+    
+    //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
     private let wzlnDarkBlue: UIColor = UIColor(red: 12, green: 24, blue: 35, alpha: 1)
     private let wzlnMediumBlue: UIColor = UIColor(red: 32, green: 52, blue: 73, alpha: 1)
     
+    
+    //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
     }

@@ -54,9 +54,9 @@ extension NowPlayingViewController: UITableViewDelegate & UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieDetail = MovieDetailViewController()
-        movieDetail.index = indexPath.row
-//        movieDetail.objMovie = objMovie
-        self.navigationController?.pushViewController(movieDetail, animated: true)
+        let nowPlayingDetail = NowPlayingDetailViewController()
+        nowPlayingDetail.index = indexPath.row
+        nowPlayingDetail.objNowPlaying = objNowPlay
+        self.navigationController?.pushViewController(nowPlayingDetail, animated: true)
     }
 }

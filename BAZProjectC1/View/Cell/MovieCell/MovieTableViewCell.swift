@@ -18,9 +18,13 @@ final class MovieTableViewCell: UITableViewCell {
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblFormat: UILabel!
     
+    
+    //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
     
+    
+    //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
     }

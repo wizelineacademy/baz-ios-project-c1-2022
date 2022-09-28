@@ -10,6 +10,7 @@ struct TopRatedAPIResponse: Codable {
     let totalPages : Int?
     let totalResults : Int?
 
+    /// CodingKey nos ayudara a manejar variables a nuestro gusto, sin romper el codable
     enum CodingKeys: String, CodingKey {
         case page = "page"
         case topRateds = "results"

@@ -4,14 +4,18 @@
 
 import UIKit
 
-class CustomTabBarController: UITabBarController {
+final class CustomTabBarController: UITabBarController {
+    /// Creamos una variable de tipo color, para usarlo en la apariencia del tapBar
+    let wizelineRed: UIColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
     
+    
+    //MARK: - F U N C T I O N S
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
-        UITabBar.appearance().barTintColor = .white
+        view.backgroundColor = wizelineRed
+        UITabBar.appearance().barTintColor = wizelineRed
+        tabBar.backgroundColor = wizelineRed
         tabBar.tintColor = .white
-        tabBar.backgroundColor = UIColor(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -19,8 +23,9 @@ class CustomTabBarController: UITabBarController {
         self.setUpViewControllers()
     }
     
+    /// Esta funcion nos permite asignar las vistas que va a mostrar el tapBar, con la funcion createNavController
     func setUpViewControllers(){
-        viewControllers=[
+        viewControllers = [
             createNavController(for:TrendingViewController(),
                                    title:NSLocalizedString("Trending", comment: ""),
                                    image:UIImage(systemName: "sparkles.tv") ?? UIImage()),
@@ -33,29 +38,25 @@ class CustomTabBarController: UITabBarController {
             createNavController(for:TopRatedViewController(),
                                    title:NSLocalizedString("Top Rated", comment: ""),
                                    image:UIImage(systemName: "chart.xyaxis.line") ?? UIImage()),
-            createNavController(for:TrendingViewController(),
+            createNavController(for:UpcomingViewController(),
                                    title:NSLocalizedString("Upcoming", comment: ""),
                                    image:UIImage(systemName: "deskclock") ?? UIImage())
         ]
     }
-    
-    
+
+    /// Esta funcion nos devuelve un UIViewController el cual va a poder ser navegable en el TapBat
+    /// - Parameters:
+    ///   - rootVC: Esta vista es la que va a contener al tapBar
+    ///   - title: Titulo que va a tener el elemento en el tapBar
+    ///   - image: Una imagen para pintar en el tapBar
+    /// - Returns: Un viewController listo para ser consultado en el TapBar
     fileprivate func createNavController(for rootVC: UIViewController, title: String, image: UIImage) -> UIViewController {
         let navController = UINavigationController(rootViewController: rootVC )
         navController.tabBarItem.title = title
         navController.tabBarItem.image = image
-        navController.navigationBar.prefersLargeTitles=true
+        navController.navigationBar.prefersLargeTitles = true
+        navController.navigationBar.titleTextAttributes = [.foregroundColor: wizelineRed]
         rootVC.navigationItem.title = title
         return navController
     }
-    
 }
-
-extension CustomTabBarController: UITabBarControllerDelegate {
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("Selected \(viewController.title!)")
-    }
-    
-}
-

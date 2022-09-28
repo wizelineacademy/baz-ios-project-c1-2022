@@ -4,7 +4,7 @@
 
 import UIKit
 
-class TopRatedTableViewCell: UITableViewCell {
+final class TopRatedTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet weak var vwContainer: UIView!
     @IBOutlet weak var imgPoster: UIImageView!
@@ -14,10 +14,13 @@ class TopRatedTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAverage: UILabel!
     @IBOutlet weak var sldRated: UISlider!
 
+    
+    //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
 
     
+    //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -26,12 +29,18 @@ class TopRatedTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    ///Si un objeto UITableViewCell tiene un identificador de reutilización, la vista de tabla invoca este método justo antes de devolver el objeto del método  dequeueReusableCell(withIdentifier:).
+    ///Para evitar posibles problemas de rendimiento, solo debe restablecer los atributos de la celda que no están relacionados con el contenido, por ejemplo, alfa, edición y estado de selección.
+    ///El delegado de la vista de tabla en tableView(_:cellForRowAt:) siempre debe restablecer todo el contenido al reutilizar una celda.
     override func prepareForReuse(){
         super.prepareForReuse()
         downloadTask?.cancel()
         downloadTask = nil
     }
     
+    
+    /// Funcion que configura un slider dado un valor inicial
+    /// - Parameter val: Valor de tipo Float para incializar el valor en el que estara asignado al iniciar el componente
     private func setSlider(withValue val: Float) {
         sldRated.setThumbImage(UIImage(systemName: "hand.thumbsup.fill")?.withTintColor(.white), for: .normal)
         sldRated.isContinuous = false
@@ -42,6 +51,7 @@ class TopRatedTableViewCell: UITableViewCell {
         sldRated.maximumValue = 100
         sldRated.setValue(val, animated: true)
     }
+    
     
     func setTopRated(with obj:TopRated) {
         if let urlPoster = obj.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
