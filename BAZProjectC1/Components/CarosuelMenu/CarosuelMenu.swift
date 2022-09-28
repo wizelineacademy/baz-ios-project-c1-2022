@@ -43,7 +43,8 @@ class CarosuelMenu: UIView {
     }()
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
     
     public convenience init(frame:CGRect,
@@ -84,5 +85,19 @@ class CarosuelMenu: UIView {
         menuOptions = infoMenu
         optionSelected = 0
         menu.reloadData()
+    }
+    
+    public func configure(optionsTitles:[String] = [],
+                          itemBackgroundColor: UIColor? = .clear,
+                          itemBorderBackgroundColor: UIColor? = .clear,
+                          itemSelectedBackgroundColor: UIColor? = .clear,
+                          itemSelectedBorderBackgroundColor: UIColor? = .clear,
+                          itemBorder: Double? = 10.0) {
+        self.itemBackgroundColor = itemBackgroundColor
+        self.itemBorderBackgroundColor = itemBorderBackgroundColor
+        self.itemSelectedBackgroundColor = itemSelectedBackgroundColor
+        self.itemSelectedBorderBackgroundColor = itemSelectedBorderBackgroundColor
+        self.itemBorder = itemBorder
+        self.setDataInfo(infoMenu: optionsTitles)
     }
 }

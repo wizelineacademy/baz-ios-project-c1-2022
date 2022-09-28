@@ -12,6 +12,7 @@ class MovieFullDetailViewController: UIViewController {
     var item: MovieModel?
     
     @IBOutlet weak var movieImage: movieImageView!
+    @IBOutlet weak var genreList: CarosuelMenu!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,12 @@ class MovieFullDetailViewController: UIViewController {
         view.backgroundColor = UIColor.appColorBlack
         loadedAnimation()
         movieImage.loadImage(with: item?.posterPath ?? "")
+        genreList.backgroundColor = UIColor.clear
+        genreList.configure(optionsTitles: item?.getGenresArray() ?? [],
+                            itemBackgroundColor: UIColor.appColorYellowPrimary,
+                            itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
+                            itemSelectedBackgroundColor: UIColor.appColorYellowPrimary,
+                            itemSelectedBorderBackgroundColor: UIColor.appColorYellowPrimary)
     }
     
     func loadedAnimation() {

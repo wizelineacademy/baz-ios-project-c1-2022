@@ -47,20 +47,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xHD-cY-Xev" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="40" width="414" height="532"/>
+                                <rect key="frame" x="0.0" y="40" width="414" height="442"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="xHD-cY-Xev" secondAttribute="height" multiplier="207:266" id="UuT-3a-PNZ"/>
-                                    <constraint firstAttribute="height" constant="532" id="gTf-xQ-eGJ"/>
-                                    <constraint firstAttribute="width" constant="414" id="oIi-Q5-tMh"/>
+                                    <constraint firstAttribute="width" secondItem="xHD-cY-Xev" secondAttribute="height" multiplier="207:221" id="3KE-jW-7dX"/>
+                                    <constraint firstAttribute="width" constant="414" id="9kg-z6-VKm"/>
+                                    <constraint firstAttribute="height" constant="442" id="Fe6-ZK-TGS"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hah-VB-cU7" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="472" width="414" height="32"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="4Iy-kl-aS3"/>
+                                    <constraint firstAttribute="height" constant="32" id="5wT-mI-g2L"/>
+                                    <constraint firstAttribute="width" secondItem="hah-VB-cU7" secondAttribute="height" multiplier="207:16" id="TFx-Rz-vmF"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oIp-dA-OXL" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
                                 <rect key="frame" x="16" y="40" width="32" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="9DZ-b6-j9g"/>
-                                    <constraint firstAttribute="width" constant="32" id="cPP-Gt-uFp"/>
-                                    <constraint firstAttribute="width" secondItem="oIp-dA-OXL" secondAttribute="height" multiplier="1:1" id="wn3-Me-D1L"/>
+                                    <constraint firstAttribute="width" constant="32" id="2ev-g1-wOX"/>
+                                    <constraint firstAttribute="height" constant="32" id="RK7-wY-qrv"/>
+                                    <constraint firstAttribute="width" secondItem="oIp-dA-OXL" secondAttribute="height" multiplier="1:1" id="epx-Zc-zhg"/>
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
@@ -72,14 +81,18 @@
                         <viewLayoutGuide key="safeArea" id="goF-yh-0ow"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="xHD-cY-Xev" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="8oe-Q3-iCn"/>
-                            <constraint firstItem="xHD-cY-Xev" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" id="FmB-nk-lUN"/>
-                            <constraint firstItem="oIp-dA-OXL" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="Fna-Aw-KsO"/>
-                            <constraint firstItem="oIp-dA-OXL" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" constant="16" id="OL8-qW-Rgy"/>
-                            <constraint firstItem="xHD-cY-Xev" firstAttribute="trailing" secondItem="goF-yh-0ow" secondAttribute="trailing" id="jWd-eb-xKO"/>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" id="HOY-3K-lJk"/>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="Tk0-0z-x4v"/>
+                            <constraint firstItem="oIp-dA-OXL" firstAttribute="top" secondItem="ikA-rt-lNJ" secondAttribute="top" constant="40" id="Yfz-W5-BNp"/>
+                            <constraint firstItem="oIp-dA-OXL" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" constant="16" id="ZIR-El-XE5"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="top" secondItem="oIp-dA-OXL" secondAttribute="top" constant="432" id="asr-eN-DZL"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="leading" secondItem="goF-yh-0ow" secondAttribute="leading" id="eFE-B7-dmf"/>
+                            <constraint firstItem="hah-VB-cU7" firstAttribute="trailing" secondItem="goF-yh-0ow" secondAttribute="trailing" id="fz0-f1-ZGq"/>
+                            <constraint firstItem="xHD-cY-Xev" firstAttribute="trailing" secondItem="goF-yh-0ow" secondAttribute="trailing" id="vii-oj-sfc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="genreList" destination="hah-VB-cU7" id="43j-G4-eMx"/>
                         <outlet property="movieImage" destination="xHD-cY-Xev" id="nqX-Qf-jzu"/>
                     </connections>
                 </viewController>
@@ -110,6 +123,9 @@
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
