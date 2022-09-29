@@ -32,47 +32,43 @@ class MovieAPI {
     }
     
     func getMoviesUpdate(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: {  lstInfo in
+            
             completion(lstInfo)
         })
     }
     func getMoviesUpdateNew(completion: @escaping (ResultParser) -> ()) {
-        self.requestUpdate(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { [weak self] lstInfo in
+        self.requestUpdate(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
 
-            guard let _ = self else { return }
             //print("Info lst: \(lstInfo)")
             completion(lstInfo)
         })
     }
      
     func getNowPlaying(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
             
             completion(lstInfo)
         })
     }
 
     func getMostPopular(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
             
             completion(lstInfo)
         })
     }
     
     func getTopRated(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
 
             completion(lstInfo)
         })
     }
     
     func getUpComing(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
+            
             completion(lstInfo)
         })
     }
@@ -105,31 +101,30 @@ class MovieAPI {
     }
     
     func getQuerySearch(strQuery: String, completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { lstInfo in
+            
             completion(lstInfo)
         })
         
     }
     
     func getReviews(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { lstInfo in
+            
             completion(lstInfo)
         })
     }
 
     func getSimilar(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { lstInfo in
             completion(lstInfo)
         })
         
     }
     
     func getRecomendations(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: { [weak self] lstInfo in
-            guard let _ = self else { return }
+        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: {  lstInfo in
+            
             completion(lstInfo)
         })
     }
