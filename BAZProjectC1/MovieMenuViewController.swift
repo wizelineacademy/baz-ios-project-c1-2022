@@ -20,13 +20,15 @@ class MovieMenuViewController: UIViewController, SelectedFilterProtocol{
     
     func addFilterToMovies(category: CategoryMovieType, language: ApiLanguageResponse) {
         self.title = "\(category.typeName) Movies"
+        self.view.endEditing(true)
         
         self.selectedCategoryPicker = category
         self.selectedLanguagePicker = language
         
-        movieApi.getMovies(categoryMovieType: category, language: language) { response in
+        movieApi.getMovies(categoryMovieType: category) { response in
             self.movies = response
             DispatchQueue.main.async {
+                self.isSearching = false
                 self.collectionMovieMenu.delegate = self
                 self.collectionMovieMenu.dataSource = self
                 self.collectionMovieMenu.reloadData()
@@ -40,6 +42,8 @@ class MovieMenuViewController: UIViewController, SelectedFilterProtocol{
     @IBOutlet weak var collectionMovieMenu: UICollectionView!
     
     var movies: [Movie] = []
+    var searchResult: [Movie] = []
+    var isSearching:Bool = false
     
     let numberOfSections = 1
     let insets: CGFloat = 8
@@ -54,12 +58,13 @@ class MovieMenuViewController: UIViewController, SelectedFilterProtocol{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.searchBar.delegate = self
         self.title = "\(selectedCategoryPicker.typeName) Movies"
-
+        
+        hideKeyboardWhenTappedAround()
         collectionMovieMenu.register(UINib(nibName: "MovieItemCollectionViewCell", bundle: Bundle(for: MovieItemCollectionViewCell.self)), forCellWithReuseIdentifier: "MovieItemCollectionViewCell")
         
-        movieApi.getMovies(categoryMovieType: .trending, language: .es) { response in
+        movieApi.getMovies(categoryMovieType: .trending) { response in
             self.movies = response
             DispatchQueue.main.async {
                 self.collectionMovieMenu.delegate = self
@@ -74,7 +79,6 @@ class MovieMenuViewController: UIViewController, SelectedFilterProtocol{
         let filterModalController = FiltersMovieModalViewController.requiredSetupUI(delegateSelectedFilter: self, initCategorySelected: selectedCategoryPicker, initLanguageSelected: selectedLanguagePicker)
         self.present(filterModalController ?? UIViewController(), animated: true, completion: nil)
     }
-    
 
 }
 
@@ -85,7 +89,7 @@ extension MovieMenuViewController: UICollectionViewDelegate, UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
+        return isSearching ? searchResult.count : movies.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -113,27 +117,89 @@ extension MovieMenuViewController: UICollectionViewDelegate, UICollectionViewDat
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieItemCollectionViewCell", for: indexPath) as? MovieItemCollectionViewCell else {
             return UICollectionViewCell()
         }
-        cell.requiredSetupUI(movie: self.movies[indexPath.row])
+        cell.requiredSetupUI(movie: self.isSearching ? self.searchResult[indexPath.row] : self.movies[indexPath.row])
         
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedMovie = self.movies[indexPath.row]
+        let selectedMovie = self.isSearching ? self.searchResult[indexPath.row] : self.movies[indexPath.row]
         self.title = ""
         self.view.addSkeletonAnimation()
-        movieApi.getMovieDetail(idMovie: selectedMovie.id, language: .es) { response in
+        movieApi.getMovieDetail(idMovie: selectedMovie.id ?? 0) { response in
             DispatchQueue.main.async {
                 self.view.removeSkeletonAnimation()
                 self.title = "\(self.selectedCategoryPicker.typeName) Movies"
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewcontroller = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
-                viewcontroller?.strTitle = response.title
-                viewcontroller?.strDetails = "\(response.original_title ?? "") | \(response.genres?.first?.name ?? "") | \(response.release_date ?? "")\(response.adult ?? false ? " | 18+": " | 18-")"
-                viewcontroller?.strOverview = response.overview == nil || response.overview == "" ? "Sin reseña" : response.overview
-                viewcontroller?.strImgMoviePath = response.poster_path
-                self.navigationController?.pushViewController(viewcontroller ?? UIViewController(), animated: true)
+                let storyboard = UIStoryboard(name: "DetailMovieStoryboard", bundle: nil)
+                let viewController = storyboard.instantiateViewController(withIdentifier: "MovieDetailViewController") as? MovieDetailViewController
+                viewController?.movieDetail = response
+                self.navigationController?.pushViewController(viewController ?? UIViewController(), animated: true)
             }
         }
+    }
+}
+
+extension MovieMenuViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.returnKeyType = .search
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.isEmpty{
+            isSearching = false
+            searchResult.removeAll()
+            DispatchQueue.main.async {
+                self.title = "\(self.selectedCategoryPicker.typeName) Movies"
+                self.collectionMovieMenu.isUserInteractionEnabled = true
+                self.collectionMovieMenu.reloadData()
+            }
+        }
+    }
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        var searchMovie = searchBar.text ?? ""
+        searchMovie = searchMovie.folding(options: .diacriticInsensitive,
+                                          locale: Locale.current).trimmingCharacters(in: .whitespaces)
+        
+        if  !searchMovie.isEmpty {
+            self.view.endEditing(true)
+            self.movieApi.searchMovie(searchTerm: searchMovie) { response in
+                self.isSearching = true
+                DispatchQueue.main.async { self.title = searchMovie }
+                if response.count > 0 {
+                    self.searchResult = response
+                    DispatchQueue.main.async {
+                        self.collectionMovieMenu.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
+                        self.collectionMovieMenu.reloadData()
+                    }
+                }else{
+                    DispatchQueue.main.async {
+                        let alert = UIAlertController(title: "Sin Resultados", message: "La búsqueda realizada no encontro ninguna coincidencia.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Aceptar", style: .cancel, handler: { UIAlertAction in
+                            self.searchBar.text = ""
+                        }))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }else{
+            isSearching = false
+            searchResult.removeAll()
+            DispatchQueue.main.async {
+                self.collectionMovieMenu.isUserInteractionEnabled = true
+                self.collectionMovieMenu.reloadData()
+            }
+        }
+    }
+}
+
+extension UIViewController{
+    public func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self,
+                                                                 action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    @objc public func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -32,15 +32,15 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Calificación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bws-5o-rRF">
-                                <rect key="frame" x="8" y="179.5" width="145" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Titulo original" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bws-5o-rRF">
+                                <rect key="frame" x="8" y="184" width="145" height="14"/>
                                 <fontDescription key="fontDescription" name="Poppins-Bold" family="Poppins" pointSize="12"/>
                                 <color key="textColor" red="0.91764705879999997" green="0.20000000000000001" blue="0.72549019609999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqR-wn-c23">
-                                <rect key="frame" x="8" y="160" width="145" height="19.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                <rect key="frame" x="8" y="160" width="145" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                 <color key="textColor" red="0.1333333333" green="0.18039215689999999" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,6 +49,7 @@
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ZfA-Lx-Emy" secondAttribute="trailing" constant="9" id="EUJ-d7-XPk"/>
+                            <constraint firstAttribute="bottom" secondItem="bws-5o-rRF" secondAttribute="bottom" constant="8" id="Rjq-pL-AL0"/>
                             <constraint firstItem="ZfA-Lx-Emy" firstAttribute="top" secondItem="S3W-RB-6ZJ" secondAttribute="top" constant="8" id="U1O-UE-nJ5"/>
                             <constraint firstItem="bws-5o-rRF" firstAttribute="leading" secondItem="S3W-RB-6ZJ" secondAttribute="leading" constant="8" id="XPW-nW-VG9"/>
                             <constraint firstItem="zqR-wn-c23" firstAttribute="top" secondItem="ZfA-Lx-Emy" secondAttribute="bottom" constant="8" symbolic="YES" id="bbr-fN-JzA"/>
