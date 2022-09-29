@@ -45,4 +45,7 @@ struct MovieUpdate : Decodable {
     var adult: Bool?
     var backdropPath: String?
     var genreIds: [Int]?
+    var imageDetail: String {
+        "\(tmdbImageStringURLPrefix)\(self.posterPath ?? "")"
+    }
 }

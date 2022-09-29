@@ -19,4 +19,8 @@ class MovieCell: UICollectionViewCell {
         lblTitle.text = movie.title
         imgDetail.loadFrom(strUrl: movie.imageDetail)
     }
+    func configureCellUpdate(with movie: MovieUpdate) {
+        lblTitle.text = movie.title
+        imgDetail.loadFrom(strUrl: movie.imageDetail)
+    }
 }

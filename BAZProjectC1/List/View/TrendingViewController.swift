@@ -9,7 +9,7 @@ import UIKit
 let tmdbImageStringURLPrefix = "https://image.tmdb.org/t/p/w500"
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
+    var movies: [MovieUpdate] = []
     let movieApi = MovieAPI()
 
     override func viewDidLoad() {

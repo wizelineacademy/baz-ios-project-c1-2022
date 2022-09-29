@@ -11,7 +11,7 @@ import UIKit
 class DetailViewController : UIViewController {
     
     @IBOutlet weak var imgDetail: UIImageView!
-    var objMov: Movie? = nil
+    var objMov: MovieUpdate? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()

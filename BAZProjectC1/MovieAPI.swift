@@ -31,42 +31,42 @@ class MovieAPI {
         return movies
     }
     
-    func getMoviesUpdate(completion: @escaping ([Movie]) -> ()) {
+    func getMoviesUpdate(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: {  lstInfo in
             
             completion(lstInfo)
         })
     }
-    func getMoviesUpdateNew(completion: @escaping (ResultParser) -> ()) {
-        self.requestUpdate(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
+    func getMoviesUpdateNew(completion: @escaping ([MovieUpdate]) -> ()) {
+        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
 
             //print("Info lst: \(lstInfo)")
             completion(lstInfo)
         })
     }
      
-    func getNowPlaying(completion: @escaping ([Movie]) -> ()) {
+    func getNowPlaying(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
             
             completion(lstInfo)
         })
     }
 
-    func getMostPopular(completion: @escaping ([Movie]) -> ()) {
+    func getMostPopular(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
             
             completion(lstInfo)
         })
     }
     
-    func getTopRated(completion: @escaping ([Movie]) -> ()) {
+    func getTopRated(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
 
             completion(lstInfo)
         })
     }
     
-    func getUpComing(completion: @escaping ([Movie]) -> ()) {
+    func getUpComing(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
             
             completion(lstInfo)
@@ -100,7 +100,7 @@ class MovieAPI {
         }.resume()
     }
     
-    func getQuerySearch(strQuery: String, completion: @escaping ([Movie]) -> ()) {
+    func getQuerySearch(strQuery: String, completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { lstInfo in
             
             completion(lstInfo)
@@ -108,27 +108,28 @@ class MovieAPI {
         
     }
     
-    func getReviews(completion: @escaping ([Movie]) -> ()) {
+    func getReviews(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { lstInfo in
             
             completion(lstInfo)
         })
     }
 
-    func getSimilar(completion: @escaping ([Movie]) -> ()) {
+    func getSimilar(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { lstInfo in
             completion(lstInfo)
         })
         
     }
     
-    func getRecomendations(completion: @escaping ([Movie]) -> ()) {
+    func getRecomendations(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: {  lstInfo in
             
             completion(lstInfo)
         })
     }
     
+    /*
     //MARK: Serializacion
     func serializationJson(jsonDic: Any) -> [Movie] {
         var lstMovies = [Movie]()
@@ -139,8 +140,6 @@ class MovieAPI {
         }
         return lstMovies
     }
-    
-   
     
     //MARK: Request
     func request(strUrlPath: String, completion: @escaping ([Movie]) -> ()) {
@@ -163,6 +162,7 @@ class MovieAPI {
             }
         }.resume()
     }
+    */
     
     // MARK: New Serializacion
     func serializationNewJSON(objData: Data) -> ResultParser {
@@ -173,7 +173,7 @@ class MovieAPI {
     }
     
     //MARK: Request
-    func requestUpdate(strUrlPath: String, completion: @escaping (ResultParser) -> ()) {
+    func request(strUrlPath: String, completion: @escaping ([MovieUpdate]) -> ()) {
         guard let url = URL(string: strUrlPath) else {
             return
         }
@@ -182,7 +182,7 @@ class MovieAPI {
         session.dataTask(with: url) { (data, response, error) in
             if let data = data {
                 let obj = self.serializationNewJSON(objData: data)
-                completion(obj)
+                completion(obj.results ?? [MovieUpdate]())
             }
         }.resume()
     }
