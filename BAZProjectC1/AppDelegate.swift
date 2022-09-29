@@ -10,9 +10,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
+    @objc private func didLanguageResponseChange(_ notification: Notification) {
+        if let info = notification.userInfo as? [String: ApiLanguageResponse],
+           let languageResponse = info["languageResponse"],
+           let encoded = try? JSONEncoder().encode(languageResponse){
+            UserDefaults.standard.set(encoded, forKey: "SelectedLanguageResponse")
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        NotificationCenter.default.addObserver(self, selector: #selector(didLanguageResponseChange(_:)), name: NSNotification.Name("didLanguageResponseChange"), object: nil)
         return true
     }
 
@@ -28,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the user discards a scene session.
         // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
         // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("didLanguageResponseChange"), object: nil)
     }
 
 

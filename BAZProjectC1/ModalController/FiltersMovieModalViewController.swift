@@ -32,12 +32,13 @@ class FiltersMovieModalViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        hideKeyboardWhenTappedAround()
         self.btnAgree.setTitle(strPrincipalAction, for: .normal)
-        self.btnCancel.setTitle(strSecundaryAction, for: .normal)
         self.setupUIPickers()
         if bHideSecundaryButton{
             self.btnCancel.isHidden = bHideSecundaryButton
+            self.btnCancel.setTitle(strSecundaryAction, for: .normal)
         }
         
     }
@@ -100,6 +101,7 @@ class FiltersMovieModalViewController: UIViewController{
     @IBAction func agreeModalAction(_ sender: Any) {
         dismissFiltersMovieModalViewController()
         delegateSelectedFilter?.addFilterToMovies(category: selectedCategoryPicker ?? .trending, language: selectedLanguagePicker ?? .es)
+        NotificationCenter.default.post(name: NSNotification.Name("didLanguageResponseChange"), object: nil, userInfo: ["languageResponse":selectedLanguagePicker ?? .es])
     }
     @IBAction func cancelModalAction(_ sender: Any) {
         dismissFiltersMovieModalViewController()
