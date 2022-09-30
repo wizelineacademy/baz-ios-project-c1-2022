@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0040940B28E65526004EEAA4 /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0040940A28E65526004EEAA4 /* MovieDetailsViewController.swift */; };
 		0047310928E34B5F009CE48F /* UIImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0047310828E34B5F009CE48F /* UIImageExtension.swift */; };
 		008BFB8428DCC3DC00F8688C /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008BFB8228DCC3DC00F8688C /* MovieDetailViewController.swift */; };
 		008BFB8528DCC3DC00F8688C /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 008BFB8328DCC3DC00F8688C /* MovieDetailViewController.xib */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0040940A28E65526004EEAA4 /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		0047310828E34B5F009CE48F /* UIImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageExtension.swift; sourceTree = "<group>"; };
 		008BFB8228DCC3DC00F8688C /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		008BFB8328DCC3DC00F8688C /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				008BFB8228DCC3DC00F8688C /* MovieDetailViewController.swift */,
 				008BFB8328DCC3DC00F8688C /* MovieDetailViewController.xib */,
+				0040940A28E65526004EEAA4 /* MovieDetailsViewController.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				00FAA8AB28D398160080780D /* APIURLHandler.swift in Sources */,
 				008BFB9828DCCB0A00F8688C /* MovieMainListCollectionViewCell.swift in Sources */,
+				0040940B28E65526004EEAA4 /* MovieDetailsViewController.swift in Sources */,
 				008BFB8428DCC3DC00F8688C /* MovieDetailViewController.swift in Sources */,
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				C30893E328A425E1004B1860 /* Movie.swift in Sources */,
