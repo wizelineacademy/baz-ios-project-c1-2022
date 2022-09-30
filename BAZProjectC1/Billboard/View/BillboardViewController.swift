@@ -23,7 +23,7 @@ class BillboardViewController : UIViewController {
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         clvListMovies.delegate = self
-        clvListMovies.dataSource = self
+        clvListMovies.dataSource = self 
         clvListMovies.register(UINib(nibName: "MovieCell",bundle: nil), forCellWithReuseIdentifier: "MovieCell")
     }
     
@@ -37,7 +37,7 @@ class BillboardViewController : UIViewController {
     }
 }
 
-extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return lstMovies.count
@@ -48,5 +48,14 @@ extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDa
         myCell?.configureCellUpdate(with: lstMovies[indexPath.row])
         return myCell ?? UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+                let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+                let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
+                return CGSize(width: size, height: size)
+    }
+    
     
 }

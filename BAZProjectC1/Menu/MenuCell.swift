@@ -29,17 +29,17 @@ class MenuCell: UITableViewCell {
     
     func configureCellMenu(with rowMenu: MenuRow) {
         lblTitle.text = rowMenu.title
-        lblTitle.font = UIFont(name: "Marker Felt", size: 16)
+        lblTitle.loadConfigurationFont(with: true)
         lblDetail.text = rowMenu.detail
-        lblDetail.font = UIFont(name: "Marker Felt", size: 14)
+        lblDetail.loadConfigurationFont(with: false)
         imgDetail.image = UIImage.init(named: rowMenu.image)
     }
     
     func configureCellWithUrl(movieInfo: MovieUpdate) {
         lblTitle.text = movieInfo.title
-        lblTitle.font = UIFont(name: "Marker Felt", size: 16)
+        lblTitle.loadConfigurationFont(with: true)
         lblDetail.text = movieInfo.overview
-        lblDetail.font = UIFont(name: "Marker Felt", size: 14)
+        lblDetail.loadConfigurationFont(with: false)
         imgDetail.loadFrom(strUrl: "\(movieInfo.imageDetail)")
     }
     

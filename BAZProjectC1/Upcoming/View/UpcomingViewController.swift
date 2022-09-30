@@ -1,21 +1,30 @@
 //
-//  MenuViewController.swift
+//  UpcomingViewController.swift
 //  BAZProjectC1
 //
-//  Created by efloresco on 20/09/22.
+//  Created by efloresco on 30/09/22.
 //
 
 import Foundation
 import UIKit
 
-class MenuViewController : UIViewController {
+class UpcomingViewController : UIViewController {
     
     @IBOutlet weak var tblMenu: UITableView!
-    var lstOptions = [MenuRow(title: "Mas popular", detail: "Aquí encontrarás las peliculas más populares", image: "mostPopular"), MenuRow(title: "Listado Peliculas", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list"), MenuRow(title: "Proximamente", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list")]
+    var lstOptions = [MovieUpdate]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureViewController()
+        let obj = MovieAPI()
+        obj.getUpComing(completion: { lst in
+            print("Info \(lst)")
+            self.lstOptions = lst
+            
+            DispatchQueue.main.async {
+            self.tblMenu.reloadData()
+            }
+        })
     }
     
     func configureViewController() {
@@ -26,7 +35,7 @@ class MenuViewController : UIViewController {
     
 }
 
-extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
+extension UpcomingViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
        return lstOptions.count
@@ -36,17 +45,13 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as? MenuCell else {
             return UITableViewCell()
         }
-        cell.configureCellMenu(with: lstOptions[indexPath.row])
+        cell.configureCellWithUrl(movieInfo: lstOptions[indexPath.row])
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigateToDetailViewController(with: indexPath.row)
-//        let obj = MovieAPI()
-//        obj.getUpComing(completion: { lst in
-//            print("Info \(lst)")
-//
-//        })
+       // self.navigateToDetailViewController(with: indexPath.row)
+       
     }
     
     func navigateToDetailViewController(with index: Int) {

@@ -17,10 +17,12 @@ class MovieCell: UICollectionViewCell {
     
     func configureCell(with movie: Movie) {
         lblTitle.text = movie.title
+        lblTitle.loadConfigurationFont(with: true)
         imgDetail.loadFrom(strUrl: movie.imageDetail)
     }
     func configureCellUpdate(with movie: MovieUpdate) {
         lblTitle.text = movie.title
+        lblTitle.loadConfigurationFont(with: false)
         imgDetail.loadFrom(strUrl: movie.imageDetail)
     }
 }
