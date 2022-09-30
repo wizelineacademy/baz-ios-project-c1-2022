@@ -23,6 +23,7 @@ class PopularDetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         self.setUpLeftMenu()
         self.setPopular()
+        self.setGradientOnImage()
     }
     
     private func setUpLeftMenu() {
@@ -33,6 +34,16 @@ class PopularDetailViewController: UIViewController {
     
     @objc private func popView(){
         navigationController?.popViewController(animated: true)
+    }
+    
+    private func setGradientOnImage(){
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: imgPlMovie.frame.width,
+                                height: imgPlMovie.frame.height)
+        let startColor = UIColor.clear.cgColor
+        let endColor = UIColor.black.cgColor
+        gradient.colors = [startColor, endColor]
+        imgPlMovie.layer.insertSublayer(gradient, at: 0)
     }
     
     private func setPopular(){

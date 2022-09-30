@@ -11,9 +11,7 @@ final class ElementCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSeeMore: UILabel!
     
-    
     //MARK: -  V A R I A B L E S
-    private var movie: Movie?
     private var downloadTask: URLSessionDownloadTask?
     
     
@@ -21,13 +19,21 @@ final class ElementCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+
+    override func prepareForReuse(){
+        super.prepareForReuse()
+        downloadTask?.cancel()
+        downloadTask = nil
+    }
     
     /// Con esta funcion buscamos que la celda de la collecion pueda descargar e imprimir una imagen es Internet.
-    internal func setCell(with: Movie?) {
-        guard movie != nil else { return }
-        self.lblTitle.text = self.movie?.title
-        if let urlPoster = movie?.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
-            downloadTask = imgPoster.loadImage(url: url)
+    internal func setCell(with movie:Popular?) {
+        if let movie = movie {
+            if let urlPoster = movie.posterPath , let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+                downloadTask = imgPoster.loadImage(url: url)
+            }
+            self.lblTitle.text = movie.title
+
         }
 
     }

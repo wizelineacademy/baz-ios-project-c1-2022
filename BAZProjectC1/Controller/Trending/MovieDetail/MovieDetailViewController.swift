@@ -11,7 +11,7 @@ final class MovieDetailViewController: UIViewController {
     @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblVote: UILabel!
     @IBOutlet weak var lblYear: UILabel!
-
+    
     var index: Int?
     var objMovie: MovieAPIResponse?
     
@@ -20,6 +20,7 @@ final class MovieDetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .white
         self.setUpLeftMenu()
         self.setInfoTrending()
+        self.setGradientOnImage()
     }
     
     private func setUpLeftMenu() {
@@ -28,10 +29,21 @@ final class MovieDetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = menuBarButton
     }
     
+    
+    
     @objc private func popView(){
         navigationController?.popViewController(animated: true)
     }
-
+    
+    private func setGradientOnImage(){
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: imgMovie.frame.width, height: imgMovie.frame.height)
+        let startColor = UIColor.clear.cgColor
+        let endColor = UIColor.black.cgColor
+        gradient.colors = [startColor, endColor]
+        imgMovie.layer.insertSublayer(gradient, at: 0)
+    }
+    
     private func setInfoTrending(){
         guard let index = index else { return }
         let dVote: Double = objMovie?.movies?[index].voteAverage ?? 0.0

@@ -26,6 +26,9 @@ final class CustomTabBarController: UITabBarController {
     /// Esta funcion nos permite asignar las vistas que va a mostrar el tapBar, con la funcion createNavController
     func setUpViewControllers(){
         viewControllers = [
+            createNavController(for:SearchViewController(),
+                                   title:NSLocalizedString("Home", comment: ""),
+                                   image:UIImage(systemName: "house") ?? UIImage()),
             createNavController(for:TrendingViewController(),
                                    title:NSLocalizedString("Trending", comment: ""),
                                    image:UIImage(systemName: "sparkles.tv") ?? UIImage()),

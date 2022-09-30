@@ -46,6 +46,10 @@
 		5476D11928DE29DC005274D2 /* UpcomingDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5476D11728DE29DC005274D2 /* UpcomingDetailViewController.xib */; };
 		5476D11D28DE3347005274D2 /* ElementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */; };
 		5476D11E28DE3347005274D2 /* ElementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */; };
+		54DA08B428E4F70000BBDB2B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA08B228E4F70000BBDB2B /* SearchViewController.swift */; };
+		54DA08B528E4F70000BBDB2B /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA08B328E4F70000BBDB2B /* SearchViewController.xib */; };
+		54DA08BD28E4F83900BBDB2B /* SeachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DA08BB28E4F83900BBDB2B /* SeachTableViewCell.swift */; };
+		54DA08BE28E4F83900BBDB2B /* SeachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54DA08BC28E4F83900BBDB2B /* SeachTableViewCell.xib */; };
 		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
 		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
 		54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467E28D92291006AF344 /* BAZPExtension.swift */; };
@@ -101,6 +105,10 @@
 		5476D11728DE29DC005274D2 /* UpcomingDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingDetailViewController.xib; sourceTree = "<group>"; };
 		5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementCollectionViewCell.swift; sourceTree = "<group>"; };
 		5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementCollectionViewCell.xib; sourceTree = "<group>"; };
+		54DA08B228E4F70000BBDB2B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		54DA08B328E4F70000BBDB2B /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		54DA08BB28E4F83900BBDB2B /* SeachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeachTableViewCell.swift; sourceTree = "<group>"; };
+		54DA08BC28E4F83900BBDB2B /* SeachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SeachTableViewCell.xib; sourceTree = "<group>"; };
 		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		54F2467E28D92291006AF344 /* BAZPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZPExtension.swift; sourceTree = "<group>"; };
@@ -289,6 +297,7 @@
 		545AACE828D3A58D00DFD9DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				54DA08B128E4F6CF00BBDB2B /* Search */,
 				54350FE728DCAF5F00B30422 /* Upcoming */,
 				54350FD328DC1F5800B30422 /* TopRated */,
 				54350FBF28DBF66F00B30422 /* Popular */,
@@ -367,9 +376,28 @@
 			path = CollecionCell;
 			sourceTree = "<group>";
 		};
+		54DA08B128E4F6CF00BBDB2B /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				54DA08B228E4F70000BBDB2B /* SearchViewController.swift */,
+				54DA08B328E4F70000BBDB2B /* SearchViewController.xib */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		54DA08B628E4F7EC00BBDB2B /* SearchCell */ = {
+			isa = PBXGroup;
+			children = (
+				54DA08BB28E4F83900BBDB2B /* SeachTableViewCell.swift */,
+				54DA08BC28E4F83900BBDB2B /* SeachTableViewCell.xib */,
+			);
+			path = SearchCell;
+			sourceTree = "<group>";
+		};
 		54F2467828D917D4006AF344 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				54DA08B628E4F7EC00BBDB2B /* SearchCell */,
 				54350FE228DCA99700B30422 /* UpcomingCell */,
 				54350FD828DC21C700B30422 /* TopRatedCell */,
 				54350FC428DBF82800B30422 /* PopularCell */,
@@ -479,6 +507,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54DA08BE28E4F83900BBDB2B /* SeachTableViewCell.xib in Resources */,
 				54350FA328DB520A00B30422 /* MovieDetailViewController.xib in Resources */,
 				5476D10D28DE294A005274D2 /* NowPlayingDetailViewController.xib in Resources */,
 				54350FD728DC1F7200B30422 /* TopRatedViewController.xib in Resources */,
@@ -499,6 +528,7 @@
 				54350FEB28DCAF8000B30422 /* UpcomingViewController.xib in Resources */,
 				54350FDC28DC21E000B30422 /* TopRatedTableViewCell.xib in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
+				54DA08B528E4F70000BBDB2B /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,6 +551,7 @@
 				54350FDF28DCA60A00B30422 /* UpcomingAPIResponse.swift in Sources */,
 				5476D11828DE29DC005274D2 /* UpcomingDetailViewController.swift in Sources */,
 				5476D11D28DE3347005274D2 /* ElementCollectionViewCell.swift in Sources */,
+				54DA08B428E4F70000BBDB2B /* SearchViewController.swift in Sources */,
 				5476D11028DE296C005274D2 /* PopularDetailViewController.swift in Sources */,
 				54350FB028DBC61800B30422 /* NowPlay.swift in Sources */,
 				54350FD028DC1DE700B30422 /* TopRatedAPIResponse.swift in Sources */,
@@ -540,6 +571,7 @@
 				5476D11428DE29CB005274D2 /* TopRatedDetailViewController.swift in Sources */,
 				54350FCD28DC047000B30422 /* Popular.swift in Sources */,
 				54350FCB28DC042C00B30422 /* PopularAPIResponse.swift in Sources */,
+				54DA08BD28E4F83900BBDB2B /* SeachTableViewCell.swift in Sources */,
 				54350FD228DC1E4900B30422 /* TopRated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
