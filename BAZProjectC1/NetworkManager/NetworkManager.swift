@@ -61,12 +61,20 @@ struct NetworkManager {
      - Parameters:
         - completion: Closure define in typealias
      */
-    public func fetchMovieData(completion: MovieCompletionClosure?) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/popular?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
+    public func fetchMovieTrending(completion: MovieCompletionClosure?) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
         executeRequest(request: request, completion: completion)
     }
+    public func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
 }
 
