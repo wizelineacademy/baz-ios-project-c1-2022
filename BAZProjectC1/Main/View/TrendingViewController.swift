@@ -21,14 +21,17 @@ final class TrendingViewController: UITableViewController {
     }
     
     func setupView(){
+        navigationItem.title = "Discover"
         self.tableView.register(UINib.init(nibName: "TableViewCell", bundle: Bundle(for: TableViewCell.self)), forCellReuseIdentifier: "cell")
     }
     
     func getMovies(){
+        self.view.showAnimation()
         viewModel.getMovies()
         viewModel.refreshData = { [weak self] () in
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
+                self?.view.hideAnimation()
             }
         }
     }

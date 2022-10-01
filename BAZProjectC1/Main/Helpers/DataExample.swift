@@ -21,7 +21,7 @@ struct MovieModel {
                         ]
                      ]
         )
-        ,
+        /*,
         TableViewMovieCellModel(
             sectionFilter: "Now Playing"
             ,posters: [
@@ -65,7 +65,7 @@ struct MovieModel {
                             ,PosterCollectionCell(posterImage: "img4.jpg", title: "Ghost")
                         ]
                      ]
-        )
+        )*/
     
     ]
 }

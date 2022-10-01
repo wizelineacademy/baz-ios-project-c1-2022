@@ -9,17 +9,111 @@ import UIKit
 import Foundation
 
 class MoviesViewController: UIViewController {
+
+    
     var postersMovieArray = MovieModel()
     var tappedCell: PosterCollectionCell!
     @IBOutlet weak var TableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
     
     func setupView(){
+        navigationItem.title = "Home"
         self.TableView.register(UINib.init(nibName: "TableViewCell", bundle: Bundle(for: TableViewCell.self)), forCellReuseIdentifier: "cell")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        ejemplo()
+    }
+    
+    func ejemplo(){
+        
+//        for api in EndPoint.allCases {
+//            switch api {
+//            case .trendingMovie:
+//                print ("Es trending")
+//            case .nowPlaying:
+//                print ("Es now")
+//            case .popular:
+//                print ("Es popular")
+//            case .topRated:
+//                print ("Es rated")
+//            case .upComming:
+//                print ("Es up")
+//            }
+//        }
+        
+        
+        self.view.showAnimation()
+        let groupEndPoint = DispatchGroup()
+        EndPoint.allCases.forEach { endpoint in
+            groupEndPoint.enter()
+            
+            moviesRequest(requestUrl: endpoint.requestFrom) { data, error in
+                print("API \(endpoint.requestFrom) TERMINADO!!")
+             
+                
+                do{
+                    guard let data = data else {
+                        return
+                    }
+                    
+                    
+                    
+                    let result = try JSONDecoder().decode(Results.self, from: data)
+//                    completion(result.results)
+                    
+                    print(result)
+                } catch {
+                    debugPrint("The following error occurred: \(error.localizedDescription)")
+                }
+                
+                
+                
+                
+                groupEndPoint.leave()
+                
+            }
+        }
+        
+        groupEndPoint.notify(queue:.main) {
+            print("Endpoints completed")
+            self.view.hideAnimation()
+        }
+        /*
+        let baseUrl = "https://jsonplaceholder.typicode.com/"
+        let endpoints = ["posts", "comments", "albums", "photos", "todos", "users"]
+
+         
+         let data = try! JSONDecoder().decode(ApiResponse.self, from: rawApiResponse.data(using: .utf8)!)
+         
+         
+         
+         
+        self.view.showAnimation()
+        let group = DispatchGroup()
+        endpoints.forEach { endpoint in
+            group.enter()
+            performNetworkRequest(url: baseUrl + endpoint) { data, error in
+                print("TAREA \(endpoint) TERMINADA..")
+//                print("Error:- \(error)")
+                group.leave()
+            }
+        }
+
+        // notify the main thread when all task are completed
+        group.notify(queue: .main) {
+            print("SE COMPLETARON TODOS LAS PETICIONES")
+            self.view.hideAnimation()
+        }
+        
+        */
+        
+        
     }
     
 }
@@ -73,11 +167,19 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MoviesViewController: CollectionViewCellDelegate {
+
+    
     func collectionView(collectionviewcell: CollectionViewCell?, index: Int, didTappedInTableViewCell: TableViewCell) {
         if let posterRow = didTappedInTableViewCell.rowWithPosters {
-            debugPrint(posterRow[index])
+            
             self.tappedCell = posterRow[index]
-            // TODO: - Send to other screen
+            
+            let vc = DetailMovieViewController(nibName: "DetailMovieViewController", bundle: nil)
+            vc.detailMovie = self.tappedCell
+            
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
+
         }
     }
 }
