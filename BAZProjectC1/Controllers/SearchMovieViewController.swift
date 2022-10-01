@@ -24,6 +24,11 @@ class SearchMovieViewController: UIViewController {
         searchTextField.addTarget(self, action: #selector(searchMovieByKeyword), for: .editingChanged)
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let detailMovieScreen: DetailMovieViewController = segue.destination as! DetailMovieViewController
+        detailMovieScreen.movie = sender as? Movie
+    }
+
     private func setUpInitialView() {
         let paddingView = UIView(frame: CGRect(x: 0.00, y: 0.00, width: 15.00, height: 48.00))
         searchTextField.leftView = paddingView
@@ -38,7 +43,7 @@ class SearchMovieViewController: UIViewController {
             guard let objectResponse = objectResponse,
                   let movies = objectResponse.results else { return }
             self?.movies = movies
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.async {
                 self?.movieTableView.reloadData()
             }
         }
@@ -90,4 +95,7 @@ extension SearchMovieViewController: UITableViewDataSource {
 // MARK: TableView's Delegate
 extension SearchMovieViewController: UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "goDetailMovie", sender: movies[indexPath.row])
+    }
 }

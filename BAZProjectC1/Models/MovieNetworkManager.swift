@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieNetworkManager {
 
-    // MARK: Operating variables -
+    // MARK: Class properties -
     static let shared: MovieNetworkManager = MovieNetworkManager()
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let baseUrl: String = "https://api.themoviedb.org/3/"
@@ -21,6 +21,7 @@ final class MovieNetworkManager {
     ///   - genre: type of genre
     ///   - completionHandler: action when the consume to service finished
     func fetchMovies(genre: String, completionHandler: @escaping ((MovieData?, Error?) -> Void)) {
+        // TODO: agregar aquí la línea de código que le da formato a genre seria bueno agregarlo en una extension de String
         var currentUrl: String?
         if genre == "trending" {
             currentUrl = "\(baseUrl)\(genre)/movie/day?api_key=\(apiKey)"
@@ -36,8 +37,8 @@ final class MovieNetworkManager {
 
     /// This function performs the search for movies by keyword or by movie
     /// - Parameters:
-    ///   - isKeyword: indicates if the search is done by keyboard or movie
-    ///   - search: the movie o keyboard what the service fetch
+    ///   - isKeyword: indicates if the search is done by keyword or movie
+    ///   - search: the movie o keyword what the service fetch
     ///   - completionHanlder: action when the service response and return a model of the response
     func fetchMovieByPhrase(isKeyword: Bool, search: String, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
         let formatUrlSearch = search.replacingOccurrences(of: " ", with: "%20")

@@ -8,6 +8,7 @@ import UIKit
 
 class HomeMovieViewController: UIViewController {
 
+    // MARK: Class properties -
     @IBOutlet weak var filterSectionCollection: UICollectionView!
     @IBOutlet weak var movieTableView: UITableView!
 
@@ -23,7 +24,7 @@ class HomeMovieViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
