@@ -6,10 +6,12 @@
 
 import Foundation
 
+// MARK: - MovieDay
 struct MovieDay: Codable {
     let results: [Movie]
 }
 
+// MARK: - Movie
 struct Movie: Codable{
     let id: Int?
     let media_type: String?
@@ -19,6 +21,7 @@ struct Movie: Codable{
     let original_title: String?
 }
 
+// MARK: - CategoryMovieType
 public enum CategoryMovieType:String {
     case trending
     case nowPlaying
@@ -57,6 +60,7 @@ public enum CategoryMovieType:String {
     }
 }
 
+// MARK: - ApiLanguageResponse
 public enum ApiLanguageResponse:String, Codable{
     
     case es

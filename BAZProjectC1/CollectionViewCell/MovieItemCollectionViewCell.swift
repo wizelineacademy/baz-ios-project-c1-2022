@@ -9,19 +9,21 @@ import UIKit
 
 class MovieItemCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var cardView: UIView!
-    @IBOutlet weak var cardImageView: CachedImageView!
-    @IBOutlet weak var titleLbl: UILabel!
-    @IBOutlet weak var subTitleLbl: UILabel!
+    @IBOutlet private weak var cardView: UIView!
+    @IBOutlet private weak var cardImageView: UIImageView!
+    @IBOutlet private weak var titleLbl: UILabel!
+    @IBOutlet private weak var subTitleLbl: UILabel!
     
     private var movie: Movie?
     private let urlBase = "https://image.tmdb.org/t/p/w500"
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    internal func requiredSetupUI(movie: Movie?) {
+    /**
+     Function that assigns value to the visual elements of the CollectionViewCell from an object of type Movie.
+     
+     - Parameters:
+       - movie: Object of type Movie that contains the necessary parameters to show in the view.
+     */
+    func requiredSetupUI(movie: Movie?) {
         guard movie != nil else {
             print("Error: Movie vacio")
             return
