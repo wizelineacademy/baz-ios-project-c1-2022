@@ -10,16 +10,16 @@ import Foundation
 
 class FiltersMovieModalViewController: UIViewController{
 
-    @IBOutlet weak var btnCloseModal: UIButton!
-    @IBOutlet weak var txtFilterCategory: UITextField!
-    @IBOutlet weak var txtLanguage: UITextField!
-    @IBOutlet weak var btnAgree: UIButton!
-    @IBOutlet weak var btnCancel: UIButton!
+    @IBOutlet weak private var btnCloseModal: UIButton!
+    @IBOutlet weak private var txtFilterCategory: UITextField!
+    @IBOutlet weak private var txtLanguage: UITextField!
+    @IBOutlet weak private var btnAgree: UIButton!
+    @IBOutlet weak private var btnCancel: UIButton!
     
     private var strPrincipalAction: String?
     private var strSecundaryAction: String?
     private var bHideSecundaryButton: Bool = false
-    private var delegateSelectedFilter: SelectedFilterProtocol?
+    weak private var delegateSelectedFilter: SelectedFilterProtocol?
     
     private let filterCategoryPicker = UIPickerView()
     private let filterLanguagePicker = UIPickerView()
@@ -27,8 +27,8 @@ class FiltersMovieModalViewController: UIViewController{
     private let languagePickerData: [ApiLanguageResponse] = [.es, .de, .en, .pt]
     
     private var selectedTextFiel: UITextField?
-    private var selectedCategoryPicker: CategoryMovieType?
-    private var selectedLanguagePicker: ApiLanguageResponse?
+    private var selectedCategoryPicker: CategoryMovieType = .trending
+    private var selectedLanguagePicker: ApiLanguageResponse = .es
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,8 +63,8 @@ class FiltersMovieModalViewController: UIViewController{
         self.txtFilterCategory.delegate = self
         self.txtLanguage.delegate = self
         
-        self.txtFilterCategory.text = self.selectedCategoryPicker?.typeName
-        self.txtLanguage.text = self.selectedLanguagePicker?.fullName
+        self.txtFilterCategory.text = self.selectedCategoryPicker.typeName
+        self.txtLanguage.text = self.selectedLanguagePicker.fullName
         
         self.filterCategoryPicker.selectRow(categoryPickerData.firstIndex(where: {$0 == selectedCategoryPicker}) ?? 0, inComponent: 0, animated: true)
         self.filterLanguagePicker.selectRow(languagePickerData.firstIndex(where: {$0 == selectedLanguagePicker}) ?? 0, inComponent: 0, animated: true)
@@ -80,8 +80,8 @@ class FiltersMovieModalViewController: UIViewController{
         
         viewController.delegateSelectedFilter = delegateSelectedFilter
         viewController.bHideSecundaryButton = bHideSecundaryButton ?? false
-        viewController.selectedCategoryPicker = initCategorySelected
-        viewController.selectedLanguagePicker = initLanguageSelected
+        viewController.selectedCategoryPicker = initCategorySelected ?? .trending
+        viewController.selectedLanguagePicker = initLanguageSelected ?? .es
         viewController.strPrincipalAction = strPrincipalActionTitle
         viewController.strSecundaryAction = strSecundaryActionTitle
         
@@ -99,9 +99,9 @@ class FiltersMovieModalViewController: UIViewController{
         dismissFiltersMovieModalViewController()
     }
     @IBAction func agreeModalAction(_ sender: Any) {
+        NotificationCenter.default.post(name: NSNotification.Name("didLanguageResponseChange"), object: nil, userInfo: ["languageResponse":selectedLanguagePicker])
         dismissFiltersMovieModalViewController()
-        delegateSelectedFilter?.addFilterToMovies(category: selectedCategoryPicker ?? .trending, language: selectedLanguagePicker ?? .es)
-        NotificationCenter.default.post(name: NSNotification.Name("didLanguageResponseChange"), object: nil, userInfo: ["languageResponse":selectedLanguagePicker ?? .es])
+        delegateSelectedFilter?.addFilterToMovies(category: selectedCategoryPicker, language: selectedLanguagePicker)
     }
     @IBAction func cancelModalAction(_ sender: Any) {
         dismissFiltersMovieModalViewController()

@@ -10,13 +10,13 @@ import Foundation
 import UIKit
 
 class DetailMovieRouter: DetailMovieRouterProtocol {
-
-    class func createDetailMovieModule() -> UIViewController {
-        let navController = mainStoryboard.instantiateViewController(withIdentifier: "DetailMovieView")
-        if let view = navController.children.first as? DetailMovieView {
+    
+    // MARK: - Create Module DetailMovieModule
+    class func createDetailMovieModule(movieDetailData: MovieDetail) -> UIViewController {
+        let viewController = mainStoryboard.instantiateViewController(withIdentifier: "DetailMovieView")
+        if let view = viewController as? DetailMovieView {
             let presenter: DetailMoviePresenterProtocol & DetailMovieInteractorOutputProtocol = DetailMoviePresenter()
             let interactor: DetailMovieInteractorInputProtocol & DetailMovieRemoteDataManagerOutputProtocol = DetailMovieInteractor()
-            let localDataManager: DetailMovieLocalDataManagerInputProtocol = DetailMovieLocalDataManager()
             let remoteDataManager: DetailMovieRemoteDataManagerInputProtocol = DetailMovieRemoteDataManager()
             let router: DetailMovieRouterProtocol = DetailMovieRouter()
             
@@ -24,18 +24,32 @@ class DetailMovieRouter: DetailMovieRouterProtocol {
             presenter.view = view
             presenter.router = router
             presenter.interactor = interactor
+            presenter.movieDetailData = movieDetailData
             interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
             interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor
             
-            return navController
+            return viewController
         }
         return UIViewController()
     }
     
+    // MARK: - Properties
     static var mainStoryboard: UIStoryboard {
-        return UIStoryboard(name: "DetailMovieView", bundle: Bundle.main)
+        return UIStoryboard(name: "DetailMovieStoryboard", bundle: nil)
     }
+    
+    /**
+     Function that calls the movie detail view to show next.
+     */
+    func goToMovieDetail(movieDetailData: MovieDetail, view: DetailMovieViewProtocol) {
+        if let newView = view as? UIViewController {
+            DispatchQueue.main.async {
+                let movieDatail = DetailMovieRouter.createDetailMovieModule(movieDetailData: movieDetailData)
+                newView.navigationController?.pushViewController(movieDatail, animated: true)
+            }
+        }
+    }
+    
     
 }

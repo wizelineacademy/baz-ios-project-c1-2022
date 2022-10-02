@@ -9,16 +9,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Movie Menu View Controller-->
+        <!-- -->
         <scene sceneID="Ee8-bb-1vF">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="sOC-mP-SNW" customClass="MovieMenuViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title=" " modalPresentationStyle="fullScreen" id="sOC-mP-SNW" customClass="MenuMoviesView" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MhF-3q-AFz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mme-qM-bJq">
-                                <rect key="frame" x="284" y="56" width="20" height="20"/>
+                                <rect key="frame" x="284" y="56.5" width="20" height="19"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" backgroundImage="line.horizontal.3.decrease.circle" catalog="system"/>
                                 <connections>
@@ -74,7 +74,7 @@
         <!--Navigation Controller-->
         <scene sceneID="cOp-UG-K5S">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="doE-mg-wLd" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MenuMoviesView" automaticallyAdjustsScrollViewInsets="NO" id="doE-mg-wLd" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="jqc-YU-rlz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

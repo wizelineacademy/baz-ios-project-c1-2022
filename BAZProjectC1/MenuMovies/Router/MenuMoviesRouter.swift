@@ -11,12 +11,13 @@ import UIKit
 
 class MenuMoviesRouter: MenuMoviesRouterProtocol {
 
+    // MARK: - Create Module MenuMovies
+    
     class func createMenuMoviesModule() -> UIViewController {
         let navController = mainStoryboard.instantiateViewController(withIdentifier: "MenuMoviesView")
         if let view = navController.children.first as? MenuMoviesView {
             let presenter: MenuMoviesPresenterProtocol & MenuMoviesInteractorOutputProtocol = MenuMoviesPresenter()
             let interactor: MenuMoviesInteractorInputProtocol & MenuMoviesRemoteDataManagerOutputProtocol = MenuMoviesInteractor()
-            let localDataManager: MenuMoviesLocalDataManagerInputProtocol = MenuMoviesLocalDataManager()
             let remoteDataManager: MenuMoviesRemoteDataManagerInputProtocol = MenuMoviesRemoteDataManager()
             let router: MenuMoviesRouterProtocol = MenuMoviesRouter()
             
@@ -25,7 +26,6 @@ class MenuMoviesRouter: MenuMoviesRouterProtocol {
             presenter.router = router
             presenter.interactor = interactor
             interactor.presenter = presenter
-            interactor.localDatamanager = localDataManager
             interactor.remoteDatamanager = remoteDataManager
             remoteDataManager.remoteRequestHandler = interactor
             
@@ -34,8 +34,20 @@ class MenuMoviesRouter: MenuMoviesRouterProtocol {
         return UIViewController()
     }
     
+    // MARK: - Properties
     static var mainStoryboard: UIStoryboard {
-        return UIStoryboard(name: "MenuMoviesView", bundle: Bundle.main)
+        return UIStoryboard(name: "MenuMoviesView", bundle: nil)
     }
     
+    /**
+     Function that calls the movie detail view to show next.
+     */
+    func goToMovieDetail(movieDetailData: MovieDetail, view: MenuMoviesViewProtocol) {
+        if let newView = view as? UIViewController {
+            DispatchQueue.main.async {
+                let movieDatail = DetailMovieRouter.createDetailMovieModule(movieDetailData: movieDetailData)
+                newView.navigationController?.pushViewController(movieDatail, animated: true)
+            }
+        }
+    }
 }
