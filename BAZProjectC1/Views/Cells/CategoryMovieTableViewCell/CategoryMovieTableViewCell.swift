@@ -20,6 +20,8 @@ class CategoryMovieTableViewCell: UITableViewCell {
     override func draw(_ rect: CGRect) {
         super.draw(rect)
         self.contentMovie.roundCornersView(radious: 15.00)
+        posterMovie.layer.cornerRadius = 15.00
+        posterMovie.layer.maskedCorners = [.layerMinXMinYCorner, .layerMinXMaxYCorner]
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

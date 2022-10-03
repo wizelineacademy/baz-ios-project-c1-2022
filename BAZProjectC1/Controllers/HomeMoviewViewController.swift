@@ -35,7 +35,7 @@ class HomeMovieViewController: UIViewController {
     }
 
     private func getMovies() {
-        MovieNetworkManager.shared.fetchMovies(genre: genres[selectedGenre].lowercased().replacingOccurrences(of: " ", with: "_")) { [weak self] objectResponse, error in
+        MovieNetworkManager.shared.fetchMovies(genre: genres[selectedGenre].lowercased()) { [weak self] objectResponse, error in
             guard let objectResponse = objectResponse,
             let movies = objectResponse.results else { return }
             self?.movies = movies

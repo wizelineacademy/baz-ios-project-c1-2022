@@ -20,4 +20,11 @@ extension String {
         }
         return "yyyy"
     }
+
+    /// This func replace and prepare the string for url request
+    /// - Parameter character: replace character
+    /// - Returns: the clean string
+    func formatURL(_ character: String) -> String {
+        self.replacingOccurrences(of: " ", with: character)
+    }
 }

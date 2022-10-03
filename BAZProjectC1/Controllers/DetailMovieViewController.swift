@@ -30,9 +30,15 @@ class DetailMovieViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subscribeNotification()
         setupInitialView()
         setupInitialData()
         setupCollectionViews()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenterHelper.shared.removeObserver(self)
     }
 
     // MARK: Private method helper -
@@ -71,6 +77,10 @@ class DetailMovieViewController: UIViewController {
         yearView.generatePropertyView(movie.release_date?.getYear ?? "YYYY")
         titleLabel.text = movie.title
         overviewLabel.text = movie.overview
+    }
+
+    private func subscribeNotification() {
+        NotificationCenterHelper.shared.subscribeNotification(self, with: #selector(receivedNotification(_:)), name: NSNotification.Name(rawValue: "DetailMovie.Notification"))
     }
 
     private func getCreditsMovie() {
@@ -113,6 +123,15 @@ class DetailMovieViewController: UIViewController {
     // MARK: Class actions -
     @IBAction func backButtontaped(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+
+    @objc private func receivedNotification(_ notification: NSNotification) {
+        guard let newMovie = notification.userInfo?["SelectedMovie"] as? Movie else {
+            return
+        }
+        let newDetailMovieView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailMovieViewController") as? DetailMovieViewController
+        newDetailMovieView?.movie = newMovie
+        navigationController?.pushViewController(newDetailMovieView!, animated: true)
     }
 }
 
@@ -157,6 +176,14 @@ extension DetailMovieViewController: UICollectionViewDataSource {
 extension DetailMovieViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // TODO: Add the action with notification center for id movie
+        var selectedMovie: Movie?
+        switch collectionView.tag {
+        case 1:
+            selectedMovie = similarMovies![indexPath.item]
+        case 2:
+            selectedMovie = recommendationMovies![indexPath.item]
+        default: return
+        }
+        NotificationCenterHelper.shared.post(name: NSNotification.Name(rawValue: "DetailMovie.Notification"), object: nil, userInfo: ["SelectedMovie": selectedMovie!])
     }
 }

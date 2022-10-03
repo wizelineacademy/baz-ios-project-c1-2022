@@ -21,12 +21,11 @@ final class MovieNetworkManager {
     ///   - genre: type of genre
     ///   - completionHandler: action when the consume to service finished
     func fetchMovies(genre: String, completionHandler: @escaping ((MovieData?, Error?) -> Void)) {
-        // TODO: agregar aquí la línea de código que le da formato a genre seria bueno agregarlo en una extension de String
         var currentUrl: String?
         if genre == "trending" {
-            currentUrl = "\(baseUrl)\(genre)/movie/day?api_key=\(apiKey)"
+            currentUrl = "\(baseUrl)\(genre.formatURL("_"))/movie/day?api_key=\(apiKey)"
         } else {
-            currentUrl = "\(baseUrl)movie/\(genre)?api_key=\(apiKey)"
+            currentUrl = "\(baseUrl)movie/\(genre.formatURL("_"))?api_key=\(apiKey)"
         }
         guard let url = URL(string: currentUrl!) else {
             completionHandler(nil, NSError())
