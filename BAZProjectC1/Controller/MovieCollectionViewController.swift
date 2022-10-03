@@ -19,7 +19,7 @@ class MovieCollectionViewController: UIViewController{
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.title = "Peliculas"
+        self.title = "title.movieCollectionViewController"
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,7 +96,9 @@ extension MovieCollectionViewController: UICollectionViewDelegate, UICollectionV
         if let pathVC = storyboard.instantiateViewController(withIdentifier: "DetailMoviesViewController") as? DetailMoviesViewController{
             pathVC.strTitle = title
             pathVC.strImgMoviePath = poster_path
-            self.navigationController?.popToViewController(pathVC, animated: true)
+            self.navigationController?.pushViewController(pathVC, animated: true)
+                
+//                .popToViewController(pathVC, animated: true)
         }
         }
         
