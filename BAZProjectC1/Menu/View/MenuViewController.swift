@@ -14,7 +14,9 @@ class MenuViewController : UIViewController {
     @IBOutlet weak var svContainer: UIScrollView!
      var pgDetail: UIPageControl!
     
-    var lstOptions = [MenuRow(title: "Mas popular", detail: "Aquí encontrarás las peliculas más populares", image: "mostPopular"), MenuRow(title: "Listado Peliculas", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list"), MenuRow(title: "Proximamente", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list")]
+    var lstOptions = [MenuRow(title: "Mas popular", detail: "Aquí encontrarás las peliculas más populares", image: "mostPopular"), MenuRow(title: "Listado Peliculas", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list"), MenuRow(title: "Recomendaciones", detail: "Aquí encontrarás nuestras recomendaciones", image: "list"),
+                      MenuRow(title: "Actualidad", detail: "Aquí encontrarás el listado más actual", image: "list")
+                      , MenuRow(title: "Proximamente", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list")]
     var lstMovies: [MovieUpdate] = []
     let movieApi = MovieAPI()
     
@@ -94,6 +96,13 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
             let vc = sb.instantiateViewController(withIdentifier: "BillboardViewController") as? BillboardViewController
             self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
         case 2:
+            let vc = RecomendationViewController.init(nibName: "RecomendationViewController", bundle: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+        case 3:
+            let vc = NowViewController.init(nibName: "NowViewController", bundle: nil)
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        case 4:
             let vc = sb.instantiateViewController(withIdentifier: "UpcomingViewController") as? UpcomingViewController
             self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
         default:

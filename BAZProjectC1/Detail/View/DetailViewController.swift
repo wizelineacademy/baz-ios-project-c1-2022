@@ -8,10 +8,6 @@
 import Foundation
 import UIKit
 
-protocol DetailVCProtocol {
-    
-}
-
 class DetailViewController : UIViewController {
     
     @IBOutlet weak var lblTitle: UILabel!

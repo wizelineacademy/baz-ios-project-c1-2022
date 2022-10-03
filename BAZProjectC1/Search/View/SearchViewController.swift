@@ -64,7 +64,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         }
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension SearchViewController : UISearchBarDelegate  {

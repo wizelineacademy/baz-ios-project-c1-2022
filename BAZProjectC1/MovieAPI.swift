@@ -40,9 +40,9 @@ class MovieAPI {
         })
     }
      
-    func getNowPlaying(completion: @escaping ([MovieUpdate]) -> ()) {
+    func getNowPlaying() {
         self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
-            completion(lstInfo)
+            NotificationCenter.default.post(name: Notification.Name("notificationNowPlay"), object: ["infoData":lstInfo])
         })
     }
 

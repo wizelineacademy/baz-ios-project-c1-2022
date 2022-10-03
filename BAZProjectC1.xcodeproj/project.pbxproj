@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0C0DC65C28EA8BF6009D9F8D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0DC65A28EA8BF6009D9F8D /* SearchViewController.swift */; };
 		0C0DC65D28EA8BF6009D9F8D /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C0DC65B28EA8BF6009D9F8D /* SearchViewController.xib */; };
+		0C0DC66228EB3A44009D9F8D /* RecomendationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0DC66028EB3A44009D9F8D /* RecomendationViewController.swift */; };
+		0C0DC66328EB3A44009D9F8D /* RecomendationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C0DC66128EB3A44009D9F8D /* RecomendationViewController.xib */; };
+		0C0DC66828EB5182009D9F8D /* NowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C0DC66628EB5182009D9F8D /* NowViewController.swift */; };
+		0C0DC66928EB5182009D9F8D /* NowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0C0DC66728EB5182009D9F8D /* NowViewController.xib */; };
 		0C17F71728E781A5001FBBF1 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17F71628E781A5001FBBF1 /* UpcomingViewController.swift */; };
 		0C17F71B28E785EF001FBBF1 /* NotificationClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17F71A28E785EF001FBBF1 /* NotificationClass.swift */; };
 		0C17F71F28E78A15001FBBF1 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C17F71E28E78A15001FBBF1 /* RateViewController.swift */; };
@@ -36,6 +40,10 @@
 /* Begin PBXFileReference section */
 		0C0DC65A28EA8BF6009D9F8D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		0C0DC65B28EA8BF6009D9F8D /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		0C0DC66028EB3A44009D9F8D /* RecomendationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecomendationViewController.swift; sourceTree = "<group>"; };
+		0C0DC66128EB3A44009D9F8D /* RecomendationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RecomendationViewController.xib; sourceTree = "<group>"; };
+		0C0DC66628EB5182009D9F8D /* NowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowViewController.swift; sourceTree = "<group>"; };
+		0C0DC66728EB5182009D9F8D /* NowViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowViewController.xib; sourceTree = "<group>"; };
 		0C17F71628E781A5001FBBF1 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		0C17F71A28E785EF001FBBF1 /* NotificationClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationClass.swift; sourceTree = "<group>"; };
 		0C17F71E28E78A15001FBBF1 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
@@ -86,6 +94,40 @@
 			children = (
 				0C0DC65A28EA8BF6009D9F8D /* SearchViewController.swift */,
 				0C0DC65B28EA8BF6009D9F8D /* SearchViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0C0DC65E28EB39CF009D9F8D /* Recomendation */ = {
+			isa = PBXGroup;
+			children = (
+				0C0DC65F28EB39D6009D9F8D /* ViewController */,
+			);
+			path = Recomendation;
+			sourceTree = "<group>";
+		};
+		0C0DC65F28EB39D6009D9F8D /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				0C0DC66028EB3A44009D9F8D /* RecomendationViewController.swift */,
+				0C0DC66128EB3A44009D9F8D /* RecomendationViewController.xib */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		0C0DC66428EB515F009D9F8D /* NowPlaying */ = {
+			isa = PBXGroup;
+			children = (
+				0C0DC66528EB5171009D9F8D /* View */,
+			);
+			path = NowPlaying;
+			sourceTree = "<group>";
+		};
+		0C0DC66528EB5171009D9F8D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0C0DC66628EB5182009D9F8D /* NowViewController.swift */,
+				0C0DC66728EB5182009D9F8D /* NowViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,6 +302,8 @@
 		C30893AC28A2F42B004B1860 /* BAZProjectC1 */ = {
 			isa = PBXGroup;
 			children = (
+				0C0DC66428EB515F009D9F8D /* NowPlaying */,
+				0C0DC65E28EB39CF009D9F8D /* Recomendation */,
 				0C0DC65728EA8BA5009D9F8D /* Search */,
 				0CD7275728EA107E00B84267 /* Control */,
 				0C17F71C28E789EB001FBBF1 /* Rated */,
@@ -340,11 +384,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C4A58F528DA2F6C003D18BB /* MenuCell.xib in Resources */,
+				0C0DC66928EB5182009D9F8D /* NowViewController.xib in Resources */,
 				0C9F35E128DBCE34000EE296 /* MovieCell.xib in Resources */,
 				C30893BA28A2F42D004B1860 /* LaunchScreen.storyboard in Resources */,
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
+				0C0DC66328EB3A44009D9F8D /* RecomendationViewController.xib in Resources */,
 				0C0DC65D28EA8BF6009D9F8D /* SearchViewController.xib in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
 			);
@@ -361,10 +407,12 @@
 				0CD7275928EA10B100B84267 /* ParallaxView.swift in Sources */,
 				0C17F71728E781A5001FBBF1 /* UpcomingViewController.swift in Sources */,
 				0C9F35D728DB9759000EE296 /* DetailViewController.swift in Sources */,
+				0C0DC66228EB3A44009D9F8D /* RecomendationViewController.swift in Sources */,
 				0C9F35E328DBCE5D000EE296 /* BillboardViewController.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				0C17F71F28E78A15001FBBF1 /* RateViewController.swift in Sources */,
+				0C0DC66828EB5182009D9F8D /* NowViewController.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
 				0C4A58F128DA2B9A003D18BB /* MenuViewController.swift in Sources */,
 				0C0DC65C28EA8BF6009D9F8D /* SearchViewController.swift in Sources */,
