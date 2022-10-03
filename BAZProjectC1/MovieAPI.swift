@@ -25,7 +25,7 @@ class MovieAPI {
             if let id = result.object(forKey: "id") as? Int,
                let title = result.object(forKey: "title") as? String,
                let poster_path = result.object(forKey: "poster_path") as? String, let strDetail = result.object(forKey: "overview") as? String {
-               movies.append(Movie(id: id, title: title, poster_path: poster_path))
+                movies.append(Movie(id: id, title: title, descriptionMovie: strDetail, posterPath: poster_path))
             }
         }
         return movies
@@ -76,7 +76,7 @@ class MovieAPI {
                     if let dataInfo = json as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
                         
                         for item in dataAll {
-                            lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["name"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
+                            lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["name"] as? String ?? "", descriptionMovie: item["overview"] as? String ?? "", posterPath: item["poster_path"] as? String ?? ""))
                         }
                     }
                     completion(lstMovies)
@@ -119,7 +119,7 @@ class MovieAPI {
         var lstMovies = [Movie]()
         if let dataInfo = jsonDic as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
             for item in dataAll {
-                lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
+                lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", descriptionMovie: item["overview"] as? String ?? "", posterPath: item["poster_path"] as? String ?? ""))
             }
         }
         return lstMovies
