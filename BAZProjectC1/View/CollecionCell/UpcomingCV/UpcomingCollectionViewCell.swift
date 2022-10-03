@@ -9,18 +9,15 @@ class UpcomingCollectionViewCell: UICollectionViewCell {
     @IBOutlet private weak var vwContainer: UIView!{
         didSet{
             self.vwContainer.layer.cornerRadius = 15
+            self.vwContainer.layer.borderColor = .init(red: 117/255, green: 31/255, blue: 34/255, alpha: 1)
         }
     }
     @IBOutlet private weak var lblTitle: UILabel!
     @IBOutlet private weak var imgPoster: UIImageView!{
-        didSet{
-            self.imgPoster.layer.cornerRadius = 15
-            self.imgPoster.layer.borderColor = UIColor.white.cgColor
-        }
+        didSet{ self.imgPoster.layer.cornerRadius = 15 }
     }
     //MARK: -  V A R I A B L E S
     private var downloadTask: URLSessionDownloadTask?
-
 
     override func awakeFromNib() {
         super.awakeFromNib()
