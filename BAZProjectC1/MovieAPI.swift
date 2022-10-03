@@ -6,6 +6,8 @@
 
 import Foundation
 
+
+
 class MovieAPI {
 
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
@@ -34,11 +36,6 @@ class MovieAPI {
     func getMoviesUpdate(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: {  lstInfo in
             
-            completion(lstInfo)
-        })
-    }
-    func getMoviesUpdateNew(completion: @escaping ([MovieUpdate]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
             completion(lstInfo)
         })
     }

@@ -28,7 +28,8 @@ class DetailViewController : UIViewController {
     
     private func configureViewController() {
         self.title = "Pelicula"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buscar", style: .plain, target: self, action: #selector(searchMovieCV))
     }
     
     private func loadImage() {
@@ -39,8 +40,21 @@ class DetailViewController : UIViewController {
         } else {
             imgDetail.image = UIImage.init(named: "placeHolder")
         }
-        txvDetail.text = objMov?.overview
+        txvDetail.text = objMov?.overview ?? "No existe descripcion de la pelicula que ingresaste"
         txvDetail.loadConfigurationFont()
     }
     
+    @objc func searchMovieCV() {
+        let vc = SearchViewController.init(nibName: "SearchViewController", bundle: nil)
+        vc.delegateSearch = self
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+extension DetailViewController : SearchProtocol {
+    func selectOptions(with movie: MovieUpdate) {
+        objMov = nil
+        objMov = movie
+        loadImage()
+    }
 }
