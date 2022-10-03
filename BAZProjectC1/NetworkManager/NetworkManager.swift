@@ -55,26 +55,58 @@ struct NetworkManager {
     
     
     typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
-    
+    typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
+    typealias SearchCompletionClosure = ((SearchMovie?,Error?) -> Void)
     /**
      Function tthat obtains the data of the movies
      - Parameters:
         - completion: Closure define in typealias
      */
     public func fetchMovieTrending(completion: MovieCompletionClosure?) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
         executeRequest(request: request, completion: completion)
     }
     public func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
         executeRequest(request: request, completion: completion)
     }
     
+    public func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    public func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int, filter: String) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    public func fetchMovieSearch(completion: SearchCompletionClosure?, keyword: String) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=\(keyword)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        print(" ************* https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=\(keyword)&language=es-MX")
+        executeRequest(request: request, completion: completion)
+    }
+    
 }
 
+
+
+//https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
+//https://api.themoviedb.org/3/movie/{movie_id}/similar?api_key=<<api_key>>&language=en-US&page=1
+//https://api.themoviedb.org/3/movie/616037/credits?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en-US
+//https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=thor&language=en-US&page=1&include_adult=false

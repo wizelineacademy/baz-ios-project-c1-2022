@@ -68,7 +68,7 @@ final class MoviePresenter {
     }
     
     private func openDetails(for asset: MovieData, with rail: Movie, using viewController: UIViewController) {
-         view?.presentView(for: asset)
+        view?.presentView(for: asset)
     }
     
     

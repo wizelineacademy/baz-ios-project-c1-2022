@@ -37,7 +37,11 @@ final class HomeMoviesViewController: UIViewController {
     func presentView(for information: MovieData) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
         vcMovieDetails.movies = information
-        //self.present(vcMovieDetails, animated: true, completion: nil)
+        vcMovieDetails.movieOverview = information.overview
+        vcMovieDetails.movieImageUrl = information.backdropPath
+        vcMovieDetails.movieId = information.id
+        vcMovieDetails.movieRating = information.voteCount
+        vcMovieDetails.movieTitle = information.title
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
 }
