@@ -17,6 +17,7 @@ class GenericApiCall {
     static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static let baseImageURL = "https://image.tmdb.org/t/p/w500/"
     static let searchMovieURL = "https://api.themoviedb.org/3/search/multi?api_key=\(apiKey)&query="
+    static let movieDetail = "https://api.themoviedb.org/3/movie/idMovie?api_key=\(apiKey)&language=en-US&append_to_response=credits,similar,recommendations,reviews"
     
     /// Método genérico utilizado para el consumo de APIS.
     ///  - Parameters:

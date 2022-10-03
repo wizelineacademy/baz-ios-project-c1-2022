@@ -78,6 +78,23 @@ final class HomeAppViewController: UIViewController {
     @objc private func showMenu(_ sender: UIBarButtonItem) {
         self.delegate?.didTapMenuButton()
     }
+    
+    private func getDetailMovie(idMovie: Int) {
+        movieApi.getDetail(for: idMovie, url: GenericApiCall.movieDetail) { [weak self] movieDetail in
+            DispatchQueue.main.async {
+                if let movie = movieDetail {
+                    
+                    let vc = DetailViewController(movie: movie)
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "Ocurrió un error al obtener información de la película.", preferredStyle: .alert)
+                    let accept = UIAlertAction(title: "Aceptar", style: .default, handler: nil)
+                    alertController.addAction(accept)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }
 
 // MARK:  - Extension CollectionViewDataSource.
@@ -103,9 +120,7 @@ extension HomeAppViewController : UICollectionViewDataSource {
 extension HomeAppViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
-        
-        let vc = DetailViewController(movie: movie)
-        self.navigationController?.pushViewController(vc, animated: true)
+        self.getDetailMovie(idMovie: movie.id!)
     }
 }
 
