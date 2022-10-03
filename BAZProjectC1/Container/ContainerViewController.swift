@@ -22,7 +22,7 @@ final class ContainerViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
- 
+    
     /// Enum utilizado para controlar los diferentes estados del menú lateral.
     private enum MenuState {
         case opened
@@ -63,9 +63,9 @@ final class ContainerViewController: UIViewController {
         case .closed:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
                 self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 100
-            } completion: { done in
+            } completion: { [weak self] done in
                 if done {
-                    self.menuState = .opened
+                    self?.menuState = .opened
                     DispatchQueue.main.async {
                         completion?()
                     }
@@ -74,9 +74,9 @@ final class ContainerViewController: UIViewController {
         case .opened:
             UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
                 self.navVC?.view.frame.origin.x = 0
-            } completion: { done in
+            } completion: { [weak self] done in
                 if done {
-                    self.menuState = .closed
+                    self?.menuState = .closed
                     DispatchQueue.main.async {
                         completion?()
                     }

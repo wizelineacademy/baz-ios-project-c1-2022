@@ -7,13 +7,35 @@
 import UIKit
 
 final class MovieAPI {
-    private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     
     /// Método utilizado para consumir la lista de películas correspondientes acordes al filtro seleccionado.
-    ///  - returns: Si el consumo es exitoso, un array con las películas obtenidas; en caso contrario un array vacío
+    ///  - Parameters:
+    ///     - url: Contiene la petición que se requiere ejecutar
+    ///     - completion: El resultado de la petición
     public func getMovies(url: String, completion: @escaping ([Movie])->()){
-        guard let url = URL(string: "\(url)\(apiKey)")
+        guard let url = URL(string: "\(url)\(GenericApiCall.apiKey)")
         else { return  }
+        GenericApiCall.request(url: url, expecting: ResultsApi.self) { result in
+            switch result {
+            case .success(let result):
+                completion(result.results)
+            case .failure(let error):
+                completion([])
+                print(error)
+            }
+        }
+    }
+    
+    /// Método utilizado para realizar la búsqueda de pelicular por nombre o actor
+    ///  - Parameters:
+    ///     - url: Contiene la petición que se requiere ejecutar
+    ///     - textToSearch: Clave por la que se realizará la búsqueda
+    ///     - completion: El resultado de la petición
+    public func searchMovie(url: String, textToSearch: String, completion: @escaping ([Movie])->()) {
+        let textToSearch = textToSearch.replacingOccurrences(of: " ", with: "%20")
+        guard let url = URL(string: "\(url)\(textToSearch)")
+        else { return  }
+        
         GenericApiCall.request(url: url, expecting: ResultsApi.self) { result in
             switch result {
             case .success(let result):

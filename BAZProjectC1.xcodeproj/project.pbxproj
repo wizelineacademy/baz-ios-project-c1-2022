@@ -121,7 +121,6 @@
 		DF3EA61328DA2A370055359A /* FilterOptions */ = {
 			isa = PBXGroup;
 			children = (
-				DF3EA61A28DA2C080055359A /* ViewModel */,
 				DF3EA61928DA2BFF0055359A /* Model */,
 				DF3EA61828DA2BE70055359A /* View */,
 			);
@@ -143,13 +142,6 @@
 				DF3EA61B28DA34CB0055359A /* FiltersMovies.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		DF3EA61A28DA2C080055359A /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		DF3EA65928DB728B0055359A /* Container */ = {

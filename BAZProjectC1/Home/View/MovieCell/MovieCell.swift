@@ -8,7 +8,7 @@
 import UIKit
 
 final class MovieCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var imgMovie: UIImageView!
     @IBOutlet weak var nameMovie: UILabel!
     
@@ -18,7 +18,7 @@ final class MovieCell: UICollectionViewCell {
         self.imgMovie.layer.cornerRadius = 15
         self.imgMovie.clipsToBounds = true
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.imgMovie.image = nil

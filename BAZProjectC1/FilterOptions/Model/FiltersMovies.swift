@@ -14,7 +14,7 @@ public enum FiltersMovies: CaseIterable {
     case topRated
     case upComing
     
-   public var title: String {
+    public var title: String {
         switch self {
         case .trending:
             return "Trending"
