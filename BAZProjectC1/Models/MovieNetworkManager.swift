@@ -50,6 +50,31 @@ final class MovieNetworkManager {
         executeRequest(request: url, completionHanlder: completionHanlder)
     }
 
+    /// This function performs the search for the credits of a movie
+    /// - Parameters:
+    ///   - idMovie: id of the movie
+    ///   - completionHandler: the action when the service response
+    func fetchCreditsMovie(_ idMovie: Int, completionHandler: @escaping ((CreditMovie?, Error?) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)movie/\(idMovie)/credits?api_key=\(apiKey)") else {
+            completionHandler(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHandler)
+    }
+
+    /// This function returns both similar movies or recommendation based on a specific movie
+    /// - Parameters:
+    ///   - idMovie: id of the actual movie
+    ///   - isSimilar: is similar or recommendation boolean value
+    ///   - completionHanlder: the action when the query response
+    func fetchRelationsMovies(with idMovie: Int, isSimilar: Bool, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)movie/\(idMovie)/\(isSimilar ? "similar" : "recommendations")?api_key=\(apiKey)") else {
+            completionHanlder(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHanlder)
+    }
+
     /// This method download image from a url
     /// - Parameters:
     ///   - imagePath: path of the image

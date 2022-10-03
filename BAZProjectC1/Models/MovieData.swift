@@ -31,3 +31,18 @@ struct Movie: Codable {
 }
 
 typealias Movies = [Movie]
+
+/// This is a model of the credit movie response
+struct CreditMovie: Codable {
+    let id: Int?
+    let cast: Casting?
+}
+
+/// This is a representation of the cast object
+struct Cast: Codable {
+    let id: Int?
+    let name: String?
+    let profile_path: String?
+}
+
+typealias Casting = [Cast]
