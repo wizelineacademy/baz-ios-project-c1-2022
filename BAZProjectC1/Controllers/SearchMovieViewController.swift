@@ -11,15 +11,20 @@ class SearchMovieViewController: UIViewController {
 
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var movieTableView: UITableView!
+    @IBOutlet weak var notFoundMovieView: UIView!
 
+    private var categoryMovieTableDataSource: CategoryMovieTableDataSource?
+    private var categoryMovieTableDelegate: CategoryMovieTableDelegate?
     private var movies: Movies = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpInitialView()
         movieTableView.register(UINib(nibName: "CategoryMovieTableViewCell", bundle: Bundle(for: HomeMovieViewController.self)), forCellReuseIdentifier: "CategoryMovieCell")
-        movieTableView.delegate = self
-        movieTableView.dataSource = self
+        categoryMovieTableDelegate = CategoryMovieTableDelegate(using: self)
+        categoryMovieTableDataSource = CategoryMovieTableDataSource(with: movies)
+        movieTableView.delegate = categoryMovieTableDelegate
+        movieTableView.dataSource = categoryMovieTableDataSource
         searchTextField.delegate = self
         searchTextField.addTarget(self, action: #selector(searchMovieByKeyword), for: .editingChanged)
     }
@@ -44,7 +49,7 @@ class SearchMovieViewController: UIViewController {
                   let movies = objectResponse.results else { return }
             self?.movies = movies
             DispatchQueue.main.async {
-                self?.movieTableView.reloadData()
+                self?.categoryMovieTableDataSource?.reloadData(with: movies, using: self?.movieTableView ?? UITableView())
             }
         }
     }
@@ -60,42 +65,18 @@ class SearchMovieViewController: UIViewController {
     }
 }
 
+extension SearchMovieViewController: CategoryMovieCellProtocol {
+
+    func didSelectMovie(_ index: Int) {
+        performSegue(withIdentifier: "goDetailMovie", sender: movies[index])
+    }
+}
+
 // MARK: searchTextField deledate -
 extension SearchMovieViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         searchTextField.resignFirstResponder()
         fetchMovieByPhrase()
         return true
-    }
-}
-
-// MARK: TableView's DataSource
-extension SearchMovieViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let movieCell = tableView.dequeueReusableCell(withIdentifier: "CategoryMovieCell", for: indexPath) as! CategoryMovieTableViewCell
-        MovieNetworkManager.shared.downloadImage(imagePath: movies[indexPath.row].poster_path ?? "", width: 200) { [weak self] image in
-            DispatchQueue.main.async {
-                movieCell.titleMovieLabel.text = self?.movies[indexPath.row].title ?? self?.movies[indexPath.row].name ?? "No Title"
-                movieCell.posterMovie.image = image ?? UIImage(named: "poster")
-            }
-        }
-        return movieCell
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        114.00
-    }
-}
-
-// MARK: TableView's Delegate
-extension SearchMovieViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "goDetailMovie", sender: movies[indexPath.row])
     }
 }

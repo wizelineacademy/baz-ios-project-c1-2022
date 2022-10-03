@@ -21,6 +21,7 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet private weak var castCollectionView: UICollectionView!
     @IBOutlet private weak var similarMoviesCollectionView: UICollectionView!
     @IBOutlet private weak var recommendationMoviesCollectionView: UICollectionView!
+    @IBOutlet private weak var recommendationView: UIView!
 
     // MARK: Class properties -
     var movie: Movie?
@@ -38,7 +39,7 @@ class DetailMovieViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenterHelper.shared.removeObserver(self)
+        NotificationCenterHelper.shared.unsubscribeNotification(self)
     }
 
     // MARK: Private method helper -
@@ -87,7 +88,6 @@ class DetailMovieViewController: UIViewController {
         MovieNetworkManager.shared.fetchCreditsMovie(movie?.id ?? 0) { [weak self] objectResponse, error in
             guard let casting = objectResponse?.cast else { return }
             self?.creditsMovie = casting
-            // TODO: refresh the cast collection view with the current data
             DispatchQueue.main.async {
                 self?.castCollectionView.reloadData()
             }
@@ -108,8 +108,12 @@ class DetailMovieViewController: UIViewController {
         MovieNetworkManager.shared.fetchRelationsMovies(with: movie?.id ?? 0, isSimilar: false) { [weak self] objectResponse, error in
             guard let movies = objectResponse?.results else { return }
             self?.recommendationMovies = movies
-            DispatchQueue.main.async {
-                self?.recommendationMoviesCollectionView.reloadData()
+            if self?.recommendationMovies?.isEmpty ?? false {
+                self?.recommendationView.isHidden = true
+            } else {
+                DispatchQueue.main.async {
+                    self?.recommendationMoviesCollectionView.reloadData()
+                }
             }
         }
     }
@@ -147,27 +151,29 @@ extension DetailMovieViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var imagePath: String = ""
+        var imagePath: String?
         var titleCollection: String = ""
         let detailCell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailsMovie", for: indexPath) as! DetailsMovieCollectionViewCell
         switch collectionView.tag {
         case 0:
-            imagePath = creditsMovie?[indexPath.item].profile_path ?? ""
+            imagePath = creditsMovie?[indexPath.item].profile_path
             titleCollection = creditsMovie?[indexPath.item].name ?? "Without name"
         case 1:
-            imagePath = similarMovies?[indexPath.item].poster_path ?? ""
+            imagePath = similarMovies?[indexPath.item].poster_path
             titleCollection = similarMovies?[indexPath.item].title ?? "Without title"
         case 2:
-            imagePath = recommendationMovies?[indexPath.item].poster_path ?? ""
+            imagePath = recommendationMovies?[indexPath.item].poster_path
             titleCollection = recommendationMovies?[indexPath.item].title ?? "Without title"
         default: break
         }
-        MovieNetworkManager.shared.downloadImage(imagePath: imagePath, width: 200) { posterImage in
-            DispatchQueue.main.async {
-                detailCell.posterImageView.image = posterImage
-                detailCell.titleLabel.text = titleCollection
+        if let imagePath = imagePath {
+            MovieNetworkManager.shared.downloadImage(imagePath: imagePath, width: 200) { posterImage in
+                DispatchQueue.main.async {
+                    detailCell.setupCollectionCell(image: posterImage, description: titleCollection)
+                }
             }
-        }
+        } else { detailCell.setupCollectionCell(image: nil, description: titleCollection) }
+
         return detailCell
     }
 }

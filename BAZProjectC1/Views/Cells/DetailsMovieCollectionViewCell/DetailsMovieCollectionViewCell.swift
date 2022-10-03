@@ -9,8 +9,8 @@ import UIKit
 
 class DetailsMovieCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet weak var posterImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet private weak var posterImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -18,5 +18,12 @@ class DetailsMovieCollectionViewCell: UICollectionViewCell {
 
     override func draw(_ rect: CGRect) {
         posterImageView.layer.cornerRadius = 10.00
+    }
+
+    func setupCollectionCell(image: UIImage?, description: String) {
+        if let image = image {
+            posterImageView.image = image
+        }
+        titleLabel.text = description
     }
 }

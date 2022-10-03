@@ -40,8 +40,7 @@ final class MovieNetworkManager {
     ///   - search: the movie o keyword what the service fetch
     ///   - completionHanlder: action when the service response and return a model of the response
     func fetchMovieByPhrase(isKeyword: Bool, search: String, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
-        let formatUrlSearch = search.replacingOccurrences(of: " ", with: "%20")
-        guard let url = URL(string: "\(baseUrl)search/\(isKeyword ? "multi" : "movie")?api_key=\(apiKey)&query=\(formatUrlSearch)") else {
+        guard let url = URL(string: "\(baseUrl)search/\(isKeyword ? "multi" : "movie")?api_key=\(apiKey)&query=\(search.formatURL("%20"))") else {
             print("Ocurrio un error al generar el URL")
             completionHanlder(nil, nil)
             return
