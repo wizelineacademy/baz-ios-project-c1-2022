@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UpcomingViewController" customModule="BAZProjectC1" customModuleProvider="target">
             <connections>
-                <outlet property="tblUpcoming" destination="XXL-Ik-i94" id="5XF-a4-wSk"/>
+                <outlet property="cvUpcoming" destination="UnF-kW-blz" id="wym-eX-v1M"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,21 +20,54 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="XXL-Ik-i94">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="UnF-kW-blz">
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
+                    <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="aEP-eR-eQ0">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="XXL-Ik-i94" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3ew-Vu-DYv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XXL-Ik-i94" secondAttribute="bottom" id="gL5-xw-SUj"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XXL-Ik-i94" secondAttribute="trailing" id="n23-TP-p5N"/>
-                <constraint firstItem="XXL-Ik-i94" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="urt-ZC-zOL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UnF-kW-blz" secondAttribute="trailing" id="IQM-Os-c4H"/>
+                <constraint firstItem="UnF-kW-blz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="SD1-qL-tr2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="UnF-kW-blz" secondAttribute="bottom" id="kM2-Fe-bgv"/>
+                <constraint firstItem="UnF-kW-blz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="vEo-ik-ASb"/>
             </constraints>
             <point key="canvasLocation" x="139" y="118"/>
         </view>
+        <viewController id="1L4-NH-Cdb">
+            <view key="view" contentMode="scaleToFill" id="flv-rK-C3i">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="PwA-3U-etr">
+                        <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jPL-bt-YKw">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <viewLayoutGuide key="safeArea" id="c4d-oB-UJZ"/>
+                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <constraints>
+                    <constraint firstItem="c4d-oB-UJZ" firstAttribute="bottom" secondItem="PwA-3U-etr" secondAttribute="bottom" id="LiP-Us-O3k"/>
+                    <constraint firstItem="PwA-3U-etr" firstAttribute="leading" secondItem="c4d-oB-UJZ" secondAttribute="leading" id="OzT-Ih-PD0"/>
+                    <constraint firstItem="PwA-3U-etr" firstAttribute="top" secondItem="c4d-oB-UJZ" secondAttribute="top" id="Yce-Hs-2LQ"/>
+                    <constraint firstItem="c4d-oB-UJZ" firstAttribute="trailing" secondItem="PwA-3U-etr" secondAttribute="trailing" id="ZUG-Lj-mmG"/>
+                </constraints>
+            </view>
+            <point key="canvasLocation" x="1048" y="121"/>
+        </viewController>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

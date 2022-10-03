@@ -6,11 +6,13 @@ import UIKit
 
 final class UpcomingViewController: UIViewController {
     //MARK: - O U T L E T S
-    @IBOutlet weak var tblUpcoming: UITableView!{
+    @IBOutlet private weak var cvUpcoming: UICollectionView!{
         didSet{
-            self.tblUpcoming.delegate = self
-            self.tblUpcoming.dataSource = self
-            self.tblUpcoming.register(UpcomingTableViewCell.nib, forCellReuseIdentifier: UpcomingTableViewCell.identifier)
+            self.cvUpcoming.delegate = self
+            self.cvUpcoming.dataSource = self
+            self.cvUpcoming.register(UINib(nibName: "UpcomingCollectionViewCell",
+                                             bundle: .main),
+                                       forCellWithReuseIdentifier: UpcomingCollectionViewCell.identifier)
         }
     }
     
@@ -31,33 +33,41 @@ final class UpcomingViewController: UIViewController {
             if upcomingResponse != nil {
                 self.objUpcoming = upcomingResponse
                 DispatchQueue.main.async {
-                    self.tblUpcoming.reloadData()
+                    self.cvUpcoming.reloadData()
                 }
             }
         }
     }
 }
 
-//MARK: - EXT-> UI · T A B L E · V I E W · D E L E G A T E
-extension UpcomingViewController: UITableViewDelegate & UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+//MARK: - EXT-> UI · C O L L E C T I O N · V I E W · D E L E G A T E
+extension UpcomingViewController: UICollectionViewDelegate & UICollectionViewDataSource{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return objUpcoming?.upcoming?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingTableViewCell.identifier, for: indexPath)
-        as? UpcomingTableViewCell ?? UpcomingTableViewCell()
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cCell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCollectionViewCell.identifier,
+                                                       for: indexPath) as? UpcomingCollectionViewCell ?? UpcomingCollectionViewCell()
         if let upcoming = objUpcoming?.upcoming?[indexPath.row] {
-            cell.setUpcoming(with: upcoming)
+            cCell.setCell(with: upcoming)
         }
-        return cell
+        return cCell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let upcomingDetail = UpcomingDetailViewController()
         upcomingDetail.index = indexPath.row
         upcomingDetail.objUpcoming = objUpcoming
         self.navigationController?.pushViewController(upcomingDetail, animated: true)
+    }
+}
+
+
+//MARK: - EXT-> UI · C O L L E C T I O N · D E L E G A T E · F L O W · L A Y O U T
+extension UpcomingViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: UIScreen.main.bounds.width / 2 , height: 240)
     }
 }

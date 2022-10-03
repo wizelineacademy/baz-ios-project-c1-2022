@@ -26,8 +26,18 @@ final class PopularTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    private func setGradientOnImage(){
+        let gradient = CAGradientLayer()
+        gradient.frame = CGRect(x: 0, y: 0, width: imgPoster.frame.width, height: imgPoster.frame.height)
+        let startColor = UIColor.clear.cgColor
+        let endColor = UIColor.black.cgColor
+        gradient.colors = [startColor, endColor]
+        imgPoster.layer.insertSublayer(gradient, at: 0)
+    }
+    
     override func prepareForReuse(){
         super.prepareForReuse()
+        self.setGradientOnImage()
         downloadTask?.cancel()
         downloadTask = nil
     }

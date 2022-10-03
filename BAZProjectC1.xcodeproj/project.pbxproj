@@ -35,6 +35,8 @@
 		54350FE628DCA9B500B30422 /* UpcomingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FE428DCA9B500B30422 /* UpcomingTableViewCell.xib */; };
 		54350FEA28DCAF8000B30422 /* UpcomingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FE828DCAF8000B30422 /* UpcomingViewController.swift */; };
 		54350FEB28DCAF8000B30422 /* UpcomingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FE928DCAF8000B30422 /* UpcomingViewController.xib */; };
+		54521B7928E72818007D7BB2 /* UpcomingCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54521B7728E72818007D7BB2 /* UpcomingCollectionViewCell.swift */; };
+		54521B7A28E72818007D7BB2 /* UpcomingCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54521B7828E72818007D7BB2 /* UpcomingCollectionViewCell.xib */; };
 		545AACEC28D3AB7700DFD9DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545AACEB28D3AB7700DFD9DF /* Movie.swift */; };
 		5476D10C28DE294A005274D2 /* NowPlayingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5476D10A28DE294A005274D2 /* NowPlayingDetailViewController.swift */; };
 		5476D10D28DE294A005274D2 /* NowPlayingDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5476D10B28DE294A005274D2 /* NowPlayingDetailViewController.xib */; };
@@ -94,6 +96,8 @@
 		54350FE428DCA9B500B30422 /* UpcomingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingTableViewCell.xib; sourceTree = "<group>"; };
 		54350FE828DCAF8000B30422 /* UpcomingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingViewController.swift; sourceTree = "<group>"; };
 		54350FE928DCAF8000B30422 /* UpcomingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingViewController.xib; sourceTree = "<group>"; };
+		54521B7728E72818007D7BB2 /* UpcomingCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingCollectionViewCell.swift; sourceTree = "<group>"; };
+		54521B7828E72818007D7BB2 /* UpcomingCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingCollectionViewCell.xib; sourceTree = "<group>"; };
 		545AACEB28D3AB7700DFD9DF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5476D10A28DE294A005274D2 /* NowPlayingDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingDetailViewController.swift; sourceTree = "<group>"; };
 		5476D10B28DE294A005274D2 /* NowPlayingDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingDetailViewController.xib; sourceTree = "<group>"; };
@@ -286,6 +290,24 @@
 			path = Upcoming;
 			sourceTree = "<group>";
 		};
+		54521B7628E727F7007D7BB2 /* UpcomingCV */ = {
+			isa = PBXGroup;
+			children = (
+				54521B7728E72818007D7BB2 /* UpcomingCollectionViewCell.swift */,
+				54521B7828E72818007D7BB2 /* UpcomingCollectionViewCell.xib */,
+			);
+			path = UpcomingCV;
+			sourceTree = "<group>";
+		};
+		54521B7B28E7289F007D7BB2 /* ElementCV */ = {
+			isa = PBXGroup;
+			children = (
+				5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */,
+				5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */,
+			);
+			path = ElementCV;
+			sourceTree = "<group>";
+		};
 		545AACE728D3A58200DFD9DF /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -370,8 +392,8 @@
 		5476D11A28DE3316005274D2 /* CollecionCell */ = {
 			isa = PBXGroup;
 			children = (
-				5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */,
-				5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */,
+				54521B7B28E7289F007D7BB2 /* ElementCV */,
+				54521B7628E727F7007D7BB2 /* UpcomingCV */,
 			);
 			path = CollecionCell;
 			sourceTree = "<group>";
@@ -524,6 +546,7 @@
 				5476D11928DE29DC005274D2 /* UpcomingDetailViewController.xib in Resources */,
 				5476D11128DE296C005274D2 /* PopularDetailViewController.xib in Resources */,
 				54350FC828DBF84E00B30422 /* PopularTableViewCell.xib in Resources */,
+				54521B7A28E72818007D7BB2 /* UpcomingCollectionViewCell.xib in Resources */,
 				C383356E28CA917400FCE0D5 /* code-review-rubric.md in Resources */,
 				54350FEB28DCAF8000B30422 /* UpcomingViewController.xib in Resources */,
 				54350FDC28DC21E000B30422 /* TopRatedTableViewCell.xib in Resources */,
@@ -543,6 +566,7 @@
 				54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */,
 				545AACEC28D3AB7700DFD9DF /* Movie.swift in Sources */,
 				54350FEA28DCAF8000B30422 /* UpcomingViewController.swift in Sources */,
+				54521B7928E72818007D7BB2 /* UpcomingCollectionViewCell.swift in Sources */,
 				54350FAE28DBC5B200B30422 /* NowPlayingAPIResponse.swift in Sources */,
 				54350FC728DBF84E00B30422 /* PopularTableViewCell.swift in Sources */,
 				C30893C428A2F845004B1860 /* TrendingViewController.swift in Sources */,
