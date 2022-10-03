@@ -12,9 +12,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cardView: UIView!
     @IBOutlet weak var cardImageView: ImageView!
     @IBOutlet weak var titleLbl: UILabel!
-    
     private var movie: DetailMovie?
-    private let urlBase = "https://image.tmdb.org/t/p/w500"
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +25,7 @@ class MovieCollectionViewCell: UICollectionViewCell {
         }
         self.movie = movie
         self.titleLbl.text = self.movie?.title
-        self.cardImageView.loadImage(urlStr: "\(urlBase)\(self.movie?.poster_path ?? "")")
-
+        self.cardImageView.loadImage(urlStr: "\(ConstantsApi.urlBase)\(self.movie?.poster_path ?? "")")
+        
     }
 }

@@ -19,9 +19,10 @@ class DetailMoviesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = ConstantsDetailMovies.titleDetail
         self.lblTitle.text = self.strTitle
         self.lblDescription.text = self.strDetails
         self.imgPoster.loadImage(urlStr: "\(urlBaseImg)\(strImgMoviePath )")
     }
-
+    
 }

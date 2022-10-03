@@ -6,3 +6,4 @@
   
 */
 "title.movieCollectionViewController" = "Peliculas";
+"title.detailMoviesViewController" = "Detalle de la Pelicula";

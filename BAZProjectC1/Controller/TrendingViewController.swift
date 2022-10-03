@@ -7,40 +7,40 @@
 import UIKit
 
 class TrendingViewController: UITableViewController {
-
+    
     var movies: [DetailMovie] = []
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         let movieApi = MovieAPI()
         movieApi.getMovies{[weak self] (result, error) in
             if let err = error {
                 let alert = UIAlertController(title: "Mensaje", message: err.localizedDescription, preferredStyle: UIAlertController.Style.alert)
-                    
+                
                 alert.addAction(UIAlertAction(title: "Error", style: UIAlertAction.Style.default, handler: nil))
                 self?.present(alert, animated: true, completion: nil)
                 
-                }else{
-                    self?.movies = result.results
-                }
+            }else{
+                self?.movies = result.results
+            }
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
         self.title = "Peliculas"
     }
-
+    
 }
 
 // MARK: - TableView's DataSource
 
 extension TrendingViewController {
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movies.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
@@ -51,17 +51,17 @@ extension TrendingViewController {
         let sb = UIStoryboard(name: "DetailMovie", bundle: nil)
         if let pathVC = sb.instantiateViewController(withIdentifier: "DetailMoviesViewController") as? DetailMoviesViewController{
             pathVC.strTitle = title
-           
+            
             self.navigationController?.popToViewController(pathVC, animated: true)
         }
     }
-
+    
 }
 
 // MARK: - TableView's Delegate
 
 extension TrendingViewController {
-
+    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         var config = UIListContentConfiguration.cell()
         config.text = movies[indexPath.row].title
@@ -73,5 +73,5 @@ extension TrendingViewController {
         }
         cell.contentConfiguration = config
     }
-
+    
 }

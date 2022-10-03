@@ -29,7 +29,7 @@ class ImageView : UIImageView {
             } else {
                 DispatchQueue.main.async {
                     guard let data = data,
-                    let tempImg = UIImage(data: data) else { return }
+                          let tempImg = UIImage(data: data) else { return }
                     
                     if self.imageUrl == urlStr {
                         self.alpha = 0.3;
