@@ -33,7 +33,7 @@ extension SearchViewController: CarouselMoviesDelegate{
         let element = moviesList[position]
 
         if element.knownFor == nil {
-            guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ElementFullDetailViewController") as? ElementFullDetailViewController else { return }
+            guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailTest") as? DetailTest else { return }
             movieFullDetail.modalPresentationStyle = .overCurrentContext
             movieFullDetail.setElementData(with: element)
             self.present(movieFullDetail, animated: true, completion: nil)

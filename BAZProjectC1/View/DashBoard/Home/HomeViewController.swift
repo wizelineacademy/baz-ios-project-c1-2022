@@ -62,7 +62,7 @@ class HomeViewController: UIViewController {
     
     func configutionView() {
         setupUI()
-        view.backgroundColor = UIColor.appColorGrayPrimary
+        view.backgroundColor = UIColor.appColorGraySecondary
     }
     
     override func viewWillAppear(_ animated: Bool) {
