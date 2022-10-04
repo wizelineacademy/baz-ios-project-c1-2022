@@ -43,10 +43,10 @@ extension MovieInfoCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieMainListCollectionViewCell", for: indexPath) as? MovieMainListCollectionViewCell else { return UICollectionViewCell() }
         cell.backgroundColor = .lightGray
         if bMovies {
-            cell.setLabel(text: moviesArray?[indexPath.row].title ?? "SKLÑJDGSJLKDF")
+            cell.setLabel(text: moviesArray?[indexPath.row].title ?? "")
             cell.setImage(img: image ?? UIImage())
         } else {
-            cell.setLabel(text: castArray?[indexPath.row].name ?? "SKLÑJDGSJLKDF")
+            cell.setLabel(text: castArray?[indexPath.row].name ?? "")
             cell.setImage(img: image ?? UIImage())
         }
         return cell

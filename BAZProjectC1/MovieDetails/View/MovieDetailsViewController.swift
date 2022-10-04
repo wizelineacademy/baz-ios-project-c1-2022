@@ -27,7 +27,7 @@ private enum SegmentSelected {
     }
 }
 
-final internal class MovieDetailsViewController: UIViewController, ViewControllerCommonsDelegate {
+final internal class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reviewsTableView: UITableView!
@@ -60,14 +60,6 @@ final internal class MovieDetailsViewController: UIViewController, ViewControlle
         fetchMovieDetails()
         fetchMovieCast()
     }
-
-
-    func configureCollectionView() {
-        mainCollectionView.dataSource = self
-        mainCollectionView.delegate = self
-        mainCollectionView.register(UINib(nibName: "MovieDetailCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
-        mainCollectionView.register(UINib(nibName: "MovieInfoCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieInfoCollectionViewCell")
-    }
     
     private func setData() {
         if let img = img {
@@ -82,13 +74,6 @@ final internal class MovieDetailsViewController: UIViewController, ViewControlle
         movieDetailAPI.urlString = detailsURL ?? ""
         movieDetail = movieDetailAPI.getMovieDetails()
         descriptionTextView.text = movieDetail?.overview
-    }
-    
-    func configureSegmentedControll() {
-        segmentedControl.setTitle("Cast", forSegmentAt: 0)
-        segmentedControl.setTitle("Reviews", forSegmentAt: 1)
-        segmentedControl.setTitle("Similar", forSegmentAt: 2)
-        segmentedControl.setTitle("Recomended", forSegmentAt: 3)
     }
 
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
@@ -138,14 +123,9 @@ final internal class MovieDetailsViewController: UIViewController, ViewControlle
         movieRecommendations = movieDetailAPI.getMovieRecommendations()
     }
     
-    func retreiveImageFromSource(posterPath: String) -> UIImage {
-        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
-        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
-        return uiImage
-    }
-    
 }
 
+// MARK: - MovieDetailsViewController's DataSource and Delegate
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -183,5 +163,28 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             }
         }
         return UICollectionViewCell()
+    }
+}
+
+extension MovieDetailsViewController: ViewControllerCommonsDelegate {
+    func configureCollectionView() {
+        mainCollectionView.dataSource = self
+        mainCollectionView.delegate = self
+        mainCollectionView.register(UINib(nibName: "MovieDetailCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
+        mainCollectionView.register(UINib(nibName: "MovieInfoCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieInfoCollectionViewCell")
+    }
+    
+    func configureSegmentedControll() {
+        segmentedControl.setTitle("Cast", forSegmentAt: 0)
+        segmentedControl.setTitle("Reviews", forSegmentAt: 1)
+        segmentedControl.setTitle("Similar", forSegmentAt: 2)
+        segmentedControl.setTitle("Recomended", forSegmentAt: 3)
+    }
+    
+    
+    func retreiveImageFromSource(posterPath: String) -> UIImage {
+        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
+        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
+        return uiImage
     }
 }
