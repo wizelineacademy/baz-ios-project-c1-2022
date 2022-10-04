@@ -46,7 +46,7 @@ final class NowPlayingDetailViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    
+    //MARK: - S E R V I C E S
     private func getPopular(){
         let movie_WS = MovieAPI()
         movie_WS.getPopular { [weak self] popularResponse, error in

@@ -57,6 +57,8 @@ extension NowPlayingViewController: UITableViewDelegate & UITableViewDataSource 
         let nowPlayingDetail = NowPlayingDetailViewController()
         nowPlayingDetail.index = indexPath.row
         nowPlayingDetail.objNowPlaying = objNowPlay
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
         self.navigationController?.pushViewController(nowPlayingDetail, animated: true)
     }
 }

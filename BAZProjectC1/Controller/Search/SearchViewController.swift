@@ -10,16 +10,114 @@ final class SearchViewController: UIViewController {
         didSet{
             self.tblSearch.delegate = self
             self.tblSearch.dataSource = self
-            self.tblSearch.register(SeachTableViewCell.nib, forCellReuseIdentifier: SeachTableViewCell.identifier)
+            self.tblSearch.register(SearchTableViewCell.nib, forCellReuseIdentifier: SearchTableViewCell.identifier)
         }
     }
     
     private let wizelineBlue: UIColor = UIColor(red: 12/255, green: 24/255, blue: 35/255, alpha: 1)
     private let arrTitles: [String] = ["Trending", "Now Playing", "Popular", "Top Rated", "Upcoming"]
+    var dctDataSource: [String:Any]?
+    private var objMovie: MovieAPIResponse?
+    private var objNowPlay: NowPlayingAPIResponse?
+    private var objPupular: PopularAPIResponse?
+    private var objTopRated: TopRatedAPIResponse?
+    private var objUpcoming: UpcomingAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.getAllServices()
     }
+    
+    
+    //MARK: - S E R V I C E S
+    private func getMovies() {
+        let movieApi = MovieAPI()
+        movieApi.getMoviesTrending { [weak self] moviesResponse, error in
+            guard let self = self else{ return }
+            if moviesResponse != nil {
+                DispatchQueue.main.async {
+                    self.objMovie = moviesResponse
+//                    self.tableView.reloadData()
+//                    self.tblSearch.reloadData()
+                }
+            }
+        }
+    }
+
+    private func getNowPlaying() {
+        let movieApi = MovieAPI()
+        movieApi.getNowPlaying { [weak self] nowPlayingResponse, error in
+            guard let self = self else{ return }
+            if nowPlayingResponse != nil {
+                
+                DispatchQueue.main.async {
+                    self.objNowPlay = nowPlayingResponse
+//                    self.tblNowPlay.reloadData()
+//                    self.tblSearch.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func getPopular(){
+        let movie_WS = MovieAPI()
+        movie_WS.getPopular { [weak self] popularResponse, error in
+            guard let self = self else{ return }
+            if popularResponse != nil {
+                self.objPupular = popularResponse
+                DispatchQueue.main.async {
+//                    self.tblPopular.reloadData()
+                    self.tblSearch.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func getTopRated(){
+        let movie_WS = MovieAPI()
+        movie_WS.getTopRated { [weak self] topRatedResponse, error in
+            guard let self = self else{ return }
+            if topRatedResponse != nil {
+                self.objTopRated = topRatedResponse
+                DispatchQueue.main.async {
+//                    self.tblTopRated.reloadData()
+                    self.tblSearch.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func getUpcoming(){
+        let movie_WS = MovieAPI()
+        movie_WS.getUpcomgin { [weak self] upcomingResponse, error in
+            guard let self = self else{ return }
+            if upcomingResponse != nil {
+                self.objUpcoming = upcomingResponse
+                DispatchQueue.main.async {
+//                    self.cvUpcoming.reloadData()
+                    self.tblSearch.reloadData()
+                }
+            }
+        }
+    }
+    
+    private func getAllServices(){
+        self.getMovies()
+        self.getNowPlaying()
+        self.getPopular()
+        self.getTopRated()
+        self.getUpcoming()
+        dctDataSource = createDicFromObjects()
+    }
+    
+    private func createDicFromObjects() -> [String: Any]{
+        return ["trending": objMovie as Any,
+                "nowPlaying":objNowPlay as Any,
+                "popular": objPupular as Any,
+                "topRated": objTopRated as Any,
+                "upcoming": objUpcoming as Any]
+    }
+    
     
     
 }
@@ -29,8 +127,10 @@ extension SearchViewController: UITableViewDelegate & UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int { return arrTitles.count }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { 1 }
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat { 70 }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SeachTableViewCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.identifier, for: indexPath) as? SearchTableViewCell ?? SearchTableViewCell()
+        cell.dctDataSource = self.dctDataSource
         return cell
     }
     
