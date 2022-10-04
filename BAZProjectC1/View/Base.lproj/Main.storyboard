@@ -45,13 +45,31 @@
                     <view key="view" contentMode="scaleToFill" id="cxZ-4L-qP9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Busca tu película o actor favorito " textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HH5-0C-OuI">
+                                <rect key="frame" x="20" y="84" width="374" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="finishToTapping:" destination="wjS-mg-8Mx" eventType="editingChanged" id="W1A-05-Eje"/>
+                                </connections>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="7nC-HI-68Z"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7nC-HI-68Z" firstAttribute="trailing" secondItem="HH5-0C-OuI" secondAttribute="trailing" constant="20" id="Sg5-b6-6aQ"/>
+                            <constraint firstItem="HH5-0C-OuI" firstAttribute="leading" secondItem="7nC-HI-68Z" secondAttribute="leading" constant="20" id="chd-aa-Hoc"/>
+                            <constraint firstItem="HH5-0C-OuI" firstAttribute="top" secondItem="7nC-HI-68Z" secondAttribute="top" constant="40" id="cyS-ld-afi"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="queryTextField" destination="HH5-0C-OuI" id="rjm-M8-TZJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S7V-v7-qNF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="578"/>
+            <point key="canvasLocation" x="60.869565217391312" y="577.90178571428567"/>
         </scene>
     </scenes>
     <resources>

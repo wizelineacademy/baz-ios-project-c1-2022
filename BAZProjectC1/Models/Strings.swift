@@ -9,40 +9,47 @@ import Foundation
 
 enum EndpointsList: String  {
     case movieAPI = "movieAPI"
+    case imageResource = "imageResource"
     case trending = "Trending"
     case nowPlaying = "Now Playing"
     case popular = "Popular"
     case topRated = "Top Rated"
     case upcoming = "Upcoming"
-    case imageResource = "imageResource"
-
+    case genreList = "genreList"
+    case languagesList = "languagesList"
+    case searchMulti = "searchMulti"
+    
     var description: String {
         switch self {
         case .movieAPI:
             guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"endpointMovieAPI") as? String else { return "" }
-            return endpoint
+                return endpoint
         case .imageResource:
             return "https://image.tmdb.org/t/p/w500"
         case .trending:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "trending") as? String {
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"trending") as? String else { return "" }
                 return endpoint
-            } else { return "" }
         case .nowPlaying:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "nowPlaying") as? String {
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"nowPlaying") as? String else { return "" }
                 return endpoint
-            } else { return "" }
         case .popular:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "popular") as? String {
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"popular") as? String else { return "" }
                 return endpoint
-            } else { return "" }
         case .topRated:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "topRated") as? String {
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"topRated") as? String else { return "" }
                 return endpoint
-            } else { return "" }
         case .upcoming:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "upcoming") as? String {
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"upcoming") as? String else { return "" }
                 return endpoint
-            } else { return "" }
+        case .genreList:
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"genreList") as? String else { return "" }
+                return endpoint
+        case .languagesList:
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"languagesList") as? String else { return "" }
+                return endpoint
+        case .searchMulti:
+            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"searchMulti") as? String else { return "" }
+                return endpoint
         }
     }
 }

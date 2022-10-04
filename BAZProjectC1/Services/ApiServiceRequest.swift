@@ -24,6 +24,7 @@ public class ApiServiceRequest {
             }
         }).resume()
     }
+    
     public static func decodeJsonDataTo<T: Decodable>(object structureType: T.Type, with infoData: Data ) -> Any? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
