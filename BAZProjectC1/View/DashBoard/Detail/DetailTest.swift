@@ -9,7 +9,10 @@ import UIKit
 class DetailTest: UIViewController {
     
     private var elementData: MovieModel?
+    
     @IBOutlet weak var posterImage: movieImageView!
+    @IBOutlet weak var scrollArea: UIScrollView!
+    @IBOutlet weak var ContentView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,7 +24,6 @@ class DetailTest: UIViewController {
     }
     
     func setUpView() {
-        view.backgroundColor = UIColor.appColorBlack
         reloadDataInView()
         loadedAnimation()
     }
@@ -41,6 +43,8 @@ class DetailTest: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     private func reloadDataInView() {
+        view.backgroundColor = UIColor.appColorBlack
+        ContentView.backgroundColor = UIColor.appColorBlack
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
     }
     

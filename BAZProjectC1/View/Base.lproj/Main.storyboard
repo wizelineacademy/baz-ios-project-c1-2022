@@ -157,31 +157,31 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVt-sM-B96">
                                 <rect key="frame" x="0.0" y="93" width="414" height="2307"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgI-aj-O4b">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgI-aj-O4b" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="2200"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6e-63-HNB" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="390" height="442"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="442"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="M6e-63-HNB" secondAttribute="bottom" constant="1758" id="0be-a1-Bwh"/>
                                             <constraint firstItem="M6e-63-HNB" firstAttribute="top" secondItem="tgI-aj-O4b" secondAttribute="top" id="Fho-Gc-BiU"/>
                                             <constraint firstItem="M6e-63-HNB" firstAttribute="leading" secondItem="tgI-aj-O4b" secondAttribute="leading" id="VKt-az-D55"/>
                                             <constraint firstAttribute="height" constant="2200" id="flk-sq-abp"/>
-                                            <constraint firstAttribute="trailing" secondItem="M6e-63-HNB" secondAttribute="trailing" constant="24" id="uWs-t5-qcW"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="2200" id="heD-e3-Y6Y"/>
+                                            <constraint firstAttribute="trailing" secondItem="M6e-63-HNB" secondAttribute="trailing" id="uWs-t5-qcW"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <constraints>
-                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="leading" secondItem="yVt-sM-B96" secondAttribute="leading" id="0Fv-d6-t4f"/>
-                                    <constraint firstAttribute="bottom" secondItem="tgI-aj-O4b" secondAttribute="bottom" id="4wS-l6-8gc"/>
-                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="top" secondItem="yVt-sM-B96" secondAttribute="top" id="FWG-KZ-p5J"/>
-                                    <constraint firstAttribute="trailing" secondItem="tgI-aj-O4b" secondAttribute="trailing" id="Lhw-nm-oWW"/>
-                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="centerX" secondItem="yVt-sM-B96" secondAttribute="centerX" id="MIA-9l-xaK"/>
+                                    <constraint firstAttribute="trailing" secondItem="tgI-aj-O4b" secondAttribute="trailing" constant="24" id="L4y-8Y-9tn"/>
+                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="top" secondItem="yVt-sM-B96" secondAttribute="top" id="S8b-sG-G1v"/>
+                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="leading" secondItem="yVt-sM-B96" secondAttribute="leading" id="gfh-8M-p6O"/>
+                                    <constraint firstItem="tgI-aj-O4b" firstAttribute="centerX" secondItem="yVt-sM-B96" secondAttribute="centerX" id="hcz-dT-NZC"/>
+                                    <constraint firstAttribute="bottom" secondItem="tgI-aj-O4b" secondAttribute="bottom" constant="107" id="tT7-OZ-PFg"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -199,12 +199,14 @@
                     </view>
                     <size key="freeformSize" width="414" height="2400"/>
                     <connections>
+                        <outlet property="ContentView" destination="tgI-aj-O4b" id="tRI-u7-7Fg"/>
                         <outlet property="posterImage" destination="M6e-63-HNB" id="aSZ-bX-47d"/>
+                        <outlet property="scrollArea" destination="yVt-sM-B96" id="Xlc-8z-ee6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rql-hn-WVl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="61" y="1811"/>
+            <point key="canvasLocation" x="60.869565217391312" y="1810.7142857142856"/>
         </scene>
     </scenes>
     <resources>
@@ -214,9 +216,6 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
