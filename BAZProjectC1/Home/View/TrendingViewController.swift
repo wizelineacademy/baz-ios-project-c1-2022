@@ -17,11 +17,15 @@ final class TrendingViewController: UITableViewController {
         getMovies()
         setupView()
         setSearchBar()
+        registraNotificacionTeclado()
     }
     
     func setupView(){
-        navigationItem.title = "Discover"
         tableView.register(UINib.init(nibName: SearchTableViewCell.reuseIdentifier, bundle: Bundle(for: SearchTableViewCell.self)), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
+                view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
     
     func setSearchBar(){
@@ -58,12 +62,24 @@ final class TrendingViewController: UITableViewController {
     }
     
     func registraNotificacionTeclado (){
-        NotificationCenter.default.addObserver(self, selector: #selector(ocultoTeclado), name: UIResponder.keyboardDidHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidHideNotification, object: nil)
 
     }
+   
+    @objc func tapGestureHandler() {
+        searchBar.endEditing(true)
+    }
     
-    @objc func ocultoTeclado(){
-        
+    @objc func keyboardWillShow(notification: Notification) {
+            if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
+                debugPrint("Notification: Keyboard will show")
+                
+                view.endEditing(true)
+            }
+        }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
 }
@@ -83,6 +99,7 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: SearchTableViewCell.reuseIdentifier) as! SearchTableViewCell
         cell.setSelected(true, animated: true)
         let object = viewModel.movieDataArray[indexPath.item]
@@ -91,28 +108,19 @@ extension TrendingViewController {
         vc.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(vc, animated: true)
         
-        
-        
     }
 }
 
 extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, UISearchResultsUpdating{
     
-    func updateSearchResults(for searchController: UISearchController) {
-        print ("")
-    }
+    func updateSearchResults(for searchController: UISearchController) { }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
         let searchText = trimmedString.replacingOccurrences(of: " ", with: "%20")
         if searchText.count > 1 {
-            print("Trimed: |", trimmedString,"|")
-            print ("Search: |", searchText,"|")
             searchMovie(with: searchText)
         }
         
     }
-    
-    
-    
 }
