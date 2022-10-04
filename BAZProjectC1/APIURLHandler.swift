@@ -8,20 +8,20 @@
 import Foundation
 
 protocol APIURLHandlerProtocol {
-    var url: String { get set }
+    var urlString: String { get set }
     func validateURL() -> URL?
     func getDataFromURL() -> Data?
 }
 
 internal class APIURLHandler: APIURLHandlerProtocol {
-    var url: String
+    var urlString: String
     
     init(url: String) {
-        self.url = url
+        self.urlString = url
     }
     
     func validateURL() -> URL? {
-        guard let url = URL(string: self.url) else { return nil }
+        guard let url = URL(string: self.urlString) else { return nil }
         return url
     }
     
