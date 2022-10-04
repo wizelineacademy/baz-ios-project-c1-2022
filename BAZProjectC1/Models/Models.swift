@@ -8,35 +8,43 @@
 import Foundation
 import UIKit
 
-public struct MovieApiResponseModel: Codable {
+public struct MovieApiResponseModel: Decodable {
     var page: Int?
     var results: [MovieModel]?
-    var total_pages: Int?
-    var total_results: Int?
-    var dates: datesMovieModel?
+    var totalPages: Int?
+    var totalResults: Int?
+    var dates: DatesMovieModel?
 }
 
-public struct datesMovieModel: Codable {
-    var maximum:String?
-    var minimum:String?
+public struct DatesMovieModel: Decodable {
+    var maximum: String?
+    var minimum: String?
 }
 
-public struct MovieModel: Codable {
+public struct MovieModel: Decodable {
     var adult: Bool?
-    var backdrop_path: String?
-    var poster_path: String?
+    var backdropPath: String?
+    var posterPath: String?
     var id: Int?
     var title: String?
-    var original_language: String?
-    var original_title: String?
+    var originalLanguage: String?
+    var originalTitle: String?
     var overview: String?
-    var media_type: String?
-    var genre_ids: [Int]?
+    var mediaType: String?
+    var genreIds: [Int]?
+    var genreIdsString: String?
     var popularity: Double?
-    var release_date: String?
+    var releaseDate: String?
     var video: Bool?
-    var vote_average: Double?
-    var vote_count: Int?
+    var voteAverage: Double?
+    var voteCount: Int?
+    
+    //MARK: for Actor info
+    
+    var knownFor: [MovieModel]?
+    var knownForDepartment: String?
+    var name: String?
+    var profilePath: String?
 }
 
 extension MovieModel {
@@ -45,10 +53,10 @@ extension MovieModel {
     }
     
     var imageURLString: String {
-        "\(EndpointsList.imageResorce.description)\(poster_path ?? "")"
+        "\(EndpointsList.imageResorce.description)\(posterPath ?? "")"
     }
     
     var movieRanking: String {
-        "\(Int(vote_average ?? 0))"
+        "\(Int(voteAverage ?? 0))"
     }
 }

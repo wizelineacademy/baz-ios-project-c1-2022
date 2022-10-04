@@ -20,29 +20,29 @@ enum EndpointsList:String  {
     var description: String {
         switch self {
         case .movieAPI:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"endpointMovieAPI") as? String {
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "endpointMovieAPI") as? String {
                 return endpoint
             } else { return "" }
         case .imageResorce:
             return "https://image.tmdb.org/t/p/w500"
         case .trending:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"trending") as? String{
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "trending") as? String {
                 return endpoint
             } else { return "" }
         case .nowPlaying:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"nowPlaying") as? String{
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "nowPlaying") as? String {
                 return endpoint
             } else { return "" }
         case .popular:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"popular") as? String{
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "popular") as? String {
                 return endpoint
             } else { return "" }
         case .topRated:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"topRated") as? String{
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "topRated") as? String {
                 return endpoint
             } else { return "" }
         case .upcoming:
-            if let endpoint = Bundle.main.object(forInfoDictionaryKey:"upcoming") as? String{
+            if let endpoint = Bundle.main.object(forInfoDictionaryKey: "upcoming") as? String {
                 return endpoint
             } else { return "" }
         }

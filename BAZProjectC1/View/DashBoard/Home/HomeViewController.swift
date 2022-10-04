@@ -12,7 +12,7 @@ fileprivate let IMAGE_CONSTANT_SIZE: CGFloat = 24
 
 class HomeViewController: UIViewController {
 
-    let filterDataArray = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
+    let filterDataArray = ["Trending", "Now Playing", "Popular", "Top Rated", "Upcoming"]
     var moviesList: [MovieModel] = [] {
         didSet{
             carouselMovies.setDataInfo(infoCarousel: moviesList)
@@ -40,10 +40,12 @@ class HomeViewController: UIViewController {
         carouselMovies.delegate = self
         return carouselMovies
     }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configutionView()
     }
+    
     private func setupUI() {
         view.addSubview(filterMenu)
         view.addSubview(carouselMovies)
@@ -55,16 +57,19 @@ class HomeViewController: UIViewController {
                                      carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: ASPECT_RATION_SCREEN)])
         
     }
+    
     func configutionView() {
         setupUI()
         view.backgroundColor = UIColor.appColorBlack
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         guard let firstOption = filterDataArray.first,
               let UrlOptionSelected = EndpointsList(rawValue: firstOption)?.description else { return }
         getDataInfo(urlString: UrlOptionSelected)
     }
+     
     func getDataInfo(urlString: String) {
         ApiServiceRequest.getService(urlService: urlString, structureType: MovieApiResponseModel.self, handler: { [weak self] dataResponse in
             if let data = dataResponse as? MovieApiResponseModel {
