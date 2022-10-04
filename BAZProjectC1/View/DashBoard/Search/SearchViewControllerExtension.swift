@@ -16,7 +16,7 @@ extension SearchViewController {
         })
     }
     
-    func hideKeyboardWhenTappedAround() {
+    func hideKeyboardWhenTappedAroundView() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)

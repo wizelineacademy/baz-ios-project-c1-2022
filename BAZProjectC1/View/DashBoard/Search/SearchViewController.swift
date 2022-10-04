@@ -35,7 +35,7 @@ class SearchViewController: UIViewController {
     
     private func setupUI() {
         view.addSubview(carouselMovies)
-        hideKeyboardWhenTappedAround()
+        hideKeyboardWhenTappedAroundView()
         let ASPECT_RATION_SCREEN: CGFloat = view.frame.size.height / view.frame.size.width
         NSLayoutConstraint.activate([ carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
                                       carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
