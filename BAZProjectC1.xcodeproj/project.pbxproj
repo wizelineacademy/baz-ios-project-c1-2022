@@ -108,6 +108,7 @@
 		008BFB8028DCC3B600F8688C /* MovieDetails */ = {
 			isa = PBXGroup;
 			children = (
+				00E10BD128EBE6CA00CF7D50 /* Models */,
 				0040941228EB6002004EEAA4 /* MovieDetailCollectionViewCell.swift */,
 				0040941328EB6002004EEAA4 /* MovieDetailCollectionViewCell.xib */,
 				00E10BCC28EBA95500CF7D50 /* MovieInfoCollectionViewCell.swift */,
@@ -115,6 +116,7 @@
 				00E10BCB28EB9ECB00CF7D50 /* Cast */,
 				0040940D28EB59B5004EEAA4 /* Reviews */,
 				0040940A28E65526004EEAA4 /* MovieDetailsViewController.swift */,
+				00E10BC128EB727600CF7D50 /* MovieDetailAPI.swift */,
 			);
 			path = MovieDetails;
 			sourceTree = "<group>";
@@ -129,9 +131,32 @@
 		00E10BD028EBB3A600CF7D50 /* MovieMenu */ = {
 			isa = PBXGroup;
 			children = (
+				00E10BD228EBE6D800CF7D50 /* Models */,
 				008BFB7F28DCC39600F8688C /* MoviesMainList */,
+				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
+				C30893E028A425E1004B1860 /* MovieAPI.swift */,
 			);
 			path = MovieMenu;
+			sourceTree = "<group>";
+		};
+		00E10BD128EBE6CA00CF7D50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				00E10BC728EB94D100CF7D50 /* MovieDetail.swift */,
+				00989A9928DE2A7700AD468B /* MovieReviews.swift */,
+				00E10BC328EB743100CF7D50 /* MovieSimilars.swift */,
+				00E10BC928EB96C400CF7D50 /* MovieCast.swift */,
+				00E10BC528EB744100CF7D50 /* MovieRecommendations.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		00E10BD228EBE6D800CF7D50 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C30893E128A425E1004B1860 /* Movie.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C30893A128A2F42B004B1860 = {
@@ -160,15 +185,6 @@
 				008BFB8028DCC3B600F8688C /* MovieDetails */,
 				C30893AD28A2F42B004B1860 /* AppDelegate.swift */,
 				C30893AF28A2F42B004B1860 /* SceneDelegate.swift */,
-				C30893C328A2F845004B1860 /* TrendingViewController.swift */,
-				C30893E128A425E1004B1860 /* Movie.swift */,
-				00E10BC728EB94D100CF7D50 /* MovieDetail.swift */,
-				00989A9928DE2A7700AD468B /* MovieReviews.swift */,
-				00E10BC328EB743100CF7D50 /* MovieSimilars.swift */,
-				00E10BC928EB96C400CF7D50 /* MovieCast.swift */,
-				00E10BC528EB744100CF7D50 /* MovieRecommendations.swift */,
-				00E10BC128EB727600CF7D50 /* MovieDetailAPI.swift */,
-				C30893E028A425E1004B1860 /* MovieAPI.swift */,
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
 				C30893B828A2F42D004B1860 /* LaunchScreen.storyboard */,
 				C30893B628A2F42D004B1860 /* Assets.xcassets */,

@@ -7,12 +7,14 @@
 
 import UIKit
 
-class MovieInfoCollectionViewCell: UICollectionViewCell {
+final internal class MovieInfoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
     var moviesArray: [MovieSimilars]?
     var castArray: [Cast]?
+    var image: UIImage?
+    var bMovies: Bool = false
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +22,7 @@ class MovieInfoCollectionViewCell: UICollectionViewCell {
         setupCell()
     }
 
-    func setupCell() {
+    private func setupCell() {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieMainListCollectionViewCell")
@@ -30,20 +32,22 @@ class MovieInfoCollectionViewCell: UICollectionViewCell {
 // MARK: - TrendingViewController's DataSource and Delegate
 extension MovieInfoCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if moviesArray ==  nil {
-            return castArray?.count ?? 0
-        } else {
+        if bMovies {
             return moviesArray?.count ?? 0
+        } else {
+            return castArray?.count ?? 0
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieMainListCollectionViewCell", for: indexPath) as? MovieMainListCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .blue
-        if moviesArray ==  nil {
-            cell.setLabel(text: castArray?[indexPath.row].name ?? "")
+        cell.backgroundColor = .lightGray
+        if bMovies {
+            cell.setLabel(text: moviesArray?[indexPath.row].title ?? "SKLÑJDGSJLKDF")
+            cell.setImage(img: image ?? UIImage())
         } else {
-            cell.setLabel(text: moviesArray?[indexPath.row].title ?? "")
+            cell.setLabel(text: castArray?[indexPath.row].name ?? "SKLÑJDGSJLKDF")
+            cell.setImage(img: image ?? UIImage())
         }
         return cell
     }

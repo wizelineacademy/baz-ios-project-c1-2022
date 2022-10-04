@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SegmentSelected {
+private enum SegmentSelected {
     case cast(Int)
     case reviews(Int)
     case similar(Int)
@@ -27,8 +27,7 @@ enum SegmentSelected {
     }
 }
 
-class MovieDetailsViewController: UIViewController
-{
+final internal class MovieDetailsViewController: UIViewController, ViewControllerCommonsDelegate {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var reviewsTableView: UITableView!
@@ -43,36 +42,27 @@ class MovieDetailsViewController: UIViewController
             }
         }
     }
+    var img: UIImage?
     private var segmentSelected: SegmentSelected?
     private var detailsURL: String?
-    var img: UIImage?
     private var movieReviews: [MovieReviews]?
     private var movieRecommendations, movieSimilars: [MovieSimilars]?
     private var movieDetail: MovieDetail?
     private var movieCast: [Cast]?
-    let movieDetailAPI = MovieDetailAPI(url: "")
+    private let movieDetailAPI = MovieDetailAPI(url: "")
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setData()
+        configureCollectionView()
         configureSegmentedControll()
         fetchMovieDetails()
-        
         fetchMovieCast()
-        
-        setupCollectionView()
-        
-//        mainViewController.register(UINib(nibName: "MovieDetailCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
     }
 
-    private func setupTableView() {
-//        reviewsTableView.dataSource = self
-//        reviewsTableView.delegate = self
-//        reviewsTableView.register(UINib(nibName: "ReviewsTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewsTableViewCell")
-    }
-    
-    private func setupCollectionView() {
+
+    func configureCollectionView() {
         mainCollectionView.dataSource = self
         mainCollectionView.delegate = self
         mainCollectionView.register(UINib(nibName: "MovieDetailCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: "MovieDetailCollectionViewCell")
@@ -88,19 +78,10 @@ class MovieDetailsViewController: UIViewController
         }
     }
     
-    private func fetchMovieDetails() {
-//        let movieDetailAPI = MovieDetailAPI(url: detailsURL ?? "")
+    func fetchMovieDetails() {
         movieDetailAPI.urlString = detailsURL ?? ""
         movieDetail = movieDetailAPI.getMovieDetails()
         descriptionTextView.text = movieDetail?.overview
-//        movieDetailAPI.urlString = reviewsURL ?? ""
-//        movieReviews = movieDetailAPI.getMovieReviews()
-//        movieDetailAPI.urlString = recomendationsURL ?? ""
-//        movieRecommendations = movieDetailAPI.getMovieRecommendations()
-//        movieDetailAPI.urlString = similarsURL ?? ""
-//        movieSimilars = movieDetailAPI.getMovieSimilars()
-//        movieDetailAPI.urlString = castURL ?? ""
-//        movieCast = movieDetailAPI.getMovieCast()
     }
     
     func configureSegmentedControll() {
@@ -111,11 +92,10 @@ class MovieDetailsViewController: UIViewController
     }
 
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
-        
         if let movie = movie {
             switch sender.selectedSegmentIndex {
             case 0:
-                segmentSelected = .reviews(movie.id)
+                segmentSelected = .cast(movie.id)
                 fetchMovieCast()
                 mainCollectionView.reloadData()
             case 1:
@@ -124,45 +104,47 @@ class MovieDetailsViewController: UIViewController
                 mainCollectionView.reloadData()
             case 2:
                 segmentSelected = .similar(movie.id)
+                fetchMovieSimilars()
+                mainCollectionView.reloadData()
             case 3:
                 segmentSelected = .recommended(movie.id)
+                fetchMovieRecommended()
+                mainCollectionView.reloadData()
             default:
                 segmentSelected = .cast(movie.id)
+                fetchMovieCast()
+                mainCollectionView.reloadData()
             }
         }
-
-//        fetchMovies()
     }
     
     private func fetchMovieReviews() {
         movieDetailAPI.urlString = segmentSelected?.url.urlString ?? ""
         movieReviews = movieDetailAPI.getMovieReviews()
-        print("movieReviews\(movieReviews)")
     }
     
     private func fetchMovieCast() {
         movieDetailAPI.urlString = segmentSelected?.url.urlString ?? ""
         movieCast = movieDetailAPI.getMovieCast()
     }
-}
-
-//extension MovieDetailsViewController: UITableViewDelegate, UITableViewDataSource {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return movieReviews?.count ?? 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let reviewsTableViewCell = tableView.dequeueReusableCell(withIdentifier: "ReviewsTableViewCell", for: indexPath) as? ReviewsTableViewCell else { return UITableViewCell() }
-//        reviewsTableViewCell.lblAuthor.text = movieReviews?[indexPath.row].author
-//        reviewsTableViewCell.lblReview.text = movieReviews?[indexPath.row].content
-//        reviewsTableViewCell.selectionStyle = .none
-////        print("movieReviews?[indexPath.row].content \(movieReviews?[indexPath.row].content)")
-//        return reviewsTableViewCell
-//    }
-//
     
-//}
-
+    private func fetchMovieSimilars() {
+        movieDetailAPI.urlString = segmentSelected?.url.urlString ?? ""
+        movieSimilars = movieDetailAPI.getMovieSimilars()
+    }
+    
+    private func fetchMovieRecommended() {
+        movieDetailAPI.urlString = segmentSelected?.url.urlString ?? ""
+        movieRecommendations = movieDetailAPI.getMovieRecommendations()
+    }
+    
+    func retreiveImageFromSource(posterPath: String) -> UIImage {
+        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
+        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
+        return uiImage
+    }
+    
+}
 
 extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     
@@ -175,19 +157,26 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
             switch segmentSelected {
             case .reviews(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionViewCell", for: indexPath) as? MovieDetailCollectionViewCell else { return UICollectionViewCell() }
+                cell.tableView.reloadData()
                 cell.movieReviews = movieReviews
                 return cell
             case .cast(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
+                cell.collectionView.reloadData()
                 cell.castArray = movieCast
+                cell.bMovies = false
                 return cell
             case .similar(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
+                cell.collectionView.reloadData()
                 cell.moviesArray = movieSimilars
+                cell.bMovies = true
                 return cell
             case .recommended(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
+                cell.collectionView.reloadData()
                 cell.moviesArray = movieRecommendations
+                cell.bMovies = true
                 return cell
             default:
                 return UICollectionViewCell()
@@ -195,15 +184,4 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
         }
         return UICollectionViewCell()
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        return 1
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieDetailCollectionViewCell", for: indexPath) as? MovieDetailCollectionViewCell else { return UICollectionViewCell() }
-//        cell.movieReviews = movieReviews
-//
-//        return cell
-//    }
 }

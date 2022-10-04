@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MovieDetailCollectionViewCell: UICollectionViewCell {
+internal final class MovieDetailCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -18,7 +18,7 @@ class MovieDetailCollectionViewCell: UICollectionViewCell {
         setupCell()
     }
     
-    func setupCell() {
+    private func setupCell() {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(UINib(nibName: "ReviewsTableViewCell", bundle: nil), forCellReuseIdentifier: "ReviewsTableViewCell")

@@ -6,7 +6,7 @@
 
 import UIKit
 
-enum TypeMovie {
+private enum TypeMovie {
     case trending
     case nowPlaying
     case popular
@@ -32,31 +32,47 @@ enum TypeMovie {
     }
 }
 
-protocol MyDataSendingDelegate: AnyObject {
-    func sendData(myData: Movie)
-}
-
-final internal class TrendingViewController: UIViewController {
+final internal class TrendingViewController: UIViewController, ViewControllerCommonsDelegate {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     
     private var movies: [Movie] = []
     private var typeMovie: TypeMovie = .trending
-    var imageArray: [UIImage] = []
-    weak var delegate: MyDataSendingDelegate? = nil
-    
-    let searchController = UISearchController(searchResultsController: nil)
-
+    private var imageArray: [UIImage] = []
+    private let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
+        configureCollectionView()
+        setUpNotificaionCenter()
         fetchMovies()
         configureSearch()
         configureSegmentedControll()
+    }
+    
+    func setUpNotificaionCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+            // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+        print("self.view.frame.origin.y \(self.view.frame.origin.y)")
+        self.view.frame.origin.y = 0 - keyboardSize.height
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+    func configureCollectionView() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: .main), forCellWithReuseIdentifier: MovieMainListCollectionViewCell.identifier)
     }
     
     func configureSegmentedControll() {
@@ -67,7 +83,6 @@ final internal class TrendingViewController: UIViewController {
     }
     
     @IBAction func didChangeSegment(_ sender: UISegmentedControl) {
-//        print(sender.selectedSegmentIndex)
         switch sender.selectedSegmentIndex {
         case 0:
             typeMovie = .trending
@@ -85,7 +100,7 @@ final internal class TrendingViewController: UIViewController {
         fetchMovies()
     }
     
-    func fetchMovies() {
+    private func fetchMovies() {
         imageArray.removeAll()
         DispatchQueue.global().async {
             let service = self.typeMovie.url
@@ -94,15 +109,13 @@ final internal class TrendingViewController: UIViewController {
                     self?.movies = result
                 }
             }
-            
-            print(self.movies)
             DispatchQueue.main.sync {
                 self.collectionView.reloadData()
             }
         }
     }
     
-    func configureSearch() {
+    private func configureSearch() {
         searchController.loadViewIfNeeded()
         searchController.searchBar.delegate = self
         searchController.searchResultsUpdater = self
@@ -118,7 +131,6 @@ final internal class TrendingViewController: UIViewController {
     func retreiveImageFromSource(posterPath: String) -> UIImage {
         let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
         let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
-        imageArray.append(uiImage)
         return uiImage
     }
 }
@@ -133,6 +145,7 @@ extension TrendingViewController: UICollectionViewDelegate, UICollectionViewData
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieMainListCollectionViewCell", for: indexPath) as? MovieMainListCollectionViewCell else { return UICollectionViewCell() }
         cell.setLabel(text: "\(movies[indexPath.row].title)")
         let image = retreiveImageFromSource(posterPath: movies[indexPath.row].posterPath)
+        imageArray.append(image)
         cell.setImage(img: image)
         return cell
     }
@@ -148,7 +161,7 @@ extension TrendingViewController: UICollectionViewDelegate, UICollectionViewData
 }
 
 extension TrendingViewController: UISearchResultsUpdating, UISearchBarDelegate {
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         if let searchedText = searchController.searchBar.text {
             typeMovie = .searched(searchedText)
@@ -162,8 +175,9 @@ extension TrendingViewController: UISearchResultsUpdating, UISearchBarDelegate {
     
 }
 
-protocol TrendingViewControllerFetcherDelegate {
-    func fetchMovies()
+protocol ViewControllerCommonsDelegate {
+    func configureCollectionView()
+    func configureSegmentedControll()
     func retreiveImageFromSource(posterPath: String) -> UIImage
 }
 
