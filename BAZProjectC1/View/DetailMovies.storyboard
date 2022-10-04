@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Detail Movies View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="DetailMoviesViewController" id="Y6W-OH-hqX" customClass="DetailMoviesViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cxf-Hj-CWO">
+                                <rect key="frame" x="0.0" y="44" width="414" height="269"/>
+                                <subviews>
+                                    <wkWebView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1g9-tA-OXE">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <wkWebViewConfiguration key="configuration">
+                                            <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                            <wkPreferences key="preferences"/>
+                                        </wkWebViewConfiguration>
+                                    </wkWebView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="bmx-sD-nwZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="269"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <button opaque="NO" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AEI-Hu-4hH">
+                                        <rect key="frame" x="165.5" y="93.5" width="83" height="82"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="AEI-Hu-4hH" secondAttribute="height" multiplier="1:1" id="ucw-GT-fk4"/>
+                                        </constraints>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" backgroundImage="play.circle" catalog="system"/>
+                                        <connections>
+                                            <action selector="showVideo:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="3lF-2N-yZK"/>
+                                        </connections>
+                                    </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="qBV-9u-J4y">
+                                        <rect key="frame" x="188.5" y="116" width="37" height="37"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="AEI-Hu-4hH" firstAttribute="centerX" secondItem="Cxf-Hj-CWO" secondAttribute="centerX" id="31E-I4-0lr"/>
+                                    <constraint firstAttribute="trailing" secondItem="bmx-sD-nwZ" secondAttribute="trailing" id="3s1-sO-0zP"/>
+                                    <constraint firstItem="AEI-Hu-4hH" firstAttribute="width" secondItem="bmx-sD-nwZ" secondAttribute="width" multiplier="0.2" id="BAc-ms-UiZ"/>
+                                    <constraint firstItem="bmx-sD-nwZ" firstAttribute="top" secondItem="Cxf-Hj-CWO" secondAttribute="top" id="CWY-Pp-640"/>
+                                    <constraint firstItem="1g9-tA-OXE" firstAttribute="top" secondItem="Cxf-Hj-CWO" secondAttribute="top" id="Kte-gR-O9p"/>
+                                    <constraint firstItem="qBV-9u-J4y" firstAttribute="centerY" secondItem="Cxf-Hj-CWO" secondAttribute="centerY" id="LDb-7X-kQW"/>
+                                    <constraint firstItem="AEI-Hu-4hH" firstAttribute="centerY" secondItem="Cxf-Hj-CWO" secondAttribute="centerY" id="Som-Um-DUr"/>
+                                    <constraint firstAttribute="bottom" secondItem="bmx-sD-nwZ" secondAttribute="bottom" id="fEC-Y8-Sml"/>
+                                    <constraint firstItem="1g9-tA-OXE" firstAttribute="leading" secondItem="Cxf-Hj-CWO" secondAttribute="leading" id="kCA-4b-pbf"/>
+                                    <constraint firstAttribute="bottom" secondItem="1g9-tA-OXE" secondAttribute="bottom" id="nm6-53-01q"/>
+                                    <constraint firstItem="qBV-9u-J4y" firstAttribute="centerX" secondItem="Cxf-Hj-CWO" secondAttribute="centerX" id="sy4-by-Txk"/>
+                                    <constraint firstAttribute="trailing" secondItem="1g9-tA-OXE" secondAttribute="trailing" id="vEv-Fj-99J"/>
+                                    <constraint firstItem="bmx-sD-nwZ" firstAttribute="leading" secondItem="Cxf-Hj-CWO" secondAttribute="leading" id="wai-Hn-AuV"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="7Nq-BQ-cCG">
+                                <rect key="frame" x="0.0" y="313" width="414" height="549"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="7Nq-BQ-cCG" firstAttribute="top" secondItem="Cxf-Hj-CWO" secondAttribute="bottom" id="0DU-8F-7N7"/>
+                            <constraint firstItem="Cxf-Hj-CWO" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="2IT-9F-z31"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="7Nq-BQ-cCG" secondAttribute="bottom" id="CBw-yT-MiJ"/>
+                            <constraint firstItem="Cxf-Hj-CWO" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="IIq-mg-o5U"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Cxf-Hj-CWO" secondAttribute="trailing" id="Uk3-2p-X7y"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="7Nq-BQ-cCG" secondAttribute="trailing" id="gsX-ba-ExS"/>
+                            <constraint firstItem="7Nq-BQ-cCG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="uJm-yf-I8s"/>
+                            <constraint firstItem="Cxf-Hj-CWO" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="0.3" id="vVR-dr-ve2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="animLoadTrailer" destination="qBV-9u-J4y" id="M2i-3h-bUh"/>
+                        <outlet property="btnPlayTrailer" destination="AEI-Hu-4hH" id="JZ3-cN-ufU"/>
+                        <outlet property="imgMovie" destination="bmx-sD-nwZ" id="HfK-Ex-yJm"/>
+                        <outlet property="tblDetailMovies" destination="7Nq-BQ-cCG" id="6Gp-Xx-XR4"/>
+                        <outlet property="wvVideoMovie" destination="1g9-tA-OXE" id="SbA-a7-W4H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="886.95652173913049" y="84.375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="play.circle" catalog="system" width="128" height="121"/>
+        <image name="poster" width="500" height="743"/>
+    </resources>
+</document>
