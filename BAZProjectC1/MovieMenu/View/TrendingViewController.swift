@@ -98,7 +98,7 @@ extension TrendingViewController: UICollectionViewDelegate, UICollectionViewData
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieMainListCollectionViewCell", for: indexPath) as? MovieMainListCollectionViewCell else { return UICollectionViewCell() }
         cell.setLabel(text: "\(movies[indexPath.row].title)")
-        let image = retreiveImageFromSource(posterPath: movies[indexPath.row].posterPath)
+        let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(movies[indexPath.row].posterPath)").retreiveImageFromSource()
         imageArray.append(image)
         cell.setImage(img: image)
         return cell

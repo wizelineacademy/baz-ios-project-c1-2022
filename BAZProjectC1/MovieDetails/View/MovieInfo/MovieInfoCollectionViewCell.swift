@@ -28,12 +28,6 @@ final internal class MovieInfoCollectionViewCell: UICollectionViewCell {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieMainListCollectionViewCell")
     }
-    
-    private func retreiveImageFromSource(posterPath: String) -> UIImage {
-        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
-        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
-        return uiImage
-    }
 }
 
 // MARK: - TrendingViewController's DataSource and Delegate
@@ -58,15 +52,15 @@ extension MovieInfoCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         switch bMovies {
         case .similar(0):
             cell.setLabel(text: moviesSimilars?[indexPath.row].title ?? "")
-            let image = retreiveImageFromSource(posterPath: moviesSimilars?[indexPath.row].posterPath ?? "")
+            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(moviesSimilars?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
             cell.setImage(img: image)
         case .recommended(0):
             cell.setLabel(text: moviesRecomended?[indexPath.row].title ?? "")
-            let image = retreiveImageFromSource(posterPath: moviesRecomended?[indexPath.row].posterPath ?? "")
+            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(moviesRecomended?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
             cell.setImage(img: image)
         case .cast(0):
             cell.setLabel(text: castArray?[indexPath.row].name ?? "")
-            let image = retreiveImageFromSource(posterPath: castArray?[indexPath.row].profilePath ?? "")
+            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(castArray?[indexPath.row].profilePath ?? "")").retreiveImageFromSource()
             cell.setImage(img: image)
         default:
             return cell
