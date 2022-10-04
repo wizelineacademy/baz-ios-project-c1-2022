@@ -10,5 +10,4 @@ import UIKit
 protocol ViewControllerCommonsDelegate {
     func configureCollectionView()
     func configureSegmentedControll()
-    func retreiveImageFromSource(posterPath: String) -> UIImage
 }

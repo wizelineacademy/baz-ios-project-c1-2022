@@ -161,11 +161,4 @@ extension MovieDetailsViewController: ViewControllerCommonsDelegate {
         segmentedControl.setTitle("Similar", forSegmentAt: 2)
         segmentedControl.setTitle("Recomended", forSegmentAt: 3)
     }
-    
-    
-    func retreiveImageFromSource(posterPath: String) -> UIImage {
-        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
-        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
-        return uiImage
-    }
 }
