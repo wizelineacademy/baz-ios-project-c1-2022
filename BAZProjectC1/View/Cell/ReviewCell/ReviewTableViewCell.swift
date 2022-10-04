@@ -1,9 +1,6 @@
-//
 //  ReviewTableViewCell.swift
 //  BAZProjectC1
-//
 //  Created by 291732 on 04/10/22.
-//
 
 import UIKit
 

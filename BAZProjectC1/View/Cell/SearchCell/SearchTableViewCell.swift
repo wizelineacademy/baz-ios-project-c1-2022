@@ -39,11 +39,6 @@ final class SearchTableViewCell: UITableViewCell {
         self.objMovie = from["trendind"] as? MovieAPIResponse
     }
     
-    
-    func setCell(){
-        
-    }
-    
 }
 
 extension SearchTableViewCell: UICollectionViewDelegate & UICollectionViewDataSource{

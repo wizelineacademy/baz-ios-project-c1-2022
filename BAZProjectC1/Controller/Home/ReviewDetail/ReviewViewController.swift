@@ -35,10 +35,8 @@ final class ReviewViewController: UIViewController {
                     self.tblReview.reloadData()
                 }
             }
-
         }
     }
-
 }
 
 extension ReviewViewController: UITableViewDelegate & UITableViewDataSource {

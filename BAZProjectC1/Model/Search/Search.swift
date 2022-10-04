@@ -1,9 +1,6 @@
-//
 //  Search.swift
 //  BAZProjectC1
-//
 //  Created by 291732 on 04/10/22.
-//
 
 import Foundation
 
@@ -24,7 +21,6 @@ struct Search : Codable {
     let voteCount : Int?
 
     enum CodingKeys: String, CodingKey {
-
         case adult = "adult"
         case backdropPath = "backdrop_path"
         case genreIds = "genre_ids"

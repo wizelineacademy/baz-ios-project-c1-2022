@@ -37,8 +37,6 @@ final class SearchViewController: UIViewController {
             if moviesResponse != nil {
                 DispatchQueue.main.async {
                     self.objMovie = moviesResponse
-//                    self.tableView.reloadData()
-//                    self.tblSearch.reloadData()
                 }
             }
         }
@@ -52,8 +50,6 @@ final class SearchViewController: UIViewController {
                 
                 DispatchQueue.main.async {
                     self.objNowPlay = nowPlayingResponse
-//                    self.tblNowPlay.reloadData()
-//                    self.tblSearch.reloadData()
                 }
             }
         }
@@ -66,7 +62,6 @@ final class SearchViewController: UIViewController {
             if popularResponse != nil {
                 self.objPupular = popularResponse
                 DispatchQueue.main.async {
-//                    self.tblPopular.reloadData()
                     self.tblSearch.reloadData()
                 }
             }
@@ -80,7 +75,6 @@ final class SearchViewController: UIViewController {
             if topRatedResponse != nil {
                 self.objTopRated = topRatedResponse
                 DispatchQueue.main.async {
-//                    self.tblTopRated.reloadData()
                     self.tblSearch.reloadData()
                 }
             }
@@ -94,7 +88,6 @@ final class SearchViewController: UIViewController {
             if upcomingResponse != nil {
                 self.objUpcoming = upcomingResponse
                 DispatchQueue.main.async {
-//                    self.cvUpcoming.reloadData()
                     self.tblSearch.reloadData()
                 }
             }
@@ -117,9 +110,6 @@ final class SearchViewController: UIViewController {
                 "topRated": objTopRated as Any,
                 "upcoming": objUpcoming as Any]
     }
-    
-    
-    
 }
 
 //MARK: - EXT-> UI · T A B L E · V I E W · D E L E G A T E
