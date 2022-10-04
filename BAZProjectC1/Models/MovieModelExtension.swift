@@ -15,8 +15,7 @@ enum MediaTypeMovie: String  {
 
 extension MovieModel {
     func getMoviePosterString() -> String? {
-        guard let mediaType = mediaType else { return "" }
-        switch MediaTypeMovie(rawValue: mediaType) {
+        switch MediaTypeMovie(rawValue: mediaType ?? "") {
         case .person:
             return profilePath
         default:
@@ -25,8 +24,7 @@ extension MovieModel {
     }
     
     func getMovieTitleString() -> String {
-        guard let mediaType = mediaType else { return "" }
-        switch MediaTypeMovie(rawValue: mediaType) {
+        switch MediaTypeMovie(rawValue: mediaType ?? "") {
         case .person:
             return name ?? ""
         case .tv:
@@ -37,8 +35,7 @@ extension MovieModel {
     }
     
     func getMovieRankingString() -> String {
-        guard let mediaType = mediaType else { return "" }
-        switch MediaTypeMovie(rawValue: mediaType) {
+        switch MediaTypeMovie(rawValue: mediaType ?? "") {
         case .person:
             return "\(Int( round(popularity ?? 0)))"
         default:
@@ -58,8 +55,7 @@ extension MovieModel {
     }
     
     func getMovieGenreIdsString() -> String {
-        guard let mediaType = mediaType else { return "" }
-        switch MediaTypeMovie(rawValue: mediaType) {
+        switch MediaTypeMovie(rawValue: mediaType ?? "") {
         case .person:
             return name ?? ""
         default:

@@ -97,6 +97,5 @@ class MovieCarouselCell: UICollectionViewCell {
         posterImage.loadPosterImage(from: dataInfo.getMoviePosterString())
         movieTitle.text = dataInfo.getMovieTitleString()
         movieRanking.text = dataInfo.getMovieRankingString()
-        //movieGenreIds.text = dataInfo.movieGenreIdsString()
     }
 }
