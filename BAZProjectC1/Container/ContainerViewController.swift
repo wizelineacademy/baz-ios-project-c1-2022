@@ -43,6 +43,7 @@ final class ContainerViewController: UIViewController {
         let menuNav = UINavigationController(rootViewController: menuVC)
         self.menuVC.delegate = self
         menuNav.navigationBar.barStyle = .default
+        menuNav.navigationBar.prefersLargeTitles = true
         self.addChild(menuNav)
         menuNav.view.frame = self.view.frame
         self.view.addSubview(menuNav.view)

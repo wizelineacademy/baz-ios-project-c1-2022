@@ -135,9 +135,11 @@ extension HomeAppViewController: UISearchBarDelegate {
         self.activeSearch = false
         self.searchedMovies.removeAll()
         self.collectionView.reloadData()
+        self.resignFirstResponder()
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.resignFirstResponder()
         guard let searchText = self.searchController.searchBar.text else {
             self.activeSearch = false
             self.searchedMovies.removeAll()
