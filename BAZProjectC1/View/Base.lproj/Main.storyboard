@@ -159,9 +159,19 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgI-aj-O4b">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="2200"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6e-63-HNB" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="390" height="442"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="M6e-63-HNB" secondAttribute="bottom" constant="1758" id="0be-a1-Bwh"/>
+                                            <constraint firstItem="M6e-63-HNB" firstAttribute="top" secondItem="tgI-aj-O4b" secondAttribute="top" id="Fho-Gc-BiU"/>
+                                            <constraint firstItem="M6e-63-HNB" firstAttribute="leading" secondItem="tgI-aj-O4b" secondAttribute="leading" id="VKt-az-D55"/>
                                             <constraint firstAttribute="height" constant="2200" id="flk-sq-abp"/>
+                                            <constraint firstAttribute="trailing" secondItem="M6e-63-HNB" secondAttribute="trailing" constant="24" id="uWs-t5-qcW"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -188,10 +198,13 @@
                         </constraints>
                     </view>
                     <size key="freeformSize" width="414" height="2400"/>
+                    <connections>
+                        <outlet property="posterImage" destination="M6e-63-HNB" id="aSZ-bX-47d"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rql-hn-WVl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="992.75362318840587" y="1291.7410714285713"/>
+            <point key="canvasLocation" x="61" y="1811"/>
         </scene>
     </scenes>
     <resources>
@@ -201,6 +214,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

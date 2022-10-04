@@ -9,7 +9,7 @@ import UIKit
 class DetailTest: UIViewController {
     
     private var elementData: MovieModel?
-    //@IBOutlet weak var posterImage: movieImageView!
+    @IBOutlet weak var posterImage: movieImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,7 @@ class DetailTest: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     private func reloadDataInView() {
-        //posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
+        posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
     }
     
 }
