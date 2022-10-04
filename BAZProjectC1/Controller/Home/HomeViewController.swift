@@ -4,7 +4,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     //MARK: - O U T L E T S
     @IBOutlet private weak var tblSearch: UITableView!{
         didSet{

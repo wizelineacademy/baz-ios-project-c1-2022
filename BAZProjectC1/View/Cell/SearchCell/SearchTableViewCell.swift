@@ -4,7 +4,7 @@
 
 import UIKit
 
-class SearchTableViewCell: UITableViewCell {
+final class SearchTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet private weak var vwContainer: UIView!
     @IBOutlet private weak var cvCollectionContainer: UICollectionView!{

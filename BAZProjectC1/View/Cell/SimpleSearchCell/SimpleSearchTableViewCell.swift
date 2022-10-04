@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SimpleSearchTableViewCell: UITableViewCell {
+final class SimpleSearchTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet weak var lblTitle: UILabel!
     

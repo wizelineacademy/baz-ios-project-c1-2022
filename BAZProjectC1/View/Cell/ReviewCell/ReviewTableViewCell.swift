@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ReviewTableViewCell: UITableViewCell {
+final class ReviewTableViewCell: UITableViewCell {
     //MARK: - O U T L E T S
     @IBOutlet private weak var vwContainer: UIView!{
         didSet{
