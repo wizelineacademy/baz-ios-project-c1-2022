@@ -62,22 +62,23 @@ final class ContainerViewController: UIViewController {
     private func toggleMenu(completion: (() -> Void)?) {
         switch menuState {
         case .closed:
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.navVC?.view.frame.origin.x = self.homeVC.view.frame.size.width - 100
-            } completion: { [weak self] done in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) { [weak self] in
+                self?.navVC?.view.frame.origin.x = (self?.homeVC.view.frame.size.width ?? 0) - 100
+            } completion: { done in
                 if done {
-                    self?.menuState = .opened
+                    self.menuState = .opened
                     DispatchQueue.main.async {
                         completion?()
                     }
                 }
             }
+
         case .opened:
-            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) {
-                self.navVC?.view.frame.origin.x = 0
-            } completion: { [weak self] done in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut) { [weak self] in
+                self?.navVC?.view.frame.origin.x = 0
+            } completion: { done in
                 if done {
-                    self?.menuState = .closed
+                    self.menuState = .closed
                     DispatchQueue.main.async {
                         completion?()
                     }

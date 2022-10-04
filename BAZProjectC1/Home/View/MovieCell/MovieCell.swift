@@ -24,4 +24,9 @@ final class MovieCell: UICollectionViewCell {
         self.imgMovie.image = nil
         self.nameMovie.text = nil
     }
+    
+    public func setupDataCell(name: String, image: String) {
+        self.nameMovie.text = name
+        self.imgMovie.loadUrlImage(urlString: image)
+    }
 }

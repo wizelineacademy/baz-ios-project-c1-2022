@@ -84,45 +84,43 @@ extension DetailViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell else {
-                return UICollectionViewCell()
-            }
-            cell.imgMovie.loadUrlImage(urlString: "\(GenericApiCall.baseImageURL)\(movie.credits.cast[indexPath.item].profilePath ?? "")")
-            cell.nameMovie.text = movie.credits.cast[indexPath.item].name
-            return cell
-        case 2:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell else {
-                return UICollectionViewCell()
-            }
-            cell.imgMovie.loadUrlImage(urlString: "\(GenericApiCall.baseImageURL)\(movie.similar.results[indexPath.item].posterPath)")
-            cell.nameMovie.text = movie.similar.results[indexPath.item].title
-            return cell
-        case 3:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell else {
-                return UICollectionViewCell()
-            }
-            cell.imgMovie.loadUrlImage(urlString: "\(GenericApiCall.baseImageURL)\(movie.recommendations.results[indexPath.item].posterPath)")
-            cell.nameMovie.text = movie.recommendations.results[indexPath.item].title
-            return cell
-        case 4:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell else {
-                return UICollectionViewCell()
-            }
-            cell.imgMovie.isHidden = true
-            cell.nameMovie.text = movie.reviews.results[indexPath.item].content
-            return cell
-        default:
+        if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMovieCell", for: indexPath) as? DetailMovieCell else {
                 return UICollectionViewCell()
             }
+            
             cell.nameMovie.text = movie.title
             cell.averageMovie.text = String(format: "%.2f", movie.voteAverage)
             cell.overviewMovie.text = movie.overview
             cell.imgMovie.loadUrlImage(urlString: ("\(GenericApiCall.baseImageURL)\(movie.posterPath)"))
             
             return cell
+        } else {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "movieCell", for: indexPath) as? MovieCell else {
+                return UICollectionViewCell()
+            }
+            switch indexPath.section {
+            case 1:
+                cell.setupDataCell(name: movie.credits.cast[indexPath.item].name, image: "\(GenericApiCall.baseImageURL)\(movie.credits.cast[indexPath.item].profilePath ?? "")")
+                
+                return cell
+            case 2:
+                cell.setupDataCell(name: movie.similar.results[indexPath.item].title, image: "\(GenericApiCall.baseImageURL)\(movie.similar.results[indexPath.item].posterPath)")
+                
+                return cell
+            case 3:
+                
+                cell.setupDataCell(name: movie.recommendations.results[indexPath.item].title, image: "\(GenericApiCall.baseImageURL)\(movie.recommendations.results[indexPath.item].posterPath)")
+                
+                return cell
+            case 4:
+                cell.setupDataCell(name: movie.reviews.results[indexPath.item].content, image: "")
+                cell.imgMovie.isHidden = true
+                return cell
+            default:
+                return UICollectionViewCell()
+                
+            }
         }
     }
 }
@@ -154,4 +152,5 @@ extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 0, left: 25, bottom: 0, right: 25)
     }
+    
 }

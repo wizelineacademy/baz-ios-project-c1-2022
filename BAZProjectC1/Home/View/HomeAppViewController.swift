@@ -110,8 +110,7 @@ extension HomeAppViewController : UICollectionViewDataSource {
         }
         let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
         
-        cell.nameMovie.text = movie.title ?? "No title"
-        cell.imgMovie.loadUrlImage(urlString: ("\(GenericApiCall.baseImageURL)\(movie.posterPath ?? "")"))
+        cell.setupDataCell(name: movie.title ?? "No title", image: "\(GenericApiCall.baseImageURL)\(movie.posterPath ?? "")")
         return cell
     }
 }
@@ -120,7 +119,9 @@ extension HomeAppViewController : UICollectionViewDataSource {
 extension HomeAppViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
-        self.getDetailMovie(idMovie: movie.id!)
+        
+        guard let id = movie.id else { return }
+        self.getDetailMovie(idMovie: id)
     }
 }
 

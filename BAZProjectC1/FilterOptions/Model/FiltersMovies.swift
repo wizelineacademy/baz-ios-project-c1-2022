@@ -2,7 +2,7 @@
 //  FiltersMovies.swift
 //  BAZProjectC1
 //
-//  Created by 1054812 on 20/09/22.
+//  Created by MayteLA on 20/09/22.
 //
 
 import UIKit
