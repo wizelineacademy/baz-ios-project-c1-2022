@@ -11,10 +11,11 @@ final internal class MovieInfoCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var moviesArray: [MovieSimilars]?
+    var moviesSimilars: [MovieSimilars]?
+    var moviesRecomended: [MovieRecomended]?
     var castArray: [Cast]?
     var image: UIImage?
-    var bMovies: Bool = false
+    var bMovies: SegmentSelected?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,28 +28,50 @@ final internal class MovieInfoCollectionViewCell: UICollectionViewCell {
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "MovieMainListCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "MovieMainListCollectionViewCell")
     }
+    
+    private func retreiveImageFromSource(posterPath: String) -> UIImage {
+        let apiURLHandler = APIURLHandler(url: "https://image.tmdb.org/t/p/w500/\(posterPath)")
+        let uiImage = UIImage(data: apiURLHandler.getDataFromURL() ?? Data()) ?? UIImage()
+        return uiImage
+    }
 }
 
 // MARK: - TrendingViewController's DataSource and Delegate
 extension MovieInfoCollectionViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if bMovies {
-            return moviesArray?.count ?? 0
-        } else {
+        
+        switch bMovies {
+        case .similar(0):
+            return moviesSimilars?.count ?? 0
+        case .recommended(0):
+            return moviesRecomended?.count ?? 0
+        case .cast(0):
             return castArray?.count ?? 0
+        default:
+            return 0
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieMainListCollectionViewCell", for: indexPath) as? MovieMainListCollectionViewCell else { return UICollectionViewCell() }
-        cell.backgroundColor = .lightGray
-        if bMovies {
-            cell.setLabel(text: moviesArray?[indexPath.row].title ?? "")
-            cell.setImage(img: image ?? UIImage())
-        } else {
+
+        switch bMovies {
+        case .similar(0):
+            cell.setLabel(text: moviesSimilars?[indexPath.row].title ?? "")
+            let image = retreiveImageFromSource(posterPath: moviesSimilars?[indexPath.row].posterPath ?? "")
+            cell.setImage(img: image)
+        case .recommended(0):
+            cell.setLabel(text: moviesRecomended?[indexPath.row].title ?? "")
+            let image = retreiveImageFromSource(posterPath: moviesRecomended?[indexPath.row].posterPath ?? "")
+            cell.setImage(img: image)
+        case .cast(0):
             cell.setLabel(text: castArray?[indexPath.row].name ?? "")
-            cell.setImage(img: image ?? UIImage())
+            let image = retreiveImageFromSource(posterPath: castArray?[indexPath.row].profilePath ?? "")
+            cell.setImage(img: image)
+        default:
+            return cell
         }
+        
         return cell
     }
     

@@ -32,9 +32,9 @@ internal final class MovieDetailAPI: APIURLHandler {
         return result.results
     }
     
-    func getMovieRecommendations() -> [MovieSimilars]? {
+    func getMovieRecommendations() -> [MovieRecomended]? {
         guard let data = self.getDataFromURL(),
-              let result = try? JSONDecoder().decode(MovieSimilarsResults.self, from: data) else { return nil }
+              let result = try? JSONDecoder().decode(MovieRecomendedResult.self, from: data) else { return nil }
         return result.results
     }
     

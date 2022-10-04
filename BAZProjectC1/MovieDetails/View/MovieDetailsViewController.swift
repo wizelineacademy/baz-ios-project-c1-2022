@@ -7,26 +7,6 @@
 
 import UIKit
 
-private enum SegmentSelected {
-    case cast(Int)
-    case reviews(Int)
-    case similar(Int)
-    case recommended(Int)
-    
-    var url: MovieAPI {
-        switch self {
-        case let .cast(movieID):
-            return MovieAPI(url: "https://api.themoviedb.org/3/movie/\(movieID)/credits?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es")
-        case let .reviews(movieID):
-            return MovieAPI(url: "https://api.themoviedb.org/3/movie/\(movieID)/reviews?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a")
-        case let .similar(movieID):
-            return MovieAPI(url: "https://api.themoviedb.org/3/movie/\(movieID)/similar?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es")
-        case let .recommended(movieID):
-            return MovieAPI(url: "https://api.themoviedb.org/3/movie/\(movieID)/recommendations?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es")
-        }
-    }
-}
-
 final internal class MovieDetailsViewController: UIViewController {
     @IBOutlet weak var imgView: UIImageView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -46,7 +26,8 @@ final internal class MovieDetailsViewController: UIViewController {
     private var segmentSelected: SegmentSelected?
     private var detailsURL: String?
     private var movieReviews: [MovieReviews]?
-    private var movieRecommendations, movieSimilars: [MovieSimilars]?
+    private var movieRecommendations: [MovieRecomended]?
+    private var movieSimilars: [MovieSimilars]?
     private var movieDetail: MovieDetail?
     private var movieCast: [Cast]?
     private let movieDetailAPI = MovieDetailAPI(url: "")
@@ -144,19 +125,19 @@ extension MovieDetailsViewController: UICollectionViewDelegate, UICollectionView
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
                 cell.collectionView.reloadData()
                 cell.castArray = movieCast
-                cell.bMovies = false
+                cell.bMovies = .cast(0)
                 return cell
             case .similar(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
                 cell.collectionView.reloadData()
-                cell.moviesArray = movieSimilars
-                cell.bMovies = true
+                cell.moviesSimilars = movieSimilars
+                cell.bMovies = .similar(0)
                 return cell
             case .recommended(movie.id):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieInfoCollectionViewCell", for: indexPath) as? MovieInfoCollectionViewCell else { return UICollectionViewCell() }
                 cell.collectionView.reloadData()
-                cell.moviesArray = movieRecommendations
-                cell.bMovies = true
+                cell.moviesRecomended = movieRecommendations
+                cell.bMovies = .recommended(0)
                 return cell
             default:
                 return UICollectionViewCell()

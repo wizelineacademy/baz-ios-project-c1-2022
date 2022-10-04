@@ -35,7 +35,6 @@ final internal class TrendingViewController: UIViewController {
             // if keyboard size is not available for some reason, dont do anything
            return
         }
-        print("self.view.frame.origin.y \(self.view.frame.origin.y)")
         self.view.frame.origin.y = 0 - keyboardSize.height
     }
 
