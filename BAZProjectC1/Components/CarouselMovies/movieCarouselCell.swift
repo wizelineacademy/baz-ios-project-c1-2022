@@ -94,10 +94,9 @@ class MovieCarouselCell: UICollectionViewCell {
     }
     
     func configuration(dataInfo: MovieModel) {
-        
-        posterImage.image = dataInfo.posterImage(size: posterImage.frame.size)
-        posterImage.loadImagel(from: dataInfo.imageURLString)
-        movieTitle.text = dataInfo.title
-        movieRanking.text = dataInfo.movieRanking
+        posterImage.loadPosterImage(from: dataInfo.getMoviePosterString())
+        movieTitle.text = dataInfo.getMovieTitleString()
+        movieRanking.text = dataInfo.getMovieRankingString()
+        //movieGenreIds.text = dataInfo.movieGenreIdsString()
     }
 }

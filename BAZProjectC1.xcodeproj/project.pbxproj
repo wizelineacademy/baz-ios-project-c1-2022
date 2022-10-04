@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		021ACE5728EC2D3700C45D15 /* SearchViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ACE5628EC2D3700C45D15 /* SearchViewControllerExtension.swift */; };
 		021ACE5928EC2F5500C45D15 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ACE5828EC2F5500C45D15 /* StringExtension.swift */; };
+		021ACE5B28EC406E00C45D15 /* MovieModelExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ACE5A28EC406E00C45D15 /* MovieModelExtension.swift */; };
+		021ACE5E28EC485D00C45D15 /* MovieFullDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 021ACE5D28EC485D00C45D15 /* MovieFullDetailViewController.swift */; };
 		0223084D28DD8E8F009AB81A /* CarosuelMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084C28DD8E8F009AB81A /* CarosuelMenu.swift */; };
 		0223084F28DD8EB8009AB81A /* CarosuelMenuDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223084E28DD8EB8009AB81A /* CarosuelMenuDelegate.swift */; };
 		0223085128DD8F81009AB81A /* CarosuelMenuExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0223085028DD8F81009AB81A /* CarosuelMenuExtension.swift */; };
@@ -41,6 +43,8 @@
 /* Begin PBXFileReference section */
 		021ACE5628EC2D3700C45D15 /* SearchViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerExtension.swift; sourceTree = "<group>"; };
 		021ACE5828EC2F5500C45D15 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
+		021ACE5A28EC406E00C45D15 /* MovieModelExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModelExtension.swift; sourceTree = "<group>"; };
+		021ACE5D28EC485D00C45D15 /* MovieFullDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFullDetailViewController.swift; sourceTree = "<group>"; };
 		0223084C28DD8E8F009AB81A /* CarosuelMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenu.swift; sourceTree = "<group>"; };
 		0223084E28DD8EB8009AB81A /* CarosuelMenuDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenuDelegate.swift; sourceTree = "<group>"; };
 		0223085028DD8F81009AB81A /* CarosuelMenuExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarosuelMenuExtension.swift; sourceTree = "<group>"; };
@@ -83,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		021ACE5C28EC483900C45D15 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				021ACE5D28EC485D00C45D15 /* MovieFullDetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		0223084B28DD8E5B009AB81A /* CarosuelMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +136,7 @@
 			children = (
 				022827CF28D3966E00294695 /* Models.swift */,
 				022827D428D3A05C00294695 /* Strings.swift */,
+				021ACE5A28EC406E00C45D15 /* MovieModelExtension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -146,6 +159,7 @@
 		0247CC8428DBD6C200E58461 /* DashBoard */ = {
 			isa = PBXGroup;
 			children = (
+				021ACE5C28EC483900C45D15 /* Detail */,
 				0247CC8C28DBE2C300E58461 /* Search */,
 				0247CC8B28DBE2BA00E58461 /* Home */,
 			);
@@ -319,6 +333,7 @@
 				02F94ABA28DCD48300B4116C /* UIImageExtension.swift in Sources */,
 				0247CC8228DBD00B00E58461 /* SearchViewController.swift in Sources */,
 				0247CC8828DBDF5C00E58461 /* CarouselMoviesDelegate.swift in Sources */,
+				021ACE5B28EC406E00C45D15 /* MovieModelExtension.swift in Sources */,
 				0223085628DDB156009AB81A /* BasicInfoMovie.swift in Sources */,
 				022827D028D3966E00294695 /* Models.swift in Sources */,
 				0247CC8628DBDF4100E58461 /* CarouselMovies.swift in Sources */,
@@ -331,6 +346,7 @@
 				022827D528D3A05C00294695 /* Strings.swift in Sources */,
 				0247CC8E28DBE2D700E58461 /* HomeViewControllerExtension.swift in Sources */,
 				02F94AB228DCB1F300B4116C /* movieCarouselCell.swift in Sources */,
+				021ACE5E28EC485D00C45D15 /* MovieFullDetailViewController.swift in Sources */,
 				02B2DFBF28D6625B003FF09D /* UIImageViewExtension.swift in Sources */,
 				0223084D28DD8E8F009AB81A /* CarosuelMenu.swift in Sources */,
 				021ACE5928EC2F5500C45D15 /* StringExtension.swift in Sources */,

@@ -48,16 +48,21 @@ public struct MovieModel: Decodable {
     var profilePath: String?
 }
 
-extension MovieModel {
-    func posterImage(size: CGSize) -> UIImage {
-        UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: size)
-    }
+public struct MoviesLanguageList: Decodable {
+    var languages: [MoviesLanguage]?
     
-    var imageURLString: String {
-        "\(EndpointsList.imageResource.description)\(posterPath ?? "")"
+    init(){
+        guard let urlData = EndpointsList.languagesList.description.data(using: .utf8),
+              let languageInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesLanguageList.self, with: urlData) as? MoviesLanguageList else { return }
+        self = languageInfoList
     }
-    
-    var movieRanking: String {
-        "\(Int(voteAverage ?? 0))"
+    public func findlanguage(withIsoValue value: String ) -> String? {
+        languages?.first(where: { $0.iso6391 == value })?.name
     }
+}
+
+public struct MoviesLanguage: Decodable {
+    var iso6391: String?
+    var english_name: String?
+    var name: String?
 }
