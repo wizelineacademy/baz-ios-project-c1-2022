@@ -40,10 +40,7 @@ class SearchViewController: UIViewController {
                                       carouselMovies.centerYAnchor.constraint(equalTo: view.layoutMarginsGuide.centerYAnchor),
                                       carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: ASPECT_RATION_SCREEN)])
     }
-    
-//    searchMovieFrom(with: queryTextField.getSearchQueryString())
-    
-    
+
     @IBAction func finishToTapping(_ sender: UITextField) {
         searchMovieFrom(with: queryTextField.getSearchQueryString())
     }

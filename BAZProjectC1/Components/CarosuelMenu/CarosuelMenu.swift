@@ -70,17 +70,13 @@ class CarosuelMenu: UIView {
     }()
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        setupUI()
     }
     
     public convenience init(with model: CarosuelMenuConfiguration){
         self.init(frame: model.frame)
-        self.itemBackgroundColor = model.itemBackgroundColor
-        self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
-        self.itemSelectedBackgroundColor = model.itemSelectedBackgroundColor
-        self.itemSelectedBorderBackgroundColor = model.itemSelectedBorderBackgroundColor
-        self.itemBorder = model.itemBorder
-        self.setDataInfo(infoMenu: model.optionsTitles)
+        self.configure(with: model)
     }
     
     override init(frame: CGRect) {
@@ -106,5 +102,14 @@ class CarosuelMenu: UIView {
         menuOptions = infoMenu
         optionSelected = 0
         menu.reloadData()
+    }
+    
+    func configure(with model: CarosuelMenuConfiguration) {
+        self.itemBackgroundColor = model.itemBackgroundColor
+        self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
+        self.itemSelectedBackgroundColor = model.itemSelectedBackgroundColor
+        self.itemSelectedBorderBackgroundColor = model.itemSelectedBorderBackgroundColor
+        self.itemBorder = model.itemBorder
+        self.setDataInfo(infoMenu: model.optionsTitles)
     }
 }

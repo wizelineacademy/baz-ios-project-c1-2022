@@ -71,11 +71,79 @@
             </objects>
             <point key="canvasLocation" x="60.869565217391312" y="577.90178571428567"/>
         </scene>
+        <!--Element Full Detail View Controller-->
+        <scene sceneID="aF7-ta-onP">
+            <objects>
+                <viewController storyboardIdentifier="ElementFullDetailViewController" id="lFr-SI-0us" customClass="ElementFullDetailViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YPa-C9-mDz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-vT-3pc" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="40" width="414" height="442"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="Stb-ZR-i9L"/>
+                                    <constraint firstAttribute="width" secondItem="dO4-vT-3pc" secondAttribute="height" multiplier="207:221" id="aTg-3m-FMq"/>
+                                    <constraint firstAttribute="height" constant="442" id="huj-v1-LfU"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9G0-Xg-avQ" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="472" width="414" height="32"/>
+                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9G0-Xg-avQ" secondAttribute="height" multiplier="207:16" id="BQY-Fp-bVb"/>
+                                    <constraint firstAttribute="width" constant="414" id="ias-6k-dhZ"/>
+                                    <constraint firstAttribute="height" constant="32" id="jI9-Qw-cej"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25G-bN-Iuz" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="16" y="40" width="32" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="0BK-uj-SZD"/>
+                                    <constraint firstAttribute="height" constant="32" id="Fhd-jv-sbW"/>
+                                    <constraint firstAttribute="width" secondItem="25G-bN-Iuz" secondAttribute="height" multiplier="1:1" id="QBb-vf-kmC"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain"/>
+                                <connections>
+                                    <action selector="goBack:" destination="lFr-SI-0us" eventType="touchUpInside" id="MUh-uB-zig"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hdM-ky-71F"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dO4-vT-3pc" firstAttribute="trailing" secondItem="hdM-ky-71F" secondAttribute="trailing" id="1fD-M8-hzz"/>
+                            <constraint firstItem="dO4-vT-3pc" firstAttribute="leading" secondItem="hdM-ky-71F" secondAttribute="leading" id="6Or-q3-7UY"/>
+                            <constraint firstItem="9G0-Xg-avQ" firstAttribute="leading" secondItem="hdM-ky-71F" secondAttribute="leading" id="EVq-jh-LXi"/>
+                            <constraint firstItem="25G-bN-Iuz" firstAttribute="leading" secondItem="hdM-ky-71F" secondAttribute="leading" constant="16" id="Rwb-fR-9Ci"/>
+                            <constraint firstItem="dO4-vT-3pc" firstAttribute="top" secondItem="YPa-C9-mDz" secondAttribute="top" constant="40" id="ZOB-5m-lHZ"/>
+                            <constraint firstItem="25G-bN-Iuz" firstAttribute="top" secondItem="YPa-C9-mDz" secondAttribute="top" constant="40" id="acZ-0F-gZx"/>
+                            <constraint firstItem="9G0-Xg-avQ" firstAttribute="top" secondItem="25G-bN-Iuz" secondAttribute="top" constant="432" id="m9t-Og-Azk"/>
+                            <constraint firstItem="9G0-Xg-avQ" firstAttribute="trailing" secondItem="hdM-ky-71F" secondAttribute="trailing" id="ufo-x5-4Jm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="genreList" destination="9G0-Xg-avQ" id="mtV-Z3-tS1"/>
+                        <outlet property="movieImage" destination="dO4-vT-3pc" id="vvi-VP-ux4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uo6-uv-rci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-701.44927536231887" y="1307.8125"/>
+        </scene>
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray4Color">
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

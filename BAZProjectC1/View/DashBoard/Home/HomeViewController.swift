@@ -12,6 +12,7 @@ fileprivate let IMAGE_CONSTANT_SIZE: CGFloat = 24
 
 class HomeViewController: UIViewController {
 
+    private var isTabHome: Bool = true
     let filterDataArray = ["Trending", "Now Playing", "Popular", "Top Rated", "Upcoming"]
     var moviesList: [MovieModel] = [] {
         didSet{
@@ -31,6 +32,7 @@ class HomeViewController: UIViewController {
         let filterMenu = CarosuelMenu(with: modelConfiguration)
         filterMenu.translatesAutoresizingMaskIntoConstraints = false
         filterMenu.delegate = self
+        filterMenu.isHidden = true
         return filterMenu
     }()
     
@@ -60,14 +62,18 @@ class HomeViewController: UIViewController {
     
     func configutionView() {
         setupUI()
-        view.backgroundColor = UIColor.appColorBlack
+        view.backgroundColor = UIColor.appColorGrayPrimary
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        guard let firstOption = filterDataArray.first,
-              let UrlOptionSelected = EndpointsList(rawValue: firstOption)?.description else { return }
-        getDataInfo(urlString: UrlOptionSelected)
+        if isTabHome {
+            view.backgroundColor = UIColor.appColorBlack
+            filterMenu.isHidden = false
+            guard let firstOption = filterDataArray.first,
+                  let UrlOptionSelected = EndpointsList(rawValue: firstOption)?.description else { return }
+            getDataInfo(urlString: UrlOptionSelected)
+        }
     }
      
     func getDataInfo(urlString: String) {
@@ -76,5 +82,11 @@ class HomeViewController: UIViewController {
                 self?.moviesList = data.results ?? []
             }
         })
+    }
+    
+    func setmoviesListArray(moviesListArray: [MovieModel]) {
+        filterMenu.isHidden = true
+        isTabHome = false
+        moviesList = moviesListArray
     }
 }

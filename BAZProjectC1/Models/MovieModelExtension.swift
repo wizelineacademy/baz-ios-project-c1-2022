@@ -66,4 +66,17 @@ extension MovieModel {
             return title ?? ""
         }
     }
+    
+    public func getGenresArray() -> [String] {
+        var genresString: [String] = []
+        let genresList = MoviesGenresList()
+        guard let moviesGenreIds = genreIds else { return genresString }
+        moviesGenreIds.forEach({ genre in
+            if let value = genresList.findGenre(withId: genre) {
+                genresString.append(value)
+            }
+        })
+        return genresString
+    }
+    
 }

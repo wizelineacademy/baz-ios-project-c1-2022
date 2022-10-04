@@ -18,9 +18,23 @@ extension SearchViewController {
 }
 extension SearchViewController: CarouselMoviesDelegate{
     func movieSelected(position: Int) {
-        guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MovieFullDetailViewController") as? MovieFullDetailViewController else { return }
-        movieFullDetail.modalPresentationStyle = .overCurrentContext
-        movieFullDetail.item = moviesList[position]
-        self.present(movieFullDetail, animated: true, completion: nil)
+        let element = moviesList[position]
+
+        if element.knownFor == nil {
+            guard let movieFullDetail = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ElementFullDetailViewController") as? ElementFullDetailViewController else { return }
+            movieFullDetail.modalPresentationStyle = .overCurrentContext
+            movieFullDetail.setElementData(with: element)
+            self.present(movieFullDetail, animated: true, completion: nil)
+        } else {
+            guard let moviesListView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController,
+                  let moviesList = element.knownFor else { return }
+            moviesListView.setmoviesListArray(moviesListArray: moviesList)
+            self.present(moviesListView, animated: true, completion: nil)
+            
+        }
+        
+        
+        
+        
     }
 }

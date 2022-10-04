@@ -66,3 +66,21 @@ public struct MoviesLanguage: Decodable {
     var english_name: String?
     var name: String?
 }
+
+public struct MoviesGenresList: Decodable {
+    var genres: [MoviesGenre]?
+    init(){
+        guard let urlData = EndpointsList.genreList.description.data(using: .utf8),
+              let genreInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesGenresList.self, with: urlData) as? MoviesGenresList else { return }
+        self = genreInfoList
+    }
+    
+    public func findGenre(withId id: Int) -> String? {
+        genres?.first(where: { $0.id == id })?.name
+    }
+}
+
+public struct MoviesGenre: Decodable {
+    var id: Int?
+    var name: String?
+}
