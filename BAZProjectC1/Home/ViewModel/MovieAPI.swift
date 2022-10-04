@@ -57,7 +57,6 @@ final class MovieAPI {
         guard let url = URL(string: "\(url)")
         else { return  }
         
-        print(url)
         GenericApiCall.request(url: url, expecting: MovieDetail.self) { result in
             switch result {
             case .success(let result):
