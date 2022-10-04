@@ -147,8 +147,8 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFY-jO-ulI">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1800"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CK-hw-2nj">
-                                                <rect key="frame" x="16" y="434" width="382" height="44"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CK-hw-2nj">
+                                                <rect key="frame" x="16" y="460" width="382" height="20.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -162,16 +162,28 @@
                                                     <constraint firstAttribute="width" constant="414" id="m5x-DN-ksj"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5B-SX-mzP" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="497" width="414" height="35"/>
+                                                <color key="backgroundColor" systemColor="systemYellowColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="dwT-kr-eJD"/>
+                                                    <constraint firstAttribute="width" secondItem="d5B-SX-mzP" secondAttribute="height" multiplier="414:35" id="vpc-Ws-6fe"/>
+                                                    <constraint firstAttribute="width" constant="414" id="x4p-0u-Ck9"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="7CK-hw-2nj" secondAttribute="trailing" constant="16" id="1RP-t1-vYt"/>
+                                            <constraint firstItem="d5B-SX-mzP" firstAttribute="top" secondItem="7CK-hw-2nj" secondAttribute="bottom" constant="16.5" id="2ve-ik-fLe"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="94" id="JXZ-AT-Gea"/>
-                                            <constraint firstItem="7CK-hw-2nj" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="434" id="O4q-6y-Vn4"/>
+                                            <constraint firstItem="7CK-hw-2nj" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="460" id="O4q-6y-Vn4"/>
                                             <constraint firstAttribute="trailing" secondItem="Nio-ZX-JFv" secondAttribute="trailing" id="Pmr-qO-VKs"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="hxM-Yb-YY2"/>
+                                            <constraint firstAttribute="trailing" secondItem="d5B-SX-mzP" secondAttribute="trailing" id="kyC-5Z-kKU"/>
                                             <constraint firstItem="7CK-hw-2nj" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="nQ9-ld-lsU"/>
                                             <constraint firstAttribute="height" constant="1800" id="v7f-7l-sjK"/>
+                                            <constraint firstItem="d5B-SX-mzP" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="xUQ-pI-MA3"/>
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-gZ-Z5P" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
@@ -179,7 +191,6 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dzy-gZ-Z5P" secondAttribute="height" multiplier="1:1" id="9Ji-g1-QFm"/>
                                             <constraint firstAttribute="height" constant="32" id="tHo-7Z-uOh"/>
-                                            <constraint firstAttribute="width" constant="32" id="ymO-OO-z5J"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain"/>
@@ -213,6 +224,7 @@
                     <size key="freeformSize" width="414" height="1800"/>
                     <connections>
                         <outlet property="ContentView" destination="CFY-jO-ulI" id="kME-9n-bFe"/>
+                        <outlet property="genreList" destination="d5B-SX-mzP" id="ZNf-y8-smI"/>
                         <outlet property="nameElement" destination="7CK-hw-2nj" id="SEb-YM-Qau"/>
                         <outlet property="posterImage" destination="Nio-ZX-JFv" id="NEJ-M2-5og"/>
                         <outlet property="scrollArea" destination="w60-S0-RV2" id="fuH-KB-7L8"/>

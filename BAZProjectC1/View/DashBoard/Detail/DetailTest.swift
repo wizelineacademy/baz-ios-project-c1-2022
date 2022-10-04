@@ -14,6 +14,7 @@ class DetailTest: UIViewController {
     @IBOutlet weak var scrollArea: UIScrollView!
     @IBOutlet weak var ContentView: UIView!
     @IBOutlet weak var nameElement: UILabel!
+    @IBOutlet weak var genreList: CarosuelMenu!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,20 @@ class DetailTest: UIViewController {
     private func reloadDataInView() {
         view.backgroundColor = UIColor.appColorBlack
         ContentView.addSubview(nameElement)
+        ContentView.addSubview(genreList)
+        genreList.backgroundColor = UIColor.clear
+        genreList.configure(with: getConfigurationModel())
         ContentView.backgroundColor = UIColor.appColorBlack
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
         nameElement.text = elementData?.getMovieTitleString()
         nameElement.textColor = UIColor.appColorWhitePrimary
     }
-    
+    private func getConfigurationModel() -> CarosuelMenuConfiguration {
+        CarosuelMenuConfiguration(frame: .zero,
+                                  optionsTitles: elementData?.getGenresArray() ?? [] ,
+                                  itemBackgroundColor: UIColor.appColorYellowPrimary,
+                                  itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
+                                  itemSelectedBackgroundColor: UIColor.appColorYellowPrimary,
+                                  itemSelectedBorderBackgroundColor: UIColor.appColorYellowPrimary)
+    }
 }
