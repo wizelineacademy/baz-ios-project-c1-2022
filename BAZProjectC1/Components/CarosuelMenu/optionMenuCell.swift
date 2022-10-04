@@ -12,6 +12,7 @@ struct OptionMenuCellConfiguration {
    let itemBorderBackgroundColor: UIColor
    let itemBorder: Double
    let titleText: String
+   let titleTextColor: UIColor
 
     init(itemBackgroundColor: UIColor = .clear,
           itemBorderBackgroundColor: UIColor = .clear,
@@ -21,8 +22,13 @@ struct OptionMenuCellConfiguration {
         self.itemBorderBackgroundColor = itemBorderBackgroundColor
         self.itemBorder = itemBorder
         self.titleText = titleText
+        
+        if itemBackgroundColor == .white {
+            titleTextColor = .gray
+        } else {
+            titleTextColor = itemBackgroundColor
+        }
     }
-                     
 }
 
 class optionMenuCell: UICollectionViewCell {
@@ -52,10 +58,6 @@ class optionMenuCell: UICollectionViewCell {
     
     func setupLayer() {
         title.text = titleText
-        title.textColor = itemBackgroundColor
-        if itemBackgroundColor == .white {
-            title.textColor = .gray
-        }
         self.backgroundColor = itemBackgroundColor?.withAlphaComponent(0.1)
         self.layer.borderWidth = 1.0
         self.layer.borderColor = itemBorderBackgroundColor?.cgColor
@@ -74,6 +76,7 @@ class optionMenuCell: UICollectionViewCell {
         self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
         self.itemBorder = model.itemBorder
         self.titleText = model.titleText
+        title.textColor = model.titleTextColor
         setupLayer()
         setupUI()
     }

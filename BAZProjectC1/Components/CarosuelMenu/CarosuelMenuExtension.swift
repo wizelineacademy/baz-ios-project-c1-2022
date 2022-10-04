@@ -38,7 +38,7 @@ extension CarosuelMenu: UICollectionViewDataSource {
                            itemBorderBackgroundColor: itemSelectedBorderBackgroundColor,
                            titleText: "\(menuOptions[indexPath.row])")
         }
-        cell.setUpView(with: setupModel )
+        cell.setUpView(with: setupModel)
         return cell
     }
 }
