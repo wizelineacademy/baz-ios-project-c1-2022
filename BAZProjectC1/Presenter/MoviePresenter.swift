@@ -5,13 +5,7 @@
 //  Created by Carlos Nitsuga Hernandez on 29/09/22.
 //
 
-import Foundation
 import UIKit
-
-protocol HomeViewProtocol: AnyObject {
-    func showDetails(movieInformatacionView: UIViewController)
-}
-
 
 final class MoviePresenter {
     

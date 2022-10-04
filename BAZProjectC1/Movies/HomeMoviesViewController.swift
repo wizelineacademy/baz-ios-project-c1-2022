@@ -11,31 +11,28 @@ import UIKit
 final class HomeMoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-
     private var numberOfSections:Int = 5
-    
     private var presenter: MoviePresenter?
-    
-    private var asset: [MovieData]?
-    private var rail: Movie?
+    private let headerReuseIndentifier = "HeaderView"
+    private let collectionMovieReuseIdentifier = "CollectionViewMovie"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollection()
-        presenter = MoviePresenter(view: self)
-        presenter?.loadMovies(using: collectionView)
     }
     
     /** Function that configures the collection view */
     private func configCollection() {
+        presenter = MoviePresenter(view: self)
+        presenter?.loadMovies(using: collectionView)
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.register(UINib(nibName: "CollectionViewMovie", bundle: nil), forCellWithReuseIdentifier: "CollectionViewMovie")
-        collectionView.register(UINib(nibName: "HeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
+        collectionView.register(UINib(nibName: collectionMovieReuseIdentifier, bundle: nil), forCellWithReuseIdentifier: collectionMovieReuseIdentifier)
+        collectionView.register(UINib(nibName: headerReuseIndentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIndentifier)
     }
     
-    func presentView(for information: MovieData) {
-        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
+    public func presentView(for information: MovieData) {
+        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movies = information
         vcMovieDetails.movieOverview = information.overview
         vcMovieDetails.movieImageUrl = information.backdropPath
@@ -70,7 +67,7 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
         case 0:
             header.titleLabel.text = "Trending"
         case 1:
-            header.titleLabel.text = "Now playing"
+            header.titleLabel.text = "Now Playing"
         case 2:
             header.titleLabel.text = "Popular"
         case 3:

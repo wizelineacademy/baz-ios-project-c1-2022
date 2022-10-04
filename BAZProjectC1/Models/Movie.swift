@@ -6,6 +6,29 @@
 
 import Foundation
 
+
+enum MovieListType: String {
+    case similar
+    case recommendation
+    case trending
+    case popular
+    case topRated
+    case upcoming
+    case nowPlaying
+    
+    var description: String {
+        switch self {
+        case .similar: return "similar"
+        case .recommendation: return "recommendations"
+        case .trending: return "trending"
+        case .popular: return "popular"
+        case .topRated: return "top_rated"
+        case .upcoming: return "upcoming"
+        case .nowPlaying: return "now_playing"
+        }
+    }
+}
+
 // MARK: - Movie
 struct Movie: Codable {
     let results: [MovieData]
@@ -15,7 +38,7 @@ struct Movie: Codable {
     }
 }
 
-// MARK: - Result
+// MARK: - MovieData
 struct MovieData: Codable {
     let id: Int
     let title: String

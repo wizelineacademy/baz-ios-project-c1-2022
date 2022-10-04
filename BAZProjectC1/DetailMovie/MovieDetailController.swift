@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class MovieInformationController: UIViewController {
+final class MovieDetailController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     public var movies:MovieData?
@@ -17,26 +17,21 @@ final class MovieInformationController: UIViewController {
     public var movieOverview:String?
     public var movieTitle:String?
     public var movieRating:Double?
-    private var similarMovies = Movie(results: [MovieData]())
-    private var recommendsMovies = Movie(results: [MovieData]())
-    private var castMovie = MovieCast(cast: [Cast]())
-    private var actorsMovie = MovieList()
-    private var similar = MovieList()
-    private var recommends = MovieList()
     private let movieCollectionIdentifier = "CollectionViewMovie"
-    private let headerDetailIdentifier = "InformationMovie"
+    private let headerDetailIdentifier = "DetailMovieCell"
     private let headerTitleSections = "HeaderView"
     private let cellCreditsMovie = "CreditsMovie"
     private let collectionCastIdentifier = "CollectionViewCast"
+    private var detailPresenter: CastPresenter?
+    private var movieListPresenter: MovieListPresenter?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        loadDataSimilar()
-        loadCast()
-        loadDataRecomendadas()
+        setupCollectionView()
+        loadData()
     }
     
-    private func setupView() {
+    private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: movieCollectionIdentifier, bundle: nil), forCellWithReuseIdentifier: movieCollectionIdentifier)
@@ -46,56 +41,30 @@ final class MovieInformationController: UIViewController {
         collectionView.register(UINib(nibName: collectionCastIdentifier, bundle: nil), forCellWithReuseIdentifier: collectionCastIdentifier)
     }
     
-    private func loadDataSimilar() {
+    private func loadData() {
         if let movieId = movieId {
-            similar.loadMoviesSimilar(with: "similar", completion: { (movie) in
-                self.similarMovies = movie
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }, movieId)
+            movieListPresenter = MovieListPresenter(view: self)
+            movieListPresenter?.loadDataRecomendadas(using: collectionView, movieId: movieId)
+            movieListPresenter?.loadDataSimilar(using: collectionView, movieId: movieId)
+            detailPresenter = CastPresenter(view: self)
+            detailPresenter?.loadCast(using: collectionView, movieId: movieId)
         }
     }
     
-    private func loadDataRecomendadas() {
-        if let movieId = movieId {
-            recommends.loadMoviesSimilar(with: "recommendations", completion: { (movie) in
-                self.recommendsMovies = movie
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }, movieId)
-        }
-    }
-    
-    
-    
-    
-    private func loadCast()  {
-        if let movieId = movieId {
-            actorsMovie.loadMoviesCast(with: "credits", completion: { (cast) in
-                self.castMovie = cast
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            }, movieId)
-        }
-    }
-    private func openDetails(for asset: MovieData, with rail: Movie) {
-        
-        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
-        vcMovieDetails.movies = asset
-        vcMovieDetails.movieOverview = asset.overview
-        vcMovieDetails.movieImageUrl = asset.backdropPath
-        vcMovieDetails.movieId = asset.id
-        vcMovieDetails.movieRating = asset.voteAverage
-        vcMovieDetails.movieTitle = asset.title
+    public func presentView(for movieData: MovieData) {
+        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
+        vcMovieDetails.movies = movieData
+        vcMovieDetails.movieOverview = movieData.overview
+        vcMovieDetails.movieImageUrl = movieData.backdropPath
+        vcMovieDetails.movieId = movieData.id
+        vcMovieDetails.movieRating = movieData.voteAverage
+        vcMovieDetails.movieTitle = movieData.title
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
 }
 
 
-extension MovieInformationController: UICollectionViewDataSource {
+extension MovieDetailController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 4
     }
@@ -110,25 +79,11 @@ extension MovieInformationController: UICollectionViewDataSource {
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
             return collectionCell
         case 1:
-            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCastIdentifier, for: indexPath) as? CollectionViewCast else { return UICollectionViewCell() }
-            collectionCell.loadData(actorsMovie: castMovie)
-            return collectionCell
-            
+            return detailPresenter!.getCast(forRow: indexPath.section, using: collectionView, forPresent: self)
         case 2:
-            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
-            collectionCell.loadData(movies: recommendsMovies)
-            collectionCell.onSelect = { [unowned self] rail, asset in
-                self.openDetails(for: asset, with: rail)
-                
-            }
-            return collectionCell
+            return movieListPresenter!.getMovies(forRow: indexPath.section, using: collectionView, forPresent: self, typeOfMovie:  MovieListType.recommendation.rawValue)
         case 3:
-            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
-            collectionCell.loadData(movies: similarMovies)
-            collectionCell.onSelect = { [unowned self] rail, asset in
-                self.openDetails(for: asset, with: rail)
-            }
-            return collectionCell
+            return movieListPresenter!.getMovies(forRow: indexPath.section, using: collectionView, forPresent: self,typeOfMovie: MovieListType.similar.rawValue)
             
         default:
             return UICollectionViewCell()
@@ -142,7 +97,7 @@ extension MovieInformationController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch indexPath.section {
         case 0:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier, for: indexPath) as? InformationMovie else { return UICollectionReusableView () }
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier, for: indexPath) as? DetailMovieCell else { return UICollectionReusableView () }
             header.movieTitle.text = movieTitle
             header.movieReview.text = movieOverview
             if let imageMovie = movieImageUrl, let averageCount = movieRating {
@@ -173,7 +128,7 @@ extension MovieInformationController: UICollectionViewDataSource {
     
 }
 
-extension MovieInformationController: UICollectionViewDelegateFlowLayout {
+extension MovieDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         switch indexPath.section {

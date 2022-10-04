@@ -126,10 +126,10 @@
             </objects>
             <point key="canvasLocation" x="1505.7971014492755" y="602.67857142857144"/>
         </scene>
-        <!--Movie Information Controller-->
+        <!--Movie Detail Controller-->
         <scene sceneID="tvh-XC-ttH">
             <objects>
-                <viewController storyboardIdentifier="infoview" id="qiM-eD-yb6" customClass="MovieInformationController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="infoview" id="qiM-eD-yb6" customClass="MovieDetailController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IaU-HS-khh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

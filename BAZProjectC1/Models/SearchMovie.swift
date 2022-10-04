@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Movie
+// MARK: - SearchMovie
 struct SearchMovie: Codable {
     let results: [MovieSearchData]
     
@@ -16,7 +16,7 @@ struct SearchMovie: Codable {
     }
 }
 
-// MARK: - Result
+// MARK: - MovieSearchData
 struct MovieSearchData: Codable {
     let adult: Bool?
     let backdropPath: String?

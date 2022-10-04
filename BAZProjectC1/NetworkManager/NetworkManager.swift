@@ -15,6 +15,7 @@ enum NetworkError: Error {
 
 struct NetworkManager {
     
+    private let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     /**
      Function that creates a request via url
      - Parameters:
@@ -63,14 +64,14 @@ struct NetworkManager {
      - completion: Closure define in typealias
      */
     public func fetchMovieTrending(completion: MovieCompletionClosure?) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
         executeRequest(request: request, completion: completion)
     }
     public func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(filter)?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
@@ -78,15 +79,15 @@ struct NetworkManager {
     }
     
     public func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/\(filter)?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
         executeRequest(request: request, completion: completion)
     }
     
-    public func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int, filter: String) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/\(filter)?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
+    public func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(movieId)/credits?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
@@ -94,7 +95,15 @@ struct NetworkManager {
     }
     
     public func fetchMovieSearch(completion: SearchCompletionClosure?, keyword: String) {
-        guard let request = createRequest(for: "https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=\(keyword)&language=es-MX") else {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/search/multi?api_key=\(apiKey)&query=\(keyword)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    public func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int) {
+        guard let request = createRequest(for: "https://api.themoviedb.org/3/movie/\(String(movieId))?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return
         }

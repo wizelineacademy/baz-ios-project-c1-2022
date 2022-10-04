@@ -13,7 +13,7 @@ final class SearchBarController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     private var moviesSearch = SearchMovie(results: [MovieSearchData]())
-    private var searching = MovieList()
+    private var searching = MovieSearch()
     private var arregloFiltrados:[MovieSearchData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,7 @@ extension SearchBarController: UITableViewDataSource {
 extension SearchBarController:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
+        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movieId = arregloFiltrados[indexPath.row].id
         vcMovieDetails.movieImageUrl = arregloFiltrados[indexPath.row].backdropPath
         vcMovieDetails.movieOverview = arregloFiltrados[indexPath.row].overview
