@@ -59,7 +59,7 @@ struct Recommendations: Codable {
     let page: Int
     let results: [RecommendationsResult]
     let totalPages: Int
-
+    
     enum CodingKeys: String, CodingKey {
         case page
         case results
@@ -73,7 +73,7 @@ struct RecommendationsResult: Codable {
     let title: String
     let overview: String
     let posterPath: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title
