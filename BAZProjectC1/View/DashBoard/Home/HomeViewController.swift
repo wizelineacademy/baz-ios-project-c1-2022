@@ -18,12 +18,14 @@ class HomeViewController: UIViewController {
     
     public lazy var filterMenu: CarosuelMenu = {
         let filterMenuCGRect = CGRect(x: 0, y: 0, width: view.frame.width, height: 30)
-        let filterMenu = CarosuelMenu(frame: filterMenuCGRect,
-                                      optionsTitles: filterDataArray,
-                                      itemBackgroundColor: UIColor.appColorYellowPrimary,
-                                      itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
-                                      itemSelectedBackgroundColor: UIColor.appColorWhitePrimary,
-                                      itemSelectedBorderBackgroundColor: UIColor.appColorGrayPrimary)
+        let modelConfiguration = CarosuelMenuConfiguration(frame: filterMenuCGRect,
+                                                           optionsTitles: filterDataArray,
+                                                           itemBackgroundColor: UIColor.appColorYellowPrimary,
+                                                           itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
+                                                           itemSelectedBackgroundColor: UIColor.appColorWhitePrimary,
+                                                           itemSelectedBorderBackgroundColor: UIColor.appColorGrayPrimary)
+        
+        let filterMenu = CarosuelMenu(with: modelConfiguration)
         filterMenu.translatesAutoresizingMaskIntoConstraints = false
         filterMenu.delegate = self
         return filterMenu

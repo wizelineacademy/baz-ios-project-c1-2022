@@ -7,13 +7,40 @@
 
 import UIKit
 
+struct CarosuelMenuConfiguration {
+    let frame: CGRect
+    let optionsTitles: [String]
+    let itemBackgroundColor: UIColor
+    let itemBorderBackgroundColor: UIColor
+    let itemSelectedBackgroundColor: UIColor
+    let itemSelectedBorderBackgroundColor: UIColor
+    let itemBorder: Double
+    
+    init(frame:CGRect,
+         optionsTitles:[String] = [],
+         itemBackgroundColor: UIColor = .clear,
+         itemBorderBackgroundColor: UIColor = .clear,
+         itemSelectedBackgroundColor: UIColor = .clear,
+         itemSelectedBorderBackgroundColor: UIColor = .clear,
+         itemBorder: Double = 10.0) {
+        
+        self.frame = frame
+        self.optionsTitles = optionsTitles
+        self.itemBackgroundColor = itemBackgroundColor
+        self.itemBorderBackgroundColor = itemBorderBackgroundColor
+        self.itemSelectedBackgroundColor = itemSelectedBackgroundColor
+        self.itemSelectedBorderBackgroundColor = itemSelectedBorderBackgroundColor
+        self.itemBorder = itemBorder
+    }
+}
+
 class CarosuelMenu: UIView {
     public weak var delegate: CarosuelMenuDelegate?
-    private(set) var itemBackgroundColor: UIColor? = .clear
-    private(set) var itemBorderBackgroundColor: UIColor? = .clear
-    private(set) var itemSelectedBackgroundColor: UIColor? = .clear
-    private(set) var itemSelectedBorderBackgroundColor: UIColor? = .clear
-    private(set) var itemBorder: Double?
+    private(set) var itemBackgroundColor: UIColor = .clear
+    private(set) var itemBorderBackgroundColor: UIColor = .clear
+    private(set) var itemSelectedBackgroundColor: UIColor = .clear
+    private(set) var itemSelectedBorderBackgroundColor: UIColor = .clear
+    private(set) var itemBorder: Double = 10.0
     private(set) lazy var menuOptions: [String] = {
         return []
     }()
@@ -46,21 +73,16 @@ class CarosuelMenu: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public convenience init(frame:CGRect,
-                            optionsTitles:[String] = [],
-                            itemBackgroundColor: UIColor? = .clear,
-                            itemBorderBackgroundColor: UIColor? = .clear,
-                            itemSelectedBackgroundColor: UIColor? = .clear,
-                            itemSelectedBorderBackgroundColor: UIColor? = .clear,
-                            itemBorder: Double? = 10.0){
-        self.init(frame: frame)
-        self.itemBackgroundColor = itemBackgroundColor
-        self.itemBorderBackgroundColor = itemBorderBackgroundColor
-        self.itemSelectedBackgroundColor = itemSelectedBackgroundColor
-        self.itemSelectedBorderBackgroundColor = itemSelectedBorderBackgroundColor
-        self.itemBorder = itemBorder
-        self.setDataInfo(infoMenu: optionsTitles)
+    public convenience init(with model: CarosuelMenuConfiguration){
+        self.init(frame: model.frame)
+        self.itemBackgroundColor = model.itemBackgroundColor
+        self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
+        self.itemSelectedBackgroundColor = model.itemSelectedBackgroundColor
+        self.itemSelectedBorderBackgroundColor = model.itemSelectedBorderBackgroundColor
+        self.itemBorder = model.itemBorder
+        self.setDataInfo(infoMenu: model.optionsTitles)
     }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()

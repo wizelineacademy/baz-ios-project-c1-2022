@@ -7,6 +7,24 @@
 
 import UIKit
 
+struct OptionMenuCellConfiguration {
+   let itemBackgroundColor: UIColor
+   let itemBorderBackgroundColor: UIColor
+   let itemBorder: Double
+   let titleText: String
+
+    init(itemBackgroundColor: UIColor = .clear,
+          itemBorderBackgroundColor: UIColor = .clear,
+          itemBorder: Double = 10.0,
+          titleText: String = "") {
+        self.itemBackgroundColor = itemBackgroundColor
+        self.itemBorderBackgroundColor = itemBorderBackgroundColor
+        self.itemBorder = itemBorder
+        self.titleText = titleText
+    }
+                     
+}
+
 class optionMenuCell: UICollectionViewCell {
     static let reuseIdentifier = String(describing: optionMenuCell.self)
     private var itemBackgroundColor: UIColor? = .clear
@@ -49,14 +67,13 @@ class optionMenuCell: UICollectionViewCell {
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
     }
-    public func setUpView(itemBackgroundColor: UIColor? = .clear,
-                          itemBorderBackgroundColor: UIColor? = .clear,
-                          itemBorder: Double? = 10.0,
-                          titleText: String? = ""){
-        self.itemBackgroundColor = itemBackgroundColor
-        self.itemBorderBackgroundColor = itemBorderBackgroundColor
-        self.itemBorder = itemBorder
-        self.titleText = titleText
+    
+    
+    public func setUpView(with model: OptionMenuCellConfiguration) {
+        self.itemBackgroundColor = model.itemBackgroundColor
+        self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
+        self.itemBorder = model.itemBorder
+        self.titleText = model.titleText
         setupLayer()
         setupUI()
     }

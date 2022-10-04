@@ -8,14 +8,14 @@
 import UIKit
 
 class BasicInfoMovie: UIView {
-    var viewBackgroundColor: UIColor? = .clear
+    private var viewBackgroundColor: UIColor? = .clear
     private lazy var backView: UIView = {
         let backView = UIView(frame: self.bounds)
         backView.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
         return backView
     }()
     
-    public convenience init(frame:CGRect,viewBackgroundColor: UIColor){
+    internal convenience init(frame:CGRect,viewBackgroundColor: UIColor) {
         self.init(frame: frame)
         self.viewBackgroundColor = viewBackgroundColor
         setupUI()
