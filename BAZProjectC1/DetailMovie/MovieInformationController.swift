@@ -25,20 +25,15 @@ final class MovieInformationController: UIViewController {
     private var recommends = MovieList()
     private let movieCollectionIdentifier = "CollectionViewMovie"
     private let headerDetailIdentifier = "InformationMovie"
+    private let headerTitleSections = "HeaderView"
+    private let cellCreditsMovie = "CreditsMovie"
+    private let collectionCastIdentifier = "CollectionViewCast"
     override func viewDidLoad() {
         super.viewDidLoad()
-        //showDetails()
         setupView()
         loadDataSimilar()
         loadCast()
         loadDataRecomendadas()
-    }
-    
-    /** Function that shows the details of the movie */
-    private func showDetails() {
-        DispatchQueue.main.async {
-            self.collectionView.reloadData()
-        }
     }
     
     private func setupView() {
@@ -46,52 +41,56 @@ final class MovieInformationController: UIViewController {
         collectionView.delegate = self
         collectionView.register(UINib(nibName: movieCollectionIdentifier, bundle: nil), forCellWithReuseIdentifier: movieCollectionIdentifier)
         collectionView.register(UINib(nibName: headerDetailIdentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier)
-        collectionView.register(UINib(nibName: "HeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView")
-        collectionView.register(UINib(nibName: "CreditsMovie", bundle: nil), forCellWithReuseIdentifier: "CreditsMovie")
-        collectionView.register(UINib(nibName: "CollectionViewCast", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCast")
+        collectionView.register(UINib(nibName: headerTitleSections, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections)
+        collectionView.register(UINib(nibName: cellCreditsMovie, bundle: nil), forCellWithReuseIdentifier: cellCreditsMovie)
+        collectionView.register(UINib(nibName: collectionCastIdentifier, bundle: nil), forCellWithReuseIdentifier: collectionCastIdentifier)
     }
     
     private func loadDataSimilar() {
-        similar.loadMoviesSimilar(with: "similar", completion: { (movie) in
-            self.similarMovies = movie
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }, movieId!)
+        if let movieId = movieId {
+            similar.loadMoviesSimilar(with: "similar", completion: { (movie) in
+                self.similarMovies = movie
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }, movieId)
+        }
     }
     
     private func loadDataRecomendadas() {
-        recommends.loadMoviesSimilar(with: "recommendations", completion: { (movie) in
-            self.recommendsMovies = movie
-            print("************  \(self.recommendsMovies)")
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }, movieId!)
+        if let movieId = movieId {
+            recommends.loadMoviesSimilar(with: "recommendations", completion: { (movie) in
+                self.recommendsMovies = movie
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }, movieId)
+        }
     }
     
-
     
     
-    public func loadCast()  {
-        actorsMovie.loadMoviesCast(with: "credits", completion: { (cast) in
-            self.castMovie = cast
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }, movieId!)
-
+    
+    private func loadCast()  {
+        if let movieId = movieId {
+            actorsMovie.loadMoviesCast(with: "credits", completion: { (cast) in
+                self.castMovie = cast
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            }, movieId)
+        }
     }
-    func openDetails(for asset: MovieData, with rail: Movie) {
+    private func openDetails(for asset: MovieData, with rail: Movie) {
         
-            guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
-            vcMovieDetails.movies = asset
-            vcMovieDetails.movieOverview = asset.overview
-            vcMovieDetails.movieImageUrl = asset.backdropPath
-            vcMovieDetails.movieId = asset.id
-            vcMovieDetails.movieRating = asset.voteAverage
-            vcMovieDetails.movieTitle = asset.title
-            self.navigationController?.pushViewController(vcMovieDetails, animated: true)
+        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
+        vcMovieDetails.movies = asset
+        vcMovieDetails.movieOverview = asset.overview
+        vcMovieDetails.movieImageUrl = asset.backdropPath
+        vcMovieDetails.movieId = asset.id
+        vcMovieDetails.movieRating = asset.voteAverage
+        vcMovieDetails.movieTitle = asset.title
+        self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
 }
 
@@ -111,7 +110,7 @@ extension MovieInformationController: UICollectionViewDataSource {
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
             return collectionCell
         case 1:
-            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCast", for: indexPath) as? CollectionViewCast else { return UICollectionViewCell() }
+            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCastIdentifier, for: indexPath) as? CollectionViewCast else { return UICollectionViewCell() }
             collectionCell.loadData(actorsMovie: castMovie)
             return collectionCell
             
@@ -120,7 +119,7 @@ extension MovieInformationController: UICollectionViewDataSource {
             collectionCell.loadData(movies: recommendsMovies)
             collectionCell.onSelect = { [unowned self] rail, asset in
                 self.openDetails(for: asset, with: rail)
-
+                
             }
             return collectionCell
         case 3:
@@ -130,11 +129,11 @@ extension MovieInformationController: UICollectionViewDataSource {
                 self.openDetails(for: asset, with: rail)
             }
             return collectionCell
-
+            
         default:
             return UICollectionViewCell()
         }
-
+        
         
         
         
@@ -143,24 +142,26 @@ extension MovieInformationController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch indexPath.section {
         case 0:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier, for: indexPath) as? InformationMovie
-            header?.movieTitle.text = movieTitle
-            header?.movieReview.text = movieOverview
-            header?.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(movieImageUrl!)")
-            header?.movieRating.text = "Puntuacion: \(String(describing: Int(movieRating!.rounded(.down))))/10"
-            return header!
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier, for: indexPath) as? InformationMovie else { return UICollectionReusableView () }
+            header.movieTitle.text = movieTitle
+            header.movieReview.text = movieOverview
+            if let imageMovie = movieImageUrl, let averageCount = movieRating {
+                header.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+                header.movieRating.text = "Puntuacion: \(String(describing: Int(averageCount.rounded(.down))))/10"
+            }
+            return header
         case 1:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
-            header?.titleLabel.text = "Reparto"
-            return header!
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
+            header.titleLabel.text = "Reparto"
+            return header
         case 2:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
-            header?.titleLabel.text = "Peliculas Recomendadas"
-            return header!
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
+            header.titleLabel.text = "Peliculas Recomendadas"
+            return header
         case 3:
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
-            header?.titleLabel.text = "Peliculas Similares"
-            return header!
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
+            header.titleLabel.text = "Peliculas Similares"
+            return header
         default:
             return UICollectionReusableView()
             
@@ -188,7 +189,7 @@ extension MovieInformationController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
             
         }
-
+        
     }
     
     
@@ -202,6 +203,6 @@ extension MovieInformationController: UICollectionViewDelegateFlowLayout {
         default:
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
         }
-
+        
     }
 }

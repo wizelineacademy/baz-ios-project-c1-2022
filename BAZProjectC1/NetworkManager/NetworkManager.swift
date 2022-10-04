@@ -18,7 +18,7 @@ struct NetworkManager {
     /**
      Function that creates a request via url
      - Parameters:
-        - url: Element equivalent to url
+     - url: Element equivalent to url
      - Returns: URLRequest?. Request with specific configuration
      */    
     private func createRequest(for url: String) -> URLRequest? {
@@ -32,8 +32,8 @@ struct NetworkManager {
     /**
      Generic function that executes a request
      - Parameters:
-        - request: Request of type URLRequest
-        - completion: Closure that receives two parameters: generic typet and the error
+     - request: Request of type URLRequest
+     - completion: Closure that receives two parameters: generic typet and the error
      */
     private func executeRequest<T: Codable>(request: URLRequest, completion: ((T?, Error?) -> Void)?) {
         let session = URLSession(configuration: .default)
@@ -60,7 +60,7 @@ struct NetworkManager {
     /**
      Function tthat obtains the data of the movies
      - Parameters:
-        - completion: Closure define in typealias
+     - completion: Closure define in typealias
      */
     public func fetchMovieTrending(completion: MovieCompletionClosure?) {
         guard let request = createRequest(for: "https://api.themoviedb.org/3/trending/movie/day?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=es-MX") else {
@@ -98,15 +98,7 @@ struct NetworkManager {
             completion?(nil, NetworkError.invalidUrl)
             return
         }
-        print(" ************* https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=\(keyword)&language=es-MX")
         executeRequest(request: request, completion: completion)
     }
-    
 }
 
-
-
-//https://api.themoviedb.org/3/movie/{movie_id}/recommendations?api_key=<<api_key>>&language=en-US&page=1
-//https://api.themoviedb.org/3/movie/{movie_id}/similar?api_key=<<api_key>>&language=en-US&page=1
-//https://api.themoviedb.org/3/movie/616037/credits?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&language=en-US
-//https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&query=thor&language=en-US&page=1&include_adult=false

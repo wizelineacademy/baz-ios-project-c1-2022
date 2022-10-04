@@ -16,8 +16,8 @@ final class HomeMoviesViewController: UIViewController {
     
     private var presenter: MoviePresenter?
     
-    var asset: [MovieData]!
-    var rail: Movie!
+    private var asset: [MovieData]?
+    private var rail: Movie?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,22 +65,22 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
 
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
+        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
         switch indexPath.section {
         case 0:
-            header?.titleLabel.text = "Trending"
+            header.titleLabel.text = "Trending"
         case 1:
-            header?.titleLabel.text = "Now playing"
+            header.titleLabel.text = "Now playing"
         case 2:
-            header?.titleLabel.text = "Popular"
+            header.titleLabel.text = "Popular"
         case 3:
-            header?.titleLabel.text = "Top Rated"
+            header.titleLabel.text = "Top Rated"
         case 4:
-            header?.titleLabel.text = "Upcoming"
+            header.titleLabel.text = "Upcoming"
         default:
             return UICollectionReusableView()
         }
-        return header!
+        return header
     }
 }
 

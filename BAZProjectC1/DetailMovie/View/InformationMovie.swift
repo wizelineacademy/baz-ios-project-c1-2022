@@ -21,7 +21,7 @@ final class InformationMovie: UICollectionViewCell {
         
     }
     
-    func configView() {
+    private func configView() {
         movieReview.isEditable = false
         movieImage.layer.cornerRadius = 10
 

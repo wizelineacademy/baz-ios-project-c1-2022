@@ -19,7 +19,7 @@ struct Cast: Codable {
     let name:String?
     let originalName: String
     let profilePath: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case adult, gender, id
         case name

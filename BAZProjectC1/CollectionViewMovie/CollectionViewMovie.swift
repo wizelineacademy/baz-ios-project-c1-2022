@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CollectionViewMovie: UICollectionViewCell {
+final class CollectionViewMovie: UICollectionViewCell {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private let cellIdentifier = "MovieCardCell"
     private var movies = Movie(results: [MovieData]())
     typealias cellSelectionClosure = ((Movie,MovieData) -> Void)

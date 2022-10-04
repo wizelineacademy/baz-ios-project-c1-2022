@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Movie
 struct SearchMovie: Codable {
     let results: [MovieSearchData]
-
+    
     enum CodingKeys: String, CodingKey {
         case results
     }
@@ -32,7 +32,7 @@ struct MovieSearchData: Codable {
     let originalName: String?
     let gender: Int?
     let knownForDepartment, profilePath: String?
-
+    
     enum CodingKeys: String, CodingKey {
         case adult
         case backdropPath = "backdrop_path"

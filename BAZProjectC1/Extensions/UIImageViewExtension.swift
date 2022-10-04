@@ -12,8 +12,8 @@ extension UIImageView {
     /**
      Function that downloads and displays the image
      - Parameters:
-        - url: url where the image is obtained
-        - contentMode:type of content mode
+     - url: url where the image is obtained
+     - contentMode:type of content mode
      */
     func downloaded(from url: URL, contentMode mode: ContentMode = .scaleAspectFill) {
         contentMode = mode
@@ -34,8 +34,8 @@ extension UIImageView {
     /**
      Function that downloads and displays the image
      - Parameters:
-        - link: url of type string where the image is obtained
-        - contentMode:type of content mode
+     - link: url of type string where the image is obtained
+     - contentMode:type of content mode
      */
     func downloaded (from link: String, contentMode mode: ContentMode = .scaleAspectFill) {
         guard let url = URL(string: link) else { return }

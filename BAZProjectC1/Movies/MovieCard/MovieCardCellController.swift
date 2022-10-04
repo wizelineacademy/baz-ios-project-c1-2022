@@ -13,7 +13,7 @@ final class MovieCardCellController: UICollectionViewCell {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieVotes: UILabel!
     @IBOutlet weak var mainView: UIView!
-
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

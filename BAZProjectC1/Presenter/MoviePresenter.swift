@@ -14,7 +14,7 @@ protocol HomeViewProtocol: AnyObject {
 
 
 final class MoviePresenter {
- 
+    
     private var moviesTrending = Movie(results: [MovieData]())
     private var moviesPlaying = Movie(results: [MovieData]())
     private var moviesPopular = Movie(results: [MovieData]())
@@ -103,9 +103,9 @@ final class MoviePresenter {
         default:
             return UICollectionViewCell()
         }
-
-       return collectionCell
-
+        
+        return collectionCell
+        
     }
     
 }

@@ -5,12 +5,11 @@
 //  Created by Carlos Nitsuga Hernandez on 02/10/22.
 //
 
-import Foundation
 import UIKit
 
-class CollectionViewCast: UICollectionViewCell {
+final class CollectionViewCast: UICollectionViewCell {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private weak var collectionView: UICollectionView!
     private let cellIdentifier = "CreditsMovie"
     private var actorsCast = MovieCast(cast: [Cast]())
     

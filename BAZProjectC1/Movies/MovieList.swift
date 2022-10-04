@@ -9,10 +9,11 @@ import Foundation
 
 final class MovieList {
     
-    var actors = MovieCast(cast: [Cast]())
-    var error: NSError?
-    var moviesTrending = Movie(results: [MovieData]())
-    var moviesSearch = SearchMovie(results: [MovieSearchData]())
+    private var actors = MovieCast(cast: [Cast]())
+    private var error: NSError?
+    private var moviesTrending = Movie(results: [MovieData]())
+    private var moviesSearch = SearchMovie(results: [MovieSearchData]())
+    
     public func loadMoviesTrending(completion: @escaping (Movie) -> ())  {
         NetworkManager().fetchMovieTrending { [weak self] (page, error) in
             guard let self = self else { return }
@@ -20,7 +21,7 @@ final class MovieList {
                 self.moviesTrending = page
                 completion(self.moviesTrending)
             } else {
-                print("No movies found")
+                debugPrint("No movies trending found")
             }
         }
     }
@@ -32,7 +33,7 @@ final class MovieList {
                 self.moviesTrending = page
                 completion(self.moviesTrending)
             } else {
-                print("No movies found")
+                debugPrint("No movies \(searchType) found")
             }
         }, filter: searchType) 
     }
@@ -44,7 +45,7 @@ final class MovieList {
                 self.moviesTrending = page
                 completion(self.moviesTrending)
             } else {
-                print("No movies found")
+                debugPrint("No movies similar found")
             }
         }, movieId: movieId, filter: searchType)
     }
@@ -57,7 +58,7 @@ final class MovieList {
                 self.actors = movieCats
                 completion(self.actors)
             } else {
-                print("No movies found")
+                debugPrint("No cast found")
             }
         }, movieId: movieId, filter: searchType)
     }
@@ -69,7 +70,7 @@ final class MovieList {
                 self.moviesSearch = page
                 completion(self.moviesSearch)
             } else {
-                print("No movies found")
+                debugPrint("No movies search found")
             }
         }, keyword: keyword)
     }
