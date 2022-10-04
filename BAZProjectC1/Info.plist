@@ -39,7 +39,7 @@
 	<key>upcoming</key>
 	<string>https://api.themoviedb.org/3/movie/upcoming?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&amp;language=es&amp;region=MX&amp;page=1</string>
 	<key>searchMulti</key>
-	<string>https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&amp;language=en-US&amp;page=1&amp;include_adult=false&amp;query=</string>
+	<string>https://api.themoviedb.org/3/search/multi?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a&amp;language=es&amp;page=1&amp;include_adult=false&amp;query=</string>
 	<key>genreList</key>
 	<string>{
   &quot;genres&quot;: [
