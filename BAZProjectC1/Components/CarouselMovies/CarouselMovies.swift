@@ -11,7 +11,16 @@ fileprivate let START_ROW: Int = 0
 fileprivate let START_SECTION: Int = 0
 
 class CarouselMovies: UIView {
+    
+    private(set) lazy var typeCarousel: String = {
+        return "MovieModel"
+    }()
+    
     private(set) lazy var infoCarousel: [MovieModel] = {
+        return []
+    }()
+    
+    private(set) lazy var infoCarouselCast: [CastModel] = {
         return []
     }()
     
@@ -24,7 +33,7 @@ class CarouselMovies: UIView {
         layout.minimumInteritemSpacing = 48
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         let carousel = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        carousel.backgroundColor = UIColor.clear
+        carousel.backgroundColor = UIColor.appColorBlack
         carousel.translatesAutoresizingMaskIntoConstraints = false
         carousel.delegate = self
         carousel.dataSource = self
@@ -36,7 +45,8 @@ class CarouselMovies: UIView {
     }()
     
     required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: coder)
+        self.commonInit()
     }
     
     override init(frame: CGRect) {
@@ -62,8 +72,15 @@ class CarouselMovies: UIView {
     
     public  func setDataInfo(infoCarousel: [MovieModel]) {
         clearCarouselData()
+        typeCarousel = "MovieModel"
         self.infoCarousel = infoCarousel
-        
+        carousel.reloadData()
+    }
+    
+    public  func setDataInfo(infoCarousel: [CastModel]) {
+        clearCarouselData()
+        typeCarousel = "CastModel"
+        self.infoCarouselCast = infoCarousel
         carousel.reloadData()
     }
     

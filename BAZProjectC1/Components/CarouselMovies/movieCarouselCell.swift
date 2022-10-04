@@ -98,4 +98,10 @@ class MovieCarouselCell: UICollectionViewCell {
         movieTitle.text = dataInfo.getMovieTitleString()
         movieRanking.text = dataInfo.getMovieRankingString()
     }
+    
+    func configuration(dataInfo: CastModel) {
+        posterImage.loadPosterImage(from: dataInfo.getMoviePosterString())
+        movieTitle.text = dataInfo.getMovieTitleString()
+        movieRanking.text = dataInfo.getMovieRankingString()
+    }
 }

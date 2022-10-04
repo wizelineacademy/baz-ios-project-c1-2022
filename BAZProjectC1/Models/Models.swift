@@ -84,3 +84,46 @@ public struct MoviesGenre: Decodable {
     var id: Int?
     var name: String?
 }
+
+//MARK:  CAST MODEL
+
+public struct CastApiResponseModel: Decodable {
+    var id: Int?
+    var cast: [CastModel]?
+}
+
+public struct CastModel: Decodable {
+    var adult: Bool?
+    var gender: Int?
+    var id: Int?
+    var knownForDepartment: String?
+    var name: String?
+    var originalName: String?
+    var popularity: Double?
+    var profilePath: String?
+    var castId: Int?
+    var character: String?
+    var creditId: String?
+    var order: Int?
+}
+
+extension CastModel {
+    
+    func getMoviePosterString() -> String? {
+        return profilePath
+    }
+    
+    func getMovieTitleString() -> String {
+        let name =  name ?? ""
+        
+        return "\(name) \n(\(character ?? ""))"
+    }
+
+    func getMovieRankingString() -> String {
+        let popularity = Int( round(popularity ?? 0))
+        return "\(popularity)"
+    }
+    
+    
+}
+    

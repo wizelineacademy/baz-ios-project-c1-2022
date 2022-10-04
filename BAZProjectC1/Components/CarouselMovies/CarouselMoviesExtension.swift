@@ -18,13 +18,25 @@ extension CarouselMovies: UICollectionViewDelegate {
 }
 extension CarouselMovies: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return infoCarousel.count
+        if typeCarousel == "MovieModel" {
+            return infoCarousel.count
+        } else {
+            return infoCarouselCast .count
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCarouselCell.reuseIdentifier), for: indexPath) as? MovieCarouselCell else {  return UICollectionViewCell() }
-        let movie = infoCarousel[indexPath.row]
-        cell.configuration(dataInfo: movie)
+        if typeCarousel == "MovieModel" {
+            let movie = infoCarousel[indexPath.row]
+            cell.configuration(dataInfo: movie)
+        } else {
+            let cast = infoCarouselCast[indexPath.row]
+            cell.configuration(dataInfo: cast)
+        }
+        
+        
         return cell
     }
 }

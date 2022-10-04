@@ -16,6 +16,7 @@ class DetailTest: UIViewController {
     @IBOutlet weak var nameElement: UILabel!
     @IBOutlet weak var genreList: CarosuelMenu!
     @IBOutlet weak var overviewMovie: UILabel!
+    @IBOutlet weak var caroselCast: CarouselMovies!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,8 +56,8 @@ class DetailTest: UIViewController {
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
         nameElement.text = elementData?.getMovieTitleString()
         nameElement.textColor = UIColor.appColorWhitePrimary
-        
         overviewMovie.text = elementData?.overview
+        getCastMovie(urlString: EndpointsList.getQuery(from: .cast, with: elementData?.id ?? 0))
     }
     private func getConfigurationModel() -> CarosuelMenuConfiguration {
         CarosuelMenuConfiguration(frame: .zero,
@@ -65,5 +66,15 @@ class DetailTest: UIViewController {
                                   itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
                                   itemSelectedBackgroundColor: UIColor.appColorYellowPrimary,
                                   itemSelectedBorderBackgroundColor: UIColor.appColorYellowPrimary)
+    }
+    
+    private func getCastMovie(urlString: String) {
+        //caroselCast
+        
+        ApiServiceRequest.getService(urlService: urlString, structureType: CastApiResponseModel.self, handler: { [weak self] dataResponse in
+            if let data = dataResponse as? CastApiResponseModel {
+                self?.caroselCast.setDataInfo(infoCarousel: data.cast ?? [])
+            }
+        })
     }
 }
