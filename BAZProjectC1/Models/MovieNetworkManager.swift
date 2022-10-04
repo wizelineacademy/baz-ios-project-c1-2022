@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieNetworkManager {
 
-    // MARK: Operating variables -
+    // MARK: Class properties -
     static let shared: MovieNetworkManager = MovieNetworkManager()
     private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private let baseUrl: String = "https://api.themoviedb.org/3/"
@@ -23,15 +23,54 @@ final class MovieNetworkManager {
     func fetchMovies(genre: String, completionHandler: @escaping ((MovieData?, Error?) -> Void)) {
         var currentUrl: String?
         if genre == "trending" {
-            currentUrl = "\(baseUrl)\(genre)/movie/day?api_key=\(apiKey)"
+            currentUrl = "\(baseUrl)\(genre.formatURL("_"))/movie/day?api_key=\(apiKey)"
         } else {
-            currentUrl = "\(baseUrl)movie/\(genre)?api_key=\(apiKey)"
+            currentUrl = "\(baseUrl)movie/\(genre.formatURL("_"))?api_key=\(apiKey)"
         }
         guard let url = URL(string: currentUrl!) else {
             completionHandler(nil, NSError())
             return
         }
         executeRequest(request: url, completionHanlder: completionHandler)
+    }
+
+    /// This function performs the search for movies by keyword or by movie
+    /// - Parameters:
+    ///   - isKeyword: indicates if the search is done by keyword or movie
+    ///   - search: the movie o keyword what the service fetch
+    ///   - completionHanlder: action when the service response and return a model of the response
+    func fetchMovieByPhrase(isKeyword: Bool, search: String, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)search/\(isKeyword ? "multi" : "movie")?api_key=\(apiKey)&query=\(search.formatURL("%20"))") else {
+            print("Ocurrio un error al generar el URL")
+            completionHanlder(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHanlder)
+    }
+
+    /// This function performs the search for the credits of a movie
+    /// - Parameters:
+    ///   - idMovie: id of the movie
+    ///   - completionHandler: the action when the service response
+    func fetchCreditsMovie(_ idMovie: Int, completionHandler: @escaping ((CreditMovie?, Error?) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)movie/\(idMovie)/credits?api_key=\(apiKey)") else {
+            completionHandler(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHandler)
+    }
+
+    /// This function returns both similar movies or recommendation based on a specific movie
+    /// - Parameters:
+    ///   - idMovie: id of the actual movie
+    ///   - isSimilar: is similar or recommendation boolean value
+    ///   - completionHanlder: the action when the query response
+    func fetchRelationsMovies(with idMovie: Int, isSimilar: Bool, completionHanlder: @escaping ((MovieData?, Error?) -> Void)) {
+        guard let url = URL(string: "\(baseUrl)movie/\(idMovie)/\(isSimilar ? "similar" : "recommendations")?api_key=\(apiKey)") else {
+            completionHanlder(nil, nil)
+            return
+        }
+        executeRequest(request: url, completionHanlder: completionHanlder)
     }
 
     /// This method download image from a url
@@ -74,7 +113,6 @@ final class MovieNetworkManager {
         }
         dataTask.resume()
     }
-
 
     /// This method do the query to the service and return a general response ready to be treated
     /// - Parameters:
