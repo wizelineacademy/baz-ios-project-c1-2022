@@ -52,16 +52,25 @@ extension MovieInfoCollectionViewCell: UICollectionViewDelegate, UICollectionVie
         switch bMovies {
         case .similar(0):
             cell.setLabel(text: moviesSimilars?[indexPath.row].title ?? "")
-            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(moviesSimilars?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
-            cell.setImage(img: image)
+            cell.setImage(img: UIImage())
+            DispatchQueue.main.async {
+                let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(self.moviesSimilars?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
+                cell.setImage(img: image)
+            }
         case .recommended(0):
             cell.setLabel(text: moviesRecomended?[indexPath.row].title ?? "")
-            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(moviesRecomended?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
-            cell.setImage(img: image)
+            cell.setImage(img: UIImage())
+            DispatchQueue.main.async {
+                let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(self.moviesRecomended?[indexPath.row].posterPath ?? "")").retreiveImageFromSource()
+                cell.setImage(img: image)
+            }
         case .cast(0):
             cell.setLabel(text: castArray?[indexPath.row].name ?? "")
-            let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(castArray?[indexPath.row].profilePath ?? "")").retreiveImageFromSource()
-            cell.setImage(img: image)
+            cell.setImage(img: UIImage())
+            DispatchQueue.main.async {
+                let image = ImageAPI(url: "https://image.tmdb.org/t/p/w500/\(self.castArray?[indexPath.row].profilePath ?? "")").retreiveImageFromSource()
+                cell.setImage(img: image)
+            }
         default:
             return cell
         }
