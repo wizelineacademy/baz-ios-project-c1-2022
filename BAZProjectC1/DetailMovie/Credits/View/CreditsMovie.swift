@@ -9,6 +9,7 @@ import UIKit
 
 final class CreditsMovie: UICollectionViewCell {
     
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorName: UILabel!
     
@@ -18,6 +19,7 @@ final class CreditsMovie: UICollectionViewCell {
     }
     
     private func configView() {
+        mainView.layer.cornerRadius = 10
         actorImage.layer.cornerRadius = 10
     }
 }

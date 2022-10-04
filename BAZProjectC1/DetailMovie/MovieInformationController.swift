@@ -16,19 +16,22 @@ final class MovieInformationController: UIViewController {
     public var movieImageUrl:String?
     public var movieOverview:String?
     public var movieTitle:String?
-    public var movieRating:Int?
+    public var movieRating:Double?
     private var similarMovies = Movie(results: [MovieData]())
+    private var recommendsMovies = Movie(results: [MovieData]())
     private var castMovie = MovieCast(cast: [Cast]())
     private var actorsMovie = MovieList()
     private var similar = MovieList()
+    private var recommends = MovieList()
     private let movieCollectionIdentifier = "CollectionViewMovie"
     private let headerDetailIdentifier = "InformationMovie"
     override func viewDidLoad() {
         super.viewDidLoad()
-        showDetails()
+        //showDetails()
         setupView()
         loadDataSimilar()
         loadCast()
+        loadDataRecomendadas()
     }
     
     /** Function that shows the details of the movie */
@@ -57,6 +60,16 @@ final class MovieInformationController: UIViewController {
         }, movieId!)
     }
     
+    private func loadDataRecomendadas() {
+        recommends.loadMoviesSimilar(with: "recommendations", completion: { (movie) in
+            self.recommendsMovies = movie
+            print("************  \(self.recommendsMovies)")
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }, movieId!)
+    }
+    
 
     
     
@@ -69,13 +82,23 @@ final class MovieInformationController: UIViewController {
         }, movieId!)
 
     }
-    
+    func openDetails(for asset: MovieData, with rail: Movie) {
+        
+            guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
+            vcMovieDetails.movies = asset
+            vcMovieDetails.movieOverview = asset.overview
+            vcMovieDetails.movieImageUrl = asset.backdropPath
+            vcMovieDetails.movieId = asset.id
+            vcMovieDetails.movieRating = asset.voteAverage
+            vcMovieDetails.movieTitle = asset.title
+            self.navigationController?.pushViewController(vcMovieDetails, animated: true)
+    }
 }
 
 
 extension MovieInformationController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 4
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -90,12 +113,22 @@ extension MovieInformationController: UICollectionViewDataSource {
         case 1:
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCast", for: indexPath) as? CollectionViewCast else { return UICollectionViewCell() }
             collectionCell.loadData(actorsMovie: castMovie)
-            
             return collectionCell
             
         case 2:
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
+            collectionCell.loadData(movies: recommendsMovies)
+            collectionCell.onSelect = { [unowned self] rail, asset in
+                self.openDetails(for: asset, with: rail)
+
+            }
+            return collectionCell
+        case 3:
+            guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: movieCollectionIdentifier, for: IndexPath(row: indexPath.section, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
             collectionCell.loadData(movies: similarMovies)
+            collectionCell.onSelect = { [unowned self] rail, asset in
+                self.openDetails(for: asset, with: rail)
+            }
             return collectionCell
 
         default:
@@ -114,13 +147,17 @@ extension MovieInformationController: UICollectionViewDataSource {
             header?.movieTitle.text = movieTitle
             header?.movieReview.text = movieOverview
             header?.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(movieImageUrl!)")
-            header?.movieRating.text = "CALIFICATION:\(String(describing: movieRating!))"
+            header?.movieRating.text = "Puntuacion: \(String(describing: Int(movieRating!.rounded(.down))))/10"
             return header!
         case 1:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
             header?.titleLabel.text = "Reparto"
             return header!
         case 2:
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
+            header?.titleLabel.text = "Peliculas Recomendadas"
+            return header!
+        case 3:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController
             header?.titleLabel.text = "Peliculas Similares"
             return header!
@@ -142,8 +179,10 @@ extension MovieInformationController: UICollectionViewDelegateFlowLayout {
         case 0:
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(0))
         case 1:
-            return CGSize(width: collectionView.frame.size.width, height: CGFloat(450))
+            return CGSize(width: collectionView.frame.size.width, height: CGFloat(350))
         case 2:
+            return CGSize(width: collectionView.frame.size.width, height: CGFloat(300))
+        case 3:
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(300))
         default:
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
@@ -157,7 +196,7 @@ extension MovieInformationController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 0:
-            return CGSize(width: collectionView.frame.size.width, height: CGFloat(400))
+            return CGSize(width: collectionView.frame.size.width, height: CGFloat(480))
         case 1:
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
         default:

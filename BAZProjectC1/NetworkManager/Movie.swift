@@ -21,6 +21,7 @@ struct MovieData: Codable {
     let title: String
     let posterPath, overview: String
     let releaseDate: String
+    let voteAverage: Double
     let voteCount:  Int
     let backdropPath: String
 
@@ -29,6 +30,7 @@ struct MovieData: Codable {
         case posterPath = "poster_path"
         case overview
         case releaseDate = "release_date"
+        case voteAverage = "vote_average"
         case voteCount = "vote_count"
         case backdropPath = "backdrop_path"
     }

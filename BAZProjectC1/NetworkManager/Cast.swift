@@ -16,7 +16,8 @@ struct MovieCast: Codable {
 struct Cast: Codable {
     let adult: Bool
     let gender, id: Int
-    let name, originalName: String
+    let name:String?
+    let originalName: String
     let profilePath: String?
 
     enum CodingKeys: String, CodingKey {

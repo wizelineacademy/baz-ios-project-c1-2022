@@ -13,7 +13,7 @@
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="Vpc-0m-sRS" customClass="CreditsMovie" customModule="BAZProjectC1" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="183" height="301"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ovm-9C-rHY">
                 <rect key="frame" x="0.0" y="0.0" width="183" height="301"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -37,6 +37,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="301" id="3rY-bq-0s7"/>
                             <constraint firstAttribute="trailing" secondItem="PEI-0o-70a" secondAttribute="trailing" constant="10" id="4ux-Dc-MvV"/>
                             <constraint firstItem="PEI-0o-70a" firstAttribute="leading" secondItem="PJK-8X-OXQ" secondAttribute="leading" constant="8" id="E0x-P8-pbA"/>
                             <constraint firstItem="Q9d-I3-U9E" firstAttribute="leading" secondItem="PJK-8X-OXQ" secondAttribute="leading" constant="3" id="JDO-xi-Xm5"/>
@@ -45,6 +46,7 @@
                             <constraint firstItem="PEI-0o-70a" firstAttribute="top" secondItem="PJK-8X-OXQ" secondAttribute="top" constant="6" id="bBa-sO-53r"/>
                             <constraint firstItem="Q9d-I3-U9E" firstAttribute="top" secondItem="PEI-0o-70a" secondAttribute="bottom" constant="8" symbolic="YES" id="fAA-PM-hPS"/>
                             <constraint firstItem="Q9d-I3-U9E" firstAttribute="top" secondItem="PEI-0o-70a" secondAttribute="bottom" constant="8" symbolic="YES" id="gjd-fu-1lX"/>
+                            <constraint firstAttribute="width" constant="183" id="mES-5q-c7S"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -59,6 +61,7 @@
             <connections>
                 <outlet property="actorImage" destination="PEI-0o-70a" id="TXP-f9-ljk"/>
                 <outlet property="actorName" destination="Q9d-I3-U9E" id="Ibt-zc-GCH"/>
+                <outlet property="mainView" destination="PJK-8X-OXQ" id="RJe-z9-MpX"/>
             </connections>
             <point key="canvasLocation" x="296.37681159420293" y="159.70982142857142"/>
         </collectionViewCell>

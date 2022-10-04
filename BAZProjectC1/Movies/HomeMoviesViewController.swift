@@ -40,7 +40,7 @@ final class HomeMoviesViewController: UIViewController {
         vcMovieDetails.movieOverview = information.overview
         vcMovieDetails.movieImageUrl = information.backdropPath
         vcMovieDetails.movieId = information.id
-        vcMovieDetails.movieRating = information.voteCount
+        vcMovieDetails.movieRating = information.voteAverage
         vcMovieDetails.movieTitle = information.title
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }

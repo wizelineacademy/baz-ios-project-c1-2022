@@ -12,21 +12,21 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollectionViewCast" id="UYU-VO-ucJ" customClass="CollectionViewCast" customModule="BAZProjectC1" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+            <rect key="frame" x="0.0" y="0.0" width="250" height="311"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="oT8-Y6-Zkq">
-                <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                <rect key="frame" x="0.0" y="0.0" width="250" height="311"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Ro4-1c-Aqo">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="250"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="311"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="height" constant="311" id="6dA-mf-jZq"/>
                             <constraint firstAttribute="width" constant="250" id="lZ6-tY-Mzo"/>
-                            <constraint firstAttribute="height" constant="250" id="wp6-gp-wMP"/>
                         </constraints>
-                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="0B2-RX-JvM">
-                            <size key="itemSize" width="250" height="300"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jsq-wD-3yH">
+                            <size key="itemSize" width="250" height="311"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

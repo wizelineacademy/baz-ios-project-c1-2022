@@ -35,13 +35,15 @@ class CollectionViewCast: UICollectionViewCell {
 
 extension CollectionViewCast: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CreditsMovie else { return UICollectionViewCell() }
-        cell.actorName.text = actorsCast.cast[indexPath.row].name
-        cell.actorImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(String(describing: actorsCast.cast[indexPath.row].profilePath!))")
+        if let actor = actorsCast.cast[indexPath.row].name, let imageActor = actorsCast.cast[indexPath.row].profilePath{
+            cell.actorName.text = actor
+            cell.actorImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(String(describing: imageActor))")
+        }
         return cell
     }
 }

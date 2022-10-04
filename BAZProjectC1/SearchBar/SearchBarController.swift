@@ -55,7 +55,7 @@ extension SearchBarController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let celda = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath) as! customCellController
-        if let imageMovie = arregloFiltrados[indexPath.row].posterPath, let titleMovie = arregloFiltrados[indexPath.row].title {
+        if let imageMovie = arregloFiltrados[indexPath.row].posterPath, let _ = arregloFiltrados[indexPath.row].title {
             celda.imageMovie.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
             celda.titleMovie.text = arregloFiltrados[indexPath.row].title
         }
@@ -72,7 +72,7 @@ extension SearchBarController:UITableViewDelegate {
         vcMovieDetails.movieImageUrl = arregloFiltrados[indexPath.row].backdropPath
         vcMovieDetails.movieOverview = arregloFiltrados[indexPath.row].overview
         vcMovieDetails.movieTitle = arregloFiltrados[indexPath.row].title
-        vcMovieDetails.movieRating = arregloFiltrados[indexPath.row].voteCount
+        vcMovieDetails.movieRating = arregloFiltrados[indexPath.row].voteAverage
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
 
