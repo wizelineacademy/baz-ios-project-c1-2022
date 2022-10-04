@@ -9,7 +9,7 @@ import UIKit
 
 class CategoryMovieTableDataSource: NSObject, UITableViewDataSource {
 
-    var movies: Movies
+    var movies: Movies?
 
     init(with movies: Movies) {
         self.movies = movies
@@ -21,14 +21,17 @@ class CategoryMovieTableDataSource: NSObject, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        movies?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let movie = movies?[indexPath.row] else {
+            return UITableViewCell()
+        }
         let movieCell = tableView.dequeueReusableCell(withIdentifier: "CategoryMovieCell", for: indexPath) as! CategoryMovieTableViewCell
-        MovieNetworkManager.shared.downloadImage(imagePath: movies[indexPath.row].poster_path ?? "", width: 200) { [weak self] image in
+        MovieNetworkManager.shared.downloadImage(imagePath: movie.poster_path ?? "", width: 200) { image in
             DispatchQueue.main.async {
-                movieCell.setValuesMovie(posterImage: image, titleMovie: self?.movies[indexPath.row].title)
+                movieCell.setValuesMovie(posterImage: image, titleMovie: movie.title ?? movie.name)
             }
         }
         return movieCell

@@ -29,7 +29,7 @@ class CategoryMovieTableViewCell: UITableViewCell {
     }
 
     func setValuesMovie(posterImage: UIImage?, titleMovie: String?) {
-        posterMovie.image = posterImage
+        posterMovie.image = posterImage ?? UIImage(systemName: "poster")
         titleMovieLabel.text = titleMovie ?? "Without title 🥲"
     }
 }

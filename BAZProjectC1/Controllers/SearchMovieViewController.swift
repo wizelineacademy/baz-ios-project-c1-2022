@@ -57,6 +57,7 @@ class SearchMovieViewController: UIViewController {
     @objc
     /// This function performs the search for movies according to the letters that the user is entering
     private func searchMovieByKeyword() {
+        categoryMovieTableDataSource?.reloadData(with: [], using: movieTableView)
         fetchMovieByPhrase(true)
     }
 
@@ -75,6 +76,7 @@ extension SearchMovieViewController: CategoryMovieCellProtocol {
 // MARK: searchTextField deledate -
 extension SearchMovieViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        categoryMovieTableDataSource?.reloadData(with: [], using: movieTableView)
         searchTextField.resignFirstResponder()
         fetchMovieByPhrase()
         return true
