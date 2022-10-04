@@ -13,6 +13,7 @@ class DetailTest: UIViewController {
     @IBOutlet weak var posterImage: movieImageView!
     @IBOutlet weak var scrollArea: UIScrollView!
     @IBOutlet weak var ContentView: UIView!
+    @IBOutlet weak var nameElement: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,8 +45,11 @@ class DetailTest: UIViewController {
     }
     private func reloadDataInView() {
         view.backgroundColor = UIColor.appColorBlack
+        ContentView.addSubview(nameElement)
         ContentView.backgroundColor = UIColor.appColorBlack
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
+        nameElement.text = elementData?.getMovieTitleString()
+        nameElement.textColor = UIColor.appColorWhitePrimary
     }
     
 }
