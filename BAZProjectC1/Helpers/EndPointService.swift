@@ -8,14 +8,23 @@
 import Foundation
 
 enum EndPoint: CaseIterable {
-    static let urlBase = "https://api.themoviedb.org/3/"
-    static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    static var allCases: [EndPoint] {
+        return [.trendingMovie, .nowPlaying, .popular, .topRated, .upComming]
+    }
+    
+    private static let urlBase = "https://api.themoviedb.org/3/"
+    private static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    private static let urlBaseImage: String = "https://image.tmdb.org/t/p/w500"
+    
     
     case trendingMovie
     case nowPlaying
     case popular
     case topRated
     case upComming
+    case search (text: String)
+    case imageFromURL
+    case searchById(id: Int)
 }
 
 extension EndPoint {
@@ -31,14 +40,24 @@ extension EndPoint {
             return "movie/top_rated?api_key=\(EndPoint.apiKey)"
         case .upComming:
             return "movie/upcoming?api_key=\(EndPoint.apiKey)"
+        case .search(let text):
+            return "search/movie?language=es&api_key=\(EndPoint.apiKey)&query=\(text)"
+        case .imageFromURL:
+            return EndPoint.urlBaseImage
+        case .searchById(let id):
+            return "movie/\(id)/?api_key=\(EndPoint.apiKey)&language=en-US"
         }
     }
     
     var requestFrom: URLRequest {
         switch self {
-        case .trendingMovie, .nowPlaying, .popular, .topRated, .upComming:
+        case .trendingMovie, .nowPlaying, .popular, .topRated, .upComming, .search, .searchById:
             let url = URL(string: EndPoint.urlBase + string)!
             return URLRequest(url: url)
+        case .imageFromURL:
+            let url = URL(string: EndPoint.urlBaseImage)!
+            return URLRequest( url: url)
+            
         }
     }
     
@@ -54,6 +73,12 @@ extension EndPoint {
             return "Top Rated"
         case .upComming:
             return "Up Comming"
+        case .search:
+            return ""
+        case .imageFromURL:
+            return ""
+        case  .searchById:
+            return ""
         }
     }
 }

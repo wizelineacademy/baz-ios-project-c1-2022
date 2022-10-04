@@ -10,6 +10,10 @@ import UIKit
 
 // Mark: - For download image
 extension UIImageView {
+    /// This method download image from a url
+    /// - Parameters:
+    ///   - imagePath: URL path of an image
+    ///
     func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit){
         contentMode = mode
         URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -25,30 +29,21 @@ extension UIImageView {
     }
     
     func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        guard let url = URL(string: link) else { return }
+        let urlBaseImage: String = "https://image.tmdb.org/t/p/w500"
+        
+        guard let url = URL(string: urlBaseImage + link) else { return }
         downloaded(from: url, contentMode: mode)
     }
     
 }
 
-extension UIImage {
-      convenience init?(url: URL?) {
-        guard let url = url else { return nil }
-                
-        do {
-          self.init(data: try Data(contentsOf: url))
-        } catch {
-            debugPrint("Cannot load image from url: \(url) with error: \(error)")
-          return nil
-        }
-      }
-}
 
 
 // Mark: - Custom UIActivityIndicatorView
 
 extension UIView{
 
+    /// This method show  an activity indicator
     func showAnimation() {
         let container = UIView()
         container.frame = CGRect.init(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height)

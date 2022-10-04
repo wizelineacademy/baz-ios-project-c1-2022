@@ -9,11 +9,11 @@ import UIKit
 import Foundation
 
 class MoviesViewController: UIViewController {
-
-    
     var postersMovieArray = MovieModel()
     var tappedCell: PosterCollectionCell!
     @IBOutlet weak var TableView: UITableView!
+    private let viewModel = TrendingMovieViewModel()
+    private var dataLoad: MovieModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,105 +23,53 @@ class MoviesViewController: UIViewController {
     func setupView(){
         navigationItem.title = "Home"
         self.TableView.register(UINib.init(nibName: "TableViewCell", bundle: Bundle(for: TableViewCell.self)), forCellReuseIdentifier: "cell")
+        getMoviesInSection()
+        DispatchQueue.main.async() { [weak self] in
+            self?.TableView.reloadData()
+        }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        ejemplo()
-    }
-    
-    func ejemplo(){
-        
-//        for api in EndPoint.allCases {
-//            switch api {
-//            case .trendingMovie:
-//                print ("Es trending")
-//            case .nowPlaying:
-//                print ("Es now")
-//            case .popular:
-//                print ("Es popular")
-//            case .topRated:
-//                print ("Es rated")
-//            case .upComming:
-//                print ("Es up")
-//            }
-//        }
-        
-        
+    func getMoviesInSection(){
         self.view.showAnimation()
+        self.postersMovieArray.removeAllMovie()
         let groupEndPoint = DispatchGroup()
         EndPoint.allCases.forEach { endpoint in
             groupEndPoint.enter()
-            
             moviesRequest(requestUrl: endpoint.requestFrom) { data, error in
-                print("API \(endpoint.requestFrom) TERMINADO!!")
-             
-                
                 do{
                     guard let data = data else {
                         return
                     }
-                    
-                    
-                    
-                    let result = try JSONDecoder().decode(Results.self, from: data)
-//                    completion(result.results)
-                    
-                    print(result)
+                    let result = try JSONDecoder().decode(MoviesResponse.self, from: data)
+                    var postersMovie:[ PosterCollectionCell] = []
+                    result.results.forEach { movie in
+                        postersMovie.append(PosterCollectionCell(posterImage: movie.posterPath ?? "", title: movie.title ?? "", overView: movie.overview ?? ""))
+                    }
+                    let section = TableViewMovieCellModel (sectionFilter: endpoint.sectionName, posters: [postersMovie])
+                    self.postersMovieArray.setupMovie(section: section)
                 } catch {
                     debugPrint("The following error occurred: \(error.localizedDescription)")
                 }
-                
-                
-                
-                
                 groupEndPoint.leave()
                 
             }
         }
         
         groupEndPoint.notify(queue:.main) {
-            print("Endpoints completed")
             self.view.hideAnimation()
-        }
-        /*
-        let baseUrl = "https://jsonplaceholder.typicode.com/"
-        let endpoints = ["posts", "comments", "albums", "photos", "todos", "users"]
-
-         
-         let data = try! JSONDecoder().decode(ApiResponse.self, from: rawApiResponse.data(using: .utf8)!)
-         
-         
-         
-         
-        self.view.showAnimation()
-        let group = DispatchGroup()
-        endpoints.forEach { endpoint in
-            group.enter()
-            performNetworkRequest(url: baseUrl + endpoint) { data, error in
-                print("TAREA \(endpoint) TERMINADA..")
-//                print("Error:- \(error)")
-                group.leave()
+            DispatchQueue.main.async() { [weak self] in
+                self?.TableView.reloadData()
             }
         }
-
-        // notify the main thread when all task are completed
-        group.notify(queue: .main) {
-            print("SE COMPLETARON TODOS LAS PETICIONES")
-            self.view.hideAnimation()
-        }
-        
-        */
-        
-        
     }
     
 }
 
+
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postersMovieArray.movieObject[section].posters.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -132,11 +80,10 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let rowArray = postersMovieArray.movieObject[indexPath.section].posters[indexPath.row]
         cell.updateCellWith(row: rowArray)
-        
+
         //MARK: - Cell delegation
         cell.cellDelegate = self
         cell.selectionStyle = .none
-        
         return cell
         
     }
@@ -148,7 +95,6 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -167,19 +113,14 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MoviesViewController: CollectionViewCellDelegate {
-
-    
     func collectionView(collectionviewcell: CollectionViewCell?, index: Int, didTappedInTableViewCell: TableViewCell) {
         if let posterRow = didTappedInTableViewCell.rowWithPosters {
-            
             self.tappedCell = posterRow[index]
-            
             let vc = DetailMovieViewController(nibName: "DetailMovieViewController", bundle: nil)
             vc.detailMovie = self.tappedCell
-            
             vc.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(vc, animated: true)
-
         }
     }
 }
+
