@@ -15,6 +15,7 @@ class DetailTest: UIViewController {
     @IBOutlet weak var ContentView: UIView!
     @IBOutlet weak var nameElement: UILabel!
     @IBOutlet weak var genreList: CarosuelMenu!
+    @IBOutlet weak var overviewMovie: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +55,8 @@ class DetailTest: UIViewController {
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
         nameElement.text = elementData?.getMovieTitleString()
         nameElement.textColor = UIColor.appColorWhitePrimary
+        
+        overviewMovie.text = elementData?.overview
     }
     private func getConfigurationModel() -> CarosuelMenuConfiguration {
         CarosuelMenuConfiguration(frame: .zero,

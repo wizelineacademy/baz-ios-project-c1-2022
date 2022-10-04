@@ -171,15 +171,33 @@
                                                     <constraint firstAttribute="width" constant="414" id="x4p-0u-Ck9"/>
                                                 </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tc4-AZ-dvC">
+                                                <rect key="frame" x="16" y="572" width="382" height="33.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Overview" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnH-xN-77O">
+                                                <rect key="frame" x="16" y="621.5" width="382" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="7CK-hw-2nj" secondAttribute="trailing" constant="16" id="1RP-t1-vYt"/>
                                             <constraint firstItem="d5B-SX-mzP" firstAttribute="top" secondItem="7CK-hw-2nj" secondAttribute="bottom" constant="16.5" id="2ve-ik-fLe"/>
+                                            <constraint firstItem="xnH-xN-77O" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="AUn-eJ-lIP"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="94" id="JXZ-AT-Gea"/>
                                             <constraint firstItem="7CK-hw-2nj" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="460" id="O4q-6y-Vn4"/>
                                             <constraint firstAttribute="trailing" secondItem="Nio-ZX-JFv" secondAttribute="trailing" id="Pmr-qO-VKs"/>
+                                            <constraint firstItem="tc4-AZ-dvC" firstAttribute="top" secondItem="d5B-SX-mzP" secondAttribute="bottom" constant="40" id="RO5-NF-lZm"/>
+                                            <constraint firstItem="tc4-AZ-dvC" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="V3W-oM-ZwA"/>
+                                            <constraint firstAttribute="trailing" secondItem="xnH-xN-77O" secondAttribute="trailing" constant="16" id="VYP-qE-cUQ"/>
+                                            <constraint firstItem="xnH-xN-77O" firstAttribute="top" secondItem="tc4-AZ-dvC" secondAttribute="bottom" constant="16" id="Zcy-ID-9nU"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="hxM-Yb-YY2"/>
+                                            <constraint firstAttribute="trailing" secondItem="tc4-AZ-dvC" secondAttribute="trailing" constant="16" id="kRG-5E-Krh"/>
                                             <constraint firstAttribute="trailing" secondItem="d5B-SX-mzP" secondAttribute="trailing" id="kyC-5Z-kKU"/>
                                             <constraint firstItem="7CK-hw-2nj" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="nQ9-ld-lsU"/>
                                             <constraint firstAttribute="height" constant="1800" id="v7f-7l-sjK"/>
@@ -226,6 +244,7 @@
                         <outlet property="ContentView" destination="CFY-jO-ulI" id="kME-9n-bFe"/>
                         <outlet property="genreList" destination="d5B-SX-mzP" id="ZNf-y8-smI"/>
                         <outlet property="nameElement" destination="7CK-hw-2nj" id="SEb-YM-Qau"/>
+                        <outlet property="overviewMovie" destination="xnH-xN-77O" id="RiC-V9-GFf"/>
                         <outlet property="posterImage" destination="Nio-ZX-JFv" id="NEJ-M2-5og"/>
                         <outlet property="scrollArea" destination="w60-S0-RV2" id="fuH-KB-7L8"/>
                     </connections>
@@ -237,6 +256,9 @@
     </scenes>
     <resources>
         <image name="house.fill" catalog="system" width="128" height="106"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
