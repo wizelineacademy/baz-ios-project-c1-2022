@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 class SearchBarController: UIViewController {
-    
+    @IBOutlet private var textField: UITextField!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     var moviesSearch = SearchMovie(results: [MovieSearchData]())
@@ -19,8 +19,14 @@ class SearchBarController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configTable()
-        //arregloFiltrados = moviesSearch.results
+        tableView.register(UINib(nibName: "customCell", bundle: nil), forCellReuseIdentifier: "tablecell")
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        self.dismissKeyboard()
+    }
+    
     func configTable() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -42,19 +48,24 @@ class SearchBarController: UIViewController {
 
 
 extension SearchBarController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arregloFiltrados.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let celda = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath)
-        celda.textLabel?.text = arregloFiltrados[indexPath.row].title
+        let celda = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath) as! customCellController
+        if let imageMovie = arregloFiltrados[indexPath.row].posterPath, let titleMovie = arregloFiltrados[indexPath.row].title {
+            celda.imageMovie.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+            celda.titleMovie.text = arregloFiltrados[indexPath.row].title
+        }
         return celda
     }
     
 }
 
 extension SearchBarController:UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieInformationController else { return }
         vcMovieDetails.movieId = arregloFiltrados[indexPath.row].id
@@ -74,6 +85,9 @@ extension SearchBarController: UISearchBarDelegate {
         
         if searchText.isEmpty {
             arregloFiltrados = []
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                searchBar.resignFirstResponder()
+            }
         } else {
             loadDataSimilar(keyword: searchText.addSpacesForApi)
             for movie in moviesSearch.results {
@@ -85,5 +99,17 @@ extension SearchBarController: UISearchBarDelegate {
             }
         }
         self.tableView.reloadData()
+    }
+}
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }
