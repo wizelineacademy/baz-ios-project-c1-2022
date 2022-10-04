@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 public struct MovieApiResponseModel: Decodable {
+
     var page: Int?
     var results: [MovieModel]?
     var totalPages: Int?
@@ -53,7 +54,7 @@ extension MovieModel {
     }
     
     var imageURLString: String {
-        "\(EndpointsList.imageResorce.description)\(posterPath ?? "")"
+        "\(EndpointsList.imageResource.description)\(posterPath ?? "")"
     }
     
     var movieRanking: String {

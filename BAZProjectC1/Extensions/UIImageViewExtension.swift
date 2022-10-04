@@ -7,20 +7,19 @@
 
 import Foundation
 import UIKit
+
 extension UIImageView {
-    public func loadImageFromUrl(urlString: String) {
-        if let url = URL(string: urlString) {
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: url){
-                    if let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            self?.image = image
-                            self?.contentMode = .scaleAspectFill
-                        }
+    public func loadImagel(from urlString: String) {
+        guard let url = URL(string: urlString) else { return }
+        DispatchQueue.global().async { [weak self] in
+            guard let data = try? Data(contentsOf: url),
+                    let image = UIImage(data: data) else {
+                        return
+
                     }
-                }
-            }
+            DispatchQueue.main.async { self?.image = image }
         }
+
     }
     public func rounderCorners(rounderValue: CGFloat = RounderBorderStyleForView.rounded.rawValue, backgroundColor: UIColor = UIColor.clear) {
         let rectShape = CAShapeLayer()

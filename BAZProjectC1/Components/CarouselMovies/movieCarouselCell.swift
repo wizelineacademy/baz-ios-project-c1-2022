@@ -95,7 +95,7 @@ class MovieCarouselCell: UICollectionViewCell {
     
     func configuration(dataInfo: MovieModel) {
         posterImage.image = dataInfo.posterImage(size: posterImage.frame.size)
-        posterImage.loadImageFromUrl(urlString: dataInfo.imageURLString)
+        posterImage.loadImagel(from: dataInfo.imageURLString)
         movieTitle.text = dataInfo.title
         movieRanking.text = dataInfo.movieRanking
     }
