@@ -7,8 +7,12 @@
 
 import UIKit
 
-class movieCarouselCell: UICollectionViewCell {
-    static let reuseIdentifier = String(describing: movieCarouselCell.self)
+fileprivate let PADDING_SCREEN_PIXEL: CGFloat = 16
+fileprivate let IMAGE_CONSTANT_SIZE: CGFloat = 24
+
+
+class MovieCarouselCell: UICollectionViewCell {
+    static let reuseIdentifier = String(describing: MovieCarouselCell.self)
     private lazy var backView: UIView = {
         let backView = UIView(frame: contentView.bounds)
         backView.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
@@ -23,8 +27,7 @@ class movieCarouselCell: UICollectionViewCell {
     }()
     
     public lazy var movieTitle: UILabel = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        let movieTitle = UILabel(frame: frame)
+        let movieTitle = UILabel(frame: .zero)
         movieTitle.translatesAutoresizingMaskIntoConstraints = false
         movieTitle.text = "movieTitle"
         movieTitle.numberOfLines = 0
@@ -36,8 +39,7 @@ class movieCarouselCell: UICollectionViewCell {
     }()
     
     public lazy var movieRanking: UILabel = {
-        let frame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        let movieRanking = UILabel(frame: frame)
+        let movieRanking = UILabel(frame: .zero)
         movieRanking.translatesAutoresizingMaskIntoConstraints = false
         movieRanking.text = "movieRanking"
         movieRanking.numberOfLines = 0
@@ -56,8 +58,7 @@ class movieCarouselCell: UICollectionViewCell {
     }()
     
     private lazy var movieRankingImage: UIImageView = {
-        let frame = CGRect(x: 0, y: 0, width: 16, height: 16)
-        let movieRankingImage = UIImageView(frame: frame)
+        let movieRankingImage = UIImageView(frame: .zero)
         movieRankingImage.translatesAutoresizingMaskIntoConstraints = false
         movieRankingImage.image = UIImage(named: "startRanking")?.withTintColor(UIColor.appColorYellowPrimary)
         return movieRankingImage
@@ -78,23 +79,24 @@ class movieCarouselCell: UICollectionViewCell {
         contentView.addSubview(movieTitle)
         contentView.addSubview(movieRankingImage)
         contentView.addSubview(movieRanking)
-        movieRankingImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
-        movieRankingImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        movieRankingImage.widthAnchor.constraint(equalToConstant: 24).isActive = true
-        movieRankingImage.heightAnchor.constraint(equalToConstant: 24).isActive = true
-        movieRankingImage.heightAnchor.constraint(equalTo: movieRankingImage.widthAnchor, multiplier: contentView.frame.size.height / contentView.frame.size.width).isActive = true
-        movieRanking.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -8).isActive = true
-        movieRanking.leftAnchor.constraint(equalTo: movieRankingImage.rightAnchor, constant: 8).isActive = true
-        movieTitle.widthAnchor.constraint(equalToConstant: contentView.frame.width).isActive = true
-        movieTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -16).isActive = true
-        movieTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 16).isActive = true
-        movieTitle.bottomAnchor.constraint(equalTo: movieRankingImage.topAnchor, constant: -8).isActive = true
+        let ASPECT_RATION_SCREEN: CGFloat = contentView.frame.size.height / contentView.frame.size.width
+        NSLayoutConstraint.activate([ movieRankingImage.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1 * (PADDING_SCREEN_PIXEL / 2)),
+                                      movieRankingImage.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: PADDING_SCREEN_PIXEL),
+                                      movieRankingImage.widthAnchor.constraint(equalToConstant: IMAGE_CONSTANT_SIZE),
+                                      movieRankingImage.heightAnchor.constraint(equalToConstant: IMAGE_CONSTANT_SIZE),
+                                      movieRankingImage.heightAnchor.constraint(equalTo: movieRankingImage.widthAnchor, multiplier: ASPECT_RATION_SCREEN),
+                                      movieRanking.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -1 * (PADDING_SCREEN_PIXEL / 2)),
+                                      movieRanking.leftAnchor.constraint(equalTo: movieRankingImage.rightAnchor, constant:  (PADDING_SCREEN_PIXEL / 2)),
+                                      movieTitle.widthAnchor.constraint(equalToConstant: contentView.frame.width),
+                                      movieTitle.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -1 * (PADDING_SCREEN_PIXEL )),
+                                      movieTitle.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: PADDING_SCREEN_PIXEL ),
+                                      movieTitle.bottomAnchor.constraint(equalTo: movieRankingImage.topAnchor, constant: -1 * (PADDING_SCREEN_PIXEL / 2))])
     }
     
     func configuration(dataInfo: MovieModel) {
-        posterImage.image = UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: posterImage.frame.size)
-        posterImage.loadImageFromUrl(urlString: "\(EndpointsList.imageResorce.description)\(dataInfo.poster_path ?? "")")
+        posterImage.image = dataInfo.posterImage(size: posterImage.frame.size)
+        posterImage.loadImageFromUrl(urlString: dataInfo.imageURLString)
         movieTitle.text = dataInfo.title
-        movieRanking.text = "\(Int(dataInfo.vote_average ?? 0))"
+        movieRanking.text = dataInfo.movieRanking
     }
 }

@@ -21,8 +21,3 @@ extension HomeViewController: CarosuelMenuDelegate{
         getDataInfo(urlString: UrlOptionSelected)
     }
 }
-extension HomeViewController: CarouselMoviesPositionDelegate {
-    func getCurrentItem(index: IndexPath) {
-        print(index.row)
-    }
-}

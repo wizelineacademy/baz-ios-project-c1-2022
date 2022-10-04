@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct MovieApiResponseModel: Codable {
     var page: Int?
@@ -36,4 +37,18 @@ public struct MovieModel: Codable {
     var video: Bool?
     var vote_average: Double?
     var vote_count: Int?
+}
+
+extension MovieModel {
+    func posterImage(size: CGSize) -> UIImage {
+        UIImage.imageFromColor(with: UIColor.appColorYellowPrimary.withAlphaComponent(0.1), size: size)
+    }
+    
+    var imageURLString: String {
+        "\(EndpointsList.imageResorce.description)\(poster_path ?? "")"
+    }
+    
+    var movieRanking: String {
+        "\(Int(vote_average ?? 0))"
+    }
 }

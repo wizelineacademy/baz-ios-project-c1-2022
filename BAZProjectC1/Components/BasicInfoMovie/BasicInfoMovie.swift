@@ -32,14 +32,14 @@ class BasicInfoMovie: UIView {
     
     private func setupUI() {
         backView.backgroundColor = self.viewBackgroundColor 
-        self.addSubview(backView)
-        self.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-        self.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-        backView.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-        backView.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-        backView.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        backView.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        backView.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        backView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        addSubview(backView)
+        NSLayoutConstraint.activate([heightAnchor.constraint(equalToConstant: self.layer.frame.height ),
+                                     widthAnchor.constraint(equalToConstant: self.layer.frame.width),
+                                     backView.heightAnchor.constraint(equalToConstant: self.layer.frame.height ),
+                                     backView.widthAnchor.constraint(equalToConstant: self.layer.frame.width),
+                                     backView.topAnchor.constraint(equalTo: self.topAnchor),
+                                     backView.leftAnchor.constraint(equalTo: self.leftAnchor),
+                                     backView.rightAnchor.constraint(equalTo: self.rightAnchor),
+                                     backView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
 }

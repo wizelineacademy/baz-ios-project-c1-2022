@@ -89,15 +89,15 @@ class CarosuelMenu: UIView {
     }
     
     private func setupUI() {
-        self.addSubview(menu)
-        self.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-        self.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-        menu.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-        menu.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-        menu.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        menu.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        menu.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        menu.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        addSubview(menu)
+        NSLayoutConstraint.activate([heightAnchor.constraint(equalToConstant: self.layer.frame.height ),
+                                     widthAnchor.constraint(equalToConstant: self.layer.frame.width),
+                                     menu.heightAnchor.constraint(equalToConstant: self.layer.frame.height ),
+                                     menu.widthAnchor.constraint(equalToConstant: self.layer.frame.width),
+                                     menu.topAnchor.constraint(equalTo: self.topAnchor),
+                                     menu.leftAnchor.constraint(equalTo: self.leftAnchor),
+                                     menu.rightAnchor.constraint(equalTo: self.rightAnchor),
+                                     menu.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
         let contentOffset = menu.contentOffset
         menu.setContentOffset(contentOffset, animated: false)
     }

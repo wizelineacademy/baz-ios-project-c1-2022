@@ -22,8 +22,7 @@ struct OptionMenuCellConfiguration {
         self.itemBorderBackgroundColor = itemBorderBackgroundColor
         self.itemBorder = itemBorder
         self.titleText = titleText
-        
-        if itemBackgroundColor == .white {
+        if itemBackgroundColor == UIColor.appColorWhitePrimary {
             titleTextColor = .gray
         } else {
             titleTextColor = itemBackgroundColor
@@ -63,13 +62,14 @@ class optionMenuCell: UICollectionViewCell {
         self.layer.borderColor = itemBorderBackgroundColor?.cgColor
         self.layer.cornerRadius = itemBorder ?? 10.0
     }
+    
     private func setupUI() {
         self.addSubview(title)
         title.sizeToFit()
-        title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        NSLayoutConstraint.activate([title.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+                                     title.centerYAnchor.constraint(equalTo: self.centerYAnchor)
+        ])
     }
-    
     
     public func setUpView(with model: OptionMenuCellConfiguration) {
         self.itemBackgroundColor = model.itemBackgroundColor

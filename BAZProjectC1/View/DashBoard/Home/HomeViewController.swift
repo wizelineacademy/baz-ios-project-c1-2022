@@ -7,6 +7,9 @@
 
 import UIKit
 
+fileprivate let PADDING_SCREEN_PIXEL: CGFloat = 16
+fileprivate let IMAGE_CONSTANT_SIZE: CGFloat = 24
+
 class HomeViewController: UIViewController {
 
     let filterDataArray = ["Trending","Now Playing","Popular","Top Rated","Upcoming"]
@@ -35,7 +38,6 @@ class HomeViewController: UIViewController {
         let carouselMovies = CarouselMovies(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: (view.frame.height * 0.55)))
         carouselMovies.translatesAutoresizingMaskIntoConstraints = false
         carouselMovies.delegate = self
-        carouselMovies.positionDelegate = self
         return carouselMovies
     }()
     override func viewDidLoad() {
@@ -45,11 +47,13 @@ class HomeViewController: UIViewController {
     private func setupUI() {
         view.addSubview(filterMenu)
         view.addSubview(carouselMovies)
-        filterMenu.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        filterMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: 32).isActive = true
-        carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor).isActive = true
-        carouselMovies.topAnchor.constraint(equalTo: filterMenu.layoutMarginsGuide.bottomAnchor,constant: 24).isActive = true
-        carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: view.frame.size.height / view.frame.size.width).isActive = true
+        let ASPECT_RATION_SCREEN: CGFloat = view.frame.size.height / view.frame.size.width
+        NSLayoutConstraint.activate([filterMenu.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+                                     filterMenu.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: PADDING_SCREEN_PIXEL * 2),
+                                     carouselMovies.centerXAnchor.constraint(equalTo: view.layoutMarginsGuide.centerXAnchor),
+                                     carouselMovies.topAnchor.constraint(equalTo: filterMenu.layoutMarginsGuide.bottomAnchor,constant: IMAGE_CONSTANT_SIZE),
+                                     carouselMovies.heightAnchor.constraint(equalTo: carouselMovies.widthAnchor, multiplier: ASPECT_RATION_SCREEN)])
+        
     }
     func configutionView() {
         setupUI()

@@ -7,6 +7,9 @@
 
 import UIKit
 
+fileprivate let START_ROW: Int = 0
+fileprivate let START_SECTION: Int = 0
+
 class CarouselMovies: UIView {
     private(set) lazy var infoCarousel: [MovieModel] = {
         return []
@@ -14,7 +17,6 @@ class CarouselMovies: UIView {
     
     private var currentItem:Int = -1
     public weak var delegate:CarouselMoviesDelegate?
-    public weak var positionDelegate:CarouselMoviesPositionDelegate?
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -29,50 +31,50 @@ class CarouselMovies: UIView {
         carousel.showsHorizontalScrollIndicator = false
         carousel.showsVerticalScrollIndicator = false
         carousel.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        carousel.register(movieCarouselCell.self, forCellWithReuseIdentifier: movieCarouselCell.reuseIdentifier)
+        carousel.register(MovieCarouselCell.self, forCellWithReuseIdentifier: MovieCarouselCell.reuseIdentifier)
         return carousel
     }()
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     override init(frame: CGRect) {
+    
+    override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
     }
+    
     public func commonInit() {
         setupUI()
     }
+    
     private func setupUI() {
-        self.addSubview(carousel)
-        self.heightAnchor.constraint(equalToConstant: self.layer.frame.height ).isActive = true
-        self.widthAnchor.constraint(equalToConstant: self.layer.frame.width).isActive = true
-        carousel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        carousel.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
-        carousel.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
-        carousel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        addSubview(carousel)
+        NSLayoutConstraint.activate([heightAnchor.constraint(equalToConstant: self.layer.frame.height ),
+                                     widthAnchor.constraint(equalToConstant: self.layer.frame.width),
+                                     carousel.topAnchor.constraint(equalTo: self.topAnchor),
+                                     carousel.leftAnchor.constraint(equalTo: self.leftAnchor),
+                                     carousel.rightAnchor.constraint(equalTo: self.rightAnchor),
+                                     carousel.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
         let contentOffset = carousel.contentOffset
         carousel.setContentOffset(contentOffset, animated: false)
     }
+    
     public  func setDataInfo(infoCarousel: [MovieModel]) {
-        self.infoCarousel = []
-        carousel.reloadData()
+        clearCarouselData()
         self.infoCarousel = infoCarousel
-        if infoCarousel.count != 0 {
-            self.carousel.scrollToItem(at: IndexPath(row: 0, section: 0), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
-        }
+        
         carousel.reloadData()
     }
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var pos = (CGFloat(infoCarousel.count ) * scrollView.contentOffset.x) / (scrollView.contentSize.width - 32)
-        pos.round()
-        if pos <= CGFloat(infoCarousel.count ) {
-            let newPos = Int(pos)
-            if currentItem != newPos {
-                currentItem = newPos
-                positionDelegate?.getCurrentItem(index: IndexPath(row: newPos, section: 0))
-            }
-        } else {
-            positionDelegate?.getCurrentItem(index: IndexPath(row: 0, section: 0))
+    
+    private func clearCarouselData()  {
+        self.infoCarousel = []
+        carousel.reloadData()
+    }
+    
+    private func scrollToStar() {
+        if self.infoCarousel.count != 0 {
+            self.carousel.scrollToItem(at: IndexPath(row: START_ROW, section: START_SECTION), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
     }
 }

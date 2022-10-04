@@ -9,7 +9,7 @@ import UIKit
 
 class TabBarMenu: UITabBarController {
 
-    private var optionsMenu:[String] = ["Home","Search"] {
+    private var optionsMenu:[String] = ["Home", "Search"] {
         didSet{
             initOpcionsMenu()
         }
@@ -44,6 +44,7 @@ class TabBarMenu: UITabBarController {
         let backgroundSize = CGSize(width: tabBar.frame.width / CGFloat(tabBar.items!.count), height: tabBar.frame.height)
         tabBar.selectionIndicatorImage = UIImage.imageFromColor(with: UIColor.clear, size: backgroundSize)
     }
+    
     func initOpcionsMenu() {
         var viewsControllesList:[UIViewController] = []
         if (UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController)?.canResignFirstResponder ?? false {

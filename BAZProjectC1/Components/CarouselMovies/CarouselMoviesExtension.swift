@@ -8,30 +8,29 @@
 import Foundation
 import UIKit
 
-extension CarouselMovies: UICollectionViewDelegate{
-    
+fileprivate let TOTAL_PADDING_SCREEN_PIXEL: CGFloat = 32
+fileprivate let SCREEN_PERCENTAGE_PIXEL: CGFloat = 0.66
+
+extension CarouselMovies: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         delegate?.movieSelected(position: indexPath.row)
     }
 }
-extension CarouselMovies: UICollectionViewDataSource{
-    
+extension CarouselMovies: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return infoCarousel.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: movieCarouselCell.reuseIdentifier), for: indexPath) as? movieCarouselCell else {  return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: MovieCarouselCell.reuseIdentifier), for: indexPath) as? MovieCarouselCell else {  return UICollectionViewCell() }
         let movie = infoCarousel[indexPath.row]
         cell.configuration(dataInfo: movie)
         return cell
-        
     }
 }
-extension CarouselMovies: UICollectionViewDelegateFlowLayout{
-    
+extension CarouselMovies: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (collectionView.frame.width - 32) * 0.66, height: collectionView.frame.height - 32)
+        return CGSize(width: (collectionView.frame.width - TOTAL_PADDING_SCREEN_PIXEL) * SCREEN_PERCENTAGE_PIXEL, height: collectionView.frame.height - TOTAL_PADDING_SCREEN_PIXEL)
     }
 }
 
