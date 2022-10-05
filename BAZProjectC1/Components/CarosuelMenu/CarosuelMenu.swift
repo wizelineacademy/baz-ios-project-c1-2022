@@ -1,5 +1,5 @@
 //
-//  CarosuelMenu.swift
+//  CarouselMenu.swift
 //  BAZProjectC1
 //
 //  Created by 1044336 on 23/09/22.
@@ -7,35 +7,8 @@
 
 import UIKit
 
-struct CarosuelMenuConfiguration {
-    let frame: CGRect
-    let optionsTitles: [String]
-    let itemBackgroundColor: UIColor
-    let itemBorderBackgroundColor: UIColor
-    let itemSelectedBackgroundColor: UIColor
-    let itemSelectedBorderBackgroundColor: UIColor
-    let itemBorder: Double
-    
-    init(frame:CGRect,
-         optionsTitles:[String] = [],
-         itemBackgroundColor: UIColor = .clear,
-         itemBorderBackgroundColor: UIColor = .clear,
-         itemSelectedBackgroundColor: UIColor = .clear,
-         itemSelectedBorderBackgroundColor: UIColor = .clear,
-         itemBorder: Double = 10.0) {
-        
-        self.frame = frame
-        self.optionsTitles = optionsTitles
-        self.itemBackgroundColor = itemBackgroundColor
-        self.itemBorderBackgroundColor = itemBorderBackgroundColor
-        self.itemSelectedBackgroundColor = itemSelectedBackgroundColor
-        self.itemSelectedBorderBackgroundColor = itemSelectedBorderBackgroundColor
-        self.itemBorder = itemBorder
-    }
-}
-
-class CarosuelMenu: UIView {
-    public weak var delegate: CarosuelMenuDelegate?
+class CarouselMenu: UIView {
+    public weak var delegate: CarouselMenuDelegate?
     private(set) var itemBackgroundColor: UIColor = .clear
     private(set) var itemBorderBackgroundColor: UIColor = .clear
     private(set) var itemSelectedBackgroundColor: UIColor = .clear
@@ -45,8 +18,8 @@ class CarosuelMenu: UIView {
         return []
     }()
     
-    public var optionSelected: Int = 0{
-        didSet{
+    private(set) var optionSelected: Int = 0 {
+        didSet {
             menu.reloadData()
         }
     }
@@ -65,7 +38,7 @@ class CarosuelMenu: UIView {
         menu.showsHorizontalScrollIndicator = false
         menu.showsVerticalScrollIndicator = false
         menu.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        menu.register(optionMenuCell.self,forCellWithReuseIdentifier: optionMenuCell.reuseIdentifier)
+        menu.register(OptionMenuCell.self,forCellWithReuseIdentifier: OptionMenuCell.reuseIdentifier)
         return menu
     }()
     
@@ -74,7 +47,7 @@ class CarosuelMenu: UIView {
         setupUI()
     }
     
-    public convenience init(with model: CarosuelMenuConfiguration){
+    convenience init(with model: CarouselMenuConfiguration) {
         self.init(frame: model.frame)
         self.configure(with: model)
     }
@@ -104,12 +77,15 @@ class CarosuelMenu: UIView {
         menu.reloadData()
     }
     
-    func configure(with model: CarosuelMenuConfiguration) {
+    func configure(with model: CarouselMenuConfiguration) {
         self.itemBackgroundColor = model.itemBackgroundColor
         self.itemBorderBackgroundColor = model.itemBorderBackgroundColor
         self.itemSelectedBackgroundColor = model.itemSelectedBackgroundColor
         self.itemSelectedBorderBackgroundColor = model.itemSelectedBorderBackgroundColor
         self.itemBorder = model.itemBorder
         self.setDataInfo(infoMenu: model.optionsTitles)
+    }
+    internal func setOptionSelected(row: Int) {
+        optionSelected = row
     }
 }

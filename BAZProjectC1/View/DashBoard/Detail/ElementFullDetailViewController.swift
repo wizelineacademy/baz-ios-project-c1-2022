@@ -10,8 +10,8 @@ import UIKit
 class ElementFullDetailViewController: UIViewController {
     
     private var elementData: MovieModel?
-    @IBOutlet weak var movieImage: movieImageView!
-    @IBOutlet weak var genreList: CarosuelMenu!
+    @IBOutlet weak var movieImage: MovieImageView!
+    @IBOutlet weak var genreList: CarouselMenu!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class ElementFullDetailViewController: UIViewController {
         loadedAnimation()
         movieImage.loadImage(with: elementData?.posterPath ?? "")
         genreList.backgroundColor = UIColor.clear
-        let modelConfiguration = CarosuelMenuConfiguration(frame: .zero,
+        let modelConfiguration = CarouselMenuConfiguration(frame: .zero,
                                                            optionsTitles: elementData?.getGenresArray() ?? [] ,
                                                            itemBackgroundColor: UIColor.appColorYellowPrimary,
                                                            itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
@@ -47,7 +47,7 @@ class ElementFullDetailViewController: UIViewController {
         self.elementData = elementData
     }
     
-    @IBAction func goBack(_ sender: backButton) {
+    @IBAction func goBack(_ sender: BackButton) {
         dismiss(animated: true, completion: nil)
     }
     

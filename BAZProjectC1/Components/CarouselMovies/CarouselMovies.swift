@@ -7,8 +7,8 @@
 
 import UIKit
 
-fileprivate let START_ROW: Int = 0
-fileprivate let START_SECTION: Int = 0
+fileprivate let startRow: Int = 0
+fileprivate let startSection: Int = 0
 
 class CarouselMovies: UIView {
     
@@ -24,8 +24,8 @@ class CarouselMovies: UIView {
         return []
     }()
     
-    private var currentItem:Int = -1
-    public weak var delegate:CarouselMoviesDelegate?
+    private var currentItem: Int = -1
+    public weak var delegate: CarouselMoviesDelegate?
     public lazy var carousel: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -89,9 +89,9 @@ class CarouselMovies: UIView {
         carousel.reloadData()
     }
     
-    private func scrollToStar() {
+    private func scrollToStart() {
         if self.infoCarousel.count != 0 {
-            self.carousel.scrollToItem(at: IndexPath(row: START_ROW, section: START_SECTION), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
+            self.carousel.scrollToItem(at: IndexPath(row: startRow, section: startSection), at: UICollectionView.ScrollPosition.centeredHorizontally, animated: true)
         }
     }
 }

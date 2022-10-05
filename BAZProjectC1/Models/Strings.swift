@@ -18,7 +18,6 @@ enum EndpointsList: String  {
     case genreList = "genreList"
     case languagesList = "languagesList"
     case searchMulti = "searchMulti"
-    case cast = "cast"
     
     var description: String {
         switch self {
@@ -51,13 +50,10 @@ enum EndpointsList: String  {
         case .searchMulti:
             guard let endpoint = Bundle.main.object(forInfoDictionaryKey: "searchMulti") as? String else { return "" }
                 return endpoint
-        case .cast:
-            guard let endpoint = Bundle.main.object(forInfoDictionaryKey:"cast") as? String else { return "" }
-            return endpoint
         }
     }
-    static func getQuery(from service: EndpointsList, with movieId: Int) -> String {
+    static func getQuery(from service: String, with movieId: Int) -> String {
         guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "apiKey") as? String else { return "" }
-        return "https://api.themoviedb.org/3/movie/\(movieId)/\(service.description)?api_key=\(apiKey)&language=es"
+        return "https://api.themoviedb.org/3/movie/\(movieId)/\(service)?api_key=\(apiKey)&language=es"
     }
 }

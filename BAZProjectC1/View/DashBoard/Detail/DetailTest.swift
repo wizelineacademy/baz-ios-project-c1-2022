@@ -10,13 +10,16 @@ class DetailTest: UIViewController {
     
     private var elementData: MovieModel?
     
-    @IBOutlet weak var posterImage: movieImageView!
+    @IBOutlet weak var posterImage: MovieImageView!
     @IBOutlet weak var scrollArea: UIScrollView!
-    @IBOutlet weak var ContentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameElement: UILabel!
-    @IBOutlet weak var genreList: CarosuelMenu!
+    @IBOutlet weak var genreList: CarouselMenu!
     @IBOutlet weak var overviewMovie: UILabel!
-    @IBOutlet weak var caroselCast: CarouselMovies!
+    @IBOutlet weak var carouselCast: CarouselMovies!
+    @IBOutlet weak var carouselSimilar: CarouselMovies!
+    @IBOutlet weak var carouselRecomendations: CarouselMovies!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,24 +46,26 @@ class DetailTest: UIViewController {
         self.elementData = elementData
     }
     
-    @IBAction func goBack(_ sender: backButton) {
+    @IBAction func goBack(_ sender: BackButton) {
         self.dismiss(animated: true, completion: nil)
     }
     private func reloadDataInView() {
         view.backgroundColor = UIColor.appColorBlack
-        ContentView.addSubview(nameElement)
-        ContentView.addSubview(genreList)
+        contentView.addSubview(nameElement)
+        contentView.addSubview(genreList)
         genreList.backgroundColor = UIColor.clear
         genreList.configure(with: getConfigurationModel())
-        ContentView.backgroundColor = UIColor.appColorBlack
+        contentView.backgroundColor = UIColor.appColorBlack
         posterImage.loadImage(with: elementData?.getMoviePosterString() ?? "")
         nameElement.text = elementData?.getMovieTitleString()
         nameElement.textColor = UIColor.appColorWhitePrimary
         overviewMovie.text = elementData?.overview
-        getCastMovie(urlString: EndpointsList.getQuery(from: .cast, with: elementData?.id ?? 0))
+        getServiceInfo(from: "credits", with: CastApiResponseModel.self)
+        getServiceInfo(from: "recommendations", with: MovieApiResponseModel.self)
+        getServiceInfo(from: "similar", with: MovieApiResponseModel.self)
     }
-    private func getConfigurationModel() -> CarosuelMenuConfiguration {
-        CarosuelMenuConfiguration(frame: .zero,
+    private func getConfigurationModel() -> CarouselMenuConfiguration {
+        CarouselMenuConfiguration(frame: .zero,
                                   optionsTitles: elementData?.getGenresArray() ?? [] ,
                                   itemBackgroundColor: UIColor.appColorYellowPrimary,
                                   itemBorderBackgroundColor: UIColor.appColorYellowPrimary,
@@ -68,12 +73,23 @@ class DetailTest: UIViewController {
                                   itemSelectedBorderBackgroundColor: UIColor.appColorYellowPrimary)
     }
     
-    private func getCastMovie(urlString: String) {
-        //caroselCast
-        
-        ApiServiceRequest.getService(urlService: urlString, structureType: CastApiResponseModel.self, handler: { [weak self] dataResponse in
-            if let data = dataResponse as? CastApiResponseModel {
-                self?.caroselCast.setDataInfo(infoCarousel: data.cast ?? [])
+    private func getServiceInfo<T: Decodable>(from service: String, with structureType: T.Type) {
+        let urlString = EndpointsList.getQuery(from: service, with: elementData?.id ?? 0)
+        ApiServiceRequest.getService(urlService: urlString, structureType: structureType, handler: { [weak self] dataResponse in
+            switch service {
+            case "credits":
+                guard let data = dataResponse as? CastApiResponseModel,
+                      let arrayData = data.cast else { return }
+                self?.carouselCast.setDataInfo(infoCarousel: arrayData)
+            case "similar":
+                guard let data = dataResponse as? MovieApiResponseModel,
+                      let arrayData = data.results else { return }
+                self?.carouselSimilar.setDataInfo(infoCarousel: arrayData)
+            case "recommendations":
+                guard let data = dataResponse as? MovieApiResponseModel,
+                      let arrayData = data.results else { return }
+                self?.carouselRecomendations.setDataInfo(infoCarousel: arrayData)
+            default: break
             }
         })
     }

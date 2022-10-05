@@ -17,9 +17,9 @@ extension HomeViewController: CarouselMoviesDelegate{
     }
 }
 
-extension HomeViewController: CarosuelMenuDelegate{
-    func selectedOption(index: IndexPath) {
-        guard let UrlOptionSelected = EndpointsList(rawValue: filterDataArray[index.row])?.description else { return }
+extension HomeViewController: CarouselMenuDelegate{
+    func carouselMenu(_ carouselMenu: CarouselMenu, didSelectOption option: IndexPath) {
+        guard let UrlOptionSelected = EndpointsList(rawValue: filterDataArray[option.row])?.description else { return }
         getDataInfo(urlString: UrlOptionSelected)
     }
 }

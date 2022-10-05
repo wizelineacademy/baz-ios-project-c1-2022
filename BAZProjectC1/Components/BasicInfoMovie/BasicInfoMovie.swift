@@ -15,7 +15,7 @@ class BasicInfoMovie: UIView {
         return backView
     }()
     
-    internal convenience init(frame:CGRect,viewBackgroundColor: UIColor) {
+    convenience init(frame: CGRect, viewBackgroundColor: UIColor) {
         self.init(frame: frame)
         self.viewBackgroundColor = viewBackgroundColor
         setupUI()

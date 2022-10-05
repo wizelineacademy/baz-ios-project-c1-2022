@@ -1,5 +1,5 @@
 //
-//  movieImageView.swift
+//  MovieImageView.swift
 //  BAZProjectC1
 //
 //  Created by 1044336 on 28/09/22.
@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-open class movieImageView: UIView {
+class MovieImageView: UIView {
     
-    public lazy var posterImage: UIImageView = {
+    private lazy var posterImage: UIImageView = {
         let posterImage = UIImageView(frame: self.bounds)
         posterImage.layer.cornerRadius = RounderBorderStyleForView.rounded.rawValue
         posterImage.rounderCorners()
@@ -36,15 +36,18 @@ open class movieImageView: UIView {
         super.init(frame: frame)
         setupView()
     }
+    
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupView()
     }
+    
     func setupView() {
         self.backgroundColor = UIColor.appColorBlack
         self.addSubview(posterImage)
         self.addSubview(backView)
     }
+    
     func loadImage(with imageString: String) {
         posterImage.loadPosterImage(from: imageString)
     }

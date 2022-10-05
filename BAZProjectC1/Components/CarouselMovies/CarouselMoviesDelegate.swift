@@ -7,9 +7,9 @@
 
 import Foundation
 
-internal protocol CarouselMoviesDelegate: AnyObject {
+protocol CarouselMoviesDelegate: AnyObject {
     func movieSelected(position:Int)
 }
-internal protocol CarouselMoviesPositionDelegate: AnyObject {
+protocol CarouselMoviesPositionDelegate: AnyObject {
     func getCurrentItem(index:IndexPath)
 }

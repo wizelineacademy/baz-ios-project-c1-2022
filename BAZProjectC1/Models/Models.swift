@@ -53,7 +53,7 @@ public struct MoviesLanguageList: Decodable {
     
     init(){
         guard let urlData = EndpointsList.languagesList.description.data(using: .utf8),
-              let languageInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesLanguageList.self, with: urlData) as? MoviesLanguageList else { return }
+              let languageInfoList = ApiServiceRequest.decodeJsonData(to: MoviesLanguageList.self, with: urlData) as? MoviesLanguageList else { return }
         self = languageInfoList
     }
     public func findlanguage(withIsoValue value: String ) -> String? {
@@ -71,7 +71,7 @@ public struct MoviesGenresList: Decodable {
     var genres: [MoviesGenre]?
     init(){
         guard let urlData = EndpointsList.genreList.description.data(using: .utf8),
-              let genreInfoList = ApiServiceRequest.decodeJsonDataTo(object: MoviesGenresList.self, with: urlData) as? MoviesGenresList else { return }
+              let genreInfoList = ApiServiceRequest.decodeJsonData(to: MoviesGenresList.self, with: urlData) as? MoviesGenresList else { return }
         self = genreInfoList
     }
     

@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="AmD-HI-UXs">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -79,7 +80,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-vT-3pc" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dO4-vT-3pc" customClass="MovieImageView" customModule="BAZProjectC1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="40" width="414" height="442"/>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
@@ -88,7 +89,7 @@
                                     <constraint firstAttribute="height" constant="442" id="huj-v1-LfU"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9G0-Xg-avQ" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9G0-Xg-avQ" customClass="CarouselMenu" customModule="BAZProjectC1" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="472" width="414" height="32"/>
                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <constraints>
@@ -97,7 +98,7 @@
                                     <constraint firstAttribute="height" constant="32" id="jI9-Qw-cej"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25G-bN-Iuz" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="25G-bN-Iuz" customClass="BackButton" customModule="BAZProjectC1" customModuleProvider="target">
                                 <rect key="frame" x="16" y="40" width="32" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Fhd-jv-sbW"/>
@@ -106,7 +107,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain"/>
                                 <connections>
-                                    <action selector="goBack:" destination="lFr-SI-0us" eventType="touchUpInside" id="MUh-uB-zig"/>
+                                    <action selector="goBack:" destination="lFr-SI-0us" eventType="touchUpInside" id="vIR-YM-2Rx"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -125,8 +126,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="genreList" destination="9G0-Xg-avQ" id="mtV-Z3-tS1"/>
-                        <outlet property="movieImage" destination="dO4-vT-3pc" id="vvi-VP-ux4"/>
+                        <outlet property="genreList" destination="9G0-Xg-avQ" id="8kX-OS-yAJ"/>
+                        <outlet property="movieImage" destination="dO4-vT-3pc" id="IWf-Ya-Zth"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uo6-uv-rci" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -138,14 +139,14 @@
             <objects>
                 <viewController storyboardIdentifier="DetailTest" id="vYd-vd-E9H" customClass="DetailTest" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lqx-p8-77C">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="1800"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w60-S0-RV2">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="1800"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CFY-jO-ulI">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1800"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7CK-hw-2nj">
                                                 <rect key="frame" x="16" y="460" width="382" height="20.5"/>
@@ -153,7 +154,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nio-ZX-JFv" customClass="movieImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nio-ZX-JFv" customClass="MovieImageView" customModule="BAZProjectC1" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="94" width="414" height="442"/>
                                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
@@ -162,7 +163,7 @@
                                                     <constraint firstAttribute="width" constant="414" id="m5x-DN-ksj"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5B-SX-mzP" customClass="CarosuelMenu" customModule="BAZProjectC1" customModuleProvider="target">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d5B-SX-mzP" customClass="CarouselMenu" customModule="BAZProjectC1" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="497" width="414" height="35"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor"/>
                                                 <constraints>
@@ -177,12 +178,6 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vbh-Cc-ivf">
-                                                <rect key="frame" x="16" y="684.5" width="382" height="34"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" text="Overview" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnH-xN-77O">
                                                 <rect key="frame" x="16" y="621.5" width="382" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
@@ -190,38 +185,84 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sz8-HW-zkr" customClass="CarouselMovies" customModule="BAZProjectC1" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="734.5" width="414" height="330.5"/>
+                                                <rect key="frame" x="16" y="710.5" width="382" height="286"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="286" id="8U7-Ox-WOY"/>
+                                                </constraints>
                                             </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cast" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNg-LH-Qmd">
+                                                <rect key="frame" x="16" y="660.5" width="382" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Similar" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Fn-yk-6Br">
+                                                <rect key="frame" x="16" y="1036.5" width="382" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jCO-VW-1Dg" customClass="CarouselMovies" customModule="BAZProjectC1" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1086.5" width="382" height="286"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="286" id="bzu-db-jVS"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fb-2O-IVz" customClass="CarouselMovies" customModule="BAZProjectC1" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="1462.5" width="382" height="286"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="286" id="Csl-Yw-dq9"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recomendations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sv8-xe-G0g">
+                                                <rect key="frame" x="16" y="1412.5" width="382" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="7CK-hw-2nj" secondAttribute="trailing" constant="16" id="1RP-t1-vYt"/>
                                             <constraint firstItem="d5B-SX-mzP" firstAttribute="top" secondItem="7CK-hw-2nj" secondAttribute="bottom" constant="16.5" id="2ve-ik-fLe"/>
-                                            <constraint firstAttribute="trailing" secondItem="Sz8-HW-zkr" secondAttribute="trailing" id="4pK-hf-4oy"/>
+                                            <constraint firstItem="jCO-VW-1Dg" firstAttribute="top" secondItem="3Fn-yk-6Br" secondAttribute="bottom" constant="16" id="4me-4p-MOE"/>
+                                            <constraint firstItem="jCO-VW-1Dg" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="56l-rZ-ea3"/>
                                             <constraint firstItem="xnH-xN-77O" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="AUn-eJ-lIP"/>
-                                            <constraint firstAttribute="bottom" secondItem="Sz8-HW-zkr" secondAttribute="bottom" constant="735" id="HQg-IK-h1p"/>
+                                            <constraint firstItem="fNg-LH-Qmd" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="BT9-GF-gYF"/>
+                                            <constraint firstAttribute="trailing" secondItem="3Fn-yk-6Br" secondAttribute="trailing" constant="16" id="C2X-PY-qvt"/>
+                                            <constraint firstItem="3Fn-yk-6Br" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="Dwg-ta-vvE"/>
+                                            <constraint firstAttribute="trailing" secondItem="jCO-VW-1Dg" secondAttribute="trailing" constant="16" id="EHj-nF-Gfe"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="94" id="JXZ-AT-Gea"/>
+                                            <constraint firstItem="fNg-LH-Qmd" firstAttribute="top" secondItem="xnH-xN-77O" secondAttribute="bottom" constant="16" id="KCO-yx-060"/>
                                             <constraint firstItem="7CK-hw-2nj" firstAttribute="top" secondItem="CFY-jO-ulI" secondAttribute="top" constant="460" id="O4q-6y-Vn4"/>
                                             <constraint firstAttribute="trailing" secondItem="Nio-ZX-JFv" secondAttribute="trailing" id="Pmr-qO-VKs"/>
+                                            <constraint firstAttribute="trailing" secondItem="6fb-2O-IVz" secondAttribute="trailing" constant="16" id="Qri-fm-pS6"/>
                                             <constraint firstItem="tc4-AZ-dvC" firstAttribute="top" secondItem="d5B-SX-mzP" secondAttribute="bottom" constant="40" id="RO5-NF-lZm"/>
                                             <constraint firstItem="tc4-AZ-dvC" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="V3W-oM-ZwA"/>
                                             <constraint firstAttribute="trailing" secondItem="xnH-xN-77O" secondAttribute="trailing" constant="16" id="VYP-qE-cUQ"/>
-                                            <constraint firstItem="vbh-Cc-ivf" firstAttribute="top" secondItem="xnH-xN-77O" secondAttribute="bottom" constant="40" id="Vbo-vE-jgy"/>
+                                            <constraint firstAttribute="trailing" secondItem="fNg-LH-Qmd" secondAttribute="trailing" constant="16" id="Y7h-C3-a0W"/>
+                                            <constraint firstItem="Sv8-xe-G0g" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="YEf-0O-P4r"/>
                                             <constraint firstItem="xnH-xN-77O" firstAttribute="top" secondItem="tc4-AZ-dvC" secondAttribute="bottom" constant="16" id="Zcy-ID-9nU"/>
-                                            <constraint firstItem="vbh-Cc-ivf" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="fAz-wJ-TSP"/>
-                                            <constraint firstAttribute="trailing" secondItem="vbh-Cc-ivf" secondAttribute="trailing" constant="16" id="h5U-sn-h2d"/>
+                                            <constraint firstItem="Sz8-HW-zkr" firstAttribute="top" secondItem="fNg-LH-Qmd" secondAttribute="bottom" constant="16" id="aFD-QX-6CV"/>
+                                            <constraint firstItem="6fb-2O-IVz" firstAttribute="top" secondItem="Sv8-xe-G0g" secondAttribute="bottom" constant="16" id="cjr-ZB-OBR"/>
+                                            <constraint firstItem="6fb-2O-IVz" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="fdf-vG-FKf"/>
+                                            <constraint firstItem="3Fn-yk-6Br" firstAttribute="top" secondItem="Sz8-HW-zkr" secondAttribute="bottom" constant="40" id="fzK-qu-48r"/>
                                             <constraint firstItem="Nio-ZX-JFv" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="hxM-Yb-YY2"/>
                                             <constraint firstAttribute="trailing" secondItem="tc4-AZ-dvC" secondAttribute="trailing" constant="16" id="kRG-5E-Krh"/>
-                                            <constraint firstItem="Sz8-HW-zkr" firstAttribute="top" secondItem="vbh-Cc-ivf" secondAttribute="bottom" constant="16" id="kpC-Ch-BJk"/>
                                             <constraint firstAttribute="trailing" secondItem="d5B-SX-mzP" secondAttribute="trailing" id="kyC-5Z-kKU"/>
-                                            <constraint firstItem="Sz8-HW-zkr" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="mJz-eH-Cdd"/>
                                             <constraint firstItem="7CK-hw-2nj" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="nQ9-ld-lsU"/>
-                                            <constraint firstAttribute="height" constant="1800" id="v7f-7l-sjK"/>
+                                            <constraint firstItem="Sz8-HW-zkr" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" constant="16" id="soQ-lk-d7P"/>
+                                            <constraint firstItem="Sv8-xe-G0g" firstAttribute="top" secondItem="jCO-VW-1Dg" secondAttribute="bottom" constant="40" id="sqx-tN-xVq"/>
+                                            <constraint firstAttribute="height" constant="2000" id="v7f-7l-sjK"/>
                                             <constraint firstItem="d5B-SX-mzP" firstAttribute="leading" secondItem="CFY-jO-ulI" secondAttribute="leading" id="xUQ-pI-MA3"/>
+                                            <constraint firstAttribute="trailing" secondItem="Sv8-xe-G0g" secondAttribute="trailing" constant="16" id="xXX-vD-h1X"/>
+                                            <constraint firstAttribute="trailing" secondItem="Sz8-HW-zkr" secondAttribute="trailing" constant="16" id="zdi-Gh-K9a"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-gZ-Z5P" customClass="backButton" customModule="BAZProjectC1" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dzy-gZ-Z5P" customClass="BackButton" customModule="BAZProjectC1" customModuleProvider="target">
                                         <rect key="frame" x="16" y="40" width="32" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dzy-gZ-Z5P" secondAttribute="height" multiplier="1:1" id="9Ji-g1-QFm"/>
@@ -230,7 +271,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain"/>
                                         <connections>
-                                            <action selector="goBack:" destination="vYd-vd-E9H" eventType="touchUpInside" id="bSx-Xj-Jyh"/>
+                                            <action selector="goBack:" destination="vYd-vd-E9H" eventType="touchUpInside" id="GY5-qV-e7L"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -256,14 +297,16 @@
                             <constraint firstItem="w60-S0-RV2" firstAttribute="trailing" secondItem="Ebf-Hn-ohy" secondAttribute="trailing" id="yhn-Fr-XBL"/>
                         </constraints>
                     </view>
-                    <size key="freeformSize" width="414" height="1800"/>
+                    <size key="freeformSize" width="414" height="2000"/>
                     <connections>
-                        <outlet property="ContentView" destination="CFY-jO-ulI" id="kME-9n-bFe"/>
-                        <outlet property="caroselCast" destination="Sz8-HW-zkr" id="4Ew-Pd-NSu"/>
-                        <outlet property="genreList" destination="d5B-SX-mzP" id="ZNf-y8-smI"/>
+                        <outlet property="carouselCast" destination="Sz8-HW-zkr" id="Pv4-Ht-6oO"/>
+                        <outlet property="carouselRecomendations" destination="6fb-2O-IVz" id="hHx-A9-TQE"/>
+                        <outlet property="carouselSimilar" destination="jCO-VW-1Dg" id="bOL-sS-A5d"/>
+                        <outlet property="contentView" destination="CFY-jO-ulI" id="zhv-iJ-poI"/>
+                        <outlet property="genreList" destination="d5B-SX-mzP" id="PMO-67-brd"/>
                         <outlet property="nameElement" destination="7CK-hw-2nj" id="SEb-YM-Qau"/>
                         <outlet property="overviewMovie" destination="xnH-xN-77O" id="RiC-V9-GFf"/>
-                        <outlet property="posterImage" destination="Nio-ZX-JFv" id="NEJ-M2-5og"/>
+                        <outlet property="posterImage" destination="Nio-ZX-JFv" id="s5P-7a-W6Y"/>
                         <outlet property="scrollArea" destination="w60-S0-RV2" id="fuH-KB-7L8"/>
                     </connections>
                 </viewController>

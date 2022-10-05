@@ -41,7 +41,7 @@ class TabBarMenu: UITabBarController {
             appearance.stackedLayoutAppearance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: selectionColor]
             tabBar.standardAppearance = appearance
         }
-        let backgroundSize = CGSize(width: tabBar.frame.width / CGFloat(tabBar.items!.count), height: tabBar.frame.height)
+        let backgroundSize = CGSize(width: tabBar.frame.width / CGFloat(tabBar.items?.count ?? 0), height: tabBar.frame.height)
         tabBar.selectionIndicatorImage = UIImage.imageFromColor(with: UIColor.clear, size: backgroundSize)
     }
     

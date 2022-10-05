@@ -16,7 +16,7 @@ public class ApiServiceRequest {
         URLSession.shared.dataTask(with: url, completionHandler: { dataResponse,serviceResponse,errorResponse in
             DispatchQueue.main.async {
                 guard let data = dataResponse,
-                      let objectResponse = decodeJsonDataTo(object: structureType,with: data) else {
+                      let objectResponse = decodeJsonData(to: structureType,with: data) else {
                     handler(nil)
                     return
                 }
@@ -25,7 +25,7 @@ public class ApiServiceRequest {
         }).resume()
     }
     
-    public static func decodeJsonDataTo<T: Decodable>(object structureType: T.Type, with infoData: Data ) -> Any? {
+    public static func decodeJsonData<T: Decodable>(to structureType: T.Type, with infoData: Data) -> Any? {
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         return try? decoder.decode(structureType, from: infoData)
