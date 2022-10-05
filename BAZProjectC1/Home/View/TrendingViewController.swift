@@ -65,7 +65,7 @@ final class TrendingViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidHideNotification, object: nil)
 
     }
-   
+    
     @objc func tapGestureHandler() {
         searchBar.endEditing(true)
     }

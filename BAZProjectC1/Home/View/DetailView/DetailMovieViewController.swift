@@ -19,7 +19,6 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet weak var MoviePosterImage: UIImageView!
     var detailMovie: PosterCollectionCell?
     var movieSelected: MovieData?
-    private let viewModel = TrendingMovieViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -12,7 +12,6 @@ class MoviesViewController: UIViewController {
     var postersMovieArray = MovieModel()
     var tappedCell: PosterCollectionCell!
     @IBOutlet weak var TableView: UITableView!
-    private let viewModel = TrendingMovieViewModel()
     private var dataLoad: MovieModel?
     
     override func viewDidLoad() {
