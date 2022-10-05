@@ -26,12 +26,56 @@ final class DetailViewController: UIViewController {
         
         self.navigationItem.leftBarButtonItem?.tintColor = .black
         self.setupView()
+        self.configureCompositionalLayout()
     }
     
     private func setupView() {
         self.collectionView.register(UINib(nibName: "DetailMovieCell", bundle: nil), forCellWithReuseIdentifier: "DetailMovieCell")
         self.collectionView.register(UINib(nibName: "MovieCell", bundle: nil), forCellWithReuseIdentifier: "movieCell")
-        collectionView.register(UINib(nibName: "HeaderSection", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "\(HeaderSection.self)")
+        collectionView.register(UINib(nibName: "HeaderSection", bundle: nil), forSupplementaryViewOfKind: "Header", withReuseIdentifier: "\(HeaderSection.self)")
+    }
+    
+    private func setupHorizontalScrollLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(120), heightDimension: .absolute(170))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 15)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(50)), elementKind: "Header", alignment: .top)]
+        
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 15, bottom: 10, trailing: 0)
+        section.orthogonalScrollingBehavior = .continuous
+        
+        return section
+    }
+    
+    private func setupVerticalScrollLayout() -> NSCollectionLayoutSection {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(700))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 8, trailing: 0)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 25, bottom: 10, trailing: 25)
+        
+        return section
+    }
+    
+    private func configureCompositionalLayout(){
+        let layout = UICollectionViewCompositionalLayout { sectionIndex, enviroment in
+            switch sectionIndex {
+            case 0 :
+                return self.setupVerticalScrollLayout()
+            default:
+                return self.setupHorizontalScrollLayout()
+            }
+        }
+        collectionView.setCollectionViewLayout(layout, animated: true)
     }
 }
 
@@ -78,11 +122,6 @@ extension DetailViewController: UICollectionViewDataSource {
         return headerView
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let height = section != 0 ? 50.0 : 0
-        return CGSize(width: collectionView.frame.width, height: height)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DetailMovieCell", for: indexPath) as? DetailMovieCell else {
@@ -123,34 +162,4 @@ extension DetailViewController: UICollectionViewDataSource {
             }
         }
     }
-}
-
-// MARK: CollectionView's FlowLayout
-extension DetailViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.section {
-        case 0:
-            let width = UIScreen.main.bounds.width
-            let itemSize = CGSize(width:(width - 50), height: 700)
-            
-            return itemSize
-        default:
-            let itemSize = CGSize(width: 100, height: 170)
-            
-            return itemSize
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,  minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 5
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 0, left: 25, bottom: 0, right: 25)
-    }
-    
 }
