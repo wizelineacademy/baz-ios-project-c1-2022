@@ -8,9 +8,12 @@ import UIKit
 
 class MovieCollectionViewController: UIViewController{
     
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionMovieC: UICollectionView!
     var movies: [DetailMovie] = []
+    var moviesFiltered: [DetailMovie] = []
     let movieApi = MovieAPI()
+    var searchActive : Bool = false
     
     override func viewDidAppear(_ animated: Bool){
         
@@ -20,6 +23,11 @@ class MovieCollectionViewController: UIViewController{
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        NotificationCenter.default.post(name: Notification.Name("colorChanged"),object:nil)
+        view.backgroundColor = .cyan
+        
+        searchBar.delegate = self
+        
         collectionMovieC.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: MovieCollectionViewCell.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
         let movieApi = MovieAPI()
         movieApi.getMovies{[weak self] (result, error) in
@@ -32,6 +40,7 @@ class MovieCollectionViewController: UIViewController{
                 
             }else{
                 self?.movies = result.results
+                self?.moviesFiltered = result.results
                 DispatchQueue.main.async {
                     self?.collectionMovieC.delegate = self
                     self?.collectionMovieC.dataSource = self
@@ -99,4 +108,39 @@ extension MovieCollectionViewController: UICollectionViewDelegate, UICollectionV
         }
     }
 }
-
+extension MovieCollectionViewController:UISearchBarDelegate{
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchActive = true;
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchActive = false;
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            movies = moviesFiltered
+        }
+        else {
+            movies = moviesFiltered.filter({ (text) -> Bool in
+                let tmp: NSString = text.title as NSString
+                let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
+                return range.location != NSNotFound
+            })
+            if(movies.count == 0){
+                searchActive = false;
+            } else {
+                searchActive = true;
+            }
+            self.collectionMovieC.reloadData()
+        }
+        
+    }
+}

@@ -23,6 +23,9 @@ class DetailMoviesViewController: UIViewController {
         self.lblTitle.text = self.strTitle
         self.lblDescription.text = self.strDetails
         self.imgPoster.loadImage(urlStr: "\(urlBaseImg)\(strImgMoviePath )")
+        NotificationCenter.default.addObserver(self,selector:#selector(notificationRecived),name: Notification.Name("colorChanged"),object: nil )
     }
-    
+    @objc func notificationRecived (){
+        view.backgroundColor = .cyan
+    }
 }

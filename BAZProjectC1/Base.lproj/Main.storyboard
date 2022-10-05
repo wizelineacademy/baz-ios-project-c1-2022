@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="vfp-tH-rDX">
-                                <rect key="frame" x="0.0" y="49" width="414" height="759"/>
+                                <rect key="frame" x="0.0" y="98" width="414" height="710"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wqa-nk-g4U">
                                     <size key="itemSize" width="128" height="128"/>
@@ -45,6 +45,14 @@
                                 </collectionViewFlowLayout>
                                 <cells/>
                             </collectionView>
+                            <searchBar contentMode="redraw" id="auQ-QA-7sn">
+                                <rect key="frame" x="40" y="44" width="337" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="SVd-7u-leF" id="8ge-sj-gbi"/>
+                                </connections>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="00v-KW-Fc3"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -52,17 +60,18 @@
                             <constraint firstItem="00v-KW-Fc3" firstAttribute="bottom" secondItem="vfp-tH-rDX" secondAttribute="bottom" constant="5" id="O0V-yL-Ctj"/>
                             <constraint firstItem="00v-KW-Fc3" firstAttribute="trailing" secondItem="vfp-tH-rDX" secondAttribute="trailing" id="Zm7-OE-ohc"/>
                             <constraint firstItem="vfp-tH-rDX" firstAttribute="leading" secondItem="00v-KW-Fc3" secondAttribute="leading" id="lcS-qE-Otj"/>
-                            <constraint firstItem="vfp-tH-rDX" firstAttribute="top" secondItem="00v-KW-Fc3" secondAttribute="top" constant="5" id="pgN-aJ-mU4"/>
+                            <constraint firstItem="vfp-tH-rDX" firstAttribute="top" secondItem="auQ-QA-7sn" secondAttribute="bottom" constant="10" id="pgN-aJ-mU4"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="zhh-OB-WZn"/>
                     <connections>
                         <outlet property="collectionMovieC" destination="vfp-tH-rDX" id="rBP-OU-jCa"/>
+                        <outlet property="searchBar" destination="auQ-QA-7sn" id="ifD-aC-8Qt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cri-jS-1to" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="874" y="-106"/>
+            <point key="canvasLocation" x="873.91304347826099" y="-106.47321428571428"/>
         </scene>
     </scenes>
     <resources>
