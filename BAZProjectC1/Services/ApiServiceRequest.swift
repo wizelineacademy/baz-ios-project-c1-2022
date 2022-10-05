@@ -15,18 +15,19 @@ public class ApiServiceRequest {
         }
         URLSession.shared.dataTask(with: url, completionHandler: { dataResponse,serviceResponse,errorResponse in
             DispatchQueue.main.async {
-                
-                guard let data = dataResponse else {
+                guard let data = dataResponse,
+                      let objectResponse = decodeJsonData(to: structureType,with: data) else {
                     handler(nil)
                     return
                 }
-                let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
-                do {
-                    let objectResponse = try decoder.decode(structureType, from: data)
-                    handler(objectResponse)
-                } catch { handler(nil) }
+                handler(objectResponse)
             }
         }).resume()
+    }
+    
+    public static func decodeJsonData<T: Decodable>(to structureType: T.Type, with infoData: Data) -> Any? {
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try? decoder.decode(structureType, from: infoData)
     }
 }
