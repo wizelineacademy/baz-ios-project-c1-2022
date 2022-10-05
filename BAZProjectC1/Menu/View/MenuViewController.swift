@@ -132,10 +132,9 @@ extension MenuViewController: UIScrollViewDelegate {
     }
 }
 
-extension MenuViewController : ParalaxProtocol {
-    
-    func didSelectItem(iIndex: Int) {
-       changeView(iIndex: iIndex)
+extension MenuViewController : ParalaxFunctionImp {
+    func paralaxView(_ paralaxView: ParallaxView, didSelectItem at: IndexPath) {
+        changeView(iIndex: at.row)
     }
     
     func changeView(iIndex: Int) {

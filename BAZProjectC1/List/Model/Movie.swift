@@ -22,14 +22,14 @@ struct MenuRow {
     let image: String
 }
 
-struct ResultParser : Decodable {
+struct ResultParser: Decodable {
     var page: Int?
     var results: [MovieUpdate]?
     var totalPages: Int?
     var totalResults: Int?
 }
 
-struct MovieUpdate : Decodable {
+struct MovieUpdate: Decodable {
     var id: Int?
     var mediaType: String?
     var originalLanguage: String?

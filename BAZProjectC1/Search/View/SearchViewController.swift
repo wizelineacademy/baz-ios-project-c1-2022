@@ -7,13 +7,13 @@
 
 import UIKit
 
-protocol SearchProtocol {
+protocol SearchMovieImp : AnyObject {
     func selectOptions(with movie: MovieUpdate)
 }
 
 class SearchViewController: UIViewController {
     
-    var delegateSearch: SearchProtocol?
+    weak var delegateSearch: SearchMovieImp?
 
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var vwPlace: UIView!
@@ -72,6 +72,7 @@ extension SearchViewController : UISearchBarDelegate  {
         movieApi.getQuerySearch(strQuery: searchBar.text ?? "", completion: { lst in
             DispatchQueue.main.async {
                 self.lstMovies = lst
+                
                 if lst.count > 0 {
                     self.loadTable()
                 } else {

@@ -30,6 +30,7 @@ class NowViewController: UIViewController {
         DispatchQueue.main.async {
             self.cvMovies.reloadData()
         }
+        NotificationCenter.default.removeObserver(self, name: Notification.Name("notificationNowPlay"), object: nil)
     }
     
     func loadControl() {

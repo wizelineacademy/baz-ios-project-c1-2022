@@ -25,7 +25,7 @@ class DetailViewController : UIViewController {
     private func configureViewController() {
         self.title = "Pelicula"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil) 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buscar", style: .plain, target: self, action: #selector(searchMovieCV))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Buscar", style: .plain, target: self, action: #selector(navigateToSearchMovieViewController))
     }
     
     private func loadImage() {
@@ -40,16 +40,15 @@ class DetailViewController : UIViewController {
         txvDetail.loadConfigurationFont()
     }
     
-    @objc func searchMovieCV() {
+    @objc private func navigateToSearchMovieViewController() {
         let vc = SearchViewController.init(nibName: "SearchViewController", bundle: nil)
         vc.delegateSearch = self
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
-extension DetailViewController : SearchProtocol {
+extension DetailViewController: SearchMovieImp {
     func selectOptions(with movie: MovieUpdate) {
-        objMov = nil
         objMov = movie
         loadImage()
     }
