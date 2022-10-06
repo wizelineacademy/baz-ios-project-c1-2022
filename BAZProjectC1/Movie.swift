@@ -5,9 +5,16 @@
 //
 
 import Foundation
+import UIKit
 
-struct Movie {
-    let id: Int
-    let title: String
-    let poster_path: String
+struct Movie: Codable {
+    var results: [DetailMovie] = []
+    public init(){}
+}
+
+struct DetailMovie: Codable {
+    var id: Int = 0
+    var title: String = ""
+    var poster_path: String = ""
+    public init(){}
 }
