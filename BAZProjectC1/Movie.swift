@@ -11,6 +11,7 @@ struct Movie: Codable {
     var results: [DetailMovie] = []
     public init(){}
 }
+
 struct DetailMovie: Codable {
     var id: Int = 0
     var title: String = ""

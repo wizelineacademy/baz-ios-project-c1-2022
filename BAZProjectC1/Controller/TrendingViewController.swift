@@ -44,6 +44,7 @@ extension TrendingViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueReusableCell(withIdentifier: "TrendingTableViewCell")!
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var id = movies[indexPath.row].id
         var title = movies[indexPath.row].title
@@ -55,7 +56,6 @@ extension TrendingViewController {
             self.navigationController?.popToViewController(pathVC, animated: true)
         }
     }
-
 }
 
 // MARK: - TableView's Delegate
