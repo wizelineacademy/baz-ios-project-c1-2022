@@ -40,7 +40,7 @@ final class NowPlayingTableViewCell: UITableViewCell {
         downloadTask = nil
     }
     
-    public func setInfo(with nowPlay: NowPlay) {
+    public func setInfo(with nowPlay: Movie) {
         if let urlPoster = nowPlay.posterPath,
             let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)") {
             downloadTask = imgPoster.loadImage(url: url)

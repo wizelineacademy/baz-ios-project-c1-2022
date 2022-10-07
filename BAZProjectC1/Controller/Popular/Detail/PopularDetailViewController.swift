@@ -16,7 +16,7 @@ class PopularDetailViewController: UIViewController {
     @IBOutlet weak var lbllPYear: UILabel!
     
     var index: Int?
-    var objPopular: PopularAPIResponse?
+    var objMovie: MovieAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,12 +48,12 @@ class PopularDetailViewController: UIViewController {
     
     private func setPopular(){
         guard let index = index else { return }
-        let dVote: Double = objPopular?.popular?[index].voteAverage ?? 0.0
-        self.lblPlTitle.text = objPopular?.popular?[index].title
-        self.lblPlOverview.text = objPopular?.popular?[index].overview
+        let dVote: Double = objMovie?.movies?[index].voteAverage ?? 0.0
+        self.lblPlTitle.text = objMovie?.movies?[index].title
+        self.lblPlOverview.text = objMovie?.movies?[index].overview
         self.lblPlVote.text = String(format: "%.1f", dVote )
-        self.lbllPYear.text = objPopular?.popular?[index].releaseDate
-        if let urlPoster = objPopular?.popular?[index].backdropPath,
+        self.lbllPYear.text = objMovie?.movies?[index].releaseDate
+        if let urlPoster = objMovie?.movies?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgPlMovie.loadImage(url: url)
             

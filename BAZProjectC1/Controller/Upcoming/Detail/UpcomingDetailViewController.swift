@@ -13,7 +13,7 @@ class UpcomingDetailViewController: UIViewController {
     @IBOutlet weak var lblUYear: UILabel!
     
     var index: Int?
-    var objUpcoming: UpcomingAPIResponse?
+    var objUpcoming: MovieAPIResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,12 +34,12 @@ class UpcomingDetailViewController: UIViewController {
     
     private func setTopRated(){
         guard let index = index else { return }
-        let dVote: Double = objUpcoming?.upcoming?[index].voteAverage ?? 0.0
-        self.lblUTitle.text = objUpcoming?.upcoming?[index].title
-        self.lblUOverview.text = objUpcoming?.upcoming?[index].overview
+        let dVote: Double = objUpcoming?.movies?[index].voteAverage ?? 0.0
+        self.lblUTitle.text = objUpcoming?.movies?[index].title
+        self.lblUOverview.text = objUpcoming?.movies?[index].overview
         self.lblUVote.text = String(format: "%.1f", dVote )
-        self.lblUYear.text = objUpcoming?.upcoming?[index].releaseDate
-        if let urlPoster = objUpcoming?.upcoming?[index].backdropPath,
+        self.lblUYear.text = objUpcoming?.movies?[index].releaseDate
+        if let urlPoster = objUpcoming?.movies?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgUMovie.loadImage(url: url)
         }

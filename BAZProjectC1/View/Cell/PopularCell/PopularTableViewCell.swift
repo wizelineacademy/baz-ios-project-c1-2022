@@ -42,7 +42,7 @@ final class PopularTableViewCell: UITableViewCell {
         downloadTask = nil
     }
     
-    func setPopularView(with obj:Popular){
+    func setPopularView(with obj:Movie){
         if let urlPoster = obj.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)
         }

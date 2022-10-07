@@ -25,9 +25,11 @@ final class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getAllServices()
+//        self.getAllServices()
     }
     
+    
+    /*
     
     //MARK: - S E R V I C E S
     private func getMovies() {
@@ -110,6 +112,8 @@ final class SearchViewController: UIViewController {
                 "topRated": objTopRated as Any,
                 "upcoming": objUpcoming as Any]
     }
+     
+     */
 }
 
 //MARK: - EXT-> UI · T A B L E · V I E W · D E L E G A T E

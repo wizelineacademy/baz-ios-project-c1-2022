@@ -30,7 +30,7 @@ class UpcomingCollectionViewCell: UICollectionViewCell {
     }
     
     /// Con esta funcion buscamos que la celda de la collecion pueda descargar e imprimir una imagen es Internet.
-    internal func setCell(with upcoming:Upcoming?) {
+    internal func setCell(with upcoming:Movie?) {
         if let upcoming = upcoming {
             if let urlPoster = upcoming.posterPath , let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
                 downloadTask = imgPoster.loadImage(url: url)

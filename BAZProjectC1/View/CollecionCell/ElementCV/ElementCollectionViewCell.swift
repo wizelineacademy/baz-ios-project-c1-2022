@@ -14,7 +14,6 @@ final class ElementCollectionViewCell: UICollectionViewCell {
     //MARK: -  V A R I A B L E S
     private var downloadTask: URLSessionDownloadTask?
     
-    
     //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,7 +26,7 @@ final class ElementCollectionViewCell: UICollectionViewCell {
     }
     
     /// Con esta funcion buscamos que la celda de la collecion pueda descargar e imprimir una imagen es Internet.
-    internal func setCell(with popular:Popular?) {
+    internal func setCell(with popular:Movie?) {
         if let popular = popular {
             if let urlPoster = popular.posterPath , let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
                 downloadTask = imgPoster.loadImage(url: url)

@@ -10,28 +10,27 @@ final class UpcomingViewController: UIViewController {
         didSet{
             self.cvUpcoming.delegate = self
             self.cvUpcoming.dataSource = self
-            self.cvUpcoming.register(UINib(nibName: "UpcomingCollectionViewCell",
-                                             bundle: .main),
+            self.cvUpcoming.register(UINib(nibName: "UpcomingCollectionViewCell", bundle: .main),
                                        forCellWithReuseIdentifier: UpcomingCollectionViewCell.identifier)
         }
     }
     
     //MARK: - V A R I A B L E S
-    private var objUpcoming: UpcomingAPIResponse?
+    private var objMovie: MovieAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Upcoming"
-        self.getUpcoming()
+        self.getMovies()
     }
     
     //MARK: - S E R V I C E S
-    private func getUpcoming(){
-        let movie_WS = MovieAPI()
-        movie_WS.getUpcomgin { [weak self] upcomingResponse, error in
+    private func getMovies() {
+        let movieApi = MovieAPI()
+        movieApi.getMoviesTrending(withId: 5) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
-            if upcomingResponse != nil {
-                self.objUpcoming = upcomingResponse
+            if moviesResponse != nil {
+                self.objMovie = moviesResponse
                 DispatchQueue.main.async {
                     self.cvUpcoming.reloadData()
                 }
@@ -44,13 +43,13 @@ final class UpcomingViewController: UIViewController {
 //MARK: - EXT-> UI · C O L L E C T I O N · V I E W · D E L E G A T E
 extension UpcomingViewController: UICollectionViewDelegate & UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return objUpcoming?.upcoming?.count ?? 0
+        return objMovie?.movies?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cCell = collectionView.dequeueReusableCell(withReuseIdentifier: UpcomingCollectionViewCell.identifier,
                                                        for: indexPath) as? UpcomingCollectionViewCell ?? UpcomingCollectionViewCell()
-        if let upcoming = objUpcoming?.upcoming?[indexPath.row] {
+        if let upcoming = objMovie?.movies?[indexPath.row] {
             cCell.setCell(with: upcoming)
         }
         return cCell
@@ -59,7 +58,7 @@ extension UpcomingViewController: UICollectionViewDelegate & UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let upcomingDetail = UpcomingDetailViewController()
         upcomingDetail.index = indexPath.row
-        upcomingDetail.objUpcoming = objUpcoming
+        upcomingDetail.objUpcoming = objMovie
         self.navigationController?.pushViewController(upcomingDetail, animated: true)
     }
 }

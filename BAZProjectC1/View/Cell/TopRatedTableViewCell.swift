@@ -38,7 +38,6 @@ final class TopRatedTableViewCell: UITableViewCell {
         downloadTask = nil
     }
     
-    
     /// Funcion que configura un slider dado un valor inicial
     /// - Parameter val: Valor de tipo Float para incializar el valor en el que estara asignado al iniciar el componente
     private func setSlider(withValue val: Float) {
@@ -52,8 +51,7 @@ final class TopRatedTableViewCell: UITableViewCell {
         sldRated.setValue(val, animated: true)
     }
     
-    
-    func setTopRated(with obj:TopRated) {
+    func setTopRated(with obj:Movie) {
         if let urlPoster = obj.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)
         }

@@ -16,8 +16,7 @@ class TopRatedDetailViewController: UIViewController {
     @IBOutlet weak var lblTYear: UILabel!
     
     var index: Int?
-    var objTopRated: TopRatedAPIResponse?
-    
+    var objMovie: MovieAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +37,12 @@ class TopRatedDetailViewController: UIViewController {
     
     private func setTopRated(){
         guard let index = index else { return }
-        let dVote: Double = objTopRated?.topRateds?[index].voteAverage ?? 0.0
-        self.lblTTitle.text = objTopRated?.topRateds?[index].title
-        self.lblTOverview.text = objTopRated?.topRateds?[index].overview
+        let dVote: Double = objMovie?.movies?[index].voteAverage ?? 0.0
+        self.lblTTitle.text = objMovie?.movies?[index].title
+        self.lblTOverview.text = objMovie?.movies?[index].overview
         self.lblTVote.text = String(format: "%.1f", dVote )
-        self.lblTYear.text = objTopRated?.topRateds?[index].releaseDate
-        if let urlPoster = objTopRated?.topRateds?[index].backdropPath,
+        self.lblTYear.text = objMovie?.movies?[index].releaseDate
+        if let urlPoster = objMovie?.movies?[index].backdropPath,
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgTMovie.loadImage(url: url)
             
