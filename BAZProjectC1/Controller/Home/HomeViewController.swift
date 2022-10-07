@@ -93,9 +93,7 @@ extension HomeViewController: UITextFieldDelegate{
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if string == "" { return true }
-        ///Podemos descomentar esta linea para poder buscar la pelicula hasta el 4to Caracter
-//        if (textField.text?.count ?? 0) >= 4 {self.searchMovie(with: textField.text ?? "")  }
-        searchMovie(with: textField.text ?? "")
+        if (textField.text?.count ?? 0) >= 2 {self.searchMovie(with: textField.text ?? "")  }
         return true
     }
 }
