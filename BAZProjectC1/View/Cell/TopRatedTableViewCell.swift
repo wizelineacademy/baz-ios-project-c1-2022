@@ -14,7 +14,6 @@ final class TopRatedTableViewCell: UITableViewCell {
     @IBOutlet weak var lblAverage: UILabel!
     @IBOutlet weak var sldRated: UISlider!
 
-    
     //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
@@ -51,6 +50,8 @@ final class TopRatedTableViewCell: UITableViewCell {
         sldRated.setValue(val, animated: true)
     }
     
+    /// Funcion que configuta a la celda con un objeto Movie
+    ///  - Parameter obj: Es el modelo que tiene los datos para pontar en la celda
     func setTopRated(with obj:Movie) {
         if let urlPoster = obj.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)

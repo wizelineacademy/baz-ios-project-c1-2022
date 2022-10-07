@@ -35,6 +35,9 @@ final class PopularTableViewCell: UITableViewCell {
         imgPoster.layer.insertSublayer(gradient, at: 0)
     }
     
+    ///Si un objeto UITableViewCell tiene un identificador de reutilización, la vista de tabla invoca este método justo antes de devolver el objeto del método  dequeueReusableCell(withIdentifier:).
+    ///Para evitar posibles problemas de rendimiento, solo debe restablecer los atributos de la celda que no están relacionados con el contenido, por ejemplo, alfa, edición y estado de selección.
+    ///El delegado de la vista de tabla en tableView(_:cellForRowAt:) siempre debe restablecer todo el contenido al reutilizar una celda.
     override func prepareForReuse(){
         super.prepareForReuse()
         self.setGradientOnImage()
@@ -42,6 +45,8 @@ final class PopularTableViewCell: UITableViewCell {
         downloadTask = nil
     }
     
+    /// Funcion que configuta a la celda con un objeto Movie
+    ///  - Parameter obj: Es el modelo que tiene los datos para pontar en la celda
     func setPopularView(with obj:Movie){
         if let urlPoster = obj.posterPath, let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             downloadTask = imgPoster.loadImage(url: url)

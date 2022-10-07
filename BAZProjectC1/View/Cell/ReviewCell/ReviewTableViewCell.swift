@@ -30,6 +30,8 @@ final class ReviewTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    /// Funcion que configuta a la celda con un objeto Review
+    ///  - Parameter review: Es el modelo que tiene los datos para pontar en la celda
     func setReview(with review: Review){
         self.lblUser.text = "\(review.author ?? "") Says:"
         self.lblConten.text = review.content

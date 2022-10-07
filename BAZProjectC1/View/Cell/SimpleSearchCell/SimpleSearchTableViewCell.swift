@@ -24,8 +24,6 @@ final class SimpleSearchTableViewCell: UITableViewCell {
     ///El delegado de la vista de tabla en tableView(_:cellForRowAt:) siempre debe restablecer todo el contenido al reutilizar una celda.
     override func prepareForReuse(){
         super.prepareForReuse()
-//        downloadTask?.cancel()
-//        downloadTask = nil
     }
     
 }
