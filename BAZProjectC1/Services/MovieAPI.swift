@@ -84,6 +84,7 @@ final class MovieAPI {
         }.resume()
     }
     
+    //MARK: - G E T · S I M I L A R
     func getSimilar(withId str:String, completion: @escaping blkGetMovies) {
         guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(str)/similar?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else { return }
         URLSession.shared.dataTask(with: url) { ( data, respoonse, error) in

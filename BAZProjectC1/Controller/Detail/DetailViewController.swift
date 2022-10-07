@@ -21,6 +21,7 @@ class DetailViewController: UIViewController {
         }
     }
     
+    //MARK: - V A R I A B L E S
     private var downloadTask: URLSessionDownloadTask?
     var movie: Movie?
     var objMovie: MovieAPIResponse?
@@ -75,7 +76,6 @@ class DetailViewController: UIViewController {
     //MARK: - S E R V I C E S
     private func getMovies(withId id:Int ) {
         let movieApi = MovieAPI()
-        print("\n\n id ---> \(id)\n\n")
         movieApi.getSimilar(withId: "\(id)") { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
@@ -84,7 +84,6 @@ class DetailViewController: UIViewController {
                     self.cvRecomended.reloadData()
                 }
             }
-            
         }
     }
 }
@@ -92,7 +91,6 @@ class DetailViewController: UIViewController {
 //MARK: - EXT -> UI · C O L L E C T I O N · V I E W · D E L E G A T E S
 extension DetailViewController: UICollectionViewDelegate & UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("\n\n objMovie?.movies?.count ?? 0 ---> \(objMovie?.movies?.count ?? 0)\n\n")
         return objMovie?.movies?.count ?? 0
     }
     
@@ -105,7 +103,7 @@ extension DetailViewController: UICollectionViewDelegate & UICollectionViewDataS
     }
 }
 
-
+//MARK: - EXT -> UI · C O L L E C T I O N · V I E W · D E L E G A T E S · F L O W · L A Y O U T
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 180, height: 248)
