@@ -143,10 +143,10 @@ el dia martes 20 de septiembre - 2pm CT
 Usando lo construido en tu entregable anterior:
 
 * Muestra la información de las películas
-* Declara vistas con archivos xibs y Storyboard
-* Implementa un UICollectionView en al menos una pantalla
+* Declara vistas con archivos xibs y Storyboard xx
+* Implementa un UICollectionView en al menos una pantalla xx
 * Introduce navegación en entre tus pantallas
-* Carga las imágenes asíncronamente
+* Carga las imágenes asíncronamente xx
 
 Deberás subir tus cambios y crear un Pull request con tu mentor a más tardar:
 el día viernes 23 de septiembre - 2pm CT

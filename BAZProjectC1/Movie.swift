@@ -16,5 +16,6 @@ struct DetailMovie: Codable {
     var id: Int = 0
     var title: String = ""
     var poster_path: String = ""
+    var overview: String = ""
     public init(){}
 }
