@@ -99,14 +99,34 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6W1-nI-Rlp">
+                                    <rect key="frame" x="284.5" y="356" width="121.5" height="30"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="8C9-eU-qLa"/>
+                                    </constraints>
+                                    <color key="tintColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Vota este titulo"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="15"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="goToRate:" destination="-1" eventType="touchUpInside" id="4WU-31-8FL"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="OF7-xr-mrx" secondAttribute="trailing" constant="8" id="36d-UJ-Hvz"/>
                                 <constraint firstItem="OF7-xr-mrx" firstAttribute="top" secondItem="QTm-L6-uiw" secondAttribute="bottom" constant="44" id="5qI-Hy-2Qw"/>
                                 <constraint firstAttribute="trailing" secondItem="QTm-L6-uiw" secondAttribute="trailing" constant="8" id="7yb-8w-8db"/>
+                                <constraint firstAttribute="trailing" secondItem="6W1-nI-Rlp" secondAttribute="trailing" constant="8" id="81Z-yA-cuX"/>
                                 <constraint firstItem="q9p-NE-ptx" firstAttribute="top" secondItem="QTm-L6-uiw" secondAttribute="bottom" constant="4" id="8JJ-Bf-2f9"/>
                                 <constraint firstItem="1Om-5Z-rEu" firstAttribute="top" secondItem="QdU-us-Vwt" secondAttribute="bottom" constant="8" symbolic="YES" id="9Ua-VZ-F62"/>
+                                <constraint firstItem="6W1-nI-Rlp" firstAttribute="top" secondItem="QdU-us-Vwt" secondAttribute="bottom" constant="6" id="AtZ-Ar-vmA"/>
                                 <constraint firstItem="QdU-us-Vwt" firstAttribute="leading" secondItem="xfS-M0-JWQ" secondAttribute="leading" id="Jyk-Yc-DmH"/>
                                 <constraint firstItem="QTm-L6-uiw" firstAttribute="leading" secondItem="xfS-M0-JWQ" secondAttribute="leading" constant="8" id="LTj-Xd-5Ws"/>
                                 <constraint firstItem="q9p-NE-ptx" firstAttribute="leading" secondItem="xfS-M0-JWQ" secondAttribute="leading" constant="8" id="Nok-kc-FF8"/>

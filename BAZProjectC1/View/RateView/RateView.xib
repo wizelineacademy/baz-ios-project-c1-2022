@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RateView" customModule="BAZProjectC1" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="288" height="209"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rate this Title!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16G-rv-MmF">
+                    <rect key="frame" x="16" y="32" width="256" height="26.5"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cfS-Rg-YsU">
+                    <rect key="frame" x="16" y="102.5" width="256" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTG-65-Sst">
+                    <rect key="frame" x="114" y="155" width="60" height="30"/>
+                    <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="1lp-at-Hhs"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Rank!"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="rateMovie" destination="iN0-l3-epB" eventType="touchUpInside" id="yAp-HN-h6h"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ej. 8.5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0v8-GK-9Tj">
+                    <rect key="frame" x="16" y="66.5" width="256" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mdr-53-kcs">
+                    <rect key="frame" x="257" y="6" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="25" id="Ec7-um-14a"/>
+                        <constraint firstAttribute="width" constant="25" id="svU-YU-QWj"/>
+                    </constraints>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="clear" catalog="system"/>
+                    <connections>
+                        <action selector="closeView" destination="iN0-l3-epB" eventType="touchUpInside" id="7xj-TX-pZa"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.12549019610000001" green="0.20392156859999999" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="16G-rv-MmF" secondAttribute="trailing" constant="16" id="1Xv-YI-QmX"/>
+                <constraint firstItem="0v8-GK-9Tj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="7IL-ti-VPd"/>
+                <constraint firstItem="0v8-GK-9Tj" firstAttribute="top" secondItem="16G-rv-MmF" secondAttribute="bottom" constant="8" id="7tY-IV-F9n"/>
+                <constraint firstItem="16G-rv-MmF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="32" id="8JV-qm-Wlu"/>
+                <constraint firstItem="16G-rv-MmF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="9PE-ts-MBY"/>
+                <constraint firstAttribute="trailing" secondItem="mdr-53-kcs" secondAttribute="trailing" constant="6" id="Ac2-4D-YEs"/>
+                <constraint firstAttribute="trailing" secondItem="cfS-Rg-YsU" secondAttribute="trailing" constant="16" id="HcD-Wx-fQQ"/>
+                <constraint firstAttribute="trailing" secondItem="0v8-GK-9Tj" secondAttribute="trailing" constant="16" id="JQs-gF-2pc"/>
+                <constraint firstItem="cfS-Rg-YsU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="LLu-jo-XBK"/>
+                <constraint firstItem="mdr-53-kcs" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="6" id="lES-ID-6Aq"/>
+                <constraint firstItem="QTG-65-Sst" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="qGJ-KN-Sit"/>
+                <constraint firstAttribute="bottom" secondItem="QTG-65-Sst" secondAttribute="bottom" constant="24" id="xG6-Pg-nlX"/>
+                <constraint firstItem="cfS-Rg-YsU" firstAttribute="top" secondItem="0v8-GK-9Tj" secondAttribute="bottom" constant="18" id="xRk-pn-Lr9"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="15"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="btnClose" destination="mdr-53-kcs" id="Bt8-Ot-jIx"/>
+                <outlet property="btnRank" destination="QTG-65-Sst" id="fwT-zR-BNn"/>
+                <outlet property="txfRank" destination="cfS-Rg-YsU" id="59l-ay-GLJ"/>
+            </connections>
+            <point key="canvasLocation" x="18.840579710144929" y="68.638392857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="clear" catalog="system" width="128" height="114"/>
+    </resources>
+</document>

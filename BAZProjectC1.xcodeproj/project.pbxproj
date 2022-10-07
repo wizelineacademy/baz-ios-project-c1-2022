@@ -42,6 +42,10 @@
 		545AACEC28D3AB7700DFD9DF /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 545AACEB28D3AB7700DFD9DF /* Movie.swift */; };
 		5476D11D28DE3347005274D2 /* ElementCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */; };
 		5476D11E28DE3347005274D2 /* ElementCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */; };
+		54862F6828F0AF2200184386 /* RateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54862F6628F0AF2200184386 /* RateViewController.swift */; };
+		54862F6928F0AF2200184386 /* RateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54862F6728F0AF2200184386 /* RateViewController.xib */; };
+		54862F6C28F0B13500184386 /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54862F6B28F0B13500184386 /* RateView.swift */; };
+		54862F6E28F0B14000184386 /* RateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54862F6D28F0B14000184386 /* RateView.xib */; };
 		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
 		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
 		54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467E28D92291006AF344 /* BAZPExtension.swift */; };
@@ -93,6 +97,10 @@
 		545AACEB28D3AB7700DFD9DF /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		5476D11B28DE3347005274D2 /* ElementCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementCollectionViewCell.swift; sourceTree = "<group>"; };
 		5476D11C28DE3347005274D2 /* ElementCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ElementCollectionViewCell.xib; sourceTree = "<group>"; };
+		54862F6628F0AF2200184386 /* RateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateViewController.swift; sourceTree = "<group>"; };
+		54862F6728F0AF2200184386 /* RateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateViewController.xib; sourceTree = "<group>"; };
+		54862F6B28F0B13500184386 /* RateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
+		54862F6D28F0B14000184386 /* RateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateView.xib; sourceTree = "<group>"; };
 		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		54F2467E28D92291006AF344 /* BAZPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZPExtension.swift; sourceTree = "<group>"; };
@@ -312,6 +320,7 @@
 		545AACE828D3A58D00DFD9DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				54862F6528F0AD7400184386 /* Rate */,
 				5411E07D28F0012B000A3CE9 /* CustomTabBarController */,
 				5411E07828EFC6A7000A3CE9 /* Detail */,
 				5442EA9728EC85B400BC4B20 /* Home */,
@@ -337,6 +346,7 @@
 		545AACEA28D3A5AD00DFD9DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				54862F6A28F0B11A00184386 /* RateView */,
 				5476D11A28DE3316005274D2 /* CollecionCell */,
 				54F2467828D917D4006AF344 /* Cell */,
 				C30893B328A2F42B004B1860 /* Main.storyboard */,
@@ -352,6 +362,24 @@
 				54521B7628E727F7007D7BB2 /* UpcomingCV */,
 			);
 			path = CollecionCell;
+			sourceTree = "<group>";
+		};
+		54862F6528F0AD7400184386 /* Rate */ = {
+			isa = PBXGroup;
+			children = (
+				54862F6628F0AF2200184386 /* RateViewController.swift */,
+				54862F6728F0AF2200184386 /* RateViewController.xib */,
+			);
+			path = Rate;
+			sourceTree = "<group>";
+		};
+		54862F6A28F0B11A00184386 /* RateView */ = {
+			isa = PBXGroup;
+			children = (
+				54862F6B28F0B13500184386 /* RateView.swift */,
+				54862F6D28F0B14000184386 /* RateView.xib */,
+			);
+			path = RateView;
 			sourceTree = "<group>";
 		};
 		54F2467828D917D4006AF344 /* Cell */ = {
@@ -475,6 +503,7 @@
 				C30893DB28A42481004B1860 /* README.md in Resources */,
 				54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
+				54862F6E28F0B14000184386 /* RateView.xib in Resources */,
 				54350FBA28DBE9FA00B30422 /* NowPlayingViewController.xib in Resources */,
 				5411E07C28EFC6E2000A3CE9 /* DetailViewController.xib in Resources */,
 				5476D11E28DE3347005274D2 /* ElementCollectionViewCell.xib in Resources */,
@@ -485,6 +514,7 @@
 				54350FEB28DCAF8000B30422 /* UpcomingViewController.xib in Resources */,
 				54350FDC28DC21E000B30422 /* TopRatedTableViewCell.xib in Resources */,
 				C30893B528A2F42B004B1860 /* Main.storyboard in Resources */,
+				54862F6928F0AF2200184386 /* RateViewController.xib in Resources */,
 				5442EAAA28EC9CBD00BC4B20 /* ReviewViewController.xib in Resources */,
 				5442EA9B28EC85C700BC4B20 /* HomeViewController.xib in Resources */,
 			);
@@ -522,6 +552,8 @@
 				C30893E228A425E1004B1860 /* MovieAPI.swift in Sources */,
 				54350FD628DC1F7200B30422 /* TopRatedViewController.swift in Sources */,
 				54350FDB28DC21E000B30422 /* TopRatedTableViewCell.swift in Sources */,
+				54862F6828F0AF2200184386 /* RateViewController.swift in Sources */,
+				54862F6C28F0B13500184386 /* RateView.swift in Sources */,
 				C30893E328A425E1004B1860 /* MovieAPIResponse.swift in Sources */,
 				5442EAA228EC90E700BC4B20 /* SimpleSearchTableViewCell.swift in Sources */,
 				5442EA9E28EC8CE300BC4B20 /* SearchAPIResult.swift in Sources */,

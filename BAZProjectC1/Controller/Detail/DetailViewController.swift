@@ -86,6 +86,13 @@ class DetailViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func goToRate(_ sender: Any) {
+        let vc = RateViewController()
+        vc.modalPresentationStyle = .automatic
+        navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: - EXT -> UI · C O L L E C T I O N · V I E W · D E L E G A T E S
