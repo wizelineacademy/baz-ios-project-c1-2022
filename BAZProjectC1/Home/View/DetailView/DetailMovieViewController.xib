@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailMovieViewController" customModule="BAZProjectC1" customModuleProvider="target">
+            <connections>
+                <outlet property="MoviePosterImage" destination="qrR-P6-0je" id="PU3-4A-B4P"/>
+                <outlet property="MovieTitleLabel" destination="vbL-nE-k9v" id="Haa-om-gP5"/>
+                <outlet property="descriptionLabel" destination="qeN-Cf-l4I" id="KzS-f4-8kt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EUn-RZ-rTB">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vbL-nE-k9v">
+                            <rect key="frame" x="189" y="29" width="159" height="85"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="poster" translatesAutoresizingMaskIntoConstraints="NO" id="qrR-P6-0je">
+                            <rect key="frame" x="8" y="0.0" width="161" height="284"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="284" id="yya-hE-LsE"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Descripcion:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeN-Cf-l4I">
+                            <rect key="frame" x="10" y="280" width="394" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="qeN-Cf-l4I" firstAttribute="top" secondItem="qrR-P6-0je" secondAttribute="bottom" constant="-4" id="3ch-tj-edL"/>
+                        <constraint firstItem="qeN-Cf-l4I" firstAttribute="leading" secondItem="EUn-RZ-rTB" secondAttribute="leading" constant="10" id="5w4-3c-jHw"/>
+                        <constraint firstItem="qrR-P6-0je" firstAttribute="top" secondItem="EUn-RZ-rTB" secondAttribute="top" id="77X-Zb-Nfh"/>
+                        <constraint firstItem="vbL-nE-k9v" firstAttribute="leading" secondItem="qrR-P6-0je" secondAttribute="trailing" constant="20" id="7Kn-8Y-05Y"/>
+                        <constraint firstItem="qrR-P6-0je" firstAttribute="leading" secondItem="EUn-RZ-rTB" secondAttribute="leadingMargin" id="ZOW-aj-pk1"/>
+                        <constraint firstAttribute="trailing" secondItem="qeN-Cf-l4I" secondAttribute="trailing" constant="10" id="dJs-cG-5SN"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EUn-RZ-rTB" secondAttribute="trailing" id="W2p-Xg-e8S"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EUn-RZ-rTB" secondAttribute="bottom" id="X3R-vj-3nz"/>
+                <constraint firstItem="EUn-RZ-rTB" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="rRP-ve-VwW"/>
+                <constraint firstItem="EUn-RZ-rTB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rma-ui-8kg"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="415.94202898550731" y="53.571428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="poster" width="500" height="743"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

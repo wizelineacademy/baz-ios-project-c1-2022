@@ -12,22 +12,63 @@ class MoviesViewController: UIViewController {
     var postersMovieArray = MovieModel()
     var tappedCell: PosterCollectionCell!
     @IBOutlet weak var TableView: UITableView!
-
+    private var dataLoad: MovieModel?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
     
     func setupView(){
+        navigationItem.title = "Home"
         self.TableView.register(UINib.init(nibName: "TableViewCell", bundle: Bundle(for: TableViewCell.self)), forCellReuseIdentifier: "cell")
+        getMoviesInSection()
+        DispatchQueue.main.async() { [weak self] in
+            self?.TableView.reloadData()
+        }
+    }
+    
+    func getMoviesInSection(){
+        self.view.showAnimation()
+        self.postersMovieArray.removeAllMovie()
+        let groupEndPoint = DispatchGroup()
+        EndPoint.allCases.forEach { endpoint in
+            groupEndPoint.enter()
+            moviesRequest(requestUrl: endpoint.requestFrom) { data, error in
+                do{
+                    guard let data = data else {
+                        return
+                    }
+                    let result = try JSONDecoder().decode(MoviesResponse.self, from: data)
+                    var postersMovie:[ PosterCollectionCell] = []
+                    result.results.forEach { movie in
+                        postersMovie.append(PosterCollectionCell(posterImage: movie.posterPath ?? "", title: movie.title ?? "", overView: movie.overview ?? ""))
+                    }
+                    let section = TableViewMovieCellModel (sectionFilter: endpoint.sectionName, posters: [postersMovie])
+                    self.postersMovieArray.setupMovie(section: section)
+                } catch {
+                    debugPrint("The following error occurred: \(error.localizedDescription)")
+                }
+                groupEndPoint.leave()
+                
+            }
+        }
+        
+        groupEndPoint.notify(queue:.main) {
+            self.view.hideAnimation()
+            DispatchQueue.main.async() { [weak self] in
+                self?.TableView.reloadData()
+            }
+        }
     }
     
 }
 
+
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postersMovieArray.movieObject[section].posters.count
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -38,11 +79,10 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
         
         let rowArray = postersMovieArray.movieObject[indexPath.section].posters[indexPath.row]
         cell.updateCellWith(row: rowArray)
-        
+
         //MARK: - Cell delegation
         cell.cellDelegate = self
         cell.selectionStyle = .none
-        
         return cell
         
     }
@@ -54,7 +94,6 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 200
     }
-    
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
@@ -75,9 +114,12 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 extension MoviesViewController: CollectionViewCellDelegate {
     func collectionView(collectionviewcell: CollectionViewCell?, index: Int, didTappedInTableViewCell: TableViewCell) {
         if let posterRow = didTappedInTableViewCell.rowWithPosters {
-            debugPrint(posterRow[index])
             self.tappedCell = posterRow[index]
-            // TODO: - Send to other screen
+            let vc = DetailMovieViewController(nibName: "DetailMovieViewController", bundle: nil)
+            vc.detailMovie = self.tappedCell
+            vc.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
 }
+

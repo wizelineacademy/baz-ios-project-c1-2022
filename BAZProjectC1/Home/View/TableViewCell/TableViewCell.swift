@@ -13,9 +13,7 @@ protocol CollectionViewCellDelegate: AnyObject {
 
 
 class TableViewCell: UITableViewCell {
-   
     weak var cellDelegate: CollectionViewCellDelegate?
-    
     var rowWithPosters: [PosterCollectionCell]?
 
     @IBOutlet weak var categoryLabel: UILabel!
@@ -29,14 +27,14 @@ class TableViewCell: UITableViewCell {
         flowLayout.minimumLineSpacing = 2.0
         flowLayout.minimumInteritemSpacing = 5.0
         
-        //Setup collection
+        // MARK: - Setup collection
         self.categoryCollectionView.collectionViewLayout = flowLayout
         self.categoryCollectionView.showsHorizontalScrollIndicator = false
         
         self.categoryCollectionView.dataSource = self
         self.categoryCollectionView.delegate = self
         
-        // Register the xib
+        //MARK: -Register the xib
         let cellNib = UINib(nibName: "CollectionViewCell", bundle: nil)
         self.categoryCollectionView.register(cellNib, forCellWithReuseIdentifier: "collectionviewcellid")
     }
@@ -50,11 +48,11 @@ extension TableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, U
     func updateCellWith(row: [PosterCollectionCell]) {
         self.rowWithPosters = row
         self.categoryCollectionView.reloadData()
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
-        debugPrint("Seleccionado \(indexPath.item)")
         self.cellDelegate?.collectionView(collectionviewcell: cell, index: indexPath.item, didTappedInTableViewCell: self)
     }
     
@@ -70,15 +68,13 @@ extension TableViewCell: UICollectionViewDelegate, UICollectionViewDataSource, U
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcellid", for: indexPath) as? CollectionViewCell {
             cell.movieLabel.text = self.rowWithPosters?[indexPath.item].title ?? ""
             let urlEndPoint = self.rowWithPosters?[indexPath.item].posterImage ?? ""
-            
-            cell.setImage(urlEndpoint: urlEndPoint) //set Image async
-            
+            cell.setImage(urlEndpoint: urlEndPoint)
             return cell
         }
         return UICollectionViewCell()
     }
     
-    // Add spaces between collection view
+    //MARK: - Add spaces between collection view
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
     }

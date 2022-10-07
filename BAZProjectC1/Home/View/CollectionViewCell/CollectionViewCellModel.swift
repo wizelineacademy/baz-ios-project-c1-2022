@@ -10,12 +10,13 @@ import UIKit
 
 //Mark:- Model for distinct sections
 
-struct PosterCollectionCell {
-    var posterImage: String
-    var title: String
-}
-
 struct TableViewMovieCellModel {
     var sectionFilter: String
     var posters: [[PosterCollectionCell]]
+}
+
+struct PosterCollectionCell {
+    var posterImage: String
+    var title: String
+    var overView: String
 }

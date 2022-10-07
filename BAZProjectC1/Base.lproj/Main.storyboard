@@ -22,15 +22,15 @@
                         <color key="selectedImageTintColor" systemColor="tintColor"/>
                     </tabBar>
                     <connections>
-                        <segue destination="DF1-ZG-ayL" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
-                        <segue destination="kZt-5E-NtN" kind="relationship" relationship="viewControllers" id="heh-tC-mhk"/>
+                        <segue destination="ukp-Yv-LK7" kind="relationship" relationship="viewControllers" id="5Rs-jK-EFi"/>
+                        <segue destination="vfC-6z-jd7" kind="relationship" relationship="viewControllers" id="heh-tC-mhk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vZs-3s-K8D" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="426" y="-248"/>
         </scene>
-        <!--Home-->
+        <!--Movies View Controller-->
         <scene sceneID="oqh-ov-6tj">
             <objects>
                 <viewController restorationIdentifier="MoviesVC" storyboardIdentifier="MoviesVC" id="kZt-5E-NtN" customClass="MoviesViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
@@ -39,7 +39,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6Hh-bR-sF9">
-                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="kZt-5E-NtN" id="CaS-ir-L3C"/>
@@ -56,9 +56,6 @@
                             <constraint firstItem="6Hh-bR-sF9" firstAttribute="top" secondItem="O9p-ZQ-MNv" secondAttribute="top" id="iZD-wU-Iju"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="Khk-2B-1JS">
-                        <imageReference key="image" image="house.circle.fill" catalog="system" symbolScale="large"/>
-                    </tabBarItem>
                     <navigationItem key="navigationItem" id="9K4-lZ-Z8k"/>
                     <connections>
                         <outlet property="TableView" destination="6Hh-bR-sF9" id="ZZ6-20-efF"/>
@@ -66,7 +63,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cle-yc-IQw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1000" y="477"/>
+            <point key="canvasLocation" x="2820.289855072464" y="476.78571428571428"/>
         </scene>
         <!--Trending Movies-->
         <scene sceneID="Jof-f8-uDg">
@@ -105,7 +102,6 @@
                             <outlet property="delegate" destination="DF1-ZG-ayL" id="5nR-er-hrx"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Trending" image="square.and.arrow.up.fill" catalog="system" id="g6Q-u2-bk6"/>
                     <navigationItem key="navigationItem" title="Trending Movies" id="8E9-i5-K0G"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -114,13 +110,55 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Inw-fF-zPA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-233" y="477"/>
+            <point key="canvasLocation" x="676.81159420289862" y="476.78571428571428"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="aL3-s3-pfF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vfC-6z-jd7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" id="Khk-2B-1JS">
+                        <imageReference key="image" image="house.circle.fill" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vrN-kJ-jTH">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kZt-5E-NtN" kind="relationship" relationship="rootViewController" id="SpI-Rq-TbH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aUG-5G-xYC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1910.144927536232" y="476.78571428571428"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="puG-An-Xsi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ukp-Yv-LK7" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Search" id="g6Q-u2-bk6">
+                        <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vbr-fN-rku">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="DF1-ZG-ayL" kind="relationship" relationship="rootViewController" id="Qa9-d4-LG1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lEh-Pi-kD5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-233.33333333333334" y="476.78571428571428"/>
         </scene>
     </scenes>
     <resources>
         <image name="house.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="photo" catalog="system" width="128" height="93"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
