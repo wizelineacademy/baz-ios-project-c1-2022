@@ -26,12 +26,12 @@ final class ElementCollectionViewCell: UICollectionViewCell {
     }
     
     /// Con esta funcion buscamos que la celda de la collecion pueda descargar e imprimir una imagen es Internet.
-    internal func setCell(with popular:Movie?) {
-        if let popular = popular {
-            if let urlPoster = popular.posterPath , let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
+    internal func setCell(with movie:Movie?) {
+        if let movie = movie {
+            if let urlPoster = movie.posterPath , let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
                 downloadTask = imgPoster.loadImage(url: url)
             }
-            self.lblTitle.text = popular.title
+            self.lblTitle.text = movie.title
         }
     }
 }

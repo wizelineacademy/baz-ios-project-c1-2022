@@ -12,16 +12,27 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var lblVote: UILabel!
     @IBOutlet weak var lblDate: UILabel!
     @IBOutlet weak var lblDesc: UILabel!
-    @IBOutlet weak var cvRecomended: UICollectionView!
+    @IBOutlet weak var cvRecomended: UICollectionView!{
+        didSet{
+            self.cvRecomended.delegate = self
+            self.cvRecomended.dataSource = self
+            self.cvRecomended.register(UINib(nibName: "ElementCollectionViewCell", bundle: .main),
+                                       forCellWithReuseIdentifier: ElementCollectionViewCell.identifier)
+        }
+    }
     
     private var downloadTask: URLSessionDownloadTask?
     var movie: Movie?
+    var objMovie: MovieAPIResponse?
 
+    
+    //MARK: - F U N C T I O N S
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setInfo(with: movie)
         self.setGradientOnImage()
         self.setUpLeftMenu()
+        self.getMovies(withId: movie?.id ?? 0)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,5 +70,44 @@ class DetailViewController: UIViewController {
            let url = URL(string: "https://image.tmdb.org/t/p/w500\(urlPoster)"){
             let _ = imgPoster.loadImage(url: url)
         }
+    }
+    
+    //MARK: - S E R V I C E S
+    private func getMovies(withId id:Int ) {
+        let movieApi = MovieAPI()
+        print("\n\n id ---> \(id)\n\n")
+        movieApi.getSimilar(withId: "\(id)") { [weak self] moviesResponse, error in
+            guard let self = self else{ return }
+            if moviesResponse != nil {
+                self.objMovie = moviesResponse
+                DispatchQueue.main.async {
+                    self.cvRecomended.reloadData()
+                }
+            }
+            
+        }
+    }
+}
+
+//MARK: - EXT -> UI · C O L L E C T I O N · V I E W · D E L E G A T E S
+extension DetailViewController: UICollectionViewDelegate & UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("\n\n objMovie?.movies?.count ?? 0 ---> \(objMovie?.movies?.count ?? 0)\n\n")
+        return objMovie?.movies?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cCell = collectionView.dequeueReusableCell(withReuseIdentifier: ElementCollectionViewCell.identifier, for: indexPath) as?  ElementCollectionViewCell ?? ElementCollectionViewCell()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            cCell.setCell(with: movie)
+        }
+        return cCell
+    }
+}
+
+
+extension DetailViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 180, height: 248)
     }
 }

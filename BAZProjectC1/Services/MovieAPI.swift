@@ -83,5 +83,19 @@ final class MovieAPI {
             }
         }.resume()
     }
+    
+    func getSimilar(withId str:String, completion: @escaping blkGetMovies) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(str)/similar?api_key=f6cd5c1a9e6c6b965fdcab0fa6ddd38a") else { return }
+        URLSession.shared.dataTask(with: url) { ( data, respoonse, error) in
+            guard let datos = data else { return }
+            do {
+                let decoder = JSONDecoder()
+                let data = try decoder.decode(MovieAPIResponse.self, from: datos)
+                completion(data, nil)
+            } catch {
+                completion(nil,error)
+            }
+        }.resume()
+    }
 
 }
