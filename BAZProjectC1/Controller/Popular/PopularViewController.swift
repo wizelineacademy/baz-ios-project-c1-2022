@@ -54,9 +54,12 @@ extension PopularViewController: UITableViewDelegate & UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let popularDetail = PopularDetailViewController()
-        popularDetail.index = indexPath.row
-        popularDetail.objMovie = objMovie
-        self.navigationController?.pushViewController(popularDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }

@@ -45,9 +45,13 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieDetail = MovieDetailViewController()
-        movieDetail.index = indexPath.row
-        movieDetail.objMovie = objMovie
-        self.navigationController?.pushViewController(movieDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
+ 

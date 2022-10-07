@@ -56,10 +56,13 @@ extension UpcomingViewController: UICollectionViewDelegate & UICollectionViewDat
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let upcomingDetail = UpcomingDetailViewController()
-        upcomingDetail.index = indexPath.row
-        upcomingDetail.objUpcoming = objMovie
-        self.navigationController?.pushViewController(upcomingDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
 

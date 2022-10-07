@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5411E07B28EFC6E2000A3CE9 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5411E07928EFC6E2000A3CE9 /* DetailViewController.swift */; };
+		5411E07C28EFC6E2000A3CE9 /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5411E07A28EFC6E2000A3CE9 /* DetailViewController.xib */; };
 		54350FA228DB520A00B30422 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FA028DB520A00B30422 /* MovieDetailViewController.swift */; };
 		54350FA328DB520A00B30422 /* MovieDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54350FA128DB520A00B30422 /* MovieDetailViewController.xib */; };
 		54350FA528DB949E00B30422 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54350FA428DB949E00B30422 /* CustomTabBarController.swift */; };
@@ -66,6 +68,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5411E07928EFC6E2000A3CE9 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5411E07A28EFC6E2000A3CE9 /* DetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
 		54350FA028DB520A00B30422 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 		54350FA128DB520A00B30422 /* MovieDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailViewController.xib; sourceTree = "<group>"; };
 		54350FA428DB949E00B30422 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5411E07828EFC6A7000A3CE9 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				5411E07928EFC6E2000A3CE9 /* DetailViewController.swift */,
+				5411E07A28EFC6E2000A3CE9 /* DetailViewController.xib */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
 		54350F9F28DB516700B30422 /* MovieDetail */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +338,7 @@
 		545AACE828D3A58D00DFD9DF /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5411E07828EFC6A7000A3CE9 /* Detail */,
 				5442EA9728EC85B400BC4B20 /* Home */,
 				54350FE728DCAF5F00B30422 /* Upcoming */,
 				54350FD328DC1F5800B30422 /* TopRated */,
@@ -527,6 +541,7 @@
 				54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */,
 				C30893B728A2F42D004B1860 /* Assets.xcassets in Resources */,
 				54350FBA28DBE9FA00B30422 /* NowPlayingViewController.xib in Resources */,
+				5411E07C28EFC6E2000A3CE9 /* DetailViewController.xib in Resources */,
 				5476D11E28DE3347005274D2 /* ElementCollectionViewCell.xib in Resources */,
 				54350FB628DBDD8300B30422 /* NowPlayingTableViewCell.xib in Resources */,
 				5476D11928DE29DC005274D2 /* UpcomingDetailViewController.xib in Resources */,
@@ -549,6 +564,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5411E07B28EFC6E2000A3CE9 /* DetailViewController.swift in Sources */,
 				5442EAA528EC922300BC4B20 /* Search.swift in Sources */,
 				54350FB928DBE9FA00B30422 /* NowPlayingViewController.swift in Sources */,
 				54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */,

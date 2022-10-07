@@ -53,9 +53,12 @@ extension TopRatedViewController: UITableViewDelegate & UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let topRatedDetail = TopRatedDetailViewController()
-        topRatedDetail.index = indexPath.row
-        topRatedDetail.objMovie = objMovie
-        self.navigationController?.pushViewController(topRatedDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }

@@ -29,9 +29,6 @@ final class CustomTabBarController: UITabBarController {
             createNavController(for:HomeViewController(),
                                    title:NSLocalizedString("Home", comment: ""),
                                    image:UIImage(systemName: "magnifyingglass.circle") ?? UIImage()),
-//            createNavController(for:SearchViewController(),
-//                                   title:NSLocalizedString("Home", comment: ""),
-//                                   image:UIImage(systemName: "house") ?? UIImage()),
             createNavController(for:TrendingViewController(),
                                    title:NSLocalizedString("Trending", comment: ""),
                                    image:UIImage(systemName: "sparkles.tv") ?? UIImage()),
@@ -46,11 +43,7 @@ final class CustomTabBarController: UITabBarController {
                                    image:UIImage(systemName: "chart.xyaxis.line") ?? UIImage()),
             createNavController(for:UpcomingViewController(),
                                    title:NSLocalizedString("Upcoming", comment: ""),
-                                   image:UIImage(systemName: "deskclock") ?? UIImage()),
-//            createNavController(for:HomeViewController(),
-//                                   title:NSLocalizedString("Search", comment: ""),
-//                                   image:UIImage(systemName: "magnifyingglass.circle") ?? UIImage())
-
+                                   image:UIImage(systemName: "deskclock") ?? UIImage())
         ]
     }
 

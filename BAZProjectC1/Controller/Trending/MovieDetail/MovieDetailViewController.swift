@@ -29,8 +29,6 @@ final class MovieDetailViewController: UIViewController {
         navigationItem.leftBarButtonItem = menuBarButton
     }
     
-    
-    
     @objc private func popView(){
         navigationController?.popViewController(animated: true)
     }
