@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="doE-mg-wLd">
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!-- -->
+        <scene sceneID="Ee8-bb-1vF">
+            <objects>
+                <viewController title=" " modalPresentationStyle="fullScreen" id="sOC-mP-SNW" customClass="MenuMoviesView" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MhF-3q-AFz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mme-qM-bJq">
+                                <rect key="frame" x="284" y="56.5" width="20" height="19"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" backgroundImage="line.horizontal.3.decrease.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="addFilter:" destination="sOC-mP-SNW" eventType="touchUpInside" id="rQe-qg-9y3"/>
+                                </connections>
+                            </button>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9LM-3T-Lld">
+                                <rect key="frame" x="0.0" y="88" width="320" height="480"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="itj-32-5KG">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                            </collectionView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="mKB-V4-giM">
+                                <rect key="frame" x="16" y="44" width="252" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="ars-we-Mog"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VwU-Ca-NAZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Mme-qM-bJq" firstAttribute="centerY" secondItem="mKB-V4-giM" secondAttribute="centerY" id="9Pc-m7-omx"/>
+                            <constraint firstItem="9LM-3T-Lld" firstAttribute="leading" secondItem="VwU-Ca-NAZ" secondAttribute="leading" id="AwO-Mz-F4h"/>
+                            <constraint firstItem="9LM-3T-Lld" firstAttribute="top" secondItem="mKB-V4-giM" secondAttribute="bottom" symbolic="YES" id="HQf-aY-6fW"/>
+                            <constraint firstItem="VwU-Ca-NAZ" firstAttribute="trailing" secondItem="Mme-qM-bJq" secondAttribute="trailing" constant="16" id="Qag-Em-PC1"/>
+                            <constraint firstItem="mKB-V4-giM" firstAttribute="leading" secondItem="VwU-Ca-NAZ" secondAttribute="leading" constant="16" id="S0j-H0-SlB"/>
+                            <constraint firstItem="mKB-V4-giM" firstAttribute="top" secondItem="VwU-Ca-NAZ" secondAttribute="top" id="ey3-01-85r"/>
+                            <constraint firstItem="VwU-Ca-NAZ" firstAttribute="trailing" secondItem="9LM-3T-Lld" secondAttribute="trailing" id="wwz-oe-DXY"/>
+                            <constraint firstItem="Mme-qM-bJq" firstAttribute="leading" secondItem="mKB-V4-giM" secondAttribute="trailing" constant="16" id="x9c-pj-fBK"/>
+                            <constraint firstItem="9LM-3T-Lld" firstAttribute="bottom" secondItem="VwU-Ca-NAZ" secondAttribute="bottom" id="z2X-FT-1MP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="o5N-Dr-rIu">
+                        <barButtonItem key="backBarButtonItem" title=" " id="1Ic-uH-J7c"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="btnAddFilters" destination="Mme-qM-bJq" id="2Ug-6U-Ql8"/>
+                        <outlet property="collectionMovieMenu" destination="9LM-3T-Lld" id="kd8-lv-hbB"/>
+                        <outlet property="searchBar" destination="mKB-V4-giM" id="V23-Jt-1aM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nfI-hv-tFt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2981.25" y="-97.183098591549296"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cOp-UG-K5S">
+            <objects>
+                <navigationController storyboardIdentifier="MenuMoviesView" automaticallyAdjustsScrollViewInsets="NO" id="doE-mg-wLd" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jqc-YU-rlz">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="sOC-mP-SNW" kind="relationship" relationship="rootViewController" id="2ZD-Kz-uiS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4ke-yp-z8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1983.75" y="-97.183098591549296"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="line.horizontal.3.decrease.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
