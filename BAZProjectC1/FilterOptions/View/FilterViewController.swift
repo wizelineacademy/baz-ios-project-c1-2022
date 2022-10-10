@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: FilterViewController Protocol
 protocol FilterViewControllerDelegate: AnyObject {
     func didSelect(filter: FiltersMovies)
 }
@@ -14,14 +15,13 @@ protocol FilterViewControllerDelegate: AnyObject {
 final class FilterViewController: UIViewController {
     @IBOutlet weak var filterTableView: UITableView!
     
-
     private var filterSelected: FiltersMovies = .trending
     private var filters = FiltersMovies.allCases
     weak var delegate: FilterViewControllerDelegate?
-  
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = "Filters"
         self.view.backgroundColor = .systemTeal
         self.configureCollectionView()
@@ -44,11 +44,11 @@ extension FilterViewController : UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-         let cell = tableView.dequeueReusableCell(withIdentifier: "filterCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "filterCell", for: indexPath)
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         var content = cell.defaultContentConfiguration()
-       
+        
         content.text = self.filters[indexPath.row].title
         content.textProperties.color = .white
         content.textProperties.font = UIFont(name: "Futura-Medium", size: 18.0) ?? .boldSystemFont(ofSize: 17.0)
@@ -59,7 +59,7 @@ extension FilterViewController : UITableViewDataSource {
         return cell
     }
 }
-
+// MARK:  - Extension CollectionViewDelegate.
 extension FilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelect(filter: self.filters[indexPath.row])

@@ -7,10 +7,13 @@
 
 import UIKit
 
-
 let imageCache = NSCache<AnyObject, AnyObject>()
 extension UIImageView {
-   public func loadUrlImage(urlString: String) {
+    /// Método utilizado para el consumo de imágenes
+    ///  - Parameters:
+    ///     - urlString: Contiene el endpoint de la imagen a descargar
+    /// - En el método se valida si la imagen ya fue descargada previamente y de ser así se toma de caché, en caso contrario se procede a descargar.
+    public func loadUrlImage(urlString: String) {
         guard let url = URL(string: urlString) else {
             self.image = UIImage(named: "default")
             return
@@ -35,5 +38,4 @@ extension UIImageView {
             }
         }).resume()
     }
-
 }

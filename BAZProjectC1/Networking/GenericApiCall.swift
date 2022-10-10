@@ -14,9 +14,16 @@ class GenericApiCall {
         case invalidData
     }
     
+    static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static let baseImageURL = "https://image.tmdb.org/t/p/w500/"
+    static let searchMovieURL = "https://api.themoviedb.org/3/search/multi?api_key=\(apiKey)&query="
+    static let movieDetail = "https://api.themoviedb.org/3/movie/idMovie?api_key=\(apiKey)&language=en-US&append_to_response=credits,similar,recommendations,reviews"
     
-    /// Método genérico utilizado para el consumo de APIS
+    /// Método genérico utilizado para el consumo de APIS.
+    ///  - Parameters:
+    ///     - url: Contiene la petición que se requiere ejecutar
+    ///     - expecting: Corresponde al modelo de datos con el que se va a trabajar
+    ///     - completion: El resultado de la petición
     public static func request<T: Codable>(url: URL?, expecting: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = url else {
             completion(.failure(CustomError.invalidURL))

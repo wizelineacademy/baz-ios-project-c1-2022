@@ -13,7 +13,6 @@ protocol HomeViewControllerDelegate: AnyObject {
 }
 
 final class HomeAppViewController: UIViewController {
-    
     @IBOutlet weak private var collectionView: UICollectionView!
     
     weak var delegate: HomeViewControllerDelegate?
@@ -44,8 +43,8 @@ final class HomeAppViewController: UIViewController {
         self.searchController.searchResultsUpdater = self
         self.searchController.searchBar.delegate = self
         self.searchController.obscuresBackgroundDuringPresentation = false
-        self.searchController.searchBar.enablesReturnKeyAutomatically = false
-        self.searchController.searchBar.returnKeyType = .done
+        self.searchController.searchBar.enablesReturnKeyAutomatically = true
+        self.searchController.searchBar.returnKeyType = .search
         self.navigationItem.hidesSearchBarWhenScrolling = false
         self.navigationItem.searchController = self.searchController
         self.definesPresentationContext = true
@@ -79,8 +78,24 @@ final class HomeAppViewController: UIViewController {
     @objc private func showMenu(_ sender: UIBarButtonItem) {
         self.delegate?.didTapMenuButton()
     }
+    
+    private func getDetailMovie(idMovie: Int) {
+        movieApi.getDetail(for: idMovie, url: GenericApiCall.movieDetail) { [weak self] movieDetail in
+            DispatchQueue.main.async {
+                if let movie = movieDetail {
+                    
+                    let vc = DetailViewController(movie: movie)
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Error", message: "Ocurrió un error al obtener información de la película.", preferredStyle: .alert)
+                    let accept = UIAlertAction(title: "Aceptar", style: .default, handler: nil)
+                    alertController.addAction(accept)
+                    self?.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
+    }
 }
-
 
 // MARK:  - Extension CollectionViewDataSource.
 extension HomeAppViewController : UICollectionViewDataSource {
@@ -95,47 +110,51 @@ extension HomeAppViewController : UICollectionViewDataSource {
         }
         let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
         
-        cell.nameMovie.text = movie.title
-        
-        cell.imgMovie.loadUrlImage(urlString: (GenericApiCall.baseImageURL + movie.posterPath))
+        cell.setupDataCell(name: movie.title ?? "No title", image: "\(GenericApiCall.baseImageURL)\(movie.posterPath ?? "")")
         return cell
     }
 }
 
+// MARK: Extension UICollectionViewDelegate
 extension HomeAppViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let movie = self.activeSearch ? self.searchedMovies[indexPath.row] : self.movies[indexPath.row]
         
-        let vc = DetailViewController(movie: movie)
-        self.navigationController?.pushViewController(vc, animated: true)
+        guard let id = movie.id else { return }
+        self.getDetailMovie(idMovie: id)
     }
-    
 }
 
+// MARK: Extension UISearchResultsUpdating
 extension HomeAppViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let searchText = searchController.searchBar.text else { return }
-        if !searchText.isEmpty {
-            self.activeSearch = true
-            self.searchedMovies.removeAll()
-            for movie in self.movies {
-                if movie.title.lowercased().contains(searchText.lowercased()) {
-                    self.searchedMovies.append(movie)
-                }
-            }
-        } else {
-            self.activeSearch = false
-            self.searchedMovies.removeAll()
-            self.searchedMovies = self.movies
-        }
-        self.collectionView.reloadData()
-    }
+    func updateSearchResults(for searchController: UISearchController) { }
 }
 
+// MARK: Extension UISearchBarDelegate
 extension HomeAppViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         self.activeSearch = false
         self.searchedMovies.removeAll()
         self.collectionView.reloadData()
+        self.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.resignFirstResponder()
+        guard let searchText = self.searchController.searchBar.text else {
+            self.activeSearch = false
+            self.searchedMovies.removeAll()
+            self.searchedMovies = []
+            return
+        }
+        self.movieApi.searchMovie(url: GenericApiCall.searchMovieURL, textToSearch: searchText, completion: { [weak self] movies in
+            self?.activeSearch = true
+            self?.searchedMovies.removeAll()
+            self?.searchedMovies = movies
+            
+            DispatchQueue.main.async {
+                self?.collectionView.reloadData()
+            }
+        })
     }
 }

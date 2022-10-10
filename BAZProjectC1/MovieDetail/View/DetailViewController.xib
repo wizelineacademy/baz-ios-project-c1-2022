@@ -11,9 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailViewController" customModule="BAZProjectC1" customModuleProvider="target">
             <connections>
-                <outlet property="descriptionMovie" destination="bsW-4F-iMb" id="fIw-X7-AMc"/>
-                <outlet property="imageMovie" destination="pTZ-Rf-8GX" id="AVT-Kb-kS5"/>
-                <outlet property="titleMovie" destination="Vcc-sN-LLI" id="FWN-xj-TS4"/>
+                <outlet property="collectionView" destination="XJx-WZ-17n" id="n4K-xF-BTX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,43 +20,28 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pTZ-Rf-8GX">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="341"/>
-                </imageView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="top" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="O7t-QF-Dz0">
-                    <rect key="frame" x="25" y="356" width="270" height="73.5"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcc-sN-LLI">
-                            <rect key="frame" x="0.0" y="0.0" width="270" height="38"/>
-                            <fontDescription key="fontDescription" name="Chalkduster" family="Chalkduster" pointSize="30"/>
-                            <color key="textColor" red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bsW-4F-iMb">
-                            <rect key="frame" x="0.0" y="53" width="270" height="20.5"/>
-                            <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="15"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="Vcc-sN-LLI" firstAttribute="leading" secondItem="O7t-QF-Dz0" secondAttribute="leading" id="3KA-pY-QKn"/>
-                        <constraint firstAttribute="trailing" secondItem="bsW-4F-iMb" secondAttribute="trailing" id="Sdk-CU-X4b"/>
-                        <constraint firstItem="bsW-4F-iMb" firstAttribute="leading" secondItem="O7t-QF-Dz0" secondAttribute="leading" id="h8K-pt-eng"/>
-                        <constraint firstAttribute="trailing" secondItem="Vcc-sN-LLI" secondAttribute="trailing" id="nc6-BW-Zbb"/>
-                    </constraints>
-                </stackView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="XJx-WZ-17n">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Fvq-mv-auT">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="GyL-JB-Zva"/>
+                        <outlet property="delegate" destination="-1" id="FbQ-5P-reG"/>
+                    </connections>
+                </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="pTZ-Rf-8GX" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="3FE-Ir-b5H"/>
-                <constraint firstItem="pTZ-Rf-8GX" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="6xB-lc-2es"/>
-                <constraint firstItem="O7t-QF-Dz0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JSu-Bm-9sc"/>
-                <constraint firstItem="O7t-QF-Dz0" firstAttribute="top" secondItem="pTZ-Rf-8GX" secondAttribute="bottom" constant="15" id="JVs-dJ-rrr"/>
-                <constraint firstItem="pTZ-Rf-8GX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="P7Q-xW-ZFE"/>
-                <constraint firstItem="O7t-QF-Dz0" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="wag-P8-Ckx"/>
-                <constraint firstItem="pTZ-Rf-8GX" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" multiplier="0.6" id="yg4-1y-z6t"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="XJx-WZ-17n" secondAttribute="bottom" id="c3P-wB-kIb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XJx-WZ-17n" secondAttribute="trailing" id="fdh-RU-MhT"/>
+                <constraint firstItem="XJx-WZ-17n" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="jiH-Lj-qmJ"/>
+                <constraint firstItem="XJx-WZ-17n" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="xq9-N0-qP1"/>
             </constraints>
             <point key="canvasLocation" x="-145" y="121"/>
         </view>

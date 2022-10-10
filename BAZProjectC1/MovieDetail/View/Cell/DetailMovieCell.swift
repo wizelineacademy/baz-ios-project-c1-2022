@@ -1,16 +1,18 @@
 //
-//  MovieCellCollectionViewCell.swift
+//  DetailCellCollectionViewCell.swift
 //  BAZProjectC1
 //
-//  Created by 1054812 on 15/09/22.
+//  Created by Mayte LA on 03/10/22.
 //
 
 import UIKit
 
-final class MovieCell: UICollectionViewCell {
+final class DetailMovieCell: UICollectionViewCell {
     
     @IBOutlet weak var imgMovie: UIImageView!
     @IBOutlet weak var nameMovie: UILabel!
+    @IBOutlet weak var overviewMovie: UILabel!
+    @IBOutlet weak var averageMovie: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,10 +25,7 @@ final class MovieCell: UICollectionViewCell {
         super.prepareForReuse()
         self.imgMovie.image = nil
         self.nameMovie.text = nil
-    }
-    
-    public func setupDataCell(name: String, image: String) {
-        self.nameMovie.text = name
-        self.imgMovie.loadUrlImage(urlString: image)
+        self.overviewMovie.text = nil
+        self.averageMovie.text = nil
     }
 }
