@@ -15,21 +15,21 @@ final class NowPlayingViewController: UIViewController {
     }
     
     //MARK: - V A R I A B L E S
-    private var objNowPlay: NowPlayingAPIResponse?
+    private var objMovie: MovieAPIResponse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Now Playing"
-        self.getNowPlaying()
+        self.getMovies()
     }
     
     //MARK: - S E R V I C E S
-    private func getNowPlaying() {
+    private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getNowPlaying { [weak self] nowPlayingResponse, error in
+        movieApi.getMoviesTrending(withId: 2) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
-            if nowPlayingResponse != nil {
-                self.objNowPlay = nowPlayingResponse
+            if moviesResponse != nil {
+                self.objMovie = moviesResponse
                 DispatchQueue.main.async {
                     self.tblNowPlay.reloadData()
                 }
@@ -42,21 +42,24 @@ final class NowPlayingViewController: UIViewController {
 extension NowPlayingViewController: UITableViewDelegate & UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        objNowPlay?.nowPlaying?.count ?? 0
+        objMovie?.movies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NowPlayingTableViewCell.identifier) as? NowPlayingTableViewCell ?? NowPlayingTableViewCell()
-        if let nowPlay = objNowPlay?.nowPlaying?[indexPath.row] {
+        if let nowPlay = objMovie?.movies?[indexPath.row] {
             cell.setInfo(with: nowPlay)
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nowPlayingDetail = NowPlayingDetailViewController()
-        nowPlayingDetail.index = indexPath.row
-        nowPlayingDetail.objNowPlaying = objNowPlay
-        self.navigationController?.pushViewController(nowPlayingDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }

@@ -5,11 +5,20 @@
 import UIKit
 import Foundation
 
+
 //MARK: - UI · T A B L E · V I E W · C E L L
 extension UITableViewCell {
     ///Identifier nos ayudará a poder saber la identidad de nuestra celda, y usarla en cualquiera que herede de UITableViewCell
     class var identifier: String { return String(describing: self)}
 }
+
+
+//MARK: - UI · T A B L E · V I E W · C E L L
+extension UICollectionViewCell {
+    ///Identifier nos ayudará a poder saber la identidad de nuestra celda, y usarla en cualquiera que herede de UICollectionViewCell
+    class var identifier: String { return String(describing: self)}
+}
+
 
 //MARK: - UI · V I E W
 extension UIView {
@@ -28,34 +37,8 @@ extension UIView {
         get { return layer.borderWidth }
         set { layer.borderWidth = newValue }
     }
-    
-    func applyGradient(isVertical: Bool, colorArray: [UIColor]) {
-        layer.sublayers?.filter({ $0 is CAGradientLayer }).forEach({ $0.removeFromSuperlayer() })
-         
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = colorArray.map({ $0.cgColor })
-        if isVertical {
-            //top to bottom
-            gradientLayer.locations = [0.0, 1.0]
-        } else {
-            //left to right
-            gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-            gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-        }
-        
-        backgroundColor = .clear
-        gradientLayer.frame = bounds
-        layer.insertSublayer(gradientLayer, at: 0)
-    }
-    
-    func addGradientWithColor(color: UIColor) {
-            let gradient = CAGradientLayer()
-            gradient.frame = self.bounds
-            gradient.colors = [UIColor.clear.cgColor, color.cgColor]
-
-            self.layer.insertSublayer(gradient, at: 0)
-        }
 }
+
 
 //MARK: - UI · I M A G E · V I E W
 extension UIImageView {

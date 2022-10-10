@@ -17,7 +17,7 @@ final class TrendingViewController: UITableViewController {
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMoviesTrending { [weak self] moviesResponse, error in
+        movieApi.getMoviesTrending(withId: 1) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
                 self.objMovie = moviesResponse
@@ -45,9 +45,13 @@ extension TrendingViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let movieDetail = MovieDetailViewController()
-        movieDetail.index = indexPath.row
-        movieDetail.objMovie = objMovie
-        self.navigationController?.pushViewController(movieDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
+ 

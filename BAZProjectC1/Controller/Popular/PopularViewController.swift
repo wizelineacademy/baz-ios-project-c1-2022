@@ -15,22 +15,21 @@ final class PopularViewController: UIViewController {
     }
     
     //MARK: - V A R I A B L E S
-    private var objPupular: PopularAPIResponse?
+    private var objMovie: MovieAPIResponse?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Popular"
-        self.getPopular()
-        
+        self.getMovies()
     }
     
     //MARK: - S E R V I C E S
-    private func getPopular(){
-        let movie_WS = MovieAPI()
-        movie_WS.getPopular { [weak self] popularResponse, error in
+    private func getMovies() {
+        let movieApi = MovieAPI()
+        movieApi.getMoviesTrending(withId: 3) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
-            if popularResponse != nil {
-                self.objPupular = popularResponse
+            if moviesResponse != nil {
+                self.objMovie = moviesResponse
                 DispatchQueue.main.async {
                     self.tblPopular.reloadData()
                 }
@@ -43,21 +42,24 @@ final class PopularViewController: UIViewController {
 extension PopularViewController: UITableViewDelegate & UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objPupular?.popular?.count ?? 0
+        return objMovie?.movies?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: PopularTableViewCell.identifier, for: indexPath) as? PopularTableViewCell ?? PopularTableViewCell()
-        if let popular = objPupular?.popular?[indexPath.row] {
+        if let popular = objMovie?.movies?[indexPath.row] {
             cell.setPopularView(with: popular )
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let popularDetail = PopularDetailViewController()
-        popularDetail.index = indexPath.row
-        popularDetail.objPopular = objPupular
-        self.navigationController?.pushViewController(popularDetail, animated: true)
+        let detail = DetailViewController()
+        if let movie = objMovie?.movies?[indexPath.row] {
+            detail.movie = movie
+        }
+        navigationController?.navigationBar.barStyle = .default
+        navigationController?.navigationBar.backgroundColor = .clear
+        self.navigationController?.pushViewController(detail, animated: true)
     }
 }
