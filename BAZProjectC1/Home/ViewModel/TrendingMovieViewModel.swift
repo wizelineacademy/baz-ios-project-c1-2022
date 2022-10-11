@@ -19,8 +19,6 @@ class TrendingMovieViewModel {
         }
     }
     
-//    var postersMovieArray: MovieModel?
-    
     func getMovies(_ endPoint: EndPoint) {
         let url = endPoint.requestFrom
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -39,6 +37,5 @@ class TrendingMovieViewModel {
             }
         }.resume()
     }
-    
 }
 

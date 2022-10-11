@@ -13,28 +13,27 @@ extension UIImageView {
     /// This method download image from a url
     /// - Parameters:
     ///   - imagePath: URL path of an image
-    ///
-    func downloaded(from url: URL, contentMode mode: UIView.ContentMode = .scaleAspectFit){
-        contentMode = mode
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard
-                let httpURLResponse = response as? HTTPURLResponse, httpURLResponse.statusCode == 200,
-                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
-                let data = data, error == nil,
-                let image = UIImage(data: data) else {return}
-            DispatchQueue.main.async() { [weak self] in
-                self?.image = image
-            }
-        }.resume()
-    }
-    
-    func downloaded(from link: String, contentMode mode: UIView.ContentMode = .scaleAspectFit) {
-        let urlBaseImage: String = "https://image.tmdb.org/t/p/w500"
+
+    public func downloaded(imagePath: String) {
+        guard let url = URL(string: imagePath) else {
+            self.image = UIImage(named: "poster")
+            return
+        }
         
-        guard let url = URL(string: urlBaseImage + link) else { return }
-        downloaded(from: url, contentMode: mode)
+        URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async {
+                if let _ = error {
+                    self.image = UIImage(named: "poster")
+                    return
+                }
+                if let data = data, let image = UIImage(data: data) {
+                    self.image = image
+                }else{
+                    self.image = UIImage(named: "poster")
+                }
+            }
+        }).resume()
     }
-    
 }
 
 

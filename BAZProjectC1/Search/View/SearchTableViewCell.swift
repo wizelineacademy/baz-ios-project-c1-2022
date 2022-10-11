@@ -14,11 +14,11 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet private weak var movieTitleLabel: UILabel!
     @IBOutlet private weak var posterMovieImage: UIImageView!
     @IBOutlet private weak var rightImage: UIImageView!
-    
+    private let urlBaseImage: EndPoint = .imageFromURL
     
     func setupCell(data: MovieData){
         self.movieTitleLabel.text = data.title
-        self.posterMovieImage.downloaded(from: data.posterPath ?? "")
+        self.posterMovieImage.downloaded(imagePath: "\(urlBaseImage.requestFrom)\(data.posterPath ?? "")")
     }
     
 }

@@ -19,6 +19,7 @@ class DetailMovieViewController: UIViewController {
     @IBOutlet weak var MoviePosterImage: UIImageView!
     var detailMovie: PosterCollectionCell?
     var movieSelected: MovieData?
+    private let urlBaseImage: EndPoint = .imageFromURL
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,21 +27,19 @@ class DetailMovieViewController: UIViewController {
     }
     
     func setupView(){
-        
-        
         if let  movieTitle = movieSelected?.title,
            let overView = movieSelected?.overview,
            let imageLink = movieSelected?.posterPath {
             descriptionLabel.text = overView
             MovieTitleLabel.text = movieTitle
-            MoviePosterImage.downloaded(from: imageLink)
+            MoviePosterImage.downloaded(imagePath: "\(urlBaseImage.requestFrom)\(imageLink)")
         } else {
             if let  movieTitle = detailMovie?.title,
                let overView = detailMovie?.overView,
                let imageLink = detailMovie?.posterImage {
                 descriptionLabel.text = overView
                 MovieTitleLabel.text = movieTitle
-                MoviePosterImage.downloaded(from: imageLink)
+                MoviePosterImage.downloaded(imagePath: "\(urlBaseImage.requestFrom)\(imageLink)")
             }
         }
     }

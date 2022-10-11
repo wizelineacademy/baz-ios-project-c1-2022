@@ -16,7 +16,6 @@ enum EndPoint: CaseIterable {
     private static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     private static let urlBaseImage: String = "https://image.tmdb.org/t/p/w500"
     
-    
     case trendingMovie
     case nowPlaying
     case popular
@@ -41,7 +40,7 @@ extension EndPoint {
         case .upComming:
             return "movie/upcoming?api_key=\(EndPoint.apiKey)"
         case .search(let text):
-            return "search/movie?language=es&api_key=\(EndPoint.apiKey)&query=\(text)"
+            return "search/multi?api_key=\(EndPoint.apiKey)&query=\(text)"
         case .imageFromURL:
             return EndPoint.urlBaseImage
         case .searchById(let id):
