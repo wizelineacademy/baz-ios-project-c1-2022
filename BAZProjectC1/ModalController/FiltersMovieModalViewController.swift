@@ -99,7 +99,7 @@ class FiltersMovieModalViewController: UIViewController{
         dismissFiltersMovieModalViewController()
     }
     @IBAction func agreeModalAction(_ sender: Any) {
-        NotificationCenter.default.post(name: NSNotification.Name("didLanguageResponseChange"), object: nil, userInfo: ["languageResponse":selectedLanguagePicker])
+        NotificationCenter.default.post(name: .didLanguageResponseChange, object: nil, userInfo: ["languageResponse": selectedLanguagePicker])
         dismissFiltersMovieModalViewController()
         delegateSelectedFilter?.addFilterToMovies(category: selectedCategoryPicker, language: selectedLanguagePicker)
     }

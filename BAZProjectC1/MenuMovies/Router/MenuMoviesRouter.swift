@@ -43,11 +43,11 @@ class MenuMoviesRouter: MenuMoviesRouterProtocol {
      Function that calls the movie detail view to show next.
      */
     func goToMovieDetail(movieDetailData: MovieDetail, view: MenuMoviesViewProtocol) {
-        if let newView = view as? UIViewController {
+//        if let newView = view as? UIViewController {
             DispatchQueue.main.async {
                 let movieDatail = DetailMovieRouter.createDetailMovieModule(movieDetailData: movieDetailData)
-                newView.navigationController?.pushViewController(movieDatail, animated: true)
+                view.navigationController?.pushViewController(movieDatail, animated: true)
             }
-        }
+//        }
     }
 }

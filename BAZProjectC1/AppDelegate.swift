@@ -11,16 +11,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     @objc private func didLanguageResponseChange(_ notification: Notification) {
-        if let info = notification.userInfo as? [String: ApiLanguageResponse],
-           let languageResponse = info["languageResponse"],
-           let encoded = try? JSONEncoder().encode(languageResponse){
-            UserDefaults.standard.set(encoded, forKey: "SelectedLanguageResponse")
-        }
+        guard
+            let info = notification.userInfo as? [String: ApiLanguageResponse],
+            let languageResponse = info["languageResponse"],
+            let encoded = try? JSONEncoder().encode(languageResponse) else { return }
+        UserDefaults.standard.set(encoded, forKey: "SelectedLanguageResponse")
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        NotificationCenter.default.addObserver(self, selector: #selector(didLanguageResponseChange(_:)), name: NSNotification.Name("didLanguageResponseChange"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didLanguageResponseChange(_:)), name: .didLanguageResponseChange, object: nil)
         return true
     }
 
@@ -39,9 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(_ application: UIApplication) {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name("didLanguageResponseChange"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didLanguageResponseChange, object: nil)
     }
 
 
 }
 
+extension NSNotification.Name {
+    static var didLanguageResponseChange = NSNotification.Name("didLanguageResponseChange")
+}

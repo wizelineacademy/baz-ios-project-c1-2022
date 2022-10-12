@@ -12,7 +12,7 @@ import UIKit
 protocol MenuMoviesViewProtocol: AnyObject {
     // PRESENTER -> VIEW
     var presenter: MenuMoviesPresenterProtocol? { get set }
-    
+    var navigationController: UINavigationController? { get set }
     func reloadCollectionViewData()
     func reloadCollectionViewSearchedData()
     func catchResponse(withMessage: String?)
