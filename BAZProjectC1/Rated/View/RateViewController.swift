@@ -10,23 +10,28 @@ import UIKit
 
 class RateViewController : UIViewController {
     
+    private var movieApi: MovieAPI = MovieAPI()
     @IBOutlet weak var tblMenu: UITableView!
-    var lstOptions = [MovieUpdate]()
+    private var lstOptions = [MovieUpdate]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
-        let obj = MovieAPI()
-        obj.getTopRated(completion: { lst in
-            self.lstOptions = lst
-            self.tblMenu.reloadData()
-        })
+        loadData()
+        loadCell()
+        
     }
     
-    func configureViewController() {
+    private func loadCell() {
         tblMenu.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: "MenuCell")
         self.title = "Películas"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    private func loadData() {
+        movieApi.getTopRated(completion: { lst in
+            self.lstOptions = lst
+            self.tblMenu.reloadData()
+        })
     }
     
 }
@@ -49,7 +54,7 @@ extension RateViewController : UITableViewDelegate, UITableViewDataSource {
        
     }
     
-    func navigateToDetailViewController(with index: Int) {
+    private func navigateToDetailViewController(with index: Int) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         switch index {
         case 0:

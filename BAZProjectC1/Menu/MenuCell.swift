@@ -6,13 +6,7 @@
 //
 
 import UIKit
-
-enum ElectionDate: String {
-    case title = "title"
-    case detail = "detail"
-    case image = "image"
-}
-
+ 
 class MenuCell: UITableViewCell {
 
     @IBOutlet weak var imgDetail: UIImageView!

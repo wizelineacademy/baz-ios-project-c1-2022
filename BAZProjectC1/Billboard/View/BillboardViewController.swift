@@ -11,6 +11,7 @@ import UIKit
 class BillboardViewController : UIViewController {
     @IBOutlet weak var clvListMovies: UICollectionView!
     private var lstMovies = [MovieUpdate]()
+    private var movieApi: MovieAPI = MovieAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()

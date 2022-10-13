@@ -11,26 +11,30 @@ import UIKit
 class UpcomingViewController : UIViewController {
     
     @IBOutlet weak var tblMenu: UITableView!
-    var lstOptions = [MovieUpdate]()
+    private var lstOptions = [MovieUpdate]()
+    private var movieApi: MovieAPI = MovieAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureViewController()
-        let obj = MovieAPI()
-        obj.getUpComing(completion: { lst in
-            print("Info \(lst)")
+        loadData()
+        loadCellNav()
+        
+    }
+    
+    private func loadCellNav() {
+        tblMenu.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: "MenuCell")
+        self.title = "Películas"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    private func loadData() {
+        movieApi.getUpComing(completion: { lst in
             self.lstOptions = lst
             
             DispatchQueue.main.async {
             self.tblMenu.reloadData()
             }
         })
-    }
-    
-    func configureViewController() {
-        tblMenu.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: "MenuCell")
-        self.title = "Películas"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
     
 }

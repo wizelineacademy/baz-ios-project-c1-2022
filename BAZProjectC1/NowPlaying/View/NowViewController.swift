@@ -9,31 +9,34 @@ import UIKit
 
 class NowViewController: UIViewController {
 
-    var lstMovies: [MovieUpdate] = []
+    private var lstMovies: [MovieUpdate] = []
+    private var movieApi: MovieAPI = MovieAPI()
     @IBOutlet weak var cvMovies: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Actualmente"
-        loadControl()
-        let movieApi = MovieAPI()
+        
+        loadCell()
         movieApi.getNowPlaying()
-        NotificationCenter.default.addObserver(self, selector: #selector(loadData(notification:)), name: Notification.Name("notificationNowPlay"), object: nil)
-        // Do any additional setup after loading the view.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(presentData(notification:)), name: Notification.Name("notificationNowPlay"), object: nil)
+        
     }
     
-    @objc func loadData(notification: Notification) {
-        guard let lst = (notification.object as? [String: Any])?["infoData"] as? [MovieUpdate] else {
-            return
-        }
-        self.lstMovies = lst
+    @objc private func presentData(notification: Notification) {
         DispatchQueue.main.async {
+            guard let lst = (notification.object as? [String: Any])?["infoData"] as? [MovieUpdate] else {
+                return
+            }
+            self.lstMovies = lst
             self.cvMovies.reloadData()
+            
+            NotificationCenter.default.removeObserver(self, name: Notification.Name("notificationNowPlay"), object: nil)
         }
-        NotificationCenter.default.removeObserver(self, name: Notification.Name("notificationNowPlay"), object: nil)
     }
     
-    func loadControl() {
+    private func loadCell() {
         cvMovies.register(UINib(nibName: "MovieCell",bundle: nil), forCellWithReuseIdentifier: "MovieCell")
     }
     
@@ -62,7 +65,8 @@ extension NowViewController : UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.changeView(iIndex: indexPath.row)
     }
-    func changeView(iIndex: Int) {
+    
+    private func changeView(iIndex: Int) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         vc?.objMov = lstMovies[iIndex]
         self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)

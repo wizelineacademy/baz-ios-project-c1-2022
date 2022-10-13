@@ -12,13 +12,13 @@ class MenuViewController : UIViewController {
     
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var svContainer: UIScrollView!
-     var pgDetail: UIPageControl!
+    private var pgDetail: UIPageControl!
     
-    var lstOptions = [MenuRow(title: "Mas popular", detail: "Aquí encontrarás las peliculas más populares", image: "mostPopular"), MenuRow(title: "Listado Peliculas", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list"), MenuRow(title: "Recomendaciones", detail: "Aquí encontrarás nuestras recomendaciones", image: "list"),
+    private var lstOptions = [MenuRow(title: "Más popular", detail: "Aquí encontrarás las peliculas más populares", image: "mostPopular"), MenuRow(title: "Listado Peliculas", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list"), MenuRow(title: "Recomendaciones", detail: "Aquí encontrarás nuestras recomendaciones", image: "list"),
                       MenuRow(title: "Actualidad", detail: "Aquí encontrarás el listado más actual", image: "list")
                       , MenuRow(title: "Proximamente", detail: "Aquí encontrarás el listado de peliculas más reciente", image: "list")]
-    var lstMovies: [MovieUpdate] = []
-    let movieApi = MovieAPI()
+    private var lstMovies: [MovieUpdate] = []
+    private let movieApi = MovieAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ extension MenuViewController : UITableViewDelegate, UITableViewDataSource {
         self.navigateToDetailViewController(with: indexPath.row)
     }
     
-    func navigateToDetailViewController(with index: Int) {
+    private func navigateToDetailViewController(with index: Int) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         switch index {
         case 0:
@@ -137,7 +137,7 @@ extension MenuViewController : ParalaxFunctionImp {
         changeView(iIndex: at.row)
     }
     
-    func changeView(iIndex: Int) {
+    private func changeView(iIndex: Int) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         vc?.objMov = lstMovies[iIndex]
         self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)

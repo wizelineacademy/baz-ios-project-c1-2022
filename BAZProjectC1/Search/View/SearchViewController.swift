@@ -13,6 +13,7 @@ protocol SearchMovieImp : AnyObject {
 
 class SearchViewController: UIViewController {
     
+    private let movieApi = MovieAPI()
     weak var delegateSearch: SearchMovieImp?
 
     @IBOutlet weak var tblMenu: UITableView!
@@ -29,13 +30,13 @@ class SearchViewController: UIViewController {
         
     }
     
-    func loadConfigNav() {
+    private func loadConfigNav() {
         self.title = "Buscar"
         svSearch.delegate = self
         svSearch.showsScopeBar = true
     }
     
-    func loadConfigTable() {
+    private func loadConfigTable() {
         tblMenu.register(UINib(nibName: "MenuCell", bundle: nil), forCellReuseIdentifier: "MenuCell")
         tblMenu.delegate = self
         tblMenu.dataSource = self
@@ -68,7 +69,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController : UISearchBarDelegate  {
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar) {
-        let movieApi = MovieAPI()
         movieApi.getQuerySearch(strQuery: searchBar.text ?? "", completion: { lst in
             DispatchQueue.main.async {
                 self.lstMovies = lst
@@ -95,16 +95,18 @@ extension SearchViewController : UISearchBarDelegate  {
         cleanControl()
     }
     
-    func loadTable() {
+    private func loadTable() {
         tblMenu.isHidden = false
         vwPlace.isHidden = true
         tblMenu.reloadData()
     }
-    func loadConfig() {
+    
+    private func loadConfig() {
         tblMenu.isHidden = true
         vwPlace.isHidden = false
     }
-    func cleanControl() {
+    
+    private func cleanControl() {
         vwPlace.isHidden = true
         tblMenu.isHidden = true
     }

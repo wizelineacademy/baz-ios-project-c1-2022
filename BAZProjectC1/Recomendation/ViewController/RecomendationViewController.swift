@@ -9,18 +9,18 @@ import UIKit
 
 class RecomendationViewController: UIViewController {
 
-    var lstMovies: [MovieUpdate] = []
+    private var lstMovies: [MovieUpdate] = []
     @IBOutlet weak var cvMovies: UICollectionView!
+    private let movieApi = MovieAPI()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Recomendaciones"
         loadData()
-        loadControl()
+        loadCell()
     }
     
-    func loadData() {
-        let movieApi = MovieAPI()
+    private func loadData() {
         movieApi.getRecomendations(completion: { lst in
             DispatchQueue.main.async {
                 self.lstMovies = lst
@@ -30,7 +30,7 @@ class RecomendationViewController: UIViewController {
         })
     }
     
-    func loadControl() {
+    private func loadCell() {
         cvMovies.register(UINib(nibName: "MovieCell",bundle: nil), forCellWithReuseIdentifier: "MovieCell")
     }
 }
@@ -59,7 +59,7 @@ extension RecomendationViewController: UICollectionViewDelegate, UICollectionVie
         self.changeView(iIndex: indexPath.row)
     }
     
-    func changeView(iIndex: Int) {
+    private func changeView(iIndex: Int) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
         vc?.objMov = lstMovies[iIndex]
         self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
