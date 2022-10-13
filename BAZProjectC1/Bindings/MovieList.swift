@@ -7,12 +7,26 @@
 
 import Foundation
 
-final class MovieList {
+protocol MovieListProtocol {
+    init(movieService: MovieService)
+    func loadMoviesTrending(completion: @escaping (Movie) -> ())
+    func loadMovies(with searchType: String, completion: @escaping (Movie) -> ())
+    func loadMoviesDetail(with searchType: String, completion: @escaping (Movie) -> (), _ movieId: Int)
+}
+
+final class MovieList: MovieListProtocol {
     
     private var movies = Movie(results: [MovieData]())
+    private let movieService: MovieService
     
-    public func loadMoviesTrending(completion: @escaping (Movie) -> ())  {
-        NetworkManager().fetchMovieTrending { [weak self] (page, error) in
+    init(movieService: MovieService = NetworkManager.shared) {
+        self.movieService = movieService
+    }
+}
+
+extension MovieList {
+     func loadMoviesTrending(completion: @escaping (Movie) -> ())  {
+        movieService.fetchMovieTrending { [weak self] (page, error) in
             guard let self = self else { return }
             if let page = page {
                 self.movies = page
@@ -23,8 +37,8 @@ final class MovieList {
         }
     }
     
-    public func loadMovies(with searchType: String, completion: @escaping (Movie) -> ())  {
-        NetworkManager().fetchMovieFilter(completion: { [weak self] (page, error) in
+    func loadMovies(with searchType: String, completion: @escaping (Movie) -> ())  {
+        movieService.fetchMovieFilter(completion: { [weak self] (page, error) in
             guard let self = self else { return }
             if let page = page {
                 self.movies = page
@@ -32,11 +46,11 @@ final class MovieList {
             } else {
                 debugPrint("No movies \(searchType) found")
             }
-        }, filter: searchType) 
+        }, filter: searchType)
     }
     
-    public func loadMoviesDetail(with searchType: String, completion: @escaping (Movie) -> (), _ movieId: Int)  {
-        NetworkManager().fetchMovieDetail(completion: { [weak self] (page, error) in
+    func loadMoviesDetail(with searchType: String, completion: @escaping (Movie) -> (), _ movieId: Int)  {
+        movieService.fetchMovieDetail(completion: { [weak self] (page, error) in
             guard let self = self else { return }
             if let page = page {
                 self.movies = page
@@ -47,4 +61,3 @@ final class MovieList {
         }, movieId: movieId, filter: searchType)
     }
 }
-

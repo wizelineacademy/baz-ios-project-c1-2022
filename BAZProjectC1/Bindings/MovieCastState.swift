@@ -7,12 +7,26 @@
 
 import Foundation
 
-final class MovieCastState {
+
+protocol MovieCastProtocol {
+
+    init(movieService: MovieService)
+    func loadMoviesCast(completion: @escaping (MovieCast) -> (), _ movieId: Int)
+}
+
+final class MovieCastState:MovieCastProtocol {
     
     private var actors = MovieCast(cast: [Cast]())
+    private let movieService:MovieService
     
+    init(movieService: MovieService = NetworkManager.shared) {
+        self.movieService = movieService
+    }
+}
+
+extension MovieCastState {
     public func loadMoviesCast(completion: @escaping (MovieCast) -> (), _ movieId: Int)  {
-        NetworkManager().fetchMovieCast(completion: { [weak self] (actorsCast, erros) in
+        movieService.fetchMovieCast(completion: { [weak self] (actorsCast, erros) in
             guard let self = self else { return }
             if let movieCats = actorsCast {
                 self.actors = movieCats

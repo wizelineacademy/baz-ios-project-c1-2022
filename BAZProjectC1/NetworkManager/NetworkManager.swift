@@ -8,13 +8,29 @@
 import Foundation
 
 
+typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
+typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
+typealias SearchCompletionClosure = ((SearchMovie?,Error?) -> Void)
+
+protocol MovieService {
+    func fetchMovieTrending(completion: MovieCompletionClosure?)
+    func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String)
+    func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String)
+    func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int)
+    func fetchMovieSearch(completion: SearchCompletionClosure?, keyword: String)
+    func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int)
+}
+
+
+
 enum NetworkError: Error {
     case invalidUrl
     case invalidData
 }
 
-struct NetworkManager {
+struct NetworkManager:MovieService {
     
+    static let shared = NetworkManager()
     private let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     /**
      Function that creates a request via url
@@ -54,10 +70,6 @@ struct NetworkManager {
         dataTask.resume()
     }
     
-    
-    typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
-    typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
-    typealias SearchCompletionClosure = ((SearchMovie?,Error?) -> Void)
     /**
      Function tthat obtains the data of the movies
      - Parameters:
