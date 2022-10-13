@@ -10,7 +10,6 @@
 		7A01927128E53CB100AB5420 /* MovieList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01927028E53CB100AB5420 /* MovieList.swift */; };
 		7A01927428E5E9D200AB5420 /* MoviePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A01927328E5E9D200AB5420 /* MoviePresenter.swift */; };
 		7A3D285228EB3A38001FAC1B /* SearchBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3D285128EB3A38001FAC1B /* SearchBarController.swift */; };
-		7A3D285428EB6A44001FAC1B /* SearchMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3D285328EB6A44001FAC1B /* SearchMovie.swift */; };
 		7A3D285628EB8E59001FAC1B /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3D285528EB8E59001FAC1B /* StringExtension.swift */; };
 		7A3D285928EBBA0E001FAC1B /* customCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3D285828EBBA0E001FAC1B /* customCell.xib */; };
 		7A3D285B28EBBA65001FAC1B /* customCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3D285A28EBBA65001FAC1B /* customCellController.swift */; };
@@ -52,7 +51,6 @@
 		7A01927028E53CB100AB5420 /* MovieList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieList.swift; sourceTree = "<group>"; };
 		7A01927328E5E9D200AB5420 /* MoviePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviePresenter.swift; sourceTree = "<group>"; };
 		7A3D285128EB3A38001FAC1B /* SearchBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarController.swift; sourceTree = "<group>"; };
-		7A3D285328EB6A44001FAC1B /* SearchMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchMovie.swift; sourceTree = "<group>"; };
 		7A3D285528EB8E59001FAC1B /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		7A3D285828EBBA0E001FAC1B /* customCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = customCell.xib; sourceTree = "<group>"; };
 		7A3D285A28EBBA65001FAC1B /* customCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customCellController.swift; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 			isa = PBXGroup;
 			children = (
 				7A58614328E8FFE3008378A3 /* Cast.swift */,
-				7A3D285328EB6A44001FAC1B /* SearchMovie.swift */,
 				C30893E128A425E1004B1860 /* Movie.swift */,
 			);
 			path = Models;
@@ -429,7 +426,6 @@
 				7A3D286228EC7599001FAC1B /* MovieSearch.swift in Sources */,
 				7A54956728DCAF9700ECAC26 /* MovieDetailController.swift in Sources */,
 				7A54956328DAB7A100ECAC26 /* MovieCardCellController.swift in Sources */,
-				7A3D285428EB6A44001FAC1B /* SearchMovie.swift in Sources */,
 				7A3D285228EB3A38001FAC1B /* SearchBarController.swift in Sources */,
 				7AEBE36628E3F6E3003DA78B /* CollectionViewMovie.swift in Sources */,
 				C30893B028A2F42B004B1860 /* SceneDelegate.swift in Sources */,
