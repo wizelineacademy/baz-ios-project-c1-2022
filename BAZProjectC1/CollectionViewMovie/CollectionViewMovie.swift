@@ -19,7 +19,7 @@ final class CollectionViewMovie: UICollectionViewCell {
         super.awakeFromNib()
         setupView()
     }
-
+    
     private func setupView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -46,8 +46,10 @@ extension CollectionViewMovie: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? MovieCardCellController else { return UICollectionViewCell() }
         cell.movieTitle.text = movies.results[indexPath.row].title
-        cell.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(movies.results[indexPath.row].posterPath)")
-        cell.movieVotes.text = "\(String(Int(movies.results[indexPath.row].voteAverage.rounded(.down))))/10"
+        if let imageMovie = movies.results[indexPath.row].posterPath {
+            cell.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+            cell.movieVotes.text = "\(String(Int(movies.results[indexPath.row].voteAverage!.rounded(.down))))/10"
+        }
         return cell
     }
 }
@@ -60,7 +62,7 @@ extension CollectionViewMovie: UICollectionViewDelegate {
 
 extension CollectionViewMovie: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: CGFloat(150), height: CGFloat(300))
+        return CGSize(width: CGFloat(150), height: CGFloat(300))
     }
 }
 

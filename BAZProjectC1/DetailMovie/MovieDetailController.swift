@@ -12,11 +12,6 @@ final class MovieDetailController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     public var movies:MovieData?
-    public var movieId:Int?
-    public var movieImageUrl:String?
-    public var movieOverview:String?
-    public var movieTitle:String?
-    public var movieRating:Double?
     private let movieCollectionIdentifier = "CollectionViewMovie"
     private let headerDetailIdentifier = "DetailMovieCell"
     private let headerTitleSections = "HeaderView"
@@ -42,7 +37,7 @@ final class MovieDetailController: UIViewController {
     }
     
     private func loadData() {
-        if let movieId = movieId {
+        if let movieId = movies?.id {
             movieListPresenter = MovieListPresenter(view: self)
             movieListPresenter?.loadDataRecomendadas(using: collectionView, movieId: movieId)
             movieListPresenter?.loadDataSimilar(using: collectionView, movieId: movieId)
@@ -54,11 +49,6 @@ final class MovieDetailController: UIViewController {
     public func presentView(for movieData: MovieData) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movies = movieData
-        vcMovieDetails.movieOverview = movieData.overview
-        vcMovieDetails.movieImageUrl = movieData.backdropPath
-        vcMovieDetails.movieId = movieData.id
-        vcMovieDetails.movieRating = movieData.voteAverage
-        vcMovieDetails.movieTitle = movieData.title
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
 }
@@ -98,9 +88,9 @@ extension MovieDetailController: UICollectionViewDataSource {
         switch indexPath.section {
         case 0:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerDetailIdentifier, for: indexPath) as? DetailMovieCell else { return UICollectionReusableView () }
-            header.movieTitle.text = movieTitle
-            header.movieReview.text = movieOverview
-            if let imageMovie = movieImageUrl, let averageCount = movieRating {
+            header.movieTitle.text = movies?.title
+            header.movieReview.text = movies?.overview
+            if let imageMovie = movies?.posterPath, let averageCount = movies?.voteAverage {
                 header.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
                 header.movieRating.text = "Puntuacion: \(String(describing: Int(averageCount.rounded(.down))))/10"
             }

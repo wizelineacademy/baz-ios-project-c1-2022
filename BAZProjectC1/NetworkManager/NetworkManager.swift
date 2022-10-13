@@ -10,14 +10,14 @@ import Foundation
 
 typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
 typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
-typealias SearchCompletionClosure = ((SearchMovie?,Error?) -> Void)
+
 
 protocol MovieService {
     func fetchMovieTrending(completion: MovieCompletionClosure?)
     func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String)
     func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String)
     func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int)
-    func fetchMovieSearch(completion: SearchCompletionClosure?, keyword: String)
+    func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String)
     func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int)
 }
 
@@ -37,7 +37,7 @@ struct NetworkManager:MovieService {
      - Parameters:
      - url: Element equivalent to url
      - Returns: URLRequest?. Request with specific configuration
-     */    
+     */
     private func createRequest(for url: String) -> URLRequest? {
         guard let url = URL(string: url) else { return nil }
         var request = URLRequest(url: url)
@@ -106,7 +106,7 @@ struct NetworkManager:MovieService {
         executeRequest(request: request, completion: completion)
     }
     
-    public func fetchMovieSearch(completion: SearchCompletionClosure?, keyword: String) {
+    public func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String) {
         guard let request = createRequest(for: "https://api.themoviedb.org/3/search/multi?api_key=\(apiKey)&query=\(keyword)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
             return

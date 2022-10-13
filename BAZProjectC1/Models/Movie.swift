@@ -40,21 +40,38 @@ struct Movie: Codable {
 
 // MARK: - MovieData
 struct MovieData: Codable {
+    let adult: Bool?
+    let backdropPath: String?
+    let genreIDS: [Int]?
     let id: Int
-    let title: String
-    let posterPath, overview: String
-    let releaseDate: String
-    let voteAverage: Double
-    let voteCount:  Int
-    let backdropPath: String
+    let originalTitle, overview: String?
+    let popularity: Double
+    let posterPath, releaseDate, title: String?
+    let video: Bool?
+    let voteAverage: Double?
+    let voteCount: Int?
+    let firstAirDate, name: String?
+    let originalName: String?
+    let gender: Int?
+    let knownForDepartment, profilePath: String?
     
     enum CodingKeys: String, CodingKey {
-        case id, title
+        case adult
+        case backdropPath = "backdrop_path"
+        case genreIDS = "genre_ids"
+        case id
+        case originalTitle = "original_title"
+        case overview, popularity
         case posterPath = "poster_path"
-        case overview
         case releaseDate = "release_date"
+        case title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
-        case backdropPath = "backdrop_path"
+        case firstAirDate = "first_air_date"
+        case name
+        case originalName = "original_name"
+        case gender
+        case knownForDepartment = "known_for_department"
+        case profilePath = "profile_path"
     }
 }

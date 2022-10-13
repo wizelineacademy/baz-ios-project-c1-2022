@@ -10,12 +10,12 @@ import Foundation
 protocol MovieSearchProtocol {
     
     init(movieService: MovieService)
-    func loadMoviesSearch(with keyword: String, completion: @escaping (SearchMovie) -> ())
+    func loadMoviesSearch(with keyword: String, completion: @escaping (Movie) -> ())
 }
 
 final class MovieSearch:MovieSearchProtocol {
     
-    private var moviesSearch = SearchMovie(results: [MovieSearchData]())
+    private var moviesSearch = Movie(results: [MovieData]())
     private let movieService:MovieService
     
     init(movieService: MovieService = NetworkManager.shared) {
@@ -25,7 +25,7 @@ final class MovieSearch:MovieSearchProtocol {
 
 extension MovieSearch {
     
-    public func loadMoviesSearch(with keyword: String, completion: @escaping (SearchMovie) -> ())  {
+    public func loadMoviesSearch(with keyword: String, completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieSearch(completion: { [weak self] (movies,error) in
             guard let self = self else { return }
             if let page = movies {

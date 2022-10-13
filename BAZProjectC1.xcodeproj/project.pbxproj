@@ -30,6 +30,7 @@
 		7A58614728EA38AB008378A3 /* CollectionViewCast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A58614628EA38AB008378A3 /* CollectionViewCast.xib */; };
 		7A58614928EA38C1008378A3 /* CollectionViewCast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A58614828EA38C1008378A3 /* CollectionViewCast.swift */; };
 		7A5D117628E23E7900EB0B8B /* CollectionExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5D117528E23E7900EB0B8B /* CollectionExtension.swift */; };
+		7A5D66C228F7DE2200A2D3A1 /* NotificationCenterHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A5D66C128F7DE2200A2D3A1 /* NotificationCenterHelper.swift */; };
 		7AAB02A728DE356600589086 /* UIImageViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AAB02A628DE356600589086 /* UIImageViewExtension.swift */; };
 		7AE59BED28E8AC440091B136 /* DetailMovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE59BEC28E8AC440091B136 /* DetailMovieCell.swift */; };
 		7AE59BEF28E8AC6D0091B136 /* DetailMovieCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AE59BEE28E8AC6D0091B136 /* DetailMovieCell.xib */; };
@@ -71,6 +72,7 @@
 		7A58614628EA38AB008378A3 /* CollectionViewCast.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewCast.xib; sourceTree = "<group>"; };
 		7A58614828EA38C1008378A3 /* CollectionViewCast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewCast.swift; sourceTree = "<group>"; };
 		7A5D117528E23E7900EB0B8B /* CollectionExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionExtension.swift; sourceTree = "<group>"; };
+		7A5D66C128F7DE2200A2D3A1 /* NotificationCenterHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterHelper.swift; sourceTree = "<group>"; };
 		7AAB02A628DE356600589086 /* UIImageViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewExtension.swift; sourceTree = "<group>"; };
 		7AE59BEC28E8AC440091B136 /* DetailMovieCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieCell.swift; sourceTree = "<group>"; };
 		7AE59BEE28E8AC6D0091B136 /* DetailMovieCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMovieCell.xib; sourceTree = "<group>"; };
@@ -226,6 +228,14 @@
 			path = CollectionViewCast;
 			sourceTree = "<group>";
 		};
+		7A5D66C028F7D79500A2D3A1 /* NotificationCenter */ = {
+			isa = PBXGroup;
+			children = (
+				7A5D66C128F7DE2200A2D3A1 /* NotificationCenterHelper.swift */,
+			);
+			path = NotificationCenter;
+			sourceTree = "<group>";
+		};
 		7AAB02A528DE34FE00589086 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,6 +315,7 @@
 		C30893AC28A2F42B004B1860 /* BAZProjectC1 */ = {
 			isa = PBXGroup;
 			children = (
+				7A5D66C028F7D79500A2D3A1 /* NotificationCenter */,
 				7A3D286328EC83C1001FAC1B /* Models */,
 				7A3D285E28EC7544001FAC1B /* Bindings */,
 				7A3D285028EB3A19001FAC1B /* SearchBar */,
@@ -410,6 +421,7 @@
 				C30893AE28A2F42B004B1860 /* AppDelegate.swift in Sources */,
 				7A3D286028EC7584001FAC1B /* MovieCastState.swift in Sources */,
 				7A3D285B28EBBA65001FAC1B /* customCellController.swift in Sources */,
+				7A5D66C228F7DE2200A2D3A1 /* NotificationCenterHelper.swift in Sources */,
 				7AEBE36228E3A336003DA78B /* HeaderViewController.swift in Sources */,
 				7A3D286628EC8F2A001FAC1B /* CastPresenter.swift in Sources */,
 				7A01927128E53CB100AB5420 /* MovieList.swift in Sources */,

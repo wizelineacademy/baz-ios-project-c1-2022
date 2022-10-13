@@ -12,9 +12,9 @@ final class SearchBarController: UIViewController {
     @IBOutlet private var textField: UITextField!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
-    private var moviesSearch = SearchMovie(results: [MovieSearchData]())
+    private var moviesSearch = Movie(results: [MovieData]())
     private var searching = MovieSearch()
-    private var arregloFiltrados:[MovieSearchData] = []
+    private var arregloFiltrados:[MovieData] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         configTable()
@@ -22,7 +22,13 @@ final class SearchBarController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        addObserver()
         self.dismissKeyboard()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        removeObserver()
     }
     
     private func configTable() {
@@ -32,7 +38,6 @@ final class SearchBarController: UIViewController {
         tableView.register(UINib(nibName: "customCell", bundle: nil), forCellReuseIdentifier: "tablecell")
     }
     
-    
     private func loadDataSimilar(keyword: String) {
         searching.loadMoviesSearch(with: keyword) { (movie) in
             self.moviesSearch = movie
@@ -41,6 +46,24 @@ final class SearchBarController: UIViewController {
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    private func addObserver() {
+        NotificationCenterHelper.suscribeToNotification(self, with: #selector(notificationReceived), name: .detailMovie)
+    }
+    
+    private func removeObserver() {
+        NotificationCenterHelper.myNotificationCenter.removeObserver(self, name: .detailMovie, object: nil)
+    }
+    
+    @objc private func notificationReceived(_ notification: NSNotification) {
+        guard let newMovie = notification.userInfo?["didSelectMovie"] as? MovieData else {
+            return
+        }
+        
+        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
+        vcMovieDetails.movies = newMovie
+        self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
     
 }
@@ -66,13 +89,7 @@ extension SearchBarController: UITableViewDataSource {
 extension SearchBarController:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
-        vcMovieDetails.movieId = arregloFiltrados[indexPath.row].id
-        vcMovieDetails.movieImageUrl = arregloFiltrados[indexPath.row].backdropPath
-        vcMovieDetails.movieOverview = arregloFiltrados[indexPath.row].overview
-        vcMovieDetails.movieTitle = arregloFiltrados[indexPath.row].title
-        vcMovieDetails.movieRating = arregloFiltrados[indexPath.row].voteAverage
-        self.navigationController?.pushViewController(vcMovieDetails, animated: true)
+        NotificationCenterHelper.myNotificationCenter.post(name: .detailMovie, object: nil, userInfo: ["didSelectMovie": arregloFiltrados[indexPath.row]])
         tableView.deselectRow(at: indexPath, animated: true)
         
     }
@@ -100,3 +117,4 @@ extension SearchBarController: UISearchBarDelegate {
         self.tableView.reloadData()
     }
 }
+

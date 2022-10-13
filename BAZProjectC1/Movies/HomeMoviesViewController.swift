@@ -34,11 +34,6 @@ final class HomeMoviesViewController: UIViewController {
     public func presentView(for information: MovieData) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movies = information
-        vcMovieDetails.movieOverview = information.overview
-        vcMovieDetails.movieImageUrl = information.backdropPath
-        vcMovieDetails.movieId = information.id
-        vcMovieDetails.movieRating = information.voteAverage
-        vcMovieDetails.movieTitle = information.title
         self.navigationController?.pushViewController(vcMovieDetails, animated: true)
     }
 }
@@ -57,9 +52,9 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return presenter!.getMovies(forRow: indexPath.section, using: collectionView, forPresent: self)
-   
+        
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
