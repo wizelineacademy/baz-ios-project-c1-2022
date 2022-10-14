@@ -15,11 +15,11 @@ final class MoviePresenter {
     private var moviesTop = Movie(results: [MovieData]())
     private var moviesUpcoming = Movie(results: [MovieData]())
     
-    private var treding = MovieList()
-    private var nowPlaying = MovieList()
-    private var Popular = MovieList()
-    private var topRated = MovieList()
-    private var upcoming = MovieList()
+    private var treding:MovieListProtocol = MovieList()
+    private var nowPlaying:MovieListProtocol = MovieList()
+    private var Popular:MovieListProtocol = MovieList()
+    private var topRated:MovieListProtocol = MovieList()
+    private var upcoming:MovieListProtocol = MovieList()
     
     private weak var view: HomeMoviesViewController?
     

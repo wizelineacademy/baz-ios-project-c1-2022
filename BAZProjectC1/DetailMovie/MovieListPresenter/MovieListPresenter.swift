@@ -9,7 +9,7 @@ import UIKit
 
 final class MovieListPresenter {
     
-    private var movie = MovieList()
+    private var movie:MovieListProtocol = MovieList()
     private var similarMovies = Movie(results: [MovieData]())
     private var recommendsMovies = Movie(results: [MovieData]())
     private let reuseIndentifier = "CollectionViewMovie"

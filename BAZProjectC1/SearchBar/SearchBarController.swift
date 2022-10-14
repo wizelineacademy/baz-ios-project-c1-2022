@@ -13,24 +13,23 @@ final class SearchBarController: UIViewController {
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
     private var moviesSearch = Movie(results: [MovieData]())
-    private var searching = MovieSearch()
+    private var searching:MovieSearchProtocol = MovieSearch()
     private var arregloFiltrados:[MovieData] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configTable()
+        addObserver()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        addObserver()
         self.dismissKeyboard()
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    deinit {
         removeObserver()
     }
-    
     private func configTable() {
         tableView.dataSource = self
         tableView.delegate = self

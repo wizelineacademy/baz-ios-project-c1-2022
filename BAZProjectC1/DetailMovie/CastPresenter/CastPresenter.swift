@@ -9,8 +9,8 @@ import UIKit
 
 final class CastPresenter {
    
-    private var recommends = MovieList()
-    private var actorsMovie = MovieCastState()
+    private var recommends:MovieListProtocol = MovieList()
+    private var actorsMovie:MovieCastProtocol = MovieCastState()
     private var recommendsMovies = Movie(results: [MovieData]())
     private var castMovie = MovieCast(cast: [Cast]())
     private let reuseIndentifier = "CollectionViewCast"
