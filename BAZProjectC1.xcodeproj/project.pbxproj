@@ -178,16 +178,8 @@
 				0C4A58F228DA2F6C003D18BB /* MenuCell.swift */,
 				0C4A58F328DA2F6C003D18BB /* MenuCell.xib */,
 				0C9F35CF28DB5FB5000EE296 /* View */,
-				0C9F35CE28DB5FA4000EE296 /* Model */,
 			);
 			path = Menu;
-			sourceTree = "<group>";
-		};
-		0C9F35CE28DB5FA4000EE296 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0C9F35CF28DB5FB5000EE296 /* View */ = {
@@ -226,7 +218,6 @@
 		0C9F35D328DB971E000EE296 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				0C9F35D528DB973D000EE296 /* Model */,
 				0C9F35D428DB9732000EE296 /* View */,
 			);
 			path = Detail;
@@ -240,19 +231,11 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		0C9F35D528DB973D000EE296 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		0C9F35D828DBCDC3000EE296 /* Billboard */ = {
 			isa = PBXGroup;
 			children = (
 				0C9F35DE28DBCE34000EE296 /* MovieCell.swift */,
 				0C9F35DF28DBCE34000EE296 /* MovieCell.xib */,
-				0C9F35DA28DBCDD6000EE296 /* Model */,
 				0C9F35D928DBCDCF000EE296 /* View */,
 			);
 			path = Billboard;
@@ -264,13 +247,6 @@
 				0C9F35E228DBCE5D000EE296 /* BillboardViewController.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		0C9F35DA28DBCDD6000EE296 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		0CD7275728EA107E00B84267 /* Control */ = {

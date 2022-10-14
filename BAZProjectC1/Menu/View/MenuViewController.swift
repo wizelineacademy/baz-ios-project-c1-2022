@@ -34,9 +34,9 @@ class MenuViewController : UIViewController {
     }
     
     private func getMostPopularMovies() {
-        movieApi.getMostPopular(completion: { lstInfo in
-            self.lstMovies = lstInfo
-            DispatchQueue.main.async { [weak self] in
+        self.movieApi.getMostPopular(completion: { [weak self] lstInfo in
+            self?.lstMovies = lstInfo
+            DispatchQueue.main.async {
                 self?.setupScrollView()
             }
         })

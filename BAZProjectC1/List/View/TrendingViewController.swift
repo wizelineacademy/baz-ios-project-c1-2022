@@ -25,9 +25,9 @@ class TrendingViewController: UITableViewController {
     }
     
     private func getMostPopularMovies() {
-        movieApi.getMostPopular(completion: { lstInfo in
-            self.movies = lstInfo
-            DispatchQueue.main.async { [weak self] in
+        movieApi.getMostPopular(completion: { [weak self] lstInfo in
+            DispatchQueue.main.async {
+                self?.movies = lstInfo
                 self?.tableView.reloadData()
             }
         })

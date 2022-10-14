@@ -20,7 +20,12 @@ class MenuCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+    /**
+     - parameters: menu raw model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
     func configureCellMenu(with rowMenu: MenuRow) {
         lblTitle.text = rowMenu.title
         lblTitle.loadConfigurationFont(with: true)
@@ -29,6 +34,12 @@ class MenuCell: UITableViewCell {
         imgDetail.image = UIImage.init(named: rowMenu.image)
     }
     
+    /**
+     - parameters: movieUpdate model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
     func configureCellWithUrl(movieInfo: MovieUpdate) {
         lblTitle.text = movieInfo.title
         lblTitle.loadConfigurationFont(with: true)

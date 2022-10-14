@@ -31,7 +31,6 @@ class NowViewController: UIViewController {
             }
             self.lstMovies = lst
             self.cvMovies.reloadData()
-            
             NotificationCenter.default.removeObserver(self, name: Notification.Name("notificationNowPlay"), object: nil)
         }
     }

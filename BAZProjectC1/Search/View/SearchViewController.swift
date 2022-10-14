@@ -69,14 +69,13 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController : UISearchBarDelegate  {
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar) {
-        movieApi.getQuerySearch(strQuery: searchBar.text ?? "", completion: { lst in
+        movieApi.getQuerySearch(strQuery: searchBar.text ?? "", completion: { [weak self] lst in
             DispatchQueue.main.async {
-                self.lstMovies = lst
-                
+                self?.lstMovies = lst
                 if lst.count > 0 {
-                    self.loadTable()
+                    self?.loadTable()
                 } else {
-                    self.loadConfig()
+                    self?.loadConfig()
                 }
             }
         })

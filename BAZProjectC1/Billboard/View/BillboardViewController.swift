@@ -19,7 +19,7 @@ class BillboardViewController : UIViewController {
         self.getMoviesUpdate()
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         self.title = "En cartelera"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
@@ -29,9 +29,9 @@ class BillboardViewController : UIViewController {
     }
     
     private func getMoviesUpdate() {
-        MovieAPI().getMoviesUpdate(completion: { lstResult in
-            self.lstMovies = lstResult
-            DispatchQueue.main.async { [weak self] in
+        movieApi.getMoviesUpdate(completion: { [weak self] lstResult in
+            DispatchQueue.main.async {
+                self?.lstMovies = lstResult
                 self?.clvListMovies.reloadData()
             }
         })

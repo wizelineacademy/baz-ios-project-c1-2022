@@ -18,7 +18,6 @@ class UpcomingViewController : UIViewController {
         super.viewDidLoad()
         loadData()
         loadCellNav()
-        
     }
     
     private func loadCellNav() {
@@ -29,10 +28,9 @@ class UpcomingViewController : UIViewController {
     
     private func loadData() {
         movieApi.getUpComing(completion: { lst in
-            self.lstOptions = lst
-            
             DispatchQueue.main.async {
-            self.tblMenu.reloadData()
+                self.lstOptions = lst
+                self.tblMenu.reloadData()
             }
         })
     }
@@ -51,28 +49,6 @@ extension UpcomingViewController : UITableViewDelegate, UITableViewDataSource {
         }
         cell.configureCellWithUrl(movieInfo: lstOptions[indexPath.row])
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-       // self.navigateToDetailViewController(with: indexPath.row)
-       
-    }
-    
-    func navigateToDetailViewController(with index: Int) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        switch index {
-        case 0:
-            let vc = sb.instantiateViewController(withIdentifier: "TrendingViewController") as? TrendingViewController
-            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
-        case 1:
-            let vc = sb.instantiateViewController(withIdentifier: "BillboardViewController") as? BillboardViewController
-            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
-        case 2:
-            let vc = sb.instantiateViewController(withIdentifier: "UpcomingViewController") as? UpcomingViewController
-            self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
-        default:
-            break
-        }
     }
     
 }

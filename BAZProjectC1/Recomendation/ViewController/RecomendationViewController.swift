@@ -21,11 +21,10 @@ class RecomendationViewController: UIViewController {
     }
     
     private func loadData() {
-        movieApi.getRecomendations(completion: { lst in
+        movieApi.getRecomendations(completion: { [weak self] lst in
             DispatchQueue.main.async {
-                self.lstMovies = lst
-                self.cvMovies.reloadData()
-               
+                self?.lstMovies = lst
+                self?.cvMovies.reloadData()
             }
         })
     }
