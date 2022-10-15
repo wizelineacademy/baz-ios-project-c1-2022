@@ -7,10 +7,8 @@
 
 import Foundation
 
-
 typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
 typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
-
 
 protocol MovieService {
     func fetchMovieTrending(completion: MovieCompletionClosure?)
@@ -20,8 +18,6 @@ protocol MovieService {
     func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String)
     func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int)
 }
-
-
 
 enum NetworkError: Error {
     case invalidUrl

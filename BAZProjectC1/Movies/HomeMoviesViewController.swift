@@ -11,7 +11,7 @@ import UIKit
 final class HomeMoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var numberOfSections:Int = 5
+    private var numberOfSections: Int = 5
     private var presenter: MoviePresenter?
     private let headerReuseIndentifier = "HeaderView"
     private let collectionMovieReuseIdentifier = "CollectionViewMovie"
@@ -54,7 +54,6 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
         return presenter!.getMovies(forRow: indexPath.section, using: collectionView, forPresent: self)
         
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }

@@ -32,9 +32,7 @@ final class CastPresenter {
     public func getCast(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController) -> UICollectionViewCell {
         guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIndentifier, for: IndexPath(row: row, section: 0)) as? CollectionViewCast else { return UICollectionViewCell() }
         collectionCell.loadData(actorsMovie: castMovie)
-        
         return collectionCell
-        
     }
     
 }

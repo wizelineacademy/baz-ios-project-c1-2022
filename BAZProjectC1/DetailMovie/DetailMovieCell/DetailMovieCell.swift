@@ -18,12 +18,10 @@ final class DetailMovieCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()
-        
     }
     
     private func configView() {
         movieReview.isEditable = false
         movieImage.layer.cornerRadius = 10
-
     }
 }

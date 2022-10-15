@@ -19,6 +19,7 @@ final class MovieDetailController: UIViewController {
     private let collectionCastIdentifier = "CollectionViewCast"
     private var detailPresenter: CastPresenter?
     private var movieListPresenter: MovieListPresenter?
+    private let movieDetailSections = 4
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,7 +57,7 @@ final class MovieDetailController: UIViewController {
 
 extension MovieDetailController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 4
+        return movieDetailSections
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -78,10 +79,6 @@ extension MovieDetailController: UICollectionViewDataSource {
         default:
             return UICollectionViewCell()
         }
-        
-        
-        
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -109,13 +106,8 @@ extension MovieDetailController: UICollectionViewDataSource {
             return header
         default:
             return UICollectionReusableView()
-            
-            
         }
     }
-    
-    
-    
 }
 
 extension MovieDetailController: UICollectionViewDelegateFlowLayout {
@@ -134,7 +126,6 @@ extension MovieDetailController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
             
         }
-        
     }
     
     

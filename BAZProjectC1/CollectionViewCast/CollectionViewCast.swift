@@ -34,7 +34,7 @@ final class CollectionViewCast: UICollectionViewCell {
 
 extension CollectionViewCast: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return actorsCast.cast.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

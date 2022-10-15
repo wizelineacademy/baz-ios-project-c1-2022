@@ -14,6 +14,7 @@ final class CollectionViewMovie: UICollectionViewCell {
     private var movies = Movie(results: [MovieData]())
     typealias cellSelectionClosure = ((Movie,MovieData) -> Void)
     public var onSelect: cellSelectionClosure?
+    private let numberOfSections = 5
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +41,7 @@ extension CollectionViewMovie: UICollectionViewDataSource {
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        5
+        numberOfSections
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

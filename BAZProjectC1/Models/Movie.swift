@@ -6,7 +6,6 @@
 
 import Foundation
 
-
 enum MovieListType: String {
     case similar
     case recommendation

@@ -42,6 +42,7 @@ final class MovieListPresenter {
     }
     public func getMovies(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController, typeOfMovie: String) -> UICollectionViewCell {
         switch typeOfMovie {
+            
         case MovieListType.similar.rawValue :
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIndentifier, for: IndexPath(row: row, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
             collectionCell.loadData(movies: similarMovies)
@@ -60,7 +61,6 @@ final class MovieListPresenter {
             return UICollectionViewCell()
         }
 
-        
     }
 
 }
