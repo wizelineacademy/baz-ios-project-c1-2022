@@ -11,13 +11,21 @@ class DetailMoviesViewController: UIViewController {
     
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var imgPoster: UIImageView!
+    @IBOutlet weak var imgPoster: ImageView!
+    private let urlBaseImg = "https://image.tmdb.org/t/p/w500"
     var strTitle:String = ""
+    var strDetails:String = ""
+    var strImgMoviePath:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lblTitle.text = strTitle
-        
+        title = ConstantsDetailMovies.titleDetail
+        self.lblTitle.text = self.strTitle
+        self.lblDescription.text = self.strDetails
+        self.imgPoster.loadImage(urlStr: "\(urlBaseImg)\(strImgMoviePath )")
+        NotificationCenter.default.addObserver(self,selector:#selector(notificationRecived),name: Notification.Name("colorChanged"),object: nil )
     }
-
+    @objc func notificationRecived (){
+        view.backgroundColor = .cyan
+    }
 }

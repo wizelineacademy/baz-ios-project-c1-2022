@@ -1,0 +1,9 @@
+/* 
+  Localizable.strings
+  BAZProjectC1
+
+  Created by rnunezi on 03/10/22.
+  
+*/
+"title.movieCollectionViewController" = "Peliculas";
+"title.detailMoviesViewController" = "Detalle de la Pelicula";

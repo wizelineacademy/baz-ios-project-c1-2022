@@ -1,0 +1,15 @@
+
+/* Class = "UINavigationItem"; title = "Trending Movies"; ObjectID = "8E9-i5-K0G"; */
+"8E9-i5-K0G.title" = "Trending Movies";
+
+/* Class = "UITableViewController"; title = "Trending Movies"; ObjectID = "DF1-ZG-ayL"; */
+"DF1-ZG-ayL.title" = "Trending Movies";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "UoY-Dn-rj2"; */
+"UoY-Dn-rj2.text" = "Title";
+
+/* Class = "UITabBarItem"; title = "Trending"; ObjectID = "g6Q-u2-bk6"; */
+"g6Q-u2-bk6.title" = "Trending";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "zhh-OB-WZn"; */
+"zhh-OB-WZn.title" = "Item";
