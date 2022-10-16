@@ -41,7 +41,7 @@ extension CollectionViewCast: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? CreditsMovie else { return UICollectionViewCell() }
         if let actor = actorsCast.cast[indexPath.row].name, let imageActor = actorsCast.cast[indexPath.row].profilePath{
             cell.actorName.text = actor
-            cell.actorImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(String(describing: imageActor))")
+            cell.actorImage.downloaded(from: "\(String(describing: imageActor))")
         }
         return cell
     }

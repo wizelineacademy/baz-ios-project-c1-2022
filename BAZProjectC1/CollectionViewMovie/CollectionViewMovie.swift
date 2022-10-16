@@ -48,7 +48,7 @@ extension CollectionViewMovie: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? MovieCardCellController else { return UICollectionViewCell() }
         cell.movieTitle.text = movies.results[indexPath.row].title
         if let imageMovie = movies.results[indexPath.row].posterPath {
-            cell.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+            cell.movieImage.downloaded(from: "\(imageMovie)")
             cell.movieVotes.text = "\(String(Int(movies.results[indexPath.row].voteAverage!.rounded(.down))))/10"
         }
         return cell

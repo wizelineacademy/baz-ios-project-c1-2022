@@ -8,6 +8,14 @@
 import Foundation
 import UIKit
 
+enum SectionTitles: String {
+    case trending = "Trending"
+    case nowPlaying = "Now Playing"
+    case popular = "Popular"
+    case topRated = "Top  Rated"
+    case upcoming = "Upcoming"
+}
+
 final class HomeMoviesViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -59,15 +67,15 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
         guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "HeaderView", for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
         switch indexPath.section {
         case 0:
-            header.titleLabel.text = "Trending"
+            header.titleLabel.text = SectionTitles.trending.rawValue
         case 1:
-            header.titleLabel.text = "Now Playing"
+            header.titleLabel.text = SectionTitles.nowPlaying.rawValue
         case 2:
-            header.titleLabel.text = "Popular"
+            header.titleLabel.text = SectionTitles.popular.rawValue
         case 3:
-            header.titleLabel.text = "Top Rated"
+            header.titleLabel.text = SectionTitles.topRated.rawValue
         case 4:
-            header.titleLabel.text = "Upcoming"
+            header.titleLabel.text = SectionTitles.upcoming.rawValue
         default:
             return UICollectionReusableView()
         }

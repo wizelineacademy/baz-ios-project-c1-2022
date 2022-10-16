@@ -8,6 +8,12 @@
 import Foundation
 import UIKit
 
+enum SectionsOfDetail: String {
+    case casting = "Reparto"
+    case recommendedMovies = "Películas Recomendadas"
+    case relatedMovies = "Películas Similares"
+}
+
 final class MovieDetailController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -88,21 +94,21 @@ extension MovieDetailController: UICollectionViewDataSource {
             header.movieTitle.text = movies?.title
             header.movieReview.text = movies?.overview
             if let imageMovie = movies?.posterPath, let averageCount = movies?.voteAverage {
-                header.movieImage.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+                header.movieImage.downloaded(from: "\(imageMovie)")
                 header.movieRating.text = "Puntuacion: \(String(describing: Int(averageCount.rounded(.down))))/10"
             }
             return header
         case 1:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
-            header.titleLabel.text = "Reparto"
+            header.titleLabel.text = SectionsOfDetail.casting.rawValue
             return header
         case 2:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
-            header.titleLabel.text = "Peliculas Recomendadas"
+            header.titleLabel.text = SectionsOfDetail.recommendedMovies.rawValue
             return header
         case 3:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerTitleSections, for: indexPath) as? HeaderViewController else { return UICollectionReusableView() }
-            header.titleLabel.text = "Peliculas Similares"
+            header.titleLabel.text = SectionsOfDetail.relatedMovies.rawValue
             return header
         default:
             return UICollectionReusableView()
@@ -133,11 +139,11 @@ extension MovieDetailController: UICollectionViewDelegateFlowLayout {
         
         switch section {
         case 0:
-            return CGSize(width: collectionView.frame.size.width, height: CGFloat(480))
+            return CGSize(width: collectionView.frame.size.width, height: 480)
         case 1:
-            return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
+            return CGSize(width: collectionView.frame.size.width, height: 100)
         default:
-            return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
+            return CGSize(width: collectionView.frame.size.width, height: 100)
         }
         
     }

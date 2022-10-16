@@ -77,7 +77,7 @@ extension SearchBarController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let celda = tableView.dequeueReusableCell(withIdentifier: "tablecell", for: indexPath) as? customCellController else { return UITableViewCell() }
         if let imageMovie = arregloFiltrados[indexPath.row].posterPath, let _ = arregloFiltrados[indexPath.row].title {
-            celda.imageMovie.downloaded(from: "https://image.tmdb.org/t/p/w500\(imageMovie)")
+            celda.imageMovie.downloaded(from: "\(imageMovie)")
             celda.titleMovie.text = arregloFiltrados[indexPath.row].title
         }
         return celda

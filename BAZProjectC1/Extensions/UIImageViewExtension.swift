@@ -38,7 +38,8 @@ extension UIImageView {
      - contentMode:type of content mode
      */
     func downloaded (from link: String, contentMode mode: ContentMode = .scaleAspectFill) {
-        guard let url = URL(string: link) else { return }
+        let fullPath = BasesUrl.imageUrl.rawValue + link
+        guard let url = URL(string: fullPath) else { return }
         downloaded (from: url, contentMode: mode)
     }
 }
