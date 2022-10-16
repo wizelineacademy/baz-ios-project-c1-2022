@@ -12,17 +12,17 @@ class MovieCollectionViewController: UIViewController{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionMovieC: UICollectionView!
-    var arrMoviesAPI: [DetailMovie] = []
-    var arrMoviesCollection: [DetailMovie] = []
-    var arrMovies: [DetailMovie] = []
-    var arrMoviesFavorites: [DetailMovie] = []
-    var arrMoviesFiltered: [DetailMovie] = []
-    let movieApi = MovieAPI()
-    var searchActive : Bool = false
-    var delegateMovies: FavoriteMovieCollectionProtocol?
-    var delegateNavigator: UINavigationControllerDelegate?
-    var delegateTab: UITabBarDelegate?
-    var isMovieOriginal:Bool = false
+    private var arrMoviesAPI: [DetailMovie] = []
+    public var arrMoviesCollection: [DetailMovie] = []
+    private var arrMovies: [DetailMovie] = []
+    private var arrMoviesFavorites: [DetailMovie] = []
+    public var arrMoviesFiltered: [DetailMovie] = []
+    private let movieApi = MovieAPI()
+    public var searchActive : Bool = false
+    public var delegateMovies: FavoriteMovieCollectionProtocol?
+    public var delegateNavigator: UINavigationControllerDelegate?
+    public var delegateTab: UITabBarDelegate?
+    public var isMovieOriginal:Bool = false
     
     override func viewDidAppear(_ animated: Bool){
         
@@ -46,7 +46,7 @@ class MovieCollectionViewController: UIViewController{
     }
     
 // Method: Set Data Collection movies or favorites movies
-    func setDataCollection(){
+    public func setDataCollection(){
         
         if isMovieOriginal {
             self.arrMoviesFavorites.removeAll()
@@ -73,7 +73,7 @@ class MovieCollectionViewController: UIViewController{
     }
     
 // Method: Query movie service
-    func executeServiceMovies(){
+    private func executeServiceMovies(){
         
         let movieApi = MovieAPI()
         movieApi.getMovies{[weak self] (result, error) in
@@ -101,7 +101,7 @@ class MovieCollectionViewController: UIViewController{
     }
   
 // Method: Query movie favorites service
-    func executeServiceMoviesFavorites(){
+    private func executeServiceMoviesFavorites(){
         
         let movieApi = MovieAPI()
         movieApi.getMovies{[weak self] (result, error) in

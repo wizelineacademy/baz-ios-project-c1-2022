@@ -16,9 +16,9 @@ class DetailMoviesViewController: UIViewController {
     @IBOutlet weak var imgPoster: ImageView!
     @IBOutlet weak var btnOption: UIButton!
     private let urlBaseImg = "https://image.tmdb.org/t/p/w500"
-    var detailMovie: DetailMovie?
-    var delegateMovies: FavoriteMovieCollectionProtocol?
-    var isMovieOriginal:Bool = false
+    public var detailMovie: DetailMovie?
+    public var delegateMovies: FavoriteMovieCollectionProtocol?
+    public var isMovieOriginal:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
