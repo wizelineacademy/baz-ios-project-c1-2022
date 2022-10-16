@@ -13,7 +13,7 @@ import UIKit
 class MovieAPI {
     public typealias typeGetMovies            = (_ movies: Movie, _ error: Error?) -> Void
     
-//   Method: Returns the data of querying the API of the movies
+    //   Method: Returns the data of querying the API of the movies
     public func getMovies(completion: @escaping(typeGetMovies)){
         var movie =  Movie(results: [])
         var error: Error?

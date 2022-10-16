@@ -10,7 +10,7 @@ import UIKit
 //MARK: - MovieCollectionViewController + CollectionView
 
 extension MovieCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-  
+    
     //  Method: Set number of sections on the collection
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return ConstantsLayoutMovieCollection.numberOfSections

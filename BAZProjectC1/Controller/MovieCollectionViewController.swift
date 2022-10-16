@@ -45,7 +45,7 @@ class MovieCollectionViewController: UIViewController{
         
     }
     
-// Method: Set Data Collection movies or favorites movies
+    // Method: Set Data Collection movies or favorites movies
     public func setDataCollection(){
         
         if isMovieOriginal {
@@ -72,7 +72,7 @@ class MovieCollectionViewController: UIViewController{
         }
     }
     
-// Method: Query movie service
+    // Method: Query movie service
     private func executeServiceMovies(){
         
         let movieApi = MovieAPI()
@@ -99,8 +99,8 @@ class MovieCollectionViewController: UIViewController{
             }
         }
     }
-  
-// Method: Query movie favorites service
+    
+    // Method: Query movie favorites service
     private func executeServiceMoviesFavorites(){
         
         let movieApi = MovieAPI()
@@ -141,7 +141,7 @@ class MovieCollectionViewController: UIViewController{
         }
     }
     
-// Method: Set Navigation to Detail Movie
+    // Method: Set Navigation to Detail Movie
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let viewControllerDestination = segue.destination as? DetailMoviesViewController {
@@ -155,15 +155,15 @@ class MovieCollectionViewController: UIViewController{
 
 //MARK: - MovieCollectionViewController + FavoriteMovieCollectionProtocol
 extension MovieCollectionViewController:FavoriteMovieCollectionProtocol{
-
-// Method: remove Favorite Movies
+    
+    // Method: remove Favorite Movies
     func removeFavoriteMovies(_ detailMovie: DetailMovie?) {
         
         UserDefaults.standard.removeObject(forKey: "\(detailMovie?.id ?? 0)")
         UserDefaults.standard.synchronize()
     }
- 
-// Method: add Favorite Movies
+    
+    // Method: add Favorite Movies
     func addFavoriteMovies(_ detailMovie: DetailMovie?) {
         
         UserDefaults.standard.set(detailMovie?.title ?? "", forKey:"\(detailMovie?.id ?? 0)")

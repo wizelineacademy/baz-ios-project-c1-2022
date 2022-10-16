@@ -31,7 +31,7 @@ class FavoriteMovieCollectionViewController: MovieCollectionViewController{
         setConfigurationFavoriteMovies()
     }
     
-//  Method:  Favorite movies settings
+    //  Method:  Favorite movies settings
     private func setConfigurationFavoriteMovies(){
         
         NotificationCenter.default.post(name: Notification.Name("colorChanged"),object:nil)

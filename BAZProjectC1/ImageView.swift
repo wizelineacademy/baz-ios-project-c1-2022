@@ -15,7 +15,7 @@ final class ImageView : UIImageView {
     private var imageUrl: String?
     private let imageCache = NSCache<NSString, UIImage>()
     
-// Method: Load the image from the API URL
+    // Method: Load the image from the API URL
     public func loadImage(urlStr: String) {
         imageUrl = urlStr
         image = UIImage()
