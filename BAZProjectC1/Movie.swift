@@ -2,19 +2,16 @@
 //  Movie.swift
 //  BAZProjectC1
 //
+//  Created by rnunezi on 13/10/22.
 //
 
 import Foundation
 import UIKit
 
+//Movie model
+
 struct Movie: Codable {
-    var results: [DetailMovie] = []
-    public init(){}
+    public let results: [DetailMovie]?
 }
 
-struct DetailMovie: Codable {
-    var id: Int = 0
-    var title: String = ""
-    var poster_path: String = ""
-    public init(){}
-}
+

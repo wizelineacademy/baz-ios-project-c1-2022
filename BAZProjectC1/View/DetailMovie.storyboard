@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Item-->
+        <scene sceneID="U27-Od-aN4">
+            <objects>
+                <viewController storyboardIdentifier="DetailMoviesViewController" id="b61-MH-K92" customClass="DetailMoviesViewController" customModule="BAZProjectC1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FWa-lF-oFR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqt-GO-2EM">
+                                <rect key="frame" x="10" y="74" width="394" height="30"/>
+                                <color key="tintColor" systemColor="systemIndigoColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                <color key="textColor" systemColor="systemPurpleColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q6u-Jo-9n4" customClass="ImageView" customModule="BAZProjectC1" customModuleProvider="target">
+                                <rect key="frame" x="214" y="134" width="180" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="250" id="AbL-lU-1u8"/>
+                                    <constraint firstAttribute="width" constant="180" id="aUz-BA-csE"/>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="180" id="kGQ-XN-Ek5"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="FF7-Mv-psg">
+                                <rect key="frame" x="35" y="134" width="169" height="17"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hg2-U5-Te1">
+                                <rect key="frame" x="20" y="434" width="374" height="31"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Favoritos">
+                                    <imageReference key="image" image="star" catalog="system" symbolScale="medium"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="btnOption:" destination="b61-MH-K92" eventType="touchUpInside" id="zs1-QS-5TD"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="rfS-cN-rGQ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="rfS-cN-rGQ" firstAttribute="trailing" secondItem="q6u-Jo-9n4" secondAttribute="trailing" constant="20" id="7CX-lY-KVQ"/>
+                            <constraint firstItem="rfS-cN-rGQ" firstAttribute="trailing" secondItem="Hg2-U5-Te1" secondAttribute="trailing" constant="20" id="7nm-GN-Yo6"/>
+                            <constraint firstItem="Hg2-U5-Te1" firstAttribute="top" secondItem="q6u-Jo-9n4" secondAttribute="bottom" constant="50" id="FBf-AP-SGe"/>
+                            <constraint firstItem="q6u-Jo-9n4" firstAttribute="top" secondItem="dqt-GO-2EM" secondAttribute="bottom" constant="30" id="JDX-1c-3Er"/>
+                            <constraint firstItem="q6u-Jo-9n4" firstAttribute="leading" secondItem="FF7-Mv-psg" secondAttribute="trailing" constant="10" id="QXu-GN-WvN"/>
+                            <constraint firstItem="dqt-GO-2EM" firstAttribute="top" secondItem="rfS-cN-rGQ" secondAttribute="top" constant="30" id="V4a-hq-s1c"/>
+                            <constraint firstItem="FF7-Mv-psg" firstAttribute="leading" secondItem="rfS-cN-rGQ" secondAttribute="leading" constant="35" id="XWK-qw-m3p"/>
+                            <constraint firstItem="dqt-GO-2EM" firstAttribute="leading" secondItem="rfS-cN-rGQ" secondAttribute="leading" constant="10" id="jSh-7u-EwR"/>
+                            <constraint firstItem="Hg2-U5-Te1" firstAttribute="leading" secondItem="rfS-cN-rGQ" secondAttribute="leading" constant="20" id="kmG-uV-SJd"/>
+                            <constraint firstItem="FF7-Mv-psg" firstAttribute="top" secondItem="dqt-GO-2EM" secondAttribute="bottom" constant="30" id="q3T-fp-zcG"/>
+                            <constraint firstItem="rfS-cN-rGQ" firstAttribute="trailing" secondItem="dqt-GO-2EM" secondAttribute="trailing" constant="10" id="s6n-dt-phr"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="D3q-cO-6yY"/>
+                    <connections>
+                        <outlet property="btnOption" destination="Hg2-U5-Te1" id="5ft-mF-nbA"/>
+                        <outlet property="imgPoster" destination="q6u-Jo-9n4" id="yly-QH-HVS"/>
+                        <outlet property="lblDescription" destination="FF7-Mv-psg" id="w26-Dt-sAj"/>
+                        <outlet property="lblTitle" destination="dqt-GO-2EM" id="GrA-cn-oEk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a2C-xU-Ecy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676.8115942028987" y="-106.47321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="star" catalog="system" width="128" height="116"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemIndigoColor">
+            <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPurpleColor">
+            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

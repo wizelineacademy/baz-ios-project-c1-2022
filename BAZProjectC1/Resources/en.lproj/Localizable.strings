@@ -1,0 +1,15 @@
+/* 
+  Localizable.strings
+  BAZProjectC1
+
+  Created by rnunezi on 03/10/22.
+  
+*/
+
+//MARK: - Constants from Labels
+
+"title.movieCollectionViewController" = "Peliculas";
+"title.detailMoviesViewController" = "Detalle de la Pelicula";
+"title.favoriteMovieCollectionViewController" = "Favoritos";
+"title.detailMoviesViewController.buttonAddMovies" = "Agregar a Favoritos";
+"title.detailMoviesViewController.buttonRemoveMovies" = "Eliminar de Favoritos";
