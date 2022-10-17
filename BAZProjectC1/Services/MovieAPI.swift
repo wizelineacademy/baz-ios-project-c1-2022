@@ -10,8 +10,8 @@ final class MovieAPI {
     public typealias blkGetMovies = (MovieAPIResponse?, Error?) -> Void
 
     //MARK: - G E T · M O V I E · C A T E G O R I E S
-    func getMoviesCategory(withURL category:String , completion: @escaping blkGetMovies) {
-        guard let url = URL(string: category)  else { return }
+    func getMoviesCategory(on movieCategory: MovieCategory , completion: @escaping blkGetMovies) {
+        guard let url = URL(string: movieCategory.rawValue)  else { return }
         URLSession.shared.dataTask(with: url) { ( data, respoonse, error) in
             guard let datos = data else { return }
             do {
