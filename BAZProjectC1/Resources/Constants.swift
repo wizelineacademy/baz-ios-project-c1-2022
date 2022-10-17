@@ -8,10 +8,18 @@
 import Foundation
 import UIKit
 
+//MARK: - ConstantsDetailMovies
+
 enum ConstantsDetailMovies {
     static let titleCollection = String.localized( "title.movieCollectionViewController")
     static let titleDetail = String.localized( "title.detailMoviesViewController")
+    static let titleFavoriteCollection = String.localized( "title.favoriteMovieCollectionViewController")
+    static let titleButtonAddMovies = String.localized( "title.detailMoviesViewController.buttonAddMovies")
+    static let titleButtonRemoveMovies = String.localized( "title.detailMoviesViewController.buttonRemoveMovies")
 }
+
+//MARK: - ConstantsLayoutMovieCollection
+
 enum ConstantsLayoutMovieCollection {
     static let numberOfSections:Int = 1
     static let insets: CGFloat = 8
@@ -20,6 +28,9 @@ enum ConstantsLayoutMovieCollection {
     static let minimumInteritemSpacing: CGFloat = 10
     static let cellsPerRow:Int = 2
 }
+
+//MARK: - ConstantsApi
+
 enum ConstantsApi {
     static let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
     static let urlAPI: String = "https://api.themoviedb.org/3/trending/movie/"

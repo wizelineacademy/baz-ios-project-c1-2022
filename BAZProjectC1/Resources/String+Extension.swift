@@ -7,7 +7,10 @@
 
 import Foundation
 
+//MARK: - Extension String
+
 extension String {
+    
     static func localized(_ key: String) -> String{
         let string = Bundle.main.localizedString(forKey: key, value: nil, table: "Localizable")
         return string

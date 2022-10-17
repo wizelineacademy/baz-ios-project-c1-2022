@@ -8,11 +8,15 @@
 import Foundation
 import UIKit
 
-let imageCache = NSCache<NSString, UIImage>()
-class ImageView : UIImageView {
-    var imageUrl: String?
+//MARK: - ImageView Management
+
+final class ImageView : UIImageView {
     
-    func loadImage(urlStr: String) {
+    private var imageUrl: String?
+    private let imageCache = NSCache<NSString, UIImage>()
+    
+    // Method: Load the image from the API URL
+    public func loadImage(urlStr: String) {
         imageUrl = urlStr
         image = UIImage()
         if let img = imageCache.object(forKey: NSString(string: imageUrl ?? "")) {
@@ -39,7 +43,7 @@ class ImageView : UIImageView {
                             self.alpha = 1.0;
                         }
                     }
-                    imageCache.setObject(tempImg, forKey: NSString(string: urlStr))
+                    self.imageCache.setObject(tempImg, forKey: NSString(string: urlStr))
                 }
             }
         }.resume()

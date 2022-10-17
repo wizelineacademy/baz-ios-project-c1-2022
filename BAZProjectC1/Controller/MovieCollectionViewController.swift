@@ -6,41 +6,91 @@
 //
 import UIKit
 
+//MARK: - MovieCollectionViewController
+
 class MovieCollectionViewController: UIViewController{
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var collectionMovieC: UICollectionView!
-    var movies: [DetailMovie] = []
-    var moviesFiltered: [DetailMovie] = []
-    let movieApi = MovieAPI()
-    var searchActive : Bool = false
+    private var arrMoviesAPI: [DetailMovie] = []
+    public var arrMoviesCollection: [DetailMovie] = []
+    private var arrMovies: [DetailMovie] = []
+    private var arrMoviesFavorites: [DetailMovie] = []
+    public var arrMoviesFiltered: [DetailMovie] = []
+    private let movieApi = MovieAPI()
+    public var searchActive : Bool = false
+    public var delegateMovies: FavoriteMovieCollectionProtocol?
+    public var delegateNavigator: UINavigationControllerDelegate?
+    public var delegateTab: UITabBarDelegate?
+    public var isMovieOriginal:Bool = false
     
     override func viewDidAppear(_ animated: Bool){
         
         super.viewDidAppear(animated)
         self.title = ConstantsDetailMovies.titleCollection
+        isMovieOriginal = true
+        setDataCollection()
     }
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
         NotificationCenter.default.post(name: Notification.Name("colorChanged"),object:nil)
         view.backgroundColor = .cyan
-        
         searchBar.delegate = self
-        
+        delegateMovies = self
         collectionMovieC.register(UINib(nibName: "MovieCollectionViewCell", bundle: Bundle(for: MovieCollectionViewCell.self)), forCellWithReuseIdentifier: "MovieCollectionViewCell")
+        
+        executeServiceMovies()
+        
+    }
+    
+    // Method: Set Data Collection movies or favorites movies
+    public func setDataCollection(){
+        
+        if isMovieOriginal {
+            self.arrMoviesFavorites.removeAll()
+            self.arrMovies.removeAll()
+            arrMoviesAPI.forEach{ (movies) in
+                
+                if (UserDefaults.standard.string(forKey: "\(movies.id ?? 0)") != nil) {
+                    arrMoviesFavorites.append(movies)
+                }else{
+                    self.arrMovies.append(movies)
+                }
+            }
+            arrMoviesCollection = arrMovies
+            arrMoviesFiltered = arrMovies
+            self.collectionMovieC.delegate = self
+            self.collectionMovieC.dataSource = self
+            self.collectionMovieC.reloadData()
+            
+        }
+        else {
+            self.executeServiceMoviesFavorites()
+            
+        }
+    }
+    
+    // Method: Query movie service
+    private func executeServiceMovies(){
+        
         let movieApi = MovieAPI()
         movieApi.getMovies{[weak self] (result, error) in
             
             if let err = error {
-                let alert = UIAlertController(title: "Mensaje", message: err.localizedDescription, preferredStyle: UIAlertController.Style.alert)
+                let alertView = UIAlertController(title: "Mensaje", message: err.localizedDescription, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Aceptar", style:.default, handler: { (alert) in
+                    print("Aceptar")
+                })
                 
-                alert.addAction(UIAlertAction(title: "Error", style: UIAlertAction.Style.default, handler: nil))
-                self?.present(alert, animated: true, completion: nil)
+                alertView.addAction(cancelAction)
+                self?.present(alertView, animated: true, completion: nil)
                 
             }else{
-                self?.movies = result.results
-                self?.moviesFiltered = result.results
+                self?.arrMoviesAPI = result.results ?? []
+                self?.arrMoviesCollection = result.results ?? []
+                self?.arrMoviesFiltered = result.results ?? []
                 DispatchQueue.main.async {
                     self?.collectionMovieC.delegate = self
                     self?.collectionMovieC.dataSource = self
@@ -49,98 +99,74 @@ class MovieCollectionViewController: UIViewController{
             }
         }
     }
-}
-extension MovieCollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return ConstantsLayoutMovieCollection.numberOfSections
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return movies.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: ConstantsLayoutMovieCollection.insets, left: ConstantsLayoutMovieCollection.insets, bottom: ConstantsLayoutMovieCollection.insets, right: ConstantsLayoutMovieCollection.insets)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return ConstantsLayoutMovieCollection.minimumLineSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return ConstantsLayoutMovieCollection.minimumInteritemSpacing
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let marginAndInsets : CGFloat
-        marginAndInsets = ConstantsLayoutMovieCollection.minimumInteritemSpacing * 2 + collectionView.safeAreaInsets.left + collectionView.safeAreaInsets.right + ConstantsLayoutMovieCollection.insets * CGFloat(ConstantsLayoutMovieCollection.cellsPerRow - 1)
-        let itemWidth = ((collectionView.bounds.size.width - marginAndInsets) / CGFloat(ConstantsLayoutMovieCollection.cellsPerRow)).rounded(.down)
+    // Method: Query movie favorites service
+    private func executeServiceMoviesFavorites(){
         
-        return CGSize(width: itemWidth, height: itemWidth + ConstantsLayoutMovieCollection.heightAditionalConstant)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as? MovieCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-        cell.requiredSetupUI(movie: self.movies[indexPath.row])
-        
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let title = movies[indexPath.row].title
-        let overview = movies[indexPath.row].overview
-        let poster_path = movies[indexPath.row].poster_path
-        
-        let storyboard = UIStoryboard(name: "DetailMovie", bundle: nil)
-        DispatchQueue.main.async {
+        let movieApi = MovieAPI()
+        movieApi.getMovies{[weak self] (result, error) in
             
-            if let pathVC = storyboard.instantiateViewController(withIdentifier: "DetailMoviesViewController") as? DetailMoviesViewController{
-                pathVC.strTitle = title
-                pathVC.strDetails = overview
-                pathVC.strImgMoviePath = poster_path
-                self.show(pathVC, sender:nil)
+            if let err = error {
+                let alertView = UIAlertController(title: "Mensaje", message: err.localizedDescription, preferredStyle: .alert)
+                let cancelAction = UIAlertAction(title: "Aceptar", style:.default, handler: { (alert) in
+                    print("Aceptar")
+                })
+                
+                alertView.addAction(cancelAction)
+                self?.present(alertView, animated: true, completion: nil)
                 
             }
+            else{
+                self?.arrMoviesFavorites.removeAll()
+                self?.arrMovies.removeAll()
+                
+                self?.arrMoviesAPI = result.results ?? []
+                self?.arrMoviesAPI.forEach{ (movies) in
+                    
+                    if (UserDefaults.standard.string(forKey:"\(movies.id ?? 0)") != nil) {
+                        self?.arrMoviesFavorites.append(movies)
+                    }else{
+                        self?.arrMovies.append(movies)
+                    }
+                }
+                self?.arrMoviesCollection = self?.arrMoviesFavorites ?? []
+                self?.arrMoviesFiltered = self?.arrMoviesFavorites ?? []
+                
+                DispatchQueue.main.async {
+                    self?.collectionMovieC.delegate = self
+                    self?.collectionMovieC.dataSource = self
+                    self?.collectionMovieC.reloadData()
+                }
+            }
+        }
+    }
+    
+    // Method: Set Navigation to Detail Movie
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let viewControllerDestination = segue.destination as? DetailMoviesViewController {
+            
+            viewControllerDestination.detailMovie = sender as? DetailMovie
+            viewControllerDestination.delegateMovies = self.delegateMovies
+            viewControllerDestination.isMovieOriginal = self.isMovieOriginal
         }
     }
 }
-extension MovieCollectionViewController:UISearchBarDelegate{
-    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        searchActive = true;
-    }
+
+//MARK: - MovieCollectionViewController + FavoriteMovieCollectionProtocol
+extension MovieCollectionViewController:FavoriteMovieCollectionProtocol{
     
-    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchActive = false;
-    }
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText == "" {
-            movies = moviesFiltered
-        }
-        else {
-            movies = moviesFiltered.filter({ (text) -> Bool in
-                let tmp: NSString = text.title as NSString
-                let range = tmp.range(of: searchText, options: NSString.CompareOptions.caseInsensitive)
-                return range.location != NSNotFound
-            })
-            if(movies.count == 0){
-                searchActive = false;
-            } else {
-                searchActive = true;
-            }
-            self.collectionMovieC.reloadData()
-        }
+    // Method: remove Favorite Movies
+    func removeFavoriteMovies(_ detailMovie: DetailMovie?) {
         
+        UserDefaults.standard.removeObject(forKey: "\(detailMovie?.id ?? 0)")
+        UserDefaults.standard.synchronize()
+    }
+    
+    // Method: add Favorite Movies
+    func addFavoriteMovies(_ detailMovie: DetailMovie?) {
+        
+        UserDefaults.standard.set(detailMovie?.title ?? "", forKey:"\(detailMovie?.id ?? 0)")
+        UserDefaults.standard.synchronize()
     }
 }

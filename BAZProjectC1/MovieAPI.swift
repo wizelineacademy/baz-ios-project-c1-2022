@@ -2,16 +2,20 @@
 //  MovieAPI.swift
 //  BAZProjectC1
 //
+//Created by rnunezi on 13/10/22.
 //
 
 import Foundation
 import UIKit
 
+//MARK: - MovieAPI Management
+
 class MovieAPI {
     public typealias typeGetMovies            = (_ movies: Movie, _ error: Error?) -> Void
     
-    func getMovies(completion: @escaping(typeGetMovies)){
-        var movie =  Movie()
+    //   Method: Returns the data of querying the API of the movies
+    public func getMovies(completion: @escaping(typeGetMovies)){
+        var movie =  Movie(results: [])
         var error: Error?
         let urlString = "\(ConstantsApi.urlAPI)day?api_key=\(ConstantsApi.apiKey)"
         let url = URL (string: urlString)!

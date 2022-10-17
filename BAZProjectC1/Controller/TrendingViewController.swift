@@ -56,6 +56,7 @@ extension TrendingViewController {
             self.navigationController?.popToViewController(pathVC, animated: true)
         }
     }
+    
 }
 
 // MARK: - TableView's Delegate

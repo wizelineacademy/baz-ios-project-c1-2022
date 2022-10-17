@@ -7,6 +7,8 @@
 
 import UIKit
 
+//MARK: - MovieCollectionViewCell
+
 class MovieCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var cardView: UIView!
@@ -18,7 +20,8 @@ class MovieCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    internal func requiredSetupUI(movie: DetailMovie?) {
+    // Method: Set Data from Movies
+    internal func setDataMovies(movie: DetailMovie?) {
         guard movie != nil else {
             print("Error: Movie vacio")
             return
