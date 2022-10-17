@@ -9,16 +9,17 @@ import UIKit
 
 final class MovieListPresenter {
     
+    //MARK: - Properties
     private var movie:MovieListProtocol = MovieList()
     private var similarMovies = Movie(results: [MovieData]())
     private var recommendsMovies = Movie(results: [MovieData]())
     private let reuseIndentifier = "CollectionViewMovie"
     private weak var view: MovieDetailController?
     
+    //MARK: - Methods
     init(view: MovieDetailController) {
         self.view = view
     }
-    
     
     public func loadDataSimilar(using collectionView: UICollectionView, movieId: Int) {
             movie.loadMoviesDetail(with: MovieListType.similar.rawValue, completion: { (movie) in
@@ -37,12 +38,13 @@ final class MovieListPresenter {
                 }
             }, movieId)
     }
+    
     private func openDetails(for asset: MovieData, with rail: Movie, using viewController: UIViewController) {
         view?.presentView(for: asset)
     }
+    
     public func getMovies(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController, typeOfMovie: String) -> UICollectionViewCell {
         switch typeOfMovie {
-            
         case MovieListType.similar.rawValue :
             guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIndentifier, for: IndexPath(row: row, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
             collectionCell.loadData(movies: similarMovies)

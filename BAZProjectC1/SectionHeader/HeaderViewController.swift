@@ -10,5 +10,6 @@ import UIKit
 
 final class HeaderViewController: UICollectionReusableView {
     
+    //MARK: - Properties
     @IBOutlet weak var titleLabel: UILabel!
 }

@@ -7,9 +7,12 @@
 
 import Foundation
 
+//MARK: - Type alias
 typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
 typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
 
+
+//MARK: - Protocol Movie Service
 protocol MovieService {
     func fetchMovieTrending(completion: MovieCompletionClosure?)
     func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String)
@@ -19,6 +22,7 @@ protocol MovieService {
     func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int)
 }
 
+//MARK: - Enums Error & URL
 enum NetworkError: Error {
     case invalidUrl
     case invalidData
@@ -31,8 +35,11 @@ enum BasesUrl: String {
 
 struct NetworkManager:MovieService {
     
+    //MARK: - Properties
     static let shared = NetworkManager()
     private let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    
+    //MARK: - Methods
     /**
      Function that creates a request via url
      - Parameters:

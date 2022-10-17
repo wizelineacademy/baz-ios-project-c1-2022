@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: - Enum Sections Of Detail
 enum SectionsOfDetail: String {
     case casting = "Reparto"
     case recommendedMovies = "Películas Recomendadas"
@@ -16,6 +17,7 @@ enum SectionsOfDetail: String {
 
 final class MovieDetailController: UIViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var collectionView: UICollectionView!
     public var movies:MovieData?
     private let movieCollectionIdentifier = "CollectionViewMovie"
@@ -27,6 +29,7 @@ final class MovieDetailController: UIViewController {
     private var movieListPresenter: MovieListPresenter?
     private let movieDetailSections = 4
     
+    //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCollectionView()
@@ -60,7 +63,7 @@ final class MovieDetailController: UIViewController {
     }
 }
 
-
+// MARK: - CollectionView's Data Source
 extension MovieDetailController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return movieDetailSections
@@ -116,6 +119,7 @@ extension MovieDetailController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView's Flow layout
 extension MovieDetailController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         

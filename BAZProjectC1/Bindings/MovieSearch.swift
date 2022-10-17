@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Protocol Movie Search
 protocol MovieSearchProtocol {
     
     init(movieService: MovieService)
@@ -15,16 +16,20 @@ protocol MovieSearchProtocol {
 
 final class MovieSearch:MovieSearchProtocol {
     
+    //MARK: - Properties
     private var moviesSearch = Movie(results: [MovieData]())
     private let movieService:MovieService
     
+    //MARK: - Methods
     init(movieService: MovieService = NetworkManager.shared) {
         self.movieService = movieService
     }
 }
 
+//MARK: - Extension Movie Search
 extension MovieSearch {
     
+    //MARK: - Methods
     public func loadMoviesSearch(with keyword: String, completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieSearch(completion: { [weak self] (movies,error) in
             guard let self = self else { return }

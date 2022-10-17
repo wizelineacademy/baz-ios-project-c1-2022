@@ -9,6 +9,7 @@ import UIKit
 
 extension UIImageView {
     
+    //MARK: - Methods
     /**
      Function that downloads and displays the image
      - Parameters:

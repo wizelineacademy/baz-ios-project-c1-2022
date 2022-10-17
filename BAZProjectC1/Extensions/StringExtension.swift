@@ -8,6 +8,8 @@
 import Foundation
 
 extension String {
+    
+    //MARK: - Computed Property
     var addSpacesForApi: String {
         return self.replacingOccurrences(of: " ", with: "%20")
     }

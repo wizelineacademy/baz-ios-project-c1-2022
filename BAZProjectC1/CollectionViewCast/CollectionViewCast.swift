@@ -9,10 +9,12 @@ import UIKit
 
 final class CollectionViewCast: UICollectionViewCell {
     
+    //MARK: - Properties
     @IBOutlet private weak var collectionView: UICollectionView!
     private let cellIdentifier = "CreditsMovie"
     private var actorsCast = MovieCast(cast: [Cast]())
     
+    //MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -32,6 +34,7 @@ final class CollectionViewCast: UICollectionViewCell {
     }
 }
 
+// MARK: - CollectionView's Data Source
 extension CollectionViewCast: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return actorsCast.cast.count
@@ -47,7 +50,7 @@ extension CollectionViewCast: UICollectionViewDataSource {
     }
 }
 
-
+// MARK: - CollectionView's FlowLayout
 extension CollectionViewCast: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: CGFloat(150), height: CGFloat(300))

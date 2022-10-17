@@ -9,6 +9,7 @@ import UIKit
 
 final class CastPresenter {
    
+    //MARK: - Properties
     private var recommends:MovieListProtocol = MovieList()
     private var actorsMovie:MovieCastProtocol = MovieCastState()
     private var recommendsMovies = Movie(results: [MovieData]())
@@ -16,6 +17,7 @@ final class CastPresenter {
     private let reuseIndentifier = "CollectionViewCast"
     private weak var view: MovieDetailController?
     
+    //MARK: - Methods
     init(view: MovieDetailController) {
         self.view = view
     }

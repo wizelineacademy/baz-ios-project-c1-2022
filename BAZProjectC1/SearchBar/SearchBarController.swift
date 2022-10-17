@@ -9,6 +9,8 @@ import Foundation
 import UIKit
 
 final class SearchBarController: UIViewController {
+    
+    //MARK: - Properties
     @IBOutlet private var textField: UITextField!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var tableView: UITableView!
@@ -16,6 +18,7 @@ final class SearchBarController: UIViewController {
     private var searching:MovieSearchProtocol = MovieSearch()
     private var arregloFiltrados:[MovieData] = []
     
+    //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configTable()
@@ -67,7 +70,7 @@ final class SearchBarController: UIViewController {
     
 }
 
-
+// MARK: - TableView's Data Source
 extension SearchBarController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -85,6 +88,7 @@ extension SearchBarController: UITableViewDataSource {
     
 }
 
+// MARK: - TableView's Delegate
 extension SearchBarController:UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -94,6 +98,7 @@ extension SearchBarController:UITableViewDelegate {
     }
 }
 
+// MARK: - SearchBar's Delegate
 extension SearchBarController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         arregloFiltrados = []

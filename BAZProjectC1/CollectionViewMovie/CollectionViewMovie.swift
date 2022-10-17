@@ -9,6 +9,7 @@ import UIKit
 
 final class CollectionViewMovie: UICollectionViewCell {
     
+    //MARK: - Properties
     @IBOutlet private weak var collectionView: UICollectionView!
     private let cellIdentifier = "MovieCardCell"
     private var movies = Movie(results: [MovieData]())
@@ -16,6 +17,7 @@ final class CollectionViewMovie: UICollectionViewCell {
     public var onSelect: cellSelectionClosure?
     private let numberOfSections = 5
     
+    //MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -35,6 +37,7 @@ final class CollectionViewMovie: UICollectionViewCell {
     }
 }
 
+// MARK: - CollectionView's Data Source
 extension CollectionViewMovie: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movies.results.count
@@ -55,12 +58,14 @@ extension CollectionViewMovie: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView's Delegate
 extension CollectionViewMovie: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onSelect?(movies, movies.results[indexPath.item])
     }
 }
 
+// MARK: - CollectionView's Flow Layout
 extension CollectionViewMovie: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: CGFloat(150), height: CGFloat(300))

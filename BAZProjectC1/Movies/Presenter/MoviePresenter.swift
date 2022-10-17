@@ -9,20 +9,20 @@ import UIKit
 
 final class MoviePresenter {
     
+    //MARK: - Properties
     private var moviesTrending = Movie(results: [MovieData]())
     private var moviesPlaying = Movie(results: [MovieData]())
     private var moviesPopular = Movie(results: [MovieData]())
     private var moviesTop = Movie(results: [MovieData]())
     private var moviesUpcoming = Movie(results: [MovieData]())
-    
     private var treding:MovieListProtocol = MovieList()
     private var nowPlaying:MovieListProtocol = MovieList()
     private var Popular:MovieListProtocol = MovieList()
     private var topRated:MovieListProtocol = MovieList()
     private var upcoming:MovieListProtocol = MovieList()
-    
     private weak var view: HomeMoviesViewController?
     
+    //MARK: - Methods
     init(view: HomeMoviesViewController) {
         self.view = view
     }
@@ -58,13 +58,11 @@ final class MoviePresenter {
                 collectionView.reloadData()
             }
         }
-        
     }
     
     private func openDetails(for asset: MovieData, with rail: Movie, using viewController: UIViewController) {
         view?.presentView(for: asset)
     }
-    
     
     func getMovies(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController) -> UICollectionViewCell {
         guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewMovie", for: IndexPath(row: row, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
@@ -97,10 +95,7 @@ final class MoviePresenter {
         default:
             return UICollectionViewCell()
         }
-        
         return collectionCell
-        
     }
-    
 }
 

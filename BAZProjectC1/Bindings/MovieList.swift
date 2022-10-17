@@ -7,6 +7,7 @@
 
 import Foundation
 
+//MARK: - Protocol Movie List
 protocol MovieListProtocol {
     init(movieService: MovieService)
     func loadMoviesTrending(completion: @escaping (Movie) -> ())
@@ -16,15 +17,19 @@ protocol MovieListProtocol {
 
 final class MovieList: MovieListProtocol {
     
+    //MARK: - Properties
     private var movies = Movie(results: [MovieData]())
     private let movieService: MovieService
     
+    //MARK: - Methods
     init(movieService: MovieService = NetworkManager.shared) {
         self.movieService = movieService
     }
 }
 
+//MARK: - Extension Movie List
 extension MovieList {
+    //MARK: - Methods
      func loadMoviesTrending(completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieTrending { [weak self] (page, error) in
             guard let self = self else { return }

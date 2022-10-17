@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+//MARK: - Protocol Movie Cast
 protocol MovieCastProtocol {
 
     init(movieService: MovieService)
@@ -16,15 +16,20 @@ protocol MovieCastProtocol {
 
 final class MovieCastState:MovieCastProtocol {
     
+    //MARK: - Properties
     private var actors = MovieCast(cast: [Cast]())
     private let movieService:MovieService
     
+    //MARK: - Methods
     init(movieService: MovieService = NetworkManager.shared) {
         self.movieService = movieService
     }
 }
 
+//MARK: - Extension Movie Cast
 extension MovieCastState {
+    //MARK: - Methods
+    
     public func loadMoviesCast(completion: @escaping (MovieCast) -> (), _ movieId: Int)  {
         movieService.fetchMovieCast(completion: { [weak self] (actorsCast, erros) in
             guard let self = self else { return }

@@ -9,10 +9,12 @@ import UIKit
 
 final class CreditsMovie: UICollectionViewCell {
     
+    //MARK: - Properties
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var actorImage: UIImageView!
     @IBOutlet weak var actorName: UILabel!
     
+    //MARK: - Methods
     override func awakeFromNib() {
         super.awakeFromNib()
         configView()

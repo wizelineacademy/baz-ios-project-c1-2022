@@ -7,11 +7,12 @@
 
 import Foundation
 
-
 final class NotificationCenterHelper: NotificationCenter {
     
+    //MARK: - Properties
     static let myNotificationCenter: NotificationCenter = NotificationCenter()
     
+    //MARK: - Methods
     static func suscribeToNotification(_ subscriber: AnyObject, with selector: Selector, name: NSNotification.Name, object: Any? = nil) {
         NotificationCenterHelper.myNotificationCenter.addObserver(subscriber, selector: selector, name: name, object: object)
     }
@@ -21,7 +22,7 @@ final class NotificationCenterHelper: NotificationCenter {
     }
 }
 
-
+//MARK: - Notificaction Name
 extension Notification.Name {
     static let detailMovie = Notification.Name(
         rawValue: "detailMovie")

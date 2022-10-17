@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 
+//MARK: - Enum Section Titles
 enum SectionTitles: String {
     case trending = "Trending"
     case nowPlaying = "Now Playing"
@@ -18,12 +19,14 @@ enum SectionTitles: String {
 
 final class HomeMoviesViewController: UIViewController {
     
+    //MARK: - Properties
     @IBOutlet weak var collectionView: UICollectionView!
     private var numberOfSections: Int = 5
     private var presenter: MoviePresenter?
     private let headerReuseIndentifier = "HeaderView"
     private let collectionMovieReuseIdentifier = "CollectionViewMovie"
     
+    //MARK: - Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         configCollection()
@@ -83,11 +86,11 @@ extension HomeMoviesViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - CollectionView's FlowLayout
 extension HomeMoviesViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: CGFloat(300))
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.size.width, height: CGFloat(100))
