@@ -9,11 +9,9 @@ import Foundation
 import UIKit
 
 class BillboardViewController : UIViewController {
+    
     @IBOutlet weak var clvListMovies: UICollectionView!
-    private var lstMovies = [Movie]()
-    private let columnNum: CGFloat = 3
-    private let itemsPerRow: CGFloat = 3
-    private let sectionInsets = UIEdgeInsets(top: 50.0, left: 20.0, bottom: 50.0, right: 20.0)
+    private var vmBilboard = BilboardViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,35 +19,42 @@ class BillboardViewController : UIViewController {
         self.getMoviesUpdate()
     }
     
-    func configureCollectionView() {
+    private func configureCollectionView() {
         self.title = "En cartelera"
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         
         clvListMovies.delegate = self
-        clvListMovies.dataSource = self
+        clvListMovies.dataSource = self 
         clvListMovies.register(UINib(nibName: "MovieCell",bundle: nil), forCellWithReuseIdentifier: "MovieCell")
     }
     
     private func getMoviesUpdate() {
-        MovieAPI().getMoviesUpdate(completion: { lstResult in
-            self.lstMovies = lstResult
-            DispatchQueue.main.async { [weak self] in
-                self?.clvListMovies.reloadData()
+        vmBilboard.bindData = {
+            DispatchQueue.main.async {
+                self.clvListMovies.reloadData()
             }
-        })
+        }
     }
 }
 
-extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDataSource {
+extension BillboardViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return lstMovies.count
+        return vmBilboard.getNumberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell
-        myCell?.configureCell(with: lstMovies[indexPath.row])
+        myCell?.configureCellUpdate(with: vmBilboard.movie(at: indexPath.row))
         return myCell ?? UICollectionViewCell()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let flowayout = collectionViewLayout as? UICollectionViewFlowLayout
+        let space: CGFloat = (flowayout?.minimumInteritemSpacing ?? 0.0) + (flowayout?.sectionInset.left ?? 0.0) + (flowayout?.sectionInset.right ?? 0.0)
+        let size:CGFloat = (collectionView.frame.size.width - space) / 2.0
+        return CGSize(width: size, height: size)
     }
     
 }

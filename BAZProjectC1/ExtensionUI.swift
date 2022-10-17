@@ -21,3 +21,16 @@ extension UIImageView {
         }
     }
 }
+
+extension UILabel {
+    
+    func loadConfigurationFont(with bIsTitle: Bool) {
+        self.font = UIFont(name: "Marker Felt", size: bIsTitle ? 16 : 14)
+    }
+}
+
+extension UITextView {
+    func loadConfigurationFont() {
+        self.font = UIFont(name: "Marker Felt", size: 16)
+    }
+}

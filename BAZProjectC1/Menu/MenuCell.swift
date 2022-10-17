@@ -6,13 +6,7 @@
 //
 
 import UIKit
-
-enum ElectionDate: String {
-    case title = "title"
-    case detail = "detail"
-    case image = "image"
-}
-
+ 
 class MenuCell: UITableViewCell {
 
     @IBOutlet weak var imgDetail: UIImageView!
@@ -26,17 +20,32 @@ class MenuCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
-    func configureCellMenu(with rowMenu: MenuRow) {
-        lblTitle.text = rowMenu.title
-        lblDetail.text = rowMenu.detail
-        imgDetail.image = UIImage.init(named: rowMenu.image)
+    /**
+     - parameters: menu raw model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
+    func configureCellMenu(with rowMenu: MenuRow? = nil) {
+        lblTitle.text = rowMenu?.title
+        lblTitle.loadConfigurationFont(with: true)
+        lblDetail.text = rowMenu?.detail
+        lblDetail.loadConfigurationFont(with: false)
+        imgDetail.image = UIImage.init(named: rowMenu?.image ?? "")
     }
     
-    func configureCellWithUrl(movieInfo: Movie) {
-        lblTitle.text = movieInfo.title
-        lblDetail.text = movieInfo.descriptionMovie
-        imgDetail.loadFrom(strUrl: "\(tmdbImageStringURLPrefix)\(movieInfo.posterPath)")
+    /**
+     - parameters: movieUpdate model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
+    func configureCellWithUrl(movieInfo: MovieUpdate? = nil) {
+        lblTitle.text = movieInfo?.title
+        lblTitle.loadConfigurationFont(with: true)
+        lblDetail.text = movieInfo?.overview
+        lblDetail.loadConfigurationFont(with: false)
+        imgDetail.loadFrom(strUrl: "\(movieInfo?.imageDetail ?? "")")
     }
     
 }

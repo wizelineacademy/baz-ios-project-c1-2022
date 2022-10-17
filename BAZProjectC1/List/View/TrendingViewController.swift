@@ -9,8 +9,7 @@ import UIKit
 let tmdbImageStringURLPrefix = "https://image.tmdb.org/t/p/w500"
 class TrendingViewController: UITableViewController {
 
-    var movies: [Movie] = []
-    let movieApi = MovieAPI()
+    private var vmTrening = TrendingViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +24,11 @@ class TrendingViewController: UITableViewController {
     }
     
     private func getMostPopularMovies() {
-        movieApi.getMostPopular(completion: { lstInfo in
-            self.movies = lstInfo
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
+        vmTrening.bindData = {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
             }
-        })
+        }
     }
     
 }
@@ -39,12 +37,12 @@ class TrendingViewController: UITableViewController {
 extension TrendingViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        movies.count
+        return vmTrening.getNumberOfItems()
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as? MenuCell else { return UITableViewCell() }
-        cell.configureCellWithUrl(movieInfo: movies[indexPath.row])
+        cell.configureCellWithUrl(movieInfo: vmTrening.movie(at: indexPath.row))
         return cell
     }
     
@@ -54,7 +52,7 @@ extension TrendingViewController {
     
     func navigateToDetailViewController(with index: Int) {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-        vc?.objMov = movies[index]
+        vc?.objMov = vmTrening.movie(at: index)
         self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     

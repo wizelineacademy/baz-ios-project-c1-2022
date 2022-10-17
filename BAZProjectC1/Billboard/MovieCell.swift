@@ -15,8 +15,27 @@ class MovieCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configureCell(with movie: Movie) {
-        lblTitle.text = movie.title
-        imgDetail.loadFrom(strUrl: movie.imageDetail)
+    /**
+     - parameters: movie model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
+    func configureCell(with movie: Movie? = nil) {
+        lblTitle.text = movie?.title
+        lblTitle.loadConfigurationFont(with: true)
+        imgDetail.loadFrom(strUrl: movie?.imageDetail ?? "")
+    }
+    
+    /**
+     - parameters: movie model
+     * this method loads the movie settings
+     * assigns the values ​​to the controls inside the cell
+     * view image by url to view
+     */
+    func configureCellUpdate(with movie: MovieUpdate? = nil) {
+        lblTitle.text = movie?.title
+        lblTitle.loadConfigurationFont(with: false)
+        imgDetail.loadFrom(strUrl: movie?.imageDetail ?? "")
     }
 }
