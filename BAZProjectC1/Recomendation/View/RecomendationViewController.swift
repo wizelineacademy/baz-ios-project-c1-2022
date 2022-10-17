@@ -9,9 +9,8 @@ import UIKit
 
 class RecomendationViewController: UIViewController {
 
-    private var lstMovies: [MovieUpdate] = []
     @IBOutlet weak var cvMovies: UICollectionView!
-    private let movieApi = MovieAPI()
+    private var recomendationViewModel = RecomendationViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +19,12 @@ class RecomendationViewController: UIViewController {
         loadCell()
     }
     
-    private func loadData() {
-        movieApi.getRecomendations(completion: { [weak self] lst in
+    private func loadData() { 
+        recomendationViewModel.bindData = {
             DispatchQueue.main.async {
-                self?.lstMovies = lst
-                self?.cvMovies.reloadData()
+                self.cvMovies.reloadData()
             }
-        })
+        }
     }
     
     private func loadCell() {
@@ -37,12 +35,12 @@ class RecomendationViewController: UIViewController {
 extension RecomendationViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return lstMovies.count
+        return recomendationViewModel.getNumberOfItems()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let myCell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCell", for: indexPath) as? MovieCell
-        myCell?.configureCellUpdate(with: lstMovies[indexPath.row])
+        myCell?.configureCellUpdate(with: recomendationViewModel.movie(at: indexPath.row))
         return myCell ?? UICollectionViewCell()
     }
     
@@ -55,12 +53,12 @@ extension RecomendationViewController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.changeView(iIndex: indexPath.row)
+        self.changeView(index: indexPath.row)
     }
     
-    private func changeView(iIndex: Int) {
-        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController
-        vc?.objMov = lstMovies[iIndex]
+    private func changeView(index: Int) {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailViewController") as? DetailViewController 
+        vc?.objMov = recomendationViewModel.movie(at: index)
         self.navigationController?.pushViewController(vc ?? UIViewController(), animated: true)
     }
     

@@ -26,12 +26,12 @@ class MenuCell: UITableViewCell {
      * assigns the values ​​to the controls inside the cell
      * view image by url to view
      */
-    func configureCellMenu(with rowMenu: MenuRow) {
-        lblTitle.text = rowMenu.title
+    func configureCellMenu(with rowMenu: MenuRow? = nil) {
+        lblTitle.text = rowMenu?.title
         lblTitle.loadConfigurationFont(with: true)
-        lblDetail.text = rowMenu.detail
+        lblDetail.text = rowMenu?.detail
         lblDetail.loadConfigurationFont(with: false)
-        imgDetail.image = UIImage.init(named: rowMenu.image)
+        imgDetail.image = UIImage.init(named: rowMenu?.image ?? "")
     }
     
     /**
@@ -40,12 +40,12 @@ class MenuCell: UITableViewCell {
      * assigns the values ​​to the controls inside the cell
      * view image by url to view
      */
-    func configureCellWithUrl(movieInfo: MovieUpdate) {
-        lblTitle.text = movieInfo.title
+    func configureCellWithUrl(movieInfo: MovieUpdate? = nil) {
+        lblTitle.text = movieInfo?.title
         lblTitle.loadConfigurationFont(with: true)
-        lblDetail.text = movieInfo.overview
+        lblDetail.text = movieInfo?.overview
         lblDetail.loadConfigurationFont(with: false)
-        imgDetail.loadFrom(strUrl: "\(movieInfo.imageDetail)")
+        imgDetail.loadFrom(strUrl: "\(movieInfo?.imageDetail ?? "")")
     }
     
 }

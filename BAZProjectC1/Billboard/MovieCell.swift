@@ -21,10 +21,10 @@ class MovieCell: UICollectionViewCell {
      * assigns the values ​​to the controls inside the cell
      * view image by url to view
      */
-    func configureCell(with movie: Movie) {
-        lblTitle.text = movie.title
+    func configureCell(with movie: Movie? = nil) {
+        lblTitle.text = movie?.title
         lblTitle.loadConfigurationFont(with: true)
-        imgDetail.loadFrom(strUrl: movie.imageDetail)
+        imgDetail.loadFrom(strUrl: movie?.imageDetail ?? "")
     }
     
     /**
@@ -33,9 +33,9 @@ class MovieCell: UICollectionViewCell {
      * assigns the values ​​to the controls inside the cell
      * view image by url to view
      */
-    func configureCellUpdate(with movie: MovieUpdate) {
-        lblTitle.text = movie.title
+    func configureCellUpdate(with movie: MovieUpdate? = nil) {
+        lblTitle.text = movie?.title
         lblTitle.loadConfigurationFont(with: false)
-        imgDetail.loadFrom(strUrl: movie.imageDetail)
+        imgDetail.loadFrom(strUrl: movie?.imageDetail ?? "")
     }
 }

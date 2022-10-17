@@ -12,22 +12,28 @@ protocol SearchMovieImp : AnyObject {
 }
 
 class SearchViewController: UIViewController {
-    
-    private let movieApi = MovieAPI()
-    weak var delegateSearch: SearchMovieImp?
 
     @IBOutlet weak var tblMenu: UITableView!
     @IBOutlet weak var vwPlace: UIView!
     @IBOutlet weak var svSearch: UISearchBar!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblSubtitle: UILabel!
-    var lstMovies: [MovieUpdate] = []
+    weak var delegateSearch: SearchMovieImp?
+    private var vmSearch = SearchViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadConfigNav()
         self.loadConfigTable()
-        
+        self.loadInfo()
+    }
+    
+    private func loadInfo() {
+        vmSearch.bindData = {
+            DispatchQueue.main.async {
+                self.loadConfiguration()
+            }
+        }
     }
     
     private func loadConfigNav() {
@@ -46,7 +52,7 @@ class SearchViewController: UIViewController {
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return lstMovies.count
+        return vmSearch.getNumberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -54,14 +60,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as? MenuCell else {
             return UITableViewCell()
         }
-        cell.configureCellWithUrl(movieInfo: lstMovies[indexPath.row])
+        cell.configureCellWithUrl(movieInfo: vmSearch.movie(at: indexPath.row))
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
         if self.delegateSearch != nil {
-            self.delegateSearch?.selectOptions(with: self.lstMovies[indexPath.row])
+            self.delegateSearch?.selectOptions(with: self.vmSearch.movie(at: indexPath.row))
         }
         self.navigationController?.popViewController(animated: true)
     }
@@ -69,16 +75,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension SearchViewController : UISearchBarDelegate  {
     func searchBarSearchButtonClicked( _ searchBar: UISearchBar) {
-        movieApi.getQuerySearch(strQuery: searchBar.text ?? "", completion: { [weak self] lst in
-            DispatchQueue.main.async {
-                self?.lstMovies = lst
-                if lst.count > 0 {
-                    self?.loadTable()
-                } else {
-                    self?.loadConfig()
-                }
-            }
-        })
+        
+        vmSearch.callServices(strDatos: searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? "")
+        
     }
     
     func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -92,6 +91,14 @@ extension SearchViewController : UISearchBarDelegate  {
     
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         cleanControl()
+    }
+    
+    private func loadConfiguration() {
+        if self.vmSearch.getNumberOfItems() > 0 {
+            self.loadTable()
+        } else {
+            self.loadConfig()
+        }
     }
     
     private func loadTable() {

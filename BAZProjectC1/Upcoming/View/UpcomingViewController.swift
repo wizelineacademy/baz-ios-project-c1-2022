@@ -10,9 +10,8 @@ import UIKit
 
 class UpcomingViewController : UIViewController {
     
-    @IBOutlet weak var tblMenu: UITableView!
-    private var lstOptions = [MovieUpdate]()
-    private var movieApi: MovieAPI = MovieAPI()
+    @IBOutlet weak var tblMenu: UITableView! 
+    private var vmUpcoming = UpcomingViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +26,11 @@ class UpcomingViewController : UIViewController {
     }
     
     private func loadData() {
-        movieApi.getUpComing(completion: { lst in
+        vmUpcoming.bindData = {
             DispatchQueue.main.async {
-                self.lstOptions = lst
                 self.tblMenu.reloadData()
             }
-        })
+        }
     }
     
 }
@@ -40,14 +38,14 @@ class UpcomingViewController : UIViewController {
 extension UpcomingViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return lstOptions.count
+        return vmUpcoming.getNumberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as? MenuCell else {
             return UITableViewCell()
         }
-        cell.configureCellWithUrl(movieInfo: lstOptions[indexPath.row])
+       cell.configureCellWithUrl(movieInfo: vmUpcoming.movie(at: indexPath.row))
         return cell
     }
     

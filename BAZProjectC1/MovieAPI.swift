@@ -47,19 +47,11 @@ class MovieAPI {
         * this method consults the list of movies
         * executes the "request" function which requests a url to be able to execute the request
         * completion:  the closure returns the list of movies
-     
-        - returns: return array of movies general
      */
     func getMoviesUpdate(completion: @escaping ([MovieUpdate]) -> ()) {
         request(strUrlPath: "\(baseURLPath)/trending/movie/day?api_key=\(apiKey)", completion: completion)
     }
     
-    /**
-     ///Entrada
-     - parameters:
-     - completion: (aqui se explica para que se ocupa el completion, se envia un arreglo de update)
-
-     */
     public func getMostPopular(completion: @escaping ([MovieUpdate]) -> ()) {
        request(strUrlPath:"\(baseURLPath)/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
     }
@@ -68,11 +60,6 @@ class MovieAPI {
      * this method consults the list of movies top rated
      * executes the "request" function which requests a url to be able to execute the request
      * completion:  the closure returns the list of movies top rated
-    
-        - returns: return array of movies top rated
-     
-       
-     
      */
     func getTopRated(completion: @escaping ([MovieUpdate]) -> ()) {
         request(strUrlPath:"\(baseURLPath)/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
@@ -82,8 +69,6 @@ class MovieAPI {
      * this method consults the list of movies UpComing
      * executes the "request" function which requests a url to be able to execute the request
      * completion:  the closure returns the list of movies UpComing
-     
-        - returns: return array of movies UpComing
      */
     func getUpComing(completion: @escaping ([MovieUpdate]) -> ()) {
        request(strUrlPath:"\(baseURLPath)/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
@@ -121,8 +106,6 @@ class MovieAPI {
      * this method consults the list of movies Query Search
      * executes the "request" function which requests a url to be able to execute the request
      * completion:  the closure returns specifie Movie
-    - returns: return movie Query Search
-     
      */
     func getQuerySearch(strQuery: String, completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"\(baseURLPath)/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: completion)
@@ -130,12 +113,9 @@ class MovieAPI {
     }
     
     /**
-     
      * this method consults the list of movies QuerySearch
      * executes the "request" function which requests a url to be able to execute the request
      * completion:  the closure returns specifie Movie
-     
-        - returns: return specific movie rating
      */
     func getReviews(completion: @escaping ([MovieUpdate]) -> ()) {
         self.request(strUrlPath:"\(baseURLPath)/movie/603/reviews?api_key=\(apiKey)&language=es", completion: completion)

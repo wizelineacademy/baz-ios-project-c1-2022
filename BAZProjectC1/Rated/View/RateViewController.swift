@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 class RateViewController : UIViewController {
-    
-    private var movieApi: MovieAPI = MovieAPI()
+     
     @IBOutlet weak var tblMenu: UITableView!
     private var lstOptions = [MovieUpdate]()
+    private var vmRate = RateViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +28,11 @@ class RateViewController : UIViewController {
     }
     
     private func loadData() {
-        movieApi.getTopRated(completion: { [weak self] lst in
+        vmRate.bindData = {
             DispatchQueue.main.async {
-                self?.lstOptions = lst
-                self?.tblMenu.reloadData()
+                self.tblMenu.reloadData()
             }
-        })
+        }
     }
     
 }
@@ -41,17 +40,15 @@ class RateViewController : UIViewController {
 extension RateViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return lstOptions.count
+        return vmRate.getNumberOfItems()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell") as? MenuCell else {
             return UITableViewCell()
         }
-        cell.configureCellWithUrl(movieInfo: lstOptions[indexPath.row])
+        cell.configureCellWithUrl(movieInfo: vmRate.movie(at: indexPath.row))
         return cell
     }
     
 }
-
-
