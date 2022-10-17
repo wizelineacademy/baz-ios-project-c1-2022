@@ -26,7 +26,6 @@ class DetailViewController: UIViewController {
     var movie: Movie?
     var objMovie: MovieAPIResponse?
 
-    
     //MARK: - F U N C T I O N S
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +88,7 @@ class DetailViewController: UIViewController {
     
     @IBAction func goToRate(_ sender: Any) {
         let vc = RateViewController()
+        vc.delegate = self
         vc.modalPresentationStyle = .automatic
         navigationController?.present(vc, animated: true, completion: nil)
     }
@@ -114,5 +114,12 @@ extension DetailViewController: UICollectionViewDelegate & UICollectionViewDataS
 extension DetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 180, height: 248)
+    }
+}
+
+//MARK: - EXT -> R A T E V C · D E L E G A T E
+extension DetailViewController: RateVCDelegate {
+    func updateRank(withValue newVal: String) {
+        lblVote.text = newVal
     }
 }
