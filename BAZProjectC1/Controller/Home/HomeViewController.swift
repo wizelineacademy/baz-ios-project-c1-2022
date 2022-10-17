@@ -54,6 +54,12 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func btnSetClearOrDark(_ sender: Any) {
+        NotificationCenter.default.post(name:NSNotification.Name("setNewColor"),
+                  object: nil)
+    }
+    
 }
 
 // MARK: - EXT -> UI · T A B L E · V I E W · D E L E G A T E

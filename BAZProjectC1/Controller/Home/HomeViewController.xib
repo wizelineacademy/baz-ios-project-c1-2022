@@ -23,13 +23,28 @@
                     <rect key="frame" x="0.0" y="124" width="414" height="738"/>
                     <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="msD-E1-fD8">
+                    <rect key="frame" x="246" y="86" width="148" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="uFC-u7-zp1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Clear / Dark Mode"/>
+                    <connections>
+                        <action selector="btnSetClearOrDark:" destination="-1" eventType="touchUpInside" id="Tcb-cA-N91"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.047058823530000002" green="0.094117647060000004" blue="0.13725490200000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="sjW-2I-c2r" secondAttribute="trailing" id="3FB-by-Urg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="sjW-2I-c2r" secondAttribute="bottom" id="Lsf-AX-6lj"/>
+                <constraint firstItem="sjW-2I-c2r" firstAttribute="top" secondItem="msD-E1-fD8" secondAttribute="bottom" constant="8" symbolic="YES" id="QJT-02-Ok1"/>
                 <constraint firstItem="sjW-2I-c2r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jrc-Pa-sSd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="msD-E1-fD8" secondAttribute="trailing" constant="20" id="sTr-3Y-Jbd"/>
                 <constraint firstItem="sjW-2I-c2r" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="80" id="uMd-J9-qQq"/>
             </constraints>
             <point key="canvasLocation" x="139" y="98"/>

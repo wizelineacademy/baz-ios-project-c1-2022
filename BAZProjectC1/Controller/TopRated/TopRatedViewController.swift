@@ -26,7 +26,7 @@ final class TopRatedViewController: UIViewController {
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMoviesTrending(withURL: MovieCategory.topRated.rawValue) { [weak self] moviesResponse, error in
+        movieApi.getMoviesCategory(withURL: MovieCategory.topRated.rawValue) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
                 self.objMovie = moviesResponse

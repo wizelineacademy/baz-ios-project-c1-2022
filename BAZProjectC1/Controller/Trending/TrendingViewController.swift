@@ -17,7 +17,7 @@ final class TrendingViewController: UITableViewController {
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMoviesTrending(withURL: MovieCategory.trending.rawValue ) { [weak self] moviesResponse, error in
+        movieApi.getMoviesCategory(withURL: MovieCategory.trending.rawValue ) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
                 self.objMovie = moviesResponse
