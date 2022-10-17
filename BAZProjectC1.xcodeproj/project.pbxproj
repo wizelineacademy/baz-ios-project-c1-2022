@@ -46,6 +46,7 @@
 		54862F6928F0AF2200184386 /* RateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54862F6728F0AF2200184386 /* RateViewController.xib */; };
 		54862F6C28F0B13500184386 /* RateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54862F6B28F0B13500184386 /* RateView.swift */; };
 		54862F6E28F0B14000184386 /* RateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54862F6D28F0B14000184386 /* RateView.xib */; };
+		54DFEA0C28FDA0AD00A24B88 /* BAZPCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54DFEA0B28FDA0AD00A24B88 /* BAZPCommons.swift */; };
 		54F2467B28D917EF006AF344 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467928D917EF006AF344 /* MovieTableViewCell.swift */; };
 		54F2467C28D917EF006AF344 /* MovieTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */; };
 		54F2467F28D92291006AF344 /* BAZPExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F2467E28D92291006AF344 /* BAZPExtension.swift */; };
@@ -101,6 +102,7 @@
 		54862F6728F0AF2200184386 /* RateViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateViewController.xib; sourceTree = "<group>"; };
 		54862F6B28F0B13500184386 /* RateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateView.swift; sourceTree = "<group>"; };
 		54862F6D28F0B14000184386 /* RateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RateView.xib; sourceTree = "<group>"; };
+		54DFEA0B28FDA0AD00A24B88 /* BAZPCommons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZPCommons.swift; sourceTree = "<group>"; };
 		54F2467928D917EF006AF344 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 		54F2467A28D917EF006AF344 /* MovieTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieTableViewCell.xib; sourceTree = "<group>"; };
 		54F2467E28D92291006AF344 /* BAZPExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAZPExtension.swift; sourceTree = "<group>"; };
@@ -382,6 +384,14 @@
 			path = RateView;
 			sourceTree = "<group>";
 		};
+		54DFEA0A28FDA09200A24B88 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				54DFEA0B28FDA0AD00A24B88 /* BAZPCommons.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		54F2467828D917D4006AF344 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,6 +434,7 @@
 		C30893AC28A2F42B004B1860 /* BAZProjectC1 */ = {
 			isa = PBXGroup;
 			children = (
+				54DFEA0A28FDA09200A24B88 /* Commons */,
 				54F2467D28D92279006AF344 /* Extension */,
 				545AACEA28D3A5AD00DFD9DF /* View */,
 				545AACE928D3A59400DFD9DF /* Model */,
@@ -541,6 +552,7 @@
 				5476D11D28DE3347005274D2 /* ElementCollectionViewCell.swift in Sources */,
 				5442EAB528ECA6A400BC4B20 /* ReviewTableViewCell.swift in Sources */,
 				54350FB528DBDD8300B30422 /* NowPlayingTableViewCell.swift in Sources */,
+				54DFEA0C28FDA0AD00A24B88 /* BAZPCommons.swift in Sources */,
 				54350FC228DBF69700B30422 /* PopularViewController.swift in Sources */,
 				5442EAAF28EC9DF500BC4B20 /* Review.swift in Sources */,
 				5442EAA928EC9CBD00BC4B20 /* ReviewViewController.swift in Sources */,

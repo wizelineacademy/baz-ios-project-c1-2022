@@ -26,7 +26,7 @@ final class NowPlayingViewController: UIViewController {
     //MARK: - S E R V I C E S
     private func getMovies() {
         let movieApi = MovieAPI()
-        movieApi.getMoviesTrending(withId: 2) { [weak self] moviesResponse, error in
+        movieApi.getMoviesTrending(withURL: MovieCategory.nowPlaying.rawValue) { [weak self] moviesResponse, error in
             guard let self = self else{ return }
             if moviesResponse != nil {
                 self.objMovie = moviesResponse
