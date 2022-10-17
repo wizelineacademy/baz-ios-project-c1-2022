@@ -1,0 +1,165 @@
+//
+//  NetworkManager.swift
+//  BAZProjectC1
+//
+//  Created by Carlos Nitsuga Hernandez on 23/09/22.
+//
+
+import Foundation
+
+//MARK: - Type alias
+typealias MovieCompletionClosure = ((Movie?, Error?) -> Void)
+typealias CastCompletionClosure = ((MovieCast?,Error?) -> Void)
+
+
+//MARK: - Protocol Movie Service
+protocol MovieService {
+    func fetchMovieTrending(completion: MovieCompletionClosure?)
+    func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String)
+    func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String)
+    func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int)
+    func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String)
+    func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int)
+}
+
+//MARK: - Enums Error & URL
+enum NetworkError: Error {
+    case invalidUrl
+    case invalidData
+}
+
+enum BasesUrl: String {
+    case mainUrl = "https://api.themoviedb.org/3/"
+    case imageUrl = "https://image.tmdb.org/t/p/w500"
+}
+
+struct NetworkManager:MovieService {
+    
+    //MARK: - Properties
+    static let shared = NetworkManager()
+    private let apiKey = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+    
+    //MARK: - Methods
+    /**
+     Function that creates a request via url
+     - Parameters:
+     - url: Element equivalent to url
+     - Returns: URLRequest?. Request with specific configuration
+     */
+    private func createRequest(for url: String) -> URLRequest? {
+        guard let url = URL(string: url) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+    
+    /**
+     Generic function that executes a request
+     - Parameters:
+     - request: Request of type URLRequest
+     - completion: Closure that receives two parameters: generic typet and the error
+     */
+    private func executeRequest<T: Codable>(request: URLRequest, completion: ((T?, Error?) -> Void)?) {
+        let session = URLSession(configuration: .default)
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard let data = data else {
+                completion?(nil, error)
+                return
+            }
+            if let decodedResponse = try? JSONDecoder().decode(T.self, from: data) {
+                DispatchQueue.main.async {
+                    completion?(decodedResponse, nil)
+                }
+            } else {
+                completion?(nil, NetworkError.invalidData)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    /**
+     Function tthat obtains the data of the movies
+     - Parameters:
+     - completion: Closure define in typealias
+     */
+    public func fetchMovieTrending(completion: MovieCompletionClosure?) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)trending/movie/day?api_key=\(apiKey)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    /**
+     Function that you get the movies by a specific filter
+     - Parameters:
+     - completion: Closure define in typealias
+     - filter: Filter to search
+     */
+    public func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(filter)?api_key=\(apiKey)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    /**
+     Function to get the movies of a specific movie
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId: id of the movie
+     - filter: Filter to search
+     */
+    public func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(movieId)/\(filter)?api_key=\(apiKey)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    /**
+     Function to get cast
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId:  id of the movie
+     */
+    public func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(movieId)/credits?api_key=\(apiKey)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    /**
+     Function that search one movie with keyword
+     - Parameters:
+     - completion: Closure define in typealias
+     - keyword: keyword to search
+     */
+    public func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)search/multi?api_key=\(apiKey)&query=\(keyword)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+    
+    /**
+     Function that looks for the information of a specific movie
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId: id of the movie
+     */
+    public func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int) {
+        guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(String(movieId))?api_key=\(apiKey)&language=es-MX") else {
+            completion?(nil, NetworkError.invalidUrl)
+            return
+        }
+        executeRequest(request: request, completion: completion)
+    }
+}
+
