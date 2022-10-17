@@ -4,9 +4,15 @@
 
 import UIKit
 
+protocol RateVCDelegate: AnyObject {
+    func updateRank(withValue newVal: String)
+}
+
 class RateViewController: UIViewController {
     //MARK: - O U T L E T S
     @IBOutlet weak var vwContainer: UIView!
+    
+    weak var delegate: RateVCDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,11 +29,12 @@ class RateViewController: UIViewController {
 
 //MARK: - EXT -> R A T E · 
 extension RateViewController: RateViewDelegate {
-    func closeView() {
+    
+    func rateMovie(withValue strVal: String) {        delegate?.updateRank(withValue: strVal)
         self.dismiss(animated: true, completion: nil)
     }
     
-    func rateMovie() {
-        print("RATE MOVIE NOW")
+    func closeView() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

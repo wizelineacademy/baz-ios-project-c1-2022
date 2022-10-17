@@ -21,13 +21,18 @@ final class NowPlayingTableViewCell: UITableViewCell {
     //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
-    private let wzlnDarkBlue: UIColor = UIColor(red: 12, green: 24, blue: 35, alpha: 1)
-    private let wzlnMediumBlue: UIColor = UIColor(red: 32, green: 52, blue: 73, alpha: 1)
+    private let wizelineClear: UIColor = .init(red: 211/255, green: 211/255, blue: 212/255, alpha: 1)
+    private let wizelineClearBlue: UIColor = .init(red: 77/255, green: 93/255, blue: 109/255, alpha: 1)
     
     
     //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
+        NotificationCenter.default
+                          .addObserver(self,
+                           selector:#selector(updateColor(_:)),
+                           name: NSNotification.Name("setNewColor"),
+                           object: nil)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -55,6 +60,13 @@ final class NowPlayingTableViewCell: UITableViewCell {
         self.lblOriginalTitle.text = nowPlay.originalTitle
         self.lblOverview.text = nowPlay.overview
         self.lblVote.text = String(format: "%.1f", dVote )
+    }
+    
+    @objc func updateColor(_ notification: Notification){
+        self.vwContainer.backgroundColor = wizelineClear
+        self.lblTitle.textColor = wizelineClearBlue
+        self.lblOverview.textColor = wizelineClearBlue
+        self.lblVote.textColor = wizelineClearBlue
     }
 
 }

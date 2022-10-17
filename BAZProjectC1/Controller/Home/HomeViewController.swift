@@ -54,6 +54,12 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    @IBAction func btnSetClearOrDark(_ sender: Any) {
+        NotificationCenter.default.post(name:NSNotification.Name("setNewColor"),
+                  object: nil)
+    }
+    
 }
 
 // MARK: - EXT -> UI · T A B L E · V I E W · D E L E G A T E
@@ -84,7 +90,7 @@ extension HomeViewController: UISearchResultsUpdating{
     }
 }
 
-
+// MARK: - EXT -> UI · T E X T · F I E L D · D E L E G A T E
 extension HomeViewController: UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let txt = textField.text { self.searchMovie(with: txt) }
@@ -92,8 +98,11 @@ extension HomeViewController: UITextFieldDelegate{
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if string == "" { return true }
-        if (textField.text?.count ?? 0) >= 2 {self.searchMovie(with: textField.text ?? "")  }
+        if string == "" {
+            self.searchMovie(with: "")
+            return true
+        }
+        self.searchMovie(with: textField.text ?? "")
         return true
     }
 }

@@ -17,11 +17,18 @@ final class TopRatedTableViewCell: UITableViewCell {
     //MARK: -  V A R I A B L E S
     static var nib: UINib { return UINib(nibName: identifier, bundle: .main ) }
     private var downloadTask: URLSessionDownloadTask?
+    private let wizelineClear: UIColor = .init(red: 211/255, green: 211/255, blue: 212/255, alpha: 1)
+    private let wizelineClearBlue: UIColor = .init(red: 77/255, green: 93/255, blue: 109/255, alpha: 1)
 
     
     //MARK: - F U N C T I O N S
     override func awakeFromNib() {
         super.awakeFromNib()
+        NotificationCenter.default
+                          .addObserver(self,
+                           selector:#selector(updateColor(_:)),
+                           name: NSNotification.Name("setNewColor"),
+                           object: nil)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -64,4 +71,10 @@ final class TopRatedTableViewCell: UITableViewCell {
         self.setSlider(withValue: Float(obj.popularity ?? 0.0))
     }
 
+    
+    @objc func updateColor(_ notification: Notification){
+        self.vwContainer.backgroundColor = wizelineClear
+        self.lblTitle.textColor = wizelineClearBlue
+        self.lblDesc.textColor = wizelineClearBlue
+    }
 }

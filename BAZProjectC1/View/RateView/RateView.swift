@@ -7,7 +7,7 @@ import UIKit
 //MARK: - P R O T O C O L S
 protocol RateViewDelegate : AnyObject {
     func closeView()
-    func rateMovie()
+    func rateMovie(withValue strVal: String)
 }
 
 class RateView: UIView {
@@ -29,7 +29,7 @@ class RateView: UIView {
     }
     
     @IBAction func rateMovie() {
-        delegate?.rateMovie()
+        delegate?.rateMovie(withValue: txfRank.text ?? "0.0")
     }
     
     public class func instantiate() -> RateView {
