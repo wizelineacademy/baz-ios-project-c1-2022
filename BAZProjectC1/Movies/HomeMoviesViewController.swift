@@ -42,6 +42,11 @@ final class HomeMoviesViewController: UIViewController {
         collectionView.register(UINib(nibName: headerReuseIndentifier, bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: headerReuseIndentifier)
     }
     
+    /**
+     Funcion that show the view of detail movie
+     - Parameters:
+     - information: object of MovieData
+     */
     public func presentView(for information: MovieData) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movies = information

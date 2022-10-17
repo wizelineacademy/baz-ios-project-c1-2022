@@ -20,12 +20,18 @@ final class CollectionViewCast: UICollectionViewCell {
         setupView()
     }
     
+    /** Function that configure the view  */
     private func setupView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
     }
     
+    /**
+     Function that load the cast of the movie
+     - Parameters:
+     - actorsMovie: object that contains the cast
+     */
     public func loadData(actorsMovie: MovieCast) {
         self.actorsCast = actorsMovie
         DispatchQueue.main.async {

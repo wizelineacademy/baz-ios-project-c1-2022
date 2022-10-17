@@ -23,12 +23,18 @@ final class CollectionViewMovie: UICollectionViewCell {
         setupView()
     }
     
+    /**  Function that configure the view */
     private func setupView() {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: cellIdentifier, bundle: nil), forCellWithReuseIdentifier: cellIdentifier)
     }
     
+    /**
+     Function that load the movies
+     - Parameters:
+     - movies: object of Movie
+     */
     public func loadData(movies: Movie) {
         self.movies = movies
         DispatchQueue.main.async {

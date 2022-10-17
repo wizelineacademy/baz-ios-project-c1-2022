@@ -30,6 +30,12 @@ final class MovieSearch:MovieSearchProtocol {
 extension MovieSearch {
     
     //MARK: - Methods
+    /**
+     Function that loads the movies at the time of writing in the search bar
+     - Parameters:
+     - keyword: word that executes the search
+     - completion: closure to get the object movie
+     */
     public func loadMoviesSearch(with keyword: String, completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieSearch(completion: { [weak self] (movies,error) in
             guard let self = self else { return }

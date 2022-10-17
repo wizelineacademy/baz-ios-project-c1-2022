@@ -21,6 +21,12 @@ final class MovieListPresenter {
         self.view = view
     }
     
+    /**
+     Function that loads the similar movies of a specific movie
+     - Parameters:
+     - collectionView: collection that show the movies
+     - movieId: id of the movie
+     */
     public func loadDataSimilar(using collectionView: UICollectionView, movieId: Int) {
             movie.loadMoviesDetail(with: MovieListType.similar.rawValue, completion: { (movie) in
                 self.similarMovies = movie
@@ -30,6 +36,12 @@ final class MovieListPresenter {
             }, movieId)
     }
     
+    /**
+     Function that loads the recommends movies of a specific movie
+     - Parameters:
+     - collectionView: collection that show the movies
+     - movieId: id of the movie
+     */
     public func loadDataRecomendadas(using collectionView: UICollectionView, movieId: Int) {
             movie.loadMoviesDetail(with: "recommendations", completion: { (movie) in
                 self.recommendsMovies = movie
@@ -39,10 +51,24 @@ final class MovieListPresenter {
             }, movieId)
     }
     
+    /**
+     Function that show the view of detail movie
+     - Parameters:
+     - asset: object of movie data
+     - rail: object of movie
+     - viewController: view that present the new view
+     */
     private func openDetails(for asset: MovieData, with rail: Movie, using viewController: UIViewController) {
         view?.presentView(for: asset)
     }
     
+    /**
+     Function that get movies
+     - Parameters:
+     - row: number of row
+     - collectionView: collection that show the movies
+     - typeOfMovie: filter type similar  or recommended
+     */
     public func getMovies(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController, typeOfMovie: String) -> UICollectionViewCell {
         switch typeOfMovie {
         case MovieListType.similar.rawValue :

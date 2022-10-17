@@ -30,6 +30,12 @@ final class MovieCastState:MovieCastProtocol {
 extension MovieCastState {
     //MARK: - Methods
     
+    /**
+     Function that loads the actors of a specific movie
+     - Parameters:
+     - completion: closure to get the object movie
+     - movieId: id of the movie
+     */
     public func loadMoviesCast(completion: @escaping (MovieCast) -> (), _ movieId: Int)  {
         movieService.fetchMovieCast(completion: { [weak self] (actorsCast, erros) in
             guard let self = self else { return }

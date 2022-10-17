@@ -36,6 +36,7 @@ final class MovieDetailController: UIViewController {
         loadData()
     }
     
+    /**  Function that configure the collectionView */
     private func setupCollectionView() {
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -46,6 +47,7 @@ final class MovieDetailController: UIViewController {
         collectionView.register(UINib(nibName: collectionCastIdentifier, bundle: nil), forCellWithReuseIdentifier: collectionCastIdentifier)
     }
     
+    /**  Function that loads the data of similar, recommended movies and the cast of actors*/
     private func loadData() {
         if let movieId = movies?.id {
             movieListPresenter = MovieListPresenter(view: self)
@@ -56,6 +58,11 @@ final class MovieDetailController: UIViewController {
         }
     }
     
+    /**
+     Function that present the new view of detail movie
+     - Parameters:
+     - movieData: object MovieData which will be passed to the movie detail view     
+     */
     public func presentView(for movieData: MovieData) {
         guard let vcMovieDetails =  self.storyboard?.instantiateViewController(withIdentifier: "infoview") as? MovieDetailController else { return }
         vcMovieDetails.movies = movieData

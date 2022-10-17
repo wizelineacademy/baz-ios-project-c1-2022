@@ -20,6 +20,7 @@ final class CreditsMovie: UICollectionViewCell {
         configView()
     }
     
+    /** Function that configure the view*/
     private func configView() {
         mainView.layer.cornerRadius = 10
         actorImage.layer.cornerRadius = 10

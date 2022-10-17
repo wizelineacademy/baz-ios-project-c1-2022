@@ -27,6 +27,11 @@ final class MoviePresenter {
         self.view = view
     }
     
+    /**
+     Function that loads the movies in their different sections
+     - Parameters:
+     - collectionView: collectionView that show the movies
+     */
     public func loadMovies(using collectionView: UICollectionView) {
         treding.loadMoviesTrending { (movie) in
             self.moviesTrending = movie
@@ -60,10 +65,24 @@ final class MoviePresenter {
         }
     }
     
+    /**
+     Function that shows the view of open details of the movie
+     - Parameters:
+     - asset: object of MovieData
+     - rail: object of Movie
+     - viewController:  view controller that show  the new view
+     */
     private func openDetails(for asset: MovieData, with rail: Movie, using viewController: UIViewController) {
         view?.presentView(for: asset)
     }
     
+    /**
+     Function that obtains the movies of the different sections that exist
+     - Parameters:
+     - row:number of row
+     - collectionView: collection that show the movies
+     - viewController: viewcontroller that show the new view
+     */
     func getMovies(forRow row: Int, using collectionView: UICollectionView, forPresent viewController: UIViewController) -> UICollectionViewCell {
         guard let collectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewMovie", for: IndexPath(row: row, section: 0)) as? CollectionViewMovie else { return UICollectionViewCell() }
         switch row {

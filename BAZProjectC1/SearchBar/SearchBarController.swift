@@ -33,6 +33,8 @@ final class SearchBarController: UIViewController {
     deinit {
         removeObserver()
     }
+    
+    /** Function that configure the table */
     private func configTable() {
         tableView.dataSource = self
         tableView.delegate = self
@@ -40,6 +42,11 @@ final class SearchBarController: UIViewController {
         tableView.register(UINib(nibName: "customCell", bundle: nil), forCellReuseIdentifier: "tablecell")
     }
     
+    /**
+     Function that loads movies similar to the written word
+     - Parameters:
+     - keyword: keyword to search
+     */
     private func loadDataSimilar(keyword: String) {
         searching.loadMoviesSearch(with: keyword) { (movie) in
             self.moviesSearch = movie
@@ -50,14 +57,17 @@ final class SearchBarController: UIViewController {
         }
     }
     
+    /** Function that subscribes a notification */
     private func addObserver() {
         NotificationCenterHelper.suscribeToNotification(self, with: #selector(notificationReceived), name: .detailMovie)
     }
     
+    /** Function that unsubscribes a notification */
     private func removeObserver() {
         NotificationCenterHelper.myNotificationCenter.removeObserver(self, name: .detailMovie, object: nil)
     }
     
+    /** Function that received the notification*/
     @objc private func notificationReceived(_ notification: NSNotification) {
         guard let newMovie = notification.userInfo?["didSelectMovie"] as? MovieData else {
             return

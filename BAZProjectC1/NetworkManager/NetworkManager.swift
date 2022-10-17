@@ -90,6 +90,13 @@ struct NetworkManager:MovieService {
         }
         executeRequest(request: request, completion: completion)
     }
+    
+    /**
+     Function that you get the movies by a specific filter
+     - Parameters:
+     - completion: Closure define in typealias
+     - filter: Filter to search
+     */
     public func fetchMovieFilter(completion: MovieCompletionClosure?, filter: String) {
         guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(filter)?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
@@ -98,6 +105,13 @@ struct NetworkManager:MovieService {
         executeRequest(request: request, completion: completion)
     }
     
+    /**
+     Function to get the movies of a specific movie
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId: id of the movie
+     - filter: Filter to search
+     */
     public func fetchMovieDetail(completion: MovieCompletionClosure?, movieId: Int, filter: String) {
         guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(movieId)/\(filter)?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
@@ -106,6 +120,12 @@ struct NetworkManager:MovieService {
         executeRequest(request: request, completion: completion)
     }
     
+    /**
+     Function to get cast
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId:  id of the movie
+     */
     public func fetchMovieCast(completion: CastCompletionClosure?, movieId: Int) {
         guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(movieId)/credits?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
@@ -114,6 +134,12 @@ struct NetworkManager:MovieService {
         executeRequest(request: request, completion: completion)
     }
     
+    /**
+     Function that search one movie with keyword
+     - Parameters:
+     - completion: Closure define in typealias
+     - keyword: keyword to search
+     */
     public func fetchMovieSearch(completion: MovieCompletionClosure?, keyword: String) {
         guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)search/multi?api_key=\(apiKey)&query=\(keyword)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)
@@ -122,6 +148,12 @@ struct NetworkManager:MovieService {
         executeRequest(request: request, completion: completion)
     }
     
+    /**
+     Function that looks for the information of a specific movie
+     - Parameters:
+     - completion: Closure define in typealias
+     - movieId: id of the movie
+     */
     public func fetchMovieInfo(completion: MovieCompletionClosure?, movieId: Int) {
         guard let request = createRequest(for: "\(BasesUrl.mainUrl.rawValue)movie/\(String(movieId))?api_key=\(apiKey)&language=es-MX") else {
             completion?(nil, NetworkError.invalidUrl)

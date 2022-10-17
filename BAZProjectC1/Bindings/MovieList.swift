@@ -30,6 +30,12 @@ final class MovieList: MovieListProtocol {
 //MARK: - Extension Movie List
 extension MovieList {
     //MARK: - Methods
+    
+    /**
+     Function that loads the movies of the trending category
+     - Parameters:
+     - completion: closure to get  the object movie
+     */
      func loadMoviesTrending(completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieTrending { [weak self] (page, error) in
             guard let self = self else { return }
@@ -42,6 +48,12 @@ extension MovieList {
         }
     }
     
+    /**
+     Function that loads the movies depending on the filter that is desired
+     - Parameters:
+     - searchType: filter type such as upcoming, popular, etc.
+     - completion: closure to get the object movie
+     */
     func loadMovies(with searchType: String, completion: @escaping (Movie) -> ())  {
         movieService.fetchMovieFilter(completion: { [weak self] (page, error) in
             guard let self = self else { return }
@@ -54,6 +66,12 @@ extension MovieList {
         }, filter: searchType)
     }
     
+    /**
+     Function that loads the detail movies as they are similar or recommended
+     - Parameters:
+     - searchType: filter type similar  or recommended
+     - completion: closure to get the object movie
+     */
     func loadMoviesDetail(with searchType: String, completion: @escaping (Movie) -> (), _ movieId: Int)  {
         movieService.fetchMovieDetail(completion: { [weak self] (page, error) in
             guard let self = self else { return }
