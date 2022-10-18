@@ -12,7 +12,7 @@ import UIKit
 extension UIImageView {
     /// This method download image from a url
     /// - Parameters:
-    ///   - imagePath: URL path of an image
+    /// - imagePath: URL path of an image
 
     public func downloaded(imagePath: String) {
         guard let url = URL(string: imagePath) else {
@@ -21,6 +21,7 @@ extension UIImageView {
         }
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+            ///Comentar:-
             DispatchQueue.main.async {
                 if let _ = error {
                     self.image = UIImage(named: "poster")
@@ -71,6 +72,7 @@ extension UIView{
         self.addSubview(container)
     }
 
+    /// This method hide  an activity indicator
     func hideAnimation() {
         if let background = viewWithTag(475647){
             background.removeFromSuperview()

@@ -7,28 +7,42 @@
 import UIKit
 
 final class TrendingViewController: UITableViewController {
-    
     lazy var searchBar:UISearchBar = UISearchBar()
     @IBOutlet weak var principalTabBar: UITabBarItem!
     private let viewModel = TrendingMovieViewModel()
+    
+    
+    var notificationCenterHelper: TextoResponsivo = TextoResponsivo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getMovies()
         setupView()
         setSearchBar()
-        registraNotificacionTeclado()
+        notificationCenterHelper.subscribeToNotification(self, with: #selector(notificationReceived), name: NSNotification.Name(rawValue: "responsiveText.Notification"))
     }
     
     func setupView(){
         tableView.register(UINib.init(nibName: SearchTableViewCell.reuseIdentifier, bundle: Bundle(for: SearchTableViewCell.self)), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
                 view.addGestureRecognizer(tapGesture)
         tapGesture.cancelsTouchesInView = false
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+         super.traitCollectionDidChange(previousTraitCollection)
+         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+             
+             notificationCenterHelper.myNotificationCenter.post(name: NSNotification.Name(rawValue: "responsiveText.Notification"), object: nil, userInfo: nil)
+         }
+    }
+    
+    @objc private func notificationReceived(_ notification: NSNotification) {
+        searchBar.searchTextField.font = UIFont.preferredFont(forTextStyle: .headline)
+    }
+    
     func setSearchBar(){
+        searchBar.searchTextField.font = .boldSystemFont(ofSize: 20 /*: 16*/)
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = "Search..."
         searchBar.sizeToFit()
@@ -37,6 +51,10 @@ final class TrendingViewController: UITableViewController {
         searchBar.backgroundImage = UIImage()
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+    }
+    
+    func segmentChanged(sender: UISegmentedControl) {
+            print("\(sender.selectedSegmentIndex)")
     }
     
     func getMovies(){
@@ -61,22 +79,11 @@ final class TrendingViewController: UITableViewController {
         }
     }
     
-    func registraNotificacionTeclado (){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidHideNotification, object: nil)
-
-    }
     
     @objc func tapGestureHandler() {
         searchBar.endEditing(true)
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-            if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-                debugPrint("Notification: Keyboard will show")
-                
-                view.endEditing(true)
-            }
-        }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -120,7 +127,17 @@ extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, 
         let searchText = trimmedString.replacingOccurrences(of: " ", with: "%20")
         if searchText.count > 1 {
             searchMovie(with: searchText)
+        } else {
+            getMovies()
         }
         
     }
 }
+
+//extension TrendingViewController: TextoResponsivoDelegate {
+//    func textSizeDidChange(_ textSize: UIContentSizeCategory) {
+//        print("cambiar el tamaño del texto a \(textSize.rawValue)")
+//
+//        TextoResponsivo.myNotificationCenter.post(name: NSNotification.Name(rawValue: "responsiveText.Notification"), object: nil, userInfo: ["customText": UIContentSizeCategory(rawValue: textSize.rawValue)])
+//    }
+//}
