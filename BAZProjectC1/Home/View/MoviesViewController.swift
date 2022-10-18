@@ -19,6 +19,7 @@ class MoviesViewController: UIViewController {
         setupView()
     }
     
+    ///This method setup the view and register the table
     func setupView(){
         navigationItem.title = "Home"
         self.TableView.register(UINib.init(nibName: "TableViewCell", bundle: Bundle(for: TableViewCell.self)), forCellReuseIdentifier: "cell")
@@ -28,6 +29,9 @@ class MoviesViewController: UIViewController {
         }
     }
     
+    ///This method get movies for distinct sections
+    ///
+
     func getMoviesInSection(){
         self.view.showAnimation()
         self.postersMovieArray.removeAllMovie()

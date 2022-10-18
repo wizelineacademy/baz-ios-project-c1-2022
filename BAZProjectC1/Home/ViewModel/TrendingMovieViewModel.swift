@@ -19,7 +19,9 @@ class TrendingMovieViewModel {
         }
     }
     
-//    var postersMovieArray: MovieModel?
+    /// This  method get movies depending of an URL string
+    /// - Parameters:
+    ///   - endPoint: The endpoint of an API
     
     func getMovies(_ endPoint: EndPoint) {
         let url = endPoint.requestFrom
@@ -39,6 +41,5 @@ class TrendingMovieViewModel {
             }
         }.resume()
     }
-    
 }
 

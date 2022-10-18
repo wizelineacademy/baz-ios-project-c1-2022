@@ -7,28 +7,50 @@
 import UIKit
 
 final class TrendingViewController: UITableViewController {
-    
     lazy var searchBar:UISearchBar = UISearchBar()
     @IBOutlet weak var principalTabBar: UITabBarItem!
     private let viewModel = TrendingMovieViewModel()
+    var notificationCenterHelper: TextoResponsivo = TextoResponsivo()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         getMovies()
         setupView()
         setSearchBar()
-        registraNotificacionTeclado()
+        notificationCenterHelper.subscribeToNotification(self, with: #selector(notificationReceived), name: NSNotification.Name(rawValue: "responsiveText.Notification"))
     }
     
+    /// This method registers the table and adds a gesture
     func setupView(){
         tableView.register(UINib.init(nibName: SearchTableViewCell.reuseIdentifier, bundle: Bundle(for: SearchTableViewCell.self)), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
-        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
                 view.addGestureRecognizer(tapGesture)
         tapGesture.cancelsTouchesInView = false
     }
     
+    /// This method Called when the iOS interface environment changes and register an notification center
+    /// - Parameters:
+    /// - previousTraitCollection: The UITraitCollection object before the interface environment changed.
+    ///
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+         super.traitCollectionDidChange(previousTraitCollection)
+         if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
+             
+             notificationCenterHelper.myNotificationCenter.post(name: NSNotification.Name(rawValue: "responsiveText.Notification"), object: nil, userInfo: nil)
+         }
+    }
+    
+    /// This method is executed when a notification is received
+    /// - Parameters:
+    /// - notification: An object containing information broadcast to registered observers
+    
+    @objc private func notificationReceived(_ notification: NSNotification) {
+        searchBar.searchTextField.font = UIFont.preferredFont(forTextStyle: .headline)
+    }
+    
+    /// This method adds a searchbar for searh movies by title or author
     func setSearchBar(){
+        searchBar.searchTextField.font = .boldSystemFont(ofSize: 20 /*: 16*/)
         searchBar.searchBarStyle = UISearchBar.Style.default
         searchBar.placeholder = "Search..."
         searchBar.sizeToFit()
@@ -39,6 +61,8 @@ final class TrendingViewController: UITableViewController {
         navigationItem.titleView = searchBar
     }
     
+    /// This method get trendingMovies
+
     func getMovies(){
         self.view.showAnimation()
         viewModel.getMovies(.trendingMovie)
@@ -49,6 +73,10 @@ final class TrendingViewController: UITableViewController {
             }
         }
     }
+    
+    /// This method searches movies from a given text
+    /// - Parameters:
+    /// - text: The text to search
     
     func searchMovie(with text: String){
         self.view.showAnimation()
@@ -61,22 +89,16 @@ final class TrendingViewController: UITableViewController {
         }
     }
     
-    func registraNotificacionTeclado (){
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardDidHideNotification, object: nil)
-
-    }
+    /// This recognizes one or many taps for searchbar
     
     @objc func tapGestureHandler() {
         searchBar.endEditing(true)
     }
     
-    @objc func keyboardWillShow(notification: Notification) {
-            if let keyboardHeight = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.height {
-                debugPrint("Notification: Keyboard will show")
-                
-                view.endEditing(true)
-            }
-        }
+    /// Tells this object that one or more new touches occurred in a view or window
+    /// - Parameters:
+    ///  - touches: set of UITouch instances that represent the touches.
+    ///  - event:  The event to which the touches belong.
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -115,11 +137,18 @@ extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, 
     
     func updateSearchResults(for searchController: UISearchController) { }
     
+    ///This method received search-related information from the user
+    ///- Parameters:
+    /// - searchbar: an object for searchbar type.
+    /// - searchText: The text changed
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
         let searchText = trimmedString.replacingOccurrences(of: " ", with: "%20")
         if searchText.count > 1 {
             searchMovie(with: searchText)
+        } else {
+            getMovies()
         }
         
     }
