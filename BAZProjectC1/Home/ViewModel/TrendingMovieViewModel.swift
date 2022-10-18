@@ -19,6 +19,10 @@ class TrendingMovieViewModel {
         }
     }
     
+    /// This  method get movies depending of an URL string
+    /// - Parameters:
+    ///   - endPoint: The endpoint of an API
+    
     func getMovies(_ endPoint: EndPoint) {
         let url = endPoint.requestFrom
         URLSession.shared.dataTask(with: url) { data, response, error in

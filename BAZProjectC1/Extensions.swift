@@ -21,7 +21,7 @@ extension UIImageView {
         }
         
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
-            ///Comentar:-
+            /// This method asynchronously downloads the images, if the image don't exists set a default image
             DispatchQueue.main.async {
                 if let _ = error {
                     self.image = UIImage(named: "poster")

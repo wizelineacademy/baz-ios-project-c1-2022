@@ -26,6 +26,14 @@ class TextoResponsivo {
         self.myNotificationCenter = notificationCenter
     }
     
+    ///This method adds an entry to the notification center.
+    ///- Parameters:
+    ///- subscriber: the object to subscribe
+    ///- selector: the method to execute.
+    ///- name: The name of the notification to register
+    ///- object: The object that sends notifications to the observer block.
+    ///
+
     func subscribeToNotification(_ subscriber: AnyObject, with selector: Selector, name: NSNotification.Name, object: Any? = nil) {
         myNotificationCenter.addObserver(subscriber, selector: selector, name: name, object: object)
     }

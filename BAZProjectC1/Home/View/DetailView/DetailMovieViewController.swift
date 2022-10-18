@@ -7,13 +7,7 @@
 
 import UIKit
 
-/// This Class send a request, for get url
-/// - Parameters:
-///   - requestUrl: URL path of an API
-///   - completion: action when the service response
-
 class DetailMovieViewController: UIViewController {
-    
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var MovieTitleLabel: UILabel!
     @IBOutlet weak var MoviePosterImage: UIImageView!
@@ -25,6 +19,8 @@ class DetailMovieViewController: UIViewController {
         super.viewDidLoad()
         setupView()
     }
+    
+    /// This method setup with image and text the window detail
     
     func setupView(){
         if let  movieTitle = movieSelected?.title,

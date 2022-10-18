@@ -10,8 +10,6 @@ final class TrendingViewController: UITableViewController {
     lazy var searchBar:UISearchBar = UISearchBar()
     @IBOutlet weak var principalTabBar: UITabBarItem!
     private let viewModel = TrendingMovieViewModel()
-    
-    
     var notificationCenterHelper: TextoResponsivo = TextoResponsivo()
     
     override func viewDidLoad() {
@@ -22,6 +20,7 @@ final class TrendingViewController: UITableViewController {
         notificationCenterHelper.subscribeToNotification(self, with: #selector(notificationReceived), name: NSNotification.Name(rawValue: "responsiveText.Notification"))
     }
     
+    /// This method registers the table and adds a gesture
     func setupView(){
         tableView.register(UINib.init(nibName: SearchTableViewCell.reuseIdentifier, bundle: Bundle(for: SearchTableViewCell.self)), forCellReuseIdentifier: SearchTableViewCell.reuseIdentifier)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureHandler))
@@ -29,6 +28,10 @@ final class TrendingViewController: UITableViewController {
         tapGesture.cancelsTouchesInView = false
     }
     
+    /// This method Called when the iOS interface environment changes and register an notification center
+    /// - Parameters:
+    /// - previousTraitCollection: The UITraitCollection object before the interface environment changed.
+    ///
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
          super.traitCollectionDidChange(previousTraitCollection)
          if previousTraitCollection?.preferredContentSizeCategory != traitCollection.preferredContentSizeCategory {
@@ -37,10 +40,15 @@ final class TrendingViewController: UITableViewController {
          }
     }
     
+    /// This method is executed when a notification is received
+    /// - Parameters:
+    /// - notification: An object containing information broadcast to registered observers
+    
     @objc private func notificationReceived(_ notification: NSNotification) {
         searchBar.searchTextField.font = UIFont.preferredFont(forTextStyle: .headline)
     }
     
+    /// This method adds a searchbar for searh movies by title or author
     func setSearchBar(){
         searchBar.searchTextField.font = .boldSystemFont(ofSize: 20 /*: 16*/)
         searchBar.searchBarStyle = UISearchBar.Style.default
@@ -53,10 +61,8 @@ final class TrendingViewController: UITableViewController {
         navigationItem.titleView = searchBar
     }
     
-    func segmentChanged(sender: UISegmentedControl) {
-            print("\(sender.selectedSegmentIndex)")
-    }
-    
+    /// This method get trendingMovies
+
     func getMovies(){
         self.view.showAnimation()
         viewModel.getMovies(.trendingMovie)
@@ -67,6 +73,10 @@ final class TrendingViewController: UITableViewController {
             }
         }
     }
+    
+    /// This method searches movies from a given text
+    /// - Parameters:
+    /// - text: The text to search
     
     func searchMovie(with text: String){
         self.view.showAnimation()
@@ -79,11 +89,16 @@ final class TrendingViewController: UITableViewController {
         }
     }
     
+    /// This recognizes one or many taps for searchbar
     
     @objc func tapGestureHandler() {
         searchBar.endEditing(true)
     }
     
+    /// Tells this object that one or more new touches occurred in a view or window
+    /// - Parameters:
+    /// - touches: set of UITouch instances that represent the touches.
+    /// - event:  The event to which the touches belong.
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -122,6 +137,11 @@ extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, 
     
     func updateSearchResults(for searchController: UISearchController) { }
     
+    ///This method received search-related information from the user
+    ///- Parameters:
+    ///- searchbar: an object for searchbar type.
+    ///- searchText: The text changed
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
         let searchText = trimmedString.replacingOccurrences(of: " ", with: "%20")
@@ -133,11 +153,3 @@ extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, 
         
     }
 }
-
-//extension TrendingViewController: TextoResponsivoDelegate {
-//    func textSizeDidChange(_ textSize: UIContentSizeCategory) {
-//        print("cambiar el tamaño del texto a \(textSize.rawValue)")
-//
-//        TextoResponsivo.myNotificationCenter.post(name: NSNotification.Name(rawValue: "responsiveText.Notification"), object: nil, userInfo: ["customText": UIContentSizeCategory(rawValue: textSize.rawValue)])
-//    }
-//}
