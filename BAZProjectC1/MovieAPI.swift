@@ -7,11 +7,16 @@
 import Foundation
 
 class MovieAPI {
-
-    private let apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a"
+// MARK:  - base parameter declaration
+    private let baseURLPath: String = "https://api.themoviedb.org/3"
+    private let apiKey: String
+    
+    public init(apiKey: String = "f6cd5c1a9e6c6b965fdcab0fa6ddd38a") {
+        self.apiKey = apiKey
+    }
 
     func getMovies() -> [Movie] {
-        guard let url = URL(string: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)"),
+        guard let url = URL(string: "\(baseURLPath)/trending/movie/day?api_key=\(apiKey)"),
               let data = try? Data(contentsOf: url),
               let json = try? JSONSerialization.jsonObject(with: data) as? NSDictionary,
               let results = json.object(forKey: "results") as? [NSDictionary]
@@ -25,44 +30,52 @@ class MovieAPI {
             if let id = result.object(forKey: "id") as? Int,
                let title = result.object(forKey: "title") as? String,
                let poster_path = result.object(forKey: "poster_path") as? String, let strDetail = result.object(forKey: "overview") as? String {
-               movies.append(Movie(id: id, title: title, poster_path: poster_path))
+                movies.append(Movie(id: id, title: title, descriptionMovie: strDetail, posterPath: poster_path))
             }
         }
         return movies
     }
     
-    func getMoviesUpdate(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/trending/movie/day?api_key=\(apiKey)", completion: { lstInfo in
-            completion(lstInfo)
-        })
-    }
-     
-    func getNowPlaying(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
-            completion(lstInfo)
-        })
-    }
-
-    func getMostPopular(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
-            completion(lstInfo)
+    public func getNowPlaying() {
+        
+      request(strUrlPath: "\(baseURLPath)/movie/now_playing?api_key=\(apiKey)", completion: { lstInfo in
+            NotificationCenter.default.post(name: Notification.Name("notificationNowPlay"), object: ["infoData":lstInfo])
         })
     }
     
-    func getTopRated(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    /**
+        * this method consults the list of movies
+        * executes the "request" function which requests a url to be able to execute the request
+        * completion:  the closure returns the list of movies
+     */
+    func getMoviesUpdate(completion: @escaping ([MovieUpdate]) -> ()) {
+        request(strUrlPath: "\(baseURLPath)/trending/movie/day?api_key=\(apiKey)", completion: completion)
     }
     
-    func getUpComing(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    public func getMostPopular(completion: @escaping ([MovieUpdate]) -> ()) {
+       request(strUrlPath:"\(baseURLPath)/movie/popular?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
+    }
+    
+    /**
+     * this method consults the list of movies top rated
+     * executes the "request" function which requests a url to be able to execute the request
+     * completion:  the closure returns the list of movies top rated
+     */
+    func getTopRated(completion: @escaping ([MovieUpdate]) -> ()) {
+        request(strUrlPath:"\(baseURLPath)/movie/top_rated?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
+    }
+    
+    /**
+     * this method consults the list of movies UpComing
+     * executes the "request" function which requests a url to be able to execute the request
+     * completion:  the closure returns the list of movies UpComing
+     */
+    func getUpComing(completion: @escaping ([MovieUpdate]) -> ()) {
+       request(strUrlPath:"\(baseURLPath)/movie/upcoming?api_key=\(apiKey)&language=es&region=MX&page=1", completion: completion)
     }
     
     func getQuery(strQuery: String, completion: @escaping ([Movie]) -> ()) {
-        guard let url = URL(string: "https://api.themoviedb.org/3/search/keyword?api_key=\(apiKey)&language=es&query=\(strQuery)") else {
+        guard let url = URL(string: "\(baseURLPath)/search/keyword?api_key=\(apiKey)&language=es&query=\(strQuery)") else {
             return
         }
         
@@ -76,7 +89,7 @@ class MovieAPI {
                     if let dataInfo = json as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
                         
                         for item in dataAll {
-                            lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["name"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
+                            lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["name"] as? String ?? "", descriptionMovie: item["overview"] as? String ?? "", posterPath: item["poster_path"] as? String ?? ""))
                         }
                     }
                     completion(lstMovies)
@@ -88,60 +101,54 @@ class MovieAPI {
         }.resume()
     }
     
-    func getQuerySearch(strQuery: String, completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    
+    /**
+     * this method consults the list of movies Query Search
+     * executes the "request" function which requests a url to be able to execute the request
+     * completion:  the closure returns specifie Movie
+     */
+    func getQuerySearch(strQuery: String, completion: @escaping ([MovieUpdate]) -> ()) {
+        self.request(strUrlPath:"\(baseURLPath)/search/movie?api_key=\(apiKey)&language=es&page=2&query=\(strQuery)", completion: completion)
         
     }
     
-    func getReviews(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath:"https://api.themoviedb.org/3/movie/603/reviews?api_key=\(apiKey)&language=es", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    /**
+     * this method consults the list of movies QuerySearch
+     * executes the "request" function which requests a url to be able to execute the request
+     * completion:  the closure returns specifie Movie
+     */
+    func getReviews(completion: @escaping ([MovieUpdate]) -> ()) {
+        self.request(strUrlPath:"\(baseURLPath)/movie/603/reviews?api_key=\(apiKey)&language=es", completion: completion)
     }
 
-    func getSimilar(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/similar?api_key=\(apiKey)&language=es", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    func getSimilar(completion: @escaping ([MovieUpdate]) -> ()) {
+        self.request(strUrlPath: "\(baseURLPath)/movie/603/similar?api_key=\(apiKey)&language=es", completion: completion)
         
     }
     
-    func getRecomendations(completion: @escaping ([Movie]) -> ()) {
-        self.request(strUrlPath: "https://api.themoviedb.org/3/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: { lstInfo in
-            completion(lstInfo)
-        })
+    func getRecomendations(completion: @escaping ([MovieUpdate]) -> ()) {
+        self.request(strUrlPath: "\(baseURLPath)/movie/603/recommendations?api_key=\(apiKey)&language=es", completion: completion)
     }
     
-    //MARK: Serializacion
-    func serializationJson(jsonDic: Any) -> [Movie] {
-        var lstMovies = [Movie]()
-        if let dataInfo = jsonDic as? [String : Any], let dataAll = dataInfo["results"] as? [[String: Any]]{
-            for item in dataAll {
-                lstMovies.append(Movie(id: item["id"] as? Int ?? 0, title: item["title"] as? String ?? "", poster_path: item["poster_path"] as? String ?? ""))
-            }
-        }
-        return lstMovies
+    // MARK: New Serializacion
+    private func serializationNewJSON(objData: Data) -> ResultParser {
+        let objJD = JSONDecoder()
+        objJD.keyDecodingStrategy = .convertFromSnakeCase
+        let objDatos = try? objJD.decode(ResultParser.self, from: objData)
+        return objDatos ?? ResultParser()
     }
     
     //MARK: Request
-    func request(strUrlPath: String, completion: @escaping ([Movie]) -> ()) {
+    private func request(strUrlPath: String, completion: @escaping ([MovieUpdate]) -> ()) {
         guard let url = URL(string: strUrlPath) else {
             return
         }
-        
+       
         let session = URLSession.shared
         session.dataTask(with: url) { (data, response, error) in
             if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print("Json: \(json)")
-                    completion(self.serializationJson(jsonDic: json))
-                } catch {
-                    completion([])
-                }
-                
+                let obj = self.serializationNewJSON(objData: data)
+                completion(obj.results ?? [MovieUpdate]())
             }
         }.resume()
         
