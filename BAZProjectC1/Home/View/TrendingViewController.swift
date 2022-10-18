@@ -97,8 +97,8 @@ final class TrendingViewController: UITableViewController {
     
     /// Tells this object that one or more new touches occurred in a view or window
     /// - Parameters:
-    /// - touches: set of UITouch instances that represent the touches.
-    /// - event:  The event to which the touches belong.
+    ///  - touches: set of UITouch instances that represent the touches.
+    ///  - event:  The event to which the touches belong.
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
@@ -139,8 +139,8 @@ extension TrendingViewController: UISearchBarDelegate, UISearchDisplayDelegate, 
     
     ///This method received search-related information from the user
     ///- Parameters:
-    ///- searchbar: an object for searchbar type.
-    ///- searchText: The text changed
+    /// - searchbar: an object for searchbar type.
+    /// - searchText: The text changed
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         let trimmedString = searchText.trimmingCharacters(in: .whitespaces)
