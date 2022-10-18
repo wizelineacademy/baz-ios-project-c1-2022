@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EMQ-k6-m9Z">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EMQ-k6-m9Z">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -170,10 +170,26 @@
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ysb-PO-sgS">
+                                                        <rect key="frame" x="70" y="0.0" width="30" height="30"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="30" id="5iM-Kx-xIM"/>
+                                                            <constraint firstAttribute="width" constant="30" id="9zK-9a-fNe"/>
+                                                        </constraints>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" image="magnifyingglass" catalog="system"/>
+                                                        <connections>
+                                                            <action selector="btnSearch:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="JsW-kf-KDr"/>
+                                                        </connections>
+                                                    </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="wgY-RN-I7U" secondAttribute="bottom" id="26V-of-ycD"/>
+                                                    <constraint firstAttribute="bottom" secondItem="Ysb-PO-sgS" secondAttribute="bottom" id="5bT-vC-KUX"/>
+                                                    <constraint firstItem="Ysb-PO-sgS" firstAttribute="top" secondItem="aPt-eS-opE" secondAttribute="top" id="93l-uw-2B4"/>
+                                                    <constraint firstItem="Ysb-PO-sgS" firstAttribute="leading" secondItem="wgY-RN-I7U" secondAttribute="trailing" constant="10" id="GXF-xl-Dck"/>
                                                     <constraint firstAttribute="height" constant="30" id="HuP-DP-Bfg"/>
                                                     <constraint firstItem="KrS-Zs-NBu" firstAttribute="top" secondItem="aPt-eS-opE" secondAttribute="top" id="OZp-QN-riV"/>
                                                     <constraint firstItem="KrS-Zs-NBu" firstAttribute="leading" secondItem="Kqa-gj-0Cy" secondAttribute="trailing" constant="10" id="VLM-Af-g4B"/>
@@ -311,6 +327,7 @@
     </scenes>
     <resources>
         <image name="bd" width="185.03999328613281" height="133.39999389648438"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="poster" width="500" height="743"/>
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <image name="wz" width="542" height="460"/>

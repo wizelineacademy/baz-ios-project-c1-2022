@@ -12,6 +12,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var lblVoteAverage: UILabel!
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var imgStar: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -20,7 +21,22 @@ class MoviesCollectionViewCell: UICollectionViewCell {
         print(movie)
         self.lblName.text = movie.title
         self.lblVoteAverage.text = "\(Int(movie.vote_average.rounded()))"
-        loadImg(img: movie.poster_path)
+        self.image.image = UIImage(named:"poster")
+        if let moviePoster =  movie.poster_path {
+            loadImg(img: moviePoster)
+        }
+    }
+    
+    func configActor(actor: Actor){
+        print(actor)
+        self.lblName.text = actor.original_name
+        self.lblVoteAverage.isHidden = true
+        self.imgStar.isHidden = true
+        self.image.image = UIImage(named:"poster")
+        if let actorProfile = actor.profile_path {
+            loadImg(img: actorProfile)
+        }
+        
     }
     
     func loadImg(img: String){

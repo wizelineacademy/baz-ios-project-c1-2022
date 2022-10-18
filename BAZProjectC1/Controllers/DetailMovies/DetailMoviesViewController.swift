@@ -11,9 +11,13 @@ import WebKit
 class DetailMoviesViewController: UIViewController {
     
     var infoMovie: Movie?
-    let movieApi = MovieAPI()
-    var moviesSimilar: [Movie] = [Movie]()
-    var keyVideo = ""
+    private let movieApi = MovieAPI()
+    private var moviesSimilar: [Movie] = [Movie]()
+    private var moviesReviews: [Reviews] = [Reviews]()
+    private var moviesActors: [Actor] = [Actor]()
+    private var moviesRecommendations: [Movie] = [Movie]()
+    private var dataMoreInfo: [MoreInfoMovie] = [MoreInfoMovie]()
+    private var keyVideo = ""
     
     @IBOutlet weak var wvVideoMovie: WKWebView!
     @IBOutlet weak var btnPlayTrailer: UIButton!
@@ -32,7 +36,37 @@ class DetailMoviesViewController: UIViewController {
         self.tblDetailMovies.delegate = self
         self.animLoadTrailer.isHidden = true
         getVideoTrailer()
-        getMoviesSimilar()
+        getDataMoreInfo()
+        sendRecentMovieNotification()
+    }
+    
+    private func getDataMoreInfo(){
+        self.dataMoreInfo.append(.description)
+        self.movieApi.getCredits(id: self.infoMovie!.id) { movieActors in
+            self.moviesActors = movieActors.sorted{ $0.order < $1.order }
+            if movieActors.count > 0 { self.dataMoreInfo.append(.actors) }
+            self.movieApi.getReviews(id: self.infoMovie!.id) { moviesReviews in
+                self.moviesReviews = moviesReviews
+                if moviesReviews.count > 0 { self.dataMoreInfo.append(.reviews) }
+                self.movieApi.getMoviesSimilar(id: self.infoMovie!.id) { moviesSimilar in
+                    self.moviesSimilar = moviesSimilar
+                    if movieActors.count > 0 { self.dataMoreInfo.append(.similar) }
+                    self.movieApi.getRecommendations(id: self.infoMovie!.id) { moviesRecommendations in
+                        self.moviesRecommendations = moviesRecommendations
+                        if moviesRecommendations.count > 0 { self.dataMoreInfo.append(.recommendations) }
+                        DispatchQueue.main.async {
+                            self.tblDetailMovies.reloadData()
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func sendRecentMovieNotification(){
+        if let infoMovie = infoMovie {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "notification.addRecentMovieHome"), object: nil, userInfo: ["recentMovie": infoMovie])
+        }
     }
     
     @IBAction func showVideo(_ sender: Any) {
@@ -58,15 +92,6 @@ class DetailMoviesViewController: UIViewController {
                     self.btnPlayTrailer.isHidden = true
                     self.loadImg(img: self.infoMovie?.poster_path ?? "")
                 }
-            }
-        }
-    }
-    
-    private func getMoviesSimilar(){
-        movieApi.getMoviesSimilar(id: infoMovie!.id) { moviesSimilar in
-            self.moviesSimilar = moviesSimilar
-            DispatchQueue.main.async {
-                self.tblDetailMovies.reloadData()
             }
         }
     }
@@ -113,26 +138,64 @@ extension DetailMoviesViewController: WKNavigationDelegate {
 
 extension DetailMoviesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return moviesSimilar.count == 0 ? 1 : 2
+        return dataMoreInfo.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        
+        let dataMoreInfoType = dataMoreInfo[indexPath.row]
+        
+        switch dataMoreInfoType {
+        case .description:
             let cell : DetailMovieTableViewCell = tableView.dequeueReusableCell(withIdentifier: "DetailMovieTableViewCell", for: indexPath) as! DetailMovieTableViewCell
             cell.configCellDetail(movie: infoMovie!)
             return cell
-        }else{
+        case .reviews:
             let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
-            cell.configCell(listMovies: moviesSimilar, title: "Similar")
             cell.delegate = self
+            cell.listReviews = moviesReviews
+            cell.containerSize = CGSize(width: 350, height: 150)
+            cell.configCell(title: "Reviews", typeCell: .reviews)
+            return cell
+        case .actors:
+            let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
+            cell.listActors = moviesActors
+            cell.containerSize = CGSize(width: 150, height: 200)
+            cell.configCell(title: "Actors", typeCell: .actors)
+            cell.delegate = self
+            return cell
+        case .similar:
+            let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
+            cell.listMovies = moviesSimilar
+            cell.containerSize = CGSize(width: 350, height: 250)
+            cell.configCell(title: "Similar", typeCell: .similar)
+            cell.delegate = self
+            return cell
+        case .recommendations:
+            let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
+            cell.listMovies = moviesRecommendations
+            cell.containerSize = CGSize(width: 300, height: 400)
+            cell.configCell(title: "Recommendations", typeCell: .recommendations)
+            cell.delegate = self
+            return cell
+        default:
+            let cell: UITableViewCell = UITableViewCell()
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row != 0 {
+        let dataMoreInfoType = dataMoreInfo[indexPath.row]
+        switch dataMoreInfoType {
+        case .reviews:
+            return 200.0
+        case .actors:
+            return 240.0
+        case .similar:
+            return 300.0
+        case .recommendations:
             return 450.0
-        }else{
+        default:
             return UITableView.automaticDimension
         }
     }

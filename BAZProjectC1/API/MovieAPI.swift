@@ -20,6 +20,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -34,6 +35,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -48,6 +50,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -62,6 +65,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -77,6 +81,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -92,6 +97,7 @@ class MovieAPI {
                 completion(res.results)
             } catch let error {
                 print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }
@@ -108,6 +114,66 @@ class MovieAPI {
             } catch let error {
                 print("Error: ", error)
                 completion([Video]())
+            }
+        }.resume()
+    }
+    
+    func getReviews(id: Int, completion: @escaping (([Reviews]) -> Void)) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/reviews?api_key=\(apiKey)")
+        else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let res = try JSONDecoder().decode(ResponseReviews.self, from: data)
+                completion(res.results)
+            } catch let error {
+                print("Error: ", error)
+                completion([Reviews]())
+            }
+        }.resume()
+    }
+    
+    func getCredits(id: Int, completion: @escaping (([Actor]) -> Void)) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/credits?api_key=\(apiKey)")
+        else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let res = try JSONDecoder().decode(ResponseCredits.self, from: data)
+                completion(res.cast)
+            } catch let error {
+                print("Error: ", error)
+                completion([Actor]())
+            }
+        }.resume()
+    }
+    
+    func getRecommendations(id: Int, completion: @escaping (([Movie]) -> Void)) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)/recommendations?api_key=\(apiKey)")
+        else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let res = try JSONDecoder().decode(ResponseMovie.self, from: data)
+                completion(res.results)
+            } catch let error {
+                print("Error: ", error)
+                completion([Movie]())
+            }
+        }.resume()
+    }
+    
+    func getSearch(keyword: String, completion: @escaping (([Movie]) -> Void)) {
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(apiKey)&query=\(keyword)")
+        else { return }
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            do {
+                let res = try JSONDecoder().decode(ResponseMovie.self, from: data)
+                completion(res.results)
+            } catch let error {
+                print("Error: ", error)
+                completion([Movie]())
             }
         }.resume()
     }

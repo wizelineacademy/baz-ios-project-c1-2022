@@ -21,7 +21,7 @@ class HomeHeaderView: UIView {
         self.lblText.text = movie.overview
         self.lblVoteAverage.text = "\(Int(movie.vote_average.rounded()))"
         
-        let urlImageName = "https://image.tmdb.org/t/p/w500\(movie.poster_path)"
+        let urlImageName = "https://image.tmdb.org/t/p/w500\(movie.poster_path ?? "")"
         let urlString = urlImageName.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed) ?? ""
         guard let url = URL(string: urlString) else { return }
         

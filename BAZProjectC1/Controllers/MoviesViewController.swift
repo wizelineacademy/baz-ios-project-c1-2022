@@ -15,9 +15,10 @@ class MoviesViewController: UIViewController {
     private let tableHeaderViewCutaway: CGFloat = 0
     
     private var headerView: HomeHeaderView!
-    var listMoviesSelect: [Movie] = [Movie]()
-    var listTypeMovies: [String] = ["Now Playing","Trending", "Popular", "Top Rated", "Upcoming"]
-    var firstElementListMoviesSelect: Movie!
+    private var listMoviesSelect: [Movie] = [Movie]()
+    private var recentlyWatchedMovies: [Movie] = [Movie]()
+    private var listTypeMovies: [String] = ["Now Playing","Trending", "Popular", "Top Rated", "Upcoming"]
+    private var firstElementListMoviesSelect: Movie!
     
     @IBOutlet weak var contentTableView: UIView!
     @IBOutlet weak var tblHome: UITableView! {
@@ -33,10 +34,14 @@ class MoviesViewController: UIViewController {
         headerTableView()
         configCollectionView()
         configSelection()
+        suscribeObserverToNotificationCenter()
     }
     
+    private func suscribeObserverToNotificationCenter(){
+        NotificationCenter.default.addObserver(self, selector: #selector(addRecentMovie), name: NSNotification.Name(rawValue: "notification.addRecentMovieHome"), object: nil)
+    }
     
-    func configCollectionView(){
+    private func configCollectionView(){
         typeMovieCollection.delegate = self
         typeMovieCollection.dataSource = self
     }
@@ -44,9 +49,21 @@ class MoviesViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        if !recentlyWatchedMovies.isEmpty {
+            tblHome.reloadData()
+        }
     }
     
-    func configSelection(index: Int = 0){
+    @objc private func addRecentMovie(_ notification: NSNotification){
+        if let recentMovie = notification.userInfo?["recentMovie"] as? Movie {
+            if !recentlyWatchedMovies.contains(where: { $0.id == recentMovie.id }) {
+                recentlyWatchedMovies.append(recentMovie)
+                recentlyWatchedMovies.reverse()
+            }
+        }
+    }
+    
+    private func configSelection(index: Int = 0){
         
         switch index {
         case 0:
@@ -73,7 +90,7 @@ class MoviesViewController: UIViewController {
         }
     }
     
-    func headerTableView(){
+    private func headerTableView(){
         self.tableHeaderViewHeight = (self.view.frame.height * 0.60)
         self.tblHome.rowHeight = UITableView.automaticDimension
         self.tblHome.estimatedRowHeight = UITableView.automaticDimension
@@ -83,7 +100,7 @@ class MoviesViewController: UIViewController {
         self.configHeaderTableView()
     }
     
-    func configHeaderTableView(){
+    private func configHeaderTableView(){
         headerView = (tblHome.tableHeaderView as! HomeHeaderView)
         tblHome.tableHeaderView = nil
         tblHome.addSubview(headerView)
@@ -92,7 +109,7 @@ class MoviesViewController: UIViewController {
         updateHeaderView()
     }
     
-    func updateHeaderView(){
+    private func updateHeaderView(){
         let effectiveHeight = tableHeaderViewHeight - tableHeaderViewCutaway/2
         var headerRect = CGRect(x: 0, y: -effectiveHeight, width: self.view.frame.width, height: tableHeaderViewHeight)
         
@@ -103,27 +120,54 @@ class MoviesViewController: UIViewController {
         headerView.frame = headerRect
     }
     
-    @IBAction func seeMoreHeader(_ sender: Any) {
+    @IBAction private func seeMoreHeader(_ sender: Any) {
         sendDetailMovies(movie: self.firstElementListMoviesSelect)
     }
+    
+    @IBAction func btnSearch(_ sender: Any) {
+        let storyBoard: UIStoryboard = UIStoryboard(name: "Search", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
+        
+        let navController = UINavigationController(rootViewController: vc)
+        navController.modalPresentationStyle = .overFullScreen
+        navController.modalTransitionStyle = .crossDissolve
+        self.present(navController, animated: true, completion: nil)
+    }
+    
     
 }
 
 extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return !recentlyWatchedMovies.isEmpty ? 2 : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
-        cell.delegate = self
-        cell.configCell(listMovies: listMoviesSelect)
-        return cell
+        
+        if !recentlyWatchedMovies.isEmpty && indexPath.row == 0 {
+            let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
+            cell.delegate = self
+            cell.listMovies = self.recentlyWatchedMovies
+            cell.containerSize = CGSize(width: 350, height: 250)
+            cell.configCell(title: "Vistas Recientemente", typeCell: .recentlywatched)
+            return cell
+        }else{
+            let cell : MoviesTableViewCell = tableView.dequeueReusableCell(withIdentifier: "MoviesTableViewCell", for: indexPath) as! MoviesTableViewCell
+            cell.delegate = self
+            cell.listMovies = self.listMoviesSelect
+            cell.configCell()
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 400.0
+        if !recentlyWatchedMovies.isEmpty && indexPath.row == 0 {
+            return 300.0
+        }else{
+            return 400.0
+        }
+       
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -153,8 +197,8 @@ extension MoviesViewController: UICollectionViewDelegate, UICollectionViewDataSo
 extension MoviesViewController: ManageControllersDelegate {
     func sendDetailMovies(movie: Movie) {
         let storyBoard: UIStoryboard = UIStoryboard(name: "DetailMovies", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "DetailMoviesViewController") as! DetailMoviesViewController
-        newViewController.infoMovie = movie
-        self.navigationController?.pushViewController(newViewController, animated: true)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "DetailMoviesViewController") as! DetailMoviesViewController
+        vc.infoMovie = movie
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
